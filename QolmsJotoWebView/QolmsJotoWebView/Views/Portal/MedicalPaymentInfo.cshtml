@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "医療費あと払いとは";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+<body id="pay-later" class="lower">
+    @Html.AntiForgeryToken()
+
+    <main id="main-cont" class="clearfix" role="main">
+        <section class="home-btn-wrap" data-pageno="8">
+            <a href="../Portal/MedicalPayment" class="home-btn"><i class="la la-angle-left"></i></a>
+        </section>
+
+        <section class="contents-area">
+            <h2 class="title">医療費あと払いとは</h2>
+            <hr>
+
+            <p class="center mb20">
+                <img src="~/dist/img/pay-later/info-logo.png" alt="医療費あと払いとは" class="max-image pay-later-logo">
+            </p>
+
+            <section class="section default">
+                <p>
+                    対象の病院での医療費を「あと払い」にすることで受診後に会計を待たずにお帰りいただけるサービスです。
+                </p>
+            </section>
+
+            <section class="section default">
+                <h3 class="title">メリット</h3>
+
+                <div class="mb20">
+                    <h4 class="sub-title"><span class="num">1</span> 受診後 会計待ち無しで帰れる</h4>
+                    <p class="center mb10">
+                        <img src="~/dist/img/pay-later/info-1.png" alt="受診後 会計待ち無しで帰れる" class="max-image">
+                    </p>
+                    <p>
+                        病院の待ち時間、少しでも減らしたいと思ったことありませんか？「医療費あと払い」を使えば、会計の待ち時間をなくすことができます。だから、診察後すぐ帰れるんです。
+                    </p>
+                </div>
+
+                <div class="mb20">
+                    <h4 class="sub-title"><span class="num">2</span> 通院時 必要なのは診察券のみ</h4>
+                    <p class="center mb10">
+                        <img src="~/dist/img/pay-later/info-2.png" alt="通院時 必要なのは診察券のみ" class="max-image">
+                    </p>
+                    <p>
+                        会計をする必要がないのでお財布いらず。診察券さえあれば通院が可能になります。
+                    </p>
+                </div>
+
+                <div class="mb20">
+                    <h4 class="sub-title"><span class="num">3</span> ご家族の分もまとめてお支払いできる</h4>
+                    <p class="center mb10">
+                        <img src="~/dist/img/pay-later/info-3.png" alt="ご家族の分もまとめてお支払いできる" class="max-image">
+                    </p>
+                    <p>
+                        会員登録をした本人だけではなく家族の分もまとめてお支払いいただけます。
+                    </p>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    @Html.Action("PortalFooterPartialView", "Portal")
+
+    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
+    <script src="~/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/dist/js/slick.min.js"></script>
+    <script src="~/dist/js/spc.lib.min.js"></script>
+    <script src="~/dist/js/spc.util.min.js"></script>
+    <script src="~/dist/js/page-script/mgf.js"></script>
+    <script src="~/dist/js/page-script/mgf.portal.js"></script>
+</body>

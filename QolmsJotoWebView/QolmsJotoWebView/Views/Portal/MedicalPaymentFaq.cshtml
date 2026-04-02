@@ -1,0 +1,120 @@
+﻿@{
+    ViewData["Title"] = "よくあるご質問";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+<body id="pay-later" class="lower">
+    @Html.AntiForgeryToken()
+
+    <main id="main-cont" class="clearfix" role="main">
+        <section class="home-btn-wrap" data-pageno="8">
+            <a href="../Portal/MedicalPayment" class="home-btn"><i class="la la-angle-left"></i></a>
+        </section>
+
+        <section class="contents-area">
+            <h2 class="title">よくあるご質問</h2>
+            <hr>
+
+            <section class="section default">
+                <dl class="faq-list">
+
+                    <dt class="faq-q">Q: あと払いを利用したいのですが、どうすればよいですか？</dt>
+                    <dd class="faq-a">
+                        まず会員登録が必要です。マイページより新規登録をお申し込みください。
+                    </dd>
+
+                    <dt class="faq-q">Q: 会員と支払者は同じでなければならないの？</dt>
+                    <dd class="faq-a">
+                        いいえ、家族会員登録をすることで、家族の医療費もまとめてお支払いいただけます。
+                    </dd>
+
+                    <dt class="faq-q">Q: あと払いの利用対象は？</dt>
+                    <dd class="faq-a">
+                        本サービスに対応している医療機関でご利用いただけます。
+                    </dd>
+
+                    <dt class="faq-q">Q: あと払いの利用方法は？</dt>
+                    <dd class="faq-a">
+                        会員登録後、対象の医療機関の受付で「あと払い」をご利用の旨をお伝えください。
+                    </dd>
+
+                    <dt class="faq-q">Q: 複数の医療機関であと払いを使うことはできますか？</dt>
+                    <dd class="faq-a">
+                        はい、対応している複数の医療機関でご利用いただけます。
+                    </dd>
+
+                    <dt class="faq-q">Q: 利用料金はかかりますか？</dt>
+                    <dd class="faq-a">
+                        登録料・年会費は無料です。詳しくはお客様窓口へお問い合わせください。
+                    </dd>
+
+                    <dt class="faq-q">Q: あと払いに登録したら、毎回利用しなければならないの？</dt>
+                    <dd class="faq-a">
+                        いいえ、毎回の利用は任意です。通常の会計も引き続きご利用いただけます。
+                    </dd>
+
+                    <dt class="faq-q">Q: あと払いを利用した場合の支払い日はいつですか？</dt>
+                    <dd class="faq-a">
+                        毎月締め日以降に請求書をお送りします。詳しくはマイページでご確認ください。
+                    </dd>
+
+                    <dt class="faq-q">Q: 金額の確認をしたい場合はどうすればよいですか？</dt>
+                    <dd class="faq-a">
+                        マイページにてご利用明細をご確認いただけます。
+                    </dd>
+
+                    <dt class="faq-q">Q: 領収書・明細書はもらえますか？</dt>
+                    <dd class="faq-a">
+                        マイページより明細をご確認いただけます。領収書については医療機関にお問い合わせください。
+                    </dd>
+
+                    <dt class="faq-q">Q: 会員情報を変更したい場合はどうすればよいですか？</dt>
+                    <dd class="faq-a">
+                        マイページの「会員情報変更」よりお手続きいただけます。
+                    </dd>
+
+                    <dt class="faq-q">Q: 退会したい場合はどうすればよいですか？</dt>
+                    <dd class="faq-a">
+                        マイページの「退会手続き」よりお申し込みいただけます。
+                    </dd>
+
+                    <dt class="faq-q">Q: マイページのID・パスワードを忘れた場合はどうすればよいですか？</dt>
+                    <dd class="faq-a">
+                        マイページのログイン画面の「ID・パスワードを忘れた方はこちら」よりお手続きください。
+                    </dd>
+
+                    <dt class="faq-q">Q: JOTOホームドクターを途中退会した場合、利用料金はどうなりますか？</dt>
+                    <dd class="faq-a">
+                        退会月までのご利用分はお支払いいただく必要があります。詳しくはお客様窓口へお問い合わせください。
+                    </dd>
+
+                </dl>
+            </section>
+
+            <section class="section default">
+                <h3 class="title">医療費あと払い お客様窓口</h3>
+                <p>
+                    お客さま窓口は「金額確認」及び「あと払い」のご利用方法についての窓口です。<br>
+                    診療内容についてはご利用の医療機関にお問い合わせください。
+                </p>
+            </section>
+
+            <a href="tel:0120-515-851" class="tel-link">0120-515-851</a>
+
+            <section class="section default">
+                受付時間 9:00〜17:00（土・日・祝祭日・年末年始除く）<br>
+                株式会社エムイーエックステクノロジーズ
+            </section>
+        </section>
+    </main>
+
+    @Html.Action("PortalFooterPartialView", "Portal")
+
+    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
+    <script src="~/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/dist/js/slick.min.js"></script>
+    <script src="~/dist/js/spc.lib.min.js"></script>
+    <script src="~/dist/js/spc.util.min.js"></script>
+    <script src="~/dist/js/page-script/mgf.js"></script>
+    <script src="~/dist/js/page-script/mgf.portal.js"></script>
+</body>

@@ -3,8 +3,6 @@
     Layout = "~/Views/Shared/_PortalLayout.cshtml";
 
     string myPageUrl = "https://mcs-mem.mdcom.jp/wms/mypage/login";
-    string infoUrl = "http://iwai2.sp-center.org/pay-later/info.html";
-    string faqUrl = "http://iwai2.sp-center.org/pay-later/faq.html";
 }
 
 <body id="pay-later" class="lower">
@@ -34,8 +32,8 @@
             </a>
 
             <p class="center mb20">
-                <a href="@infoUrl" class="btn btn-submit block">医療費あと払いとは</a>
-                <a href="@faqUrl" class="btn btn-submit block">よくあるご質問</a>
+                <a href="@Url.Action("MedicalPaymentInfo", "Portal")" class="btn btn-submit block">医療費あと払いとは</a>
+                <a href="@Url.Action("MedicalPaymentFaq", "Portal")" class="btn btn-submit block">よくあるご質問</a>
             </p>
 
             <section class="section default">

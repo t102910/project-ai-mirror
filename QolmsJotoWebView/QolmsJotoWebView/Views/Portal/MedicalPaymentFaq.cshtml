@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_PortalLayout.cshtml";
 }
 
-<body id="pay-later" class="lower">
+<body id="faq" class="lower">
     @Html.AntiForgeryToken()
 
     <main id="main-cont" class="clearfix" role="main">
@@ -12,192 +12,158 @@
         </section>
 
         <section class="contents-area">
-            <h2 class="title">よくあるご質問</h2>
-            <hr>
+            <div id="contents-wrap">
+                <h2 class="title">よくあるご質問</h2>
+                <hr>
 
-            <div class="accordion faq-accordion" id="faqAccordion">
-
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq-h1">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-c1" aria-expanded="false" aria-controls="faq-c1">
-                            Q: あと払いを利用したいのですが、どうすればよいですか？
-                        </button>
-                    </h2>
-                    <div id="faq-c1" class="accordion-collapse collapse" aria-labelledby="faq-h1" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            まず会員登録が必要です。マイページより新規登録をお申し込みください。
+                <article class="faq-article">
+                    <h3><span class="question">Q: あと払いを利用したいのですが、どうすればよいですか？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>あと払いのご利用には、事前の会員登録が必要です。詳しくはマイページより新規登録をお申し込みください。</p>
                         </div>
-                    </div>
-                </div>
+                    </section>
+                </article>
 
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq-h2">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-c2" aria-expanded="false" aria-controls="faq-c2">
-                            Q: 会員と支払者は同じでなければならないの？
-                        </button>
-                    </h2>
-                    <div id="faq-c2" class="accordion-collapse collapse" aria-labelledby="faq-h2" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            いいえ、家族会員登録をすることで、家族の医療費もまとめてお支払いいただけます。
+                <article class="faq-article">
+                    <h3><span class="question">Q: 会員と支払者は同じでなければならないの？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>いいえ、家族などご本人以外の方が支払うことも可能です。</p>
                         </div>
-                    </div>
-                </div>
+                    </section>
+                </article>
 
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq-h3">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-c3" aria-expanded="false" aria-controls="faq-c3">
-                            Q: あと払いの利用対象は？
-                        </button>
-                    </h2>
-                    <div id="faq-c3" class="accordion-collapse collapse" aria-labelledby="faq-h3" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            本サービスに対応している医療機関でご利用いただけます。
+                <article class="faq-article">
+                    <h3><span class="question">Q: あと払いの利用対象は？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>外来保険診察、各種予防接種、緊急時での入院、自費診察などの利用可否につきましては、各医療機関にご確認ください。</p>
                         </div>
-                    </div>
-                </div>
+                    </section>
+                </article>
 
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq-h4">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-c4" aria-expanded="false" aria-controls="faq-c4">
-                            Q: あと払いの利用方法は？
-                        </button>
-                    </h2>
-                    <div id="faq-c4" class="accordion-collapse collapse" aria-labelledby="faq-h4" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            会員登録後、対象の医療機関の受付で「あと払い」をご利用の旨をお伝えください。
+                <article class="faq-article">
+                    <h3><span class="question">Q: あと払いの利用方法は？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>医療機関の窓口で、診察券と一緒に「あと払い利用」の旨をお申し出ください。利用申し出のタイミングや処方後のお受け取り方法については、各医療機関にご確認ください。</p>
                         </div>
-                    </div>
-                </div>
+                    </section>
+                </article>
 
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq-h5">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-c5" aria-expanded="false" aria-controls="faq-c5">
-                            Q: 複数の医療機関であと払いを使うことはできますか？
-                        </button>
-                    </h2>
-                    <div id="faq-c5" class="accordion-collapse collapse" aria-labelledby="faq-h5" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            はい、対応している複数の医療機関でご利用いただけます。
+                <article class="faq-article">
+                    <h3><span class="question">Q: 複数の医療機関であと払いを使うことはできますか？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>はい、すでに「医療費あと払い」の会員登録がお済みの方は、初めてあと払いを利用する医療機関の窓口で<span class="high-light bold">「登録のお電話番号と生年月日の組み合わせ」</span>をお伝えいただくことで、再度の登録手続きなしに利用が可能です。</p>
                         </div>
-                    </div>
-                </div>
+                    </section>
+                </article>
 
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq-h6">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-c6" aria-expanded="false" aria-controls="faq-c6">
-                            Q: 利用料金はかかりますか？
-                        </button>
-                    </h2>
-                    <div id="faq-c6" class="accordion-collapse collapse" aria-labelledby="faq-h6" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            登録料・年会費は無料です。詳しくはお客様窓口へお問い合わせください。
+                <article class="faq-article">
+                    <h3><span class="question">Q: 利用料金はかかりますか？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>利用料はご利用いただくお支払い方法によって異なります。別会費・年会費はありません。</p>
                         </div>
-                    </div>
-                </div>
+                    </section>
+                </article>
 
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq-h7">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-c7" aria-expanded="false" aria-controls="faq-c7">
-                            Q: あと払いに登録したら、毎回利用しなければならないの？
-                        </button>
-                    </h2>
-                    <div id="faq-c7" class="accordion-collapse collapse" aria-labelledby="faq-h7" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            いいえ、毎回の利用は任意です。通常の会計も引き続きご利用いただけます。
+                <article class="faq-article">
+                    <h3><span class="question">Q: あと払いに登録したら、毎回利用しなければならないの？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>いいえ、あと払いを利用するかどうかは、各診察時に選択できます。利用しなくても費用はかかりません。</p>
                         </div>
-                    </div>
-                </div>
+                    </section>
+                </article>
 
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq-h8">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-c8" aria-expanded="false" aria-controls="faq-c8">
-                            Q: あと払いを利用した場合の支払い日はいつですか？
-                        </button>
-                    </h2>
-                    <div id="faq-c8" class="accordion-collapse collapse" aria-labelledby="faq-h8" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            毎月締め日以降に請求書をお送りします。詳しくはマイページでご確認ください。
+                <article class="faq-article">
+                    <h3><span class="question">Q: あと払いを利用した場合の支払い日はいつですか？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>お支払い日は、ご利用いただく支払い方法によって異なります。詳しくはマイページでご確認ください。</p>
                         </div>
-                    </div>
-                </div>
+                    </section>
+                </article>
 
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq-h9">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-c9" aria-expanded="false" aria-controls="faq-c9">
-                            Q: 金額の確認をしたい場合はどうすればよいですか？
-                        </button>
-                    </h2>
-                    <div id="faq-c9" class="accordion-collapse collapse" aria-labelledby="faq-h9" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            マイページにてご利用明細をご確認いただけます。
+                <article class="faq-article">
+                    <h3><span class="question">Q: 金額の確認をしたい場合はどうすればよいですか？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>利用の翌日以降に、マイページまたは「医療費あと払い お客さま窓口」へのお電話でご確認ください。</p>
                         </div>
-                    </div>
-                </div>
+                    </section>
+                </article>
 
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq-h10">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-c10" aria-expanded="false" aria-controls="faq-c10">
-                            Q: 領収書・明細書はもらえますか？
-                        </button>
-                    </h2>
-                    <div id="faq-c10" class="accordion-collapse collapse" aria-labelledby="faq-h10" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            マイページより明細をご確認いただけます。領収書については医療機関にお問い合わせください。
+                <article class="faq-article">
+                    <h3><span class="question">Q: 領収書・明細書はもらえますか？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>領収書・明細書が必要な場合は、後日あと払いを利用した医療機関の窓口などで受け取ることができます。</p>
                         </div>
-                    </div>
-                </div>
+                    </section>
+                </article>
 
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq-h11">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-c11" aria-expanded="false" aria-controls="faq-c11">
-                            Q: 会員情報を変更したい場合はどうすればよいですか？
-                        </button>
-                    </h2>
-                    <div id="faq-c11" class="accordion-collapse collapse" aria-labelledby="faq-h11" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            マイページの「会員情報変更」よりお手続きいただけます。
+                <article class="faq-article">
+                    <h3><span class="question">Q: 会員情報を変更したい場合はどうすればよいですか？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>
+                                会員情報変更の手順は、会員登録をした方法（Webまたは郵送）によって異なります。<br>
+                                Webで会員登録された方は、マイページで会員情報の変更が可能です。郵送で会員登録された方は、「医療費あと払い お客さま窓口」にご連絡ください。
+                            </p>
                         </div>
-                    </div>
-                </div>
+                    </section>
+                </article>
 
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq-h12">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-c12" aria-expanded="false" aria-controls="faq-c12">
-                            Q: 退会したい場合はどうすればよいですか？
-                        </button>
-                    </h2>
-                    <div id="faq-c12" class="accordion-collapse collapse" aria-labelledby="faq-h12" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            マイページの「退会手続き」よりお申し込みいただけます。
+                <article class="faq-article">
+                    <h3><span class="question">Q: 退会したい場合はどうすればよいですか？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>
+                                退会の手順は、会員登録をした方法（Webまたは郵送）によって異なります。<br>
+                                Webで会員登録された方は、マイページから退会が可能です。郵送で会員登録された方は、「医療費あと払い お客さま窓口」にご連絡ください。
+                            </p>
                         </div>
-                    </div>
-                </div>
+                    </section>
+                </article>
 
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq-h13">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-c13" aria-expanded="false" aria-controls="faq-c13">
-                            Q: マイページのID・パスワードを忘れた場合はどうすればよいですか？
-                        </button>
-                    </h2>
-                    <div id="faq-c13" class="accordion-collapse collapse" aria-labelledby="faq-h13" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            マイページのログイン画面の「ID・パスワードを忘れた方はこちら」よりお手続きください。
+                <article class="faq-article">
+                    <h3><span class="question">Q: マイページのID・パスワードを忘れた場合はどうすればよいですか？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>恐れ入りますが「医療費あと払い お客さま窓口」にご連絡ください。</p>
                         </div>
-                    </div>
-                </div>
+                    </section>
+                </article>
 
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq-h14">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-c14" aria-expanded="false" aria-controls="faq-c14">
-                            Q: JOTOホームドクターを途中退会した場合、利用料金はどうなりますか？
-                        </button>
-                    </h2>
-                    <div id="faq-c14" class="accordion-collapse collapse" aria-labelledby="faq-h14" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            退会月までのご利用分はお支払いいただく必要があります。詳しくはお客様窓口へお問い合わせください。
+                <article class="faq-article">
+                    <h3><span class="question">Q: JOTOホームドクターを途中退会した場合、利用料金はどうなりますか？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>
+                                あと払いサービス利用期末までJOTOホームドクター会員（ライト会員・プレミアム会員どちらも）加入が条件です。
+                                条件を満たしていない場合は210円/月（税別）利用料が発生します。
+                            </p>
                         </div>
-                    </div>
-                </div>
+                    </section>
+                </article>
 
             </div>
 
@@ -227,4 +193,15 @@
     <script src="~/dist/js/spc.util.min.js"></script>
     <script src="~/dist/js/page-script/mgf.js"></script>
     <script src="~/dist/js/page-script/mgf.portal.js"></script>
+    <script>
+        $(function () {
+            $('.question').click(function () {
+                if ($(this).parents('.faq-article').hasClass('is-open')) {
+                    $(this).parents('.faq-article').removeClass('is-open').children('.answer').slideUp(300);
+                } else {
+                    $(this).parents('.faq-article').addClass('is-open').children('.answer').slideDown(300);
+                }
+            });
+        });
+    </script>
 </body>

@@ -1,0 +1,120 @@
+﻿@model PortalLocalIdVerificationDetailViewModel
+
+@{
+    ViewBag.Title = "エントリー状況";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+
+    //Guid dockDispKey = Guid.Parse("ded05070-8718-4313-924a-25233e35e218");
+
+    //string first = string.Empty;
+    //if (TempData["first"] is bool b && b)
+    //{
+    //    first = "first";
+    //}
+}
+
+<body id="confirm" class="lower ginowan">
+    @Html.AntiForgeryToken()
+
+    <main id="main-cont" class="clearfix" role="main">
+        @*<section class="home-btn-wrap" data-pageno="1">
+            <a href="../Portal/LocalIdVerification" class="home-btn"><i class="la la-angle-left"></i></a>
+        </section>*@
+        <section class="contents-area mb20">
+            <div class="box type-2">
+                <div class="wrap">
+                    <h2 class="title">
+                        市民確認申請の状況
+                    </h2>
+                    <ul class="progressbar">
+                        <li class="@(Model.Status >= QjLinkageStatusTypeEnum.Applying ? "active" : string.Empty)">
+                            <span class="step">Step1</span>
+                            <span>市民確認未承認</span>
+                        </li>
+                        <li class="@(Model.Status == QjLinkageStatusTypeEnum.Approved ? "active" : string.Empty)">
+                            <span class="step">Step2</span>
+                            <span>市民確認承認済み</span>
+                        </li>
+                        <li class="@(Model.Status == QjLinkageStatusTypeEnum.Approved ? "active" : string.Empty)">
+                            <span>完了！</span>
+                        </li>
+                    </ul>
+                    <div class="result-area">
+                        @{
+                            switch (Model.Status)
+                            {
+                                case QjLinkageStatusTypeEnum.Applying:
+                                    <p class="result-text">市民確認未承認</p>;
+                                    break;
+
+                                case QjLinkageStatusTypeEnum.Approved:
+                                    <p class="result-text">市民確認承認済み</p>;
+                                    break;
+
+                                case  QjLinkageStatusTypeEnum.Refused:
+                                    <p class="result-text">市民確認非承認</p>;
+                                    break;
+                            }
+                        }
+                    </div>
+
+                    <h4 class="sub-title">
+                        メッセージ
+                    </h4>
+                    <div class="section default">
+                        @{
+                            string str = string.Empty;
+
+                            switch (Model.Status)
+                            {
+                                case QjLinkageStatusTypeEnum.Applying:
+                                    str = "市民確認申請が未承認となっております。申請がお済みの方は、申請結果の通知をお待ちください。申請がお済みでない方は、「申請画面に戻る」より申請を行ってください。申請状況は、ぴったりサービスよりご確認いただけます。";
+                                    break;
+
+                                case QjLinkageStatusTypeEnum.Approved:
+                                    str = "市民確認申請が承認済みとなりました。";
+                                    break;
+
+                                case QjLinkageStatusTypeEnum.Refused:
+                                    str = "宜野湾市民であることの確認ができませんでした。本プロジェクト限定ポイントの付与は宜野湾市民限定となっております。ご不明な点がございましたら、プロジェクト事務局（098-880-2469）までお問い合わせください。​";
+                                    break;
+                            }
+                        }
+
+                        @str
+                        <br />
+                        @Model.Reason
+                    </div>
+
+                    @if (Model.Status != QjLinkageStatusTypeEnum.Approved)
+                    {
+                        <p class="center">
+                            <a href="../Portal/LocalIdVerificationRequest" class="font-l type-3 bold btn btn-close type-2">
+                                申請画面に戻る
+                            </a>
+                        </p>
+                    }
+
+                </div>
+            </div>
+            <p>
+                <a href="../Portal/LocalIdVerificationRegister" class="btn btn-default">
+                    エントリー情報編集
+                </a>
+            </p>
+        </section>
+    </main>
+
+    @Html.Action("PortalFooterPartialView", "Portal")
+
+    @*@QjHtmlHelper.RenderScriptTag("~/dist/js/portal/localidverificationdetail")*@
+    
+    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
+    <script src="~/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/dist/js/slick.min.js"></script>
+    <script src="~/dist/js/spc.lib.min.js"></script>
+    <script src="~/dist/js/spc.util.min.js"></script>
+    <script src="~/dist/js/page-script/mgf.js"></script>
+    <script src="~/dist/js/page-script/mgf.portal.js"></script>
+    <script src="~/dist/js/page-script/mgf.portal.localidverificationdetail.js"></script>
+</body>

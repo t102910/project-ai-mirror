@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+
+<html lang="ja" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width,user-scalable=no" />
+        <meta name="format-detection" content="telephone=no">
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <meta name="ROBOTS" content="NOINDEX,NOFOLLOW,NOARCHIVE" />
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Cache-Control" content="no-cache">
+        <meta http-equiv="Expires" content="0">
+
+        <title>JOTOホームドクター - @ViewData("Title")</title>
+
+        @QyHtmlHelper.RenderStyleTag("~/dist/css/note")
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="https://use.typekit.net/tpf8tba.js"></script>
+        <script>try { Typekit.load({ async: true }); } catch (e) { }</script>
+    </head>
+
+    @RenderBody()
+</html>

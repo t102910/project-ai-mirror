@@ -1,0 +1,74 @@
+﻿@model LoginModel
+@{
+    ViewData["Title"] = "ログイン";
+    Layout = "~/Views/Shared/_StartLayout.cshtml";
+
+    bool bShowNewAccount = true;
+    string param = Request.Params["ReturnUrl"];
+
+    if (!string.IsNullOrEmpty(param) && param.ToLower().Contains("datauploaderauth"))
+    {
+        bShowNewAccount = false;
+    }
+}
+
+<body id="login" class="before-login">
+
+    <main id="main-cont" class="clearfix" role="main">
+        @*<h1><img src="/dist/img/tmpl/joto-logo.png"></h1>*@
+        <h2 class="section-title">ログイン（アカウントをお持ちの方）</h2>
+        <div class="box mb10">
+            <section class="inner">
+                <h3 class="title">au IDでログイン</h3>
+                <p class="center"><a id="auid-login" @*href="/2.html"*@ class="auid-login" data-autologin="@TempData["IsAuAutoLogin"]"><i></i><span>au IDでログイン</span></a></p>
+                <p style="padding: 0px 20px 10px;">Pontaポイント、auデータチャージのご利用などau関連サービスをご利用の方はauIDでのログインを推奨します。</p>
+
+            </section>
+        </div>
+
+
+
+        @if (bShowNewAccount)
+        {
+            <p class=""><a href="native:/tab/bio/dde3b934"><i class="la la-angle-right"></i> 利用規約</a></p>
+            <p class=""><a href="native:/tab/bio/0a078204"><i class="la la-angle-right"></i> プライバシーポリシー</a></p>
+        }
+
+        @if (TempData["IsConsent"] != null && (bool)TempData["IsConsent"])
+        {
+            <div class="modal fade" id="agreement-check-modal" tabindex="-1" data-backdrop="static" data-keyboard="false" data-agreement="@TempData["AgreementVersion"]">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close"><span>×</span></button>
+                            <h4 class="modal-title">利用規約変更のお知らせ</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p class="">
+                                平素よりJOTOホームドクターをご利用いただき、ありがとうございます。<br />
+                                このたび、「JOTOホームドクター利用規約」の内容を一部改訂致します。<br />
+
+                                JOTOホームドクターをご利用いただくためには、利用規約への同意が必要です。<br />
+                                改定後の利用規約のご確認とご同意の上、JOTOホームドクターをご利用ください。<br />
+                            </p>
+                            <p class=""><a href="native:/tab/bio/dde3b934"><i class="la la-angle-right"></i> 利用規約</a></p>
+                            <p class="">令和6年12月05日改訂</p>
+                            <p class=""><a href="native:/tab/bio/0a078204"><i class="la la-angle-right"></i> プライバシーポリシー</a></p>
+                            <p class="">令和5年11月6日改訂</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-submit no-ico mb0">同意する</button>
+                            <button type="button" class="btn btn-close no-ico mb0">同意しない</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </main>
+
+    @*@Html.Action("PortalFooterPartialView", "Portal")
+
+    @QyHtmlHelper.RenderScriptTag("~/dist/js/start/loginbyid")*@
+
+</body>

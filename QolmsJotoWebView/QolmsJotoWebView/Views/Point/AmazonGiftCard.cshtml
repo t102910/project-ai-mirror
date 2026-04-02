@@ -1,0 +1,185 @@
+﻿@using System
+@using MGF.QOLMS.QolmsJotoWebView
+@model PointAmazonGiftCardViewModel
+
+@{
+    ViewData["Title"] = "Amazonギフト券交換";
+    Layout = "~/Views/Shared/_PointLayout.cshtml";
+
+    string amazonGiftLink = "https%3A%2F%2Fwww.amazon.co.jp%2Fb%2Fref%3Damb_link_5%3Fie%3DUTF8%26node%3D6342946051%26pf_rd_m%3DAN1VRQENFRJN5%26pf_rd_s%3Dmerchandised-search-leftnav%26pf_rd_r%3D4Z8CKBK8R8TF0QE3BJBZ%26pf_rd_r%3D4Z8CKBK8R8TF0QE3BJBZ%26pf_rd_t%3D101%26pf_rd_p%3D5ecc45a5-81ea-4b15-aebf-c61496b271f1%26pf_rd_p%3D5ecc45a5-81ea-4b15-aebf-c61496b271f1%26pf_rd_i%3D6357927051";
+}
+
+<body id="point-exchange" class="lower">
+    <!--id = "amazongiftcard"-->
+    @Html.AntiForgeryToken()
+
+    <main id="main-cont" class="clearfix" role="main">
+        <section class="contents-area">
+            <div id="contents-wrap">
+                <h2 class="title relative">
+                    Amazonギフト券交換
+                </h2>
+                <hr>
+                <p class="exchange-service"><img src="/dist/img/point/amazon.png"></p>
+                <h4 class="center">JOTOポイントをAmazonギフト券と交換！</h4>
+
+                <p class="section default">
+                    現在保有いただいているJOTOポイントをAmazonギフト券と交換することができます。
+                    <br />
+                    ポイントは<b style="color: #ff0000;">１pt ＝１円</b>として交換できます。交換は５００ポイントからとなり、５００ポイント、１０００ポイント単位で交換できます。
+                    <br />
+                    @*<b style="color: #ff0000;">※ギフト券は現在準備中です。</b>*@
+                </p>
+
+                <a href="native:/action/open_browser?url=@amazonGiftLink" class="btn btn-submit block">Amazonギフト券について詳しく</a>
+                <a href="/Point/Terms" class="btn btn-submit block">JOTOポイントプログラム利用規約</a>
+
+                <div class="remaining-point">
+                    <h3>
+                        現在の保有ポイント
+                        <span>@Model.Point<i>pt</i></span>
+                    </h3>
+                </div>
+
+                @{
+                    string page = string.Empty;
+
+                    if (Model.FromPageNoType == (int)QjPageNoTypeEnum.PortalHome)
+                    {
+                        page = string.Format("?fromPageNo={0}", Convert.ToByte(Model.FromPageNoType));
+                    }
+                }
+
+                <div class="right">
+                    <a id="back" href="@string.Format("../Point/history{0}", page)" class="btn btn-close no-ico" data-back="@page">戻 る</a>
+                </div>
+
+                <section id="caution" class="section caution mt10 mb10 hide"><h4>heading...</h4>アラートエリアです。不要時.hideで消してください。</section>
+
+                <form class="form exchange-form mb30">
+                    @*<b style="color: #ff0000;">※ギフト券は現在準備中です。</b>@IIf(item.GiftCardType <= 2, "disabled", String.Empty).ToString()*@
+                    @foreach (var item in Model.GiftCardN)
+                    {
+                        if (item.DemandPoint <= Model.Point)
+                        {
+                            <a href="javascript:void(0);" class="btn btn-blue exchange" data-toggle="modal" data-itemid="@item.GiftCardType"><i>@item.DemandPoint</i>P → <i>@item.GiftCardName</i>と交換</a>
+                            @*
+                                if (item.GiftCardType = 2 Then
+                                    @<b style="color: #ff0000;">※ギフト券は現在準備中です。</b>
+                                End If
+                            *@
+                        }
+                        else
+                        {
+                            <a href="javascript:void(0);" class="btn btn-blue exchange disabled" data-toggle="modal" data-itemid="@item.GiftCardType"><i>@item.DemandPoint</i>P → <i>@item.GiftCardName</i>と交換</a>
+                        }
+                    }
+                </form>
+            </div>
+
+            <section class="data-area mb20">
+                <h3 class="title mt10">
+                    <span>Amazonポイント交換履歴</span>
+                </h3>
+
+                @if (Model.GiftCardHistN.Count > 0)
+                {
+                    foreach (var item in Model.GiftCardHistN)
+                    {
+                        <article>
+                            <section class="inner">
+                                <div class="info">
+                                    <p class="date">@item.IssueDate.ToString("MM月dd日 tt hh:mm") </p>
+                                    <div class="flex-wrap">
+                                        <div class="before">
+                                            <strong>JOTOポイント</strong>
+                                            <p>
+                                                @item.DemandPoint<i>pt</i>
+                                            </p>
+                                        </div>
+                                        <p class="arrow">
+                                            <i class="la la-arrow-right"></i>
+                                        </p>
+                                        <div class="after">
+                                            <strong>Amazonギフト券</strong>
+                                            <p>
+                                                @item.GiftCardName<i></i>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    @if (item.ExpirationDate >= DateTime.Now)
+                                    {
+                                        <div class="code">
+                                            <strong>発行されたクーポンコード</strong>
+                                            <p>@item.GiftCardId <i class="la la-copy" data-couponid="@item.GiftCardId" style="font-size:0.75em;margin-left:1em;"></i></p>
+                                        </div>
+                                    }
+                                </div>
+                            </section>
+                        </article>
+                    }
+                }
+                else
+                {
+                    <p>履歴がありません</p>
+                }
+            </section>
+        </section>
+
+        <!-- 確認モーダル -->
+        <div class="modal fade" id="confirmation-modal" tabindex="-1" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                        <h4 class="modal-title">確認</h4>
+                    </div>
+                    <div class="modal-body">
+                        100MBと交換しますか？
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-close mb0" data-dismiss="modal">閉じる</button>
+                        <a href="#" class="btn btn-submit" data-itemid="">交換する</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 「登録完了」ダイアログ -->
+        @if (TempData["IsFinish"] != null && Convert.ToBoolean(TempData["IsFinish"]))
+        {
+            <div class="modal fade" id="finish-modal" tabindex="-1" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close"><span>×</span></button>
+                            <h4 class="modal-title">確認</h4>
+                        </div>
+                        <div class="modal-body">
+                            交換しました。
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-close no-ico mb0">閉じる</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <!-- 「コピー完了」ダイアログ -->
+        <div class="modal fade" id="copy-modal" tabindex="-1" data-backdrop="static" data-keyboard="false" data-row-no="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        コピーしました。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    @Html.Action("PointFooterPartialView", "Point")
+        
+    @QjHtmlHelper.RenderScriptTag("~/dist/js/point/amazongiftcard")
+</body>

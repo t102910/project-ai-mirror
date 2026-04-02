@@ -1,0 +1,1309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{DE82BDD6-23C7-4BD4-93D4-07443F2B946B}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <VBRuntime>Default</VBRuntime>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MGF.QOLMS.QolmsYappli</RootNamespace>
+    <AssemblyName>QolmsYappli</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MyType>Custom</MyType>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>
+    </IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>
+    </IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>
+    </IISExpressUseClassicPipelineMode>
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>QolmsYappli.xml</DocumentationFile>
+    <NoWarn>
+    </NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>QolmsYappli.xml</DocumentationFile>
+    <NoWarn>
+    </NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="JAHISMedicineEntityV1S2, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JAHISMedicineEntityV1S2.1.2.8\lib\netstandard2.0\JAHISMedicineEntityV1S2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Edm.5.8.5\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.OData.5.8.5\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Services.Client.5.8.5\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Abstractions, Version=6.31.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Abstractions.6.31.0\lib\net472\Microsoft.IdentityModel.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=6.31.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.JsonWebTokens.6.31.0\lib\net472\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=6.31.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.6.31.0\lib\net472\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Protocols, Version=6.31.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Protocols.6.31.0\lib\net472\Microsoft.IdentityModel.Protocols.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect, Version=6.31.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Protocols.OpenIdConnect.6.31.0\lib\net472\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=6.31.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.6.31.0\lib\net472\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.3.2.3\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=4.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAzure.Storage.4.3.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsAlkooApiCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsAlkooApiCoreV1F472.1.0.3\lib\net472\QolmsAlkooApiCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsApiCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsApiCoreV1F472.1.0.322\lib\net472\QolmsApiCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsApiEntityV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsApiEntityV1F472.1.0.665\lib\net472\QolmsApiEntityV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsAppleAuthApiCoreV1F472, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsAppleAuthApiCoreV1F472.1.0.2\lib\net472\QolmsAppleAuthApiCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsAzureStorageCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsAzureStorageCoreV1F472.1.0.30\lib\net472\QolmsAzureStorageCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsCalomealApiCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsCalomealApiCoreV1F472.1.0.4\lib\net472\QolmsCalomealApiCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsCalomealWebViewApiCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsCalomealWebViewApiCoreV1F472.1.0.2\lib\net472\QolmsCalomealWebViewApiCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsCryptV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsCryptV1F472.1.0.9\lib\net472\QolmsCryptV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsDbCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsDbCoreV1F472.1.0.6\lib\net472\QolmsDbCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsDbEntityV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsDbEntityV1F472.1.0.287\lib\net472\QolmsDbEntityV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsDbLibraryV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsDbLibraryV1F472.1.0.41\lib\net472\QolmsDbLibraryV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsFitbitApiCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsFitbitApiCoreV1F472.1.0.1\lib\net472\QolmsFitbitApiCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsHealthAgeApiCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsHealthAgeApiCoreV1F472.1.0.4\lib\net472\QolmsHealthAgeApiCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsJwtAuthCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsJwtAuthCoreV1F472.1.0.12\lib\net472\QolmsJwtAuthCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsKaradaKaruteApiCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsKaradaKaruteApiCoreV1F472.1.0.1\lib\net472\QolmsKaradaKaruteApiCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsKddiMessageCastApiCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsKddiMessageCastApiCoreV1F472.1.0.3\lib\net472\QolmsKddiMessageCastApiCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsLibraryV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsLibraryV1F472.1.0.9\lib\net472\QolmsLibraryV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsNoticeApiCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsNoticeApiCoreV1F472.1.0.4\lib\net472\QolmsNoticeApiCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsPayJpApiCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsPayJpApiCoreV1F472.1.0.4\lib\net472\QolmsPayJpApiCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsPharumoApiCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsPharumoApiCoreV1F472.1.0.7\lib\net472\QolmsPharumoApiCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsYappliRequestFilterModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsYappliRequestFilterModuleV1F472.1.0.2\lib\net472\QolmsYappliRequestFilterModule.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=6.31.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.6.31.0\lib\net472\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.1\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Spatial, Version=5.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Spatial.5.8.5\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=4.0.5.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.4.7.2\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.4.7.2\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc.Extensions, Version=1.1.0.6, Culture=neutral, PublicKeyToken=d631f4e4b226a032, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Web.Mvc.Extensions.1.1.1.2\lib\net45\System.Web.Mvc.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.Mvc" />
+    <Import Include="System.Web.Mvc.Ajax" />
+    <Import Include="System.Web.Mvc.Html" />
+    <Import Include="System.Web.Mvc.Routing" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\DatachargeDescription.txt" />
+    <Content Include="App_Data\MailBodyPasswordRestUrl.txt" />
+    <Content Include="App_Data\MailBodyTemporaryPassword.txt" />
+    <Content Include="App_Data\MailFooter.txt" />
+    <Content Include="App_Data\PharumoTerm.txt" />
+    <Content Include="App_Data\CouponForFitbitDescription.txt" />
+    <Content Include="App_Data\PointExchangeDescription.txt" />
+    <Content Include="App_Data\PremiumUnsubscribe.txt" />
+    <Content Include="App_Data\TermsOfUse.txt" />
+    <Content Include="App_Data\Unsubscribe.txt" />
+    <Content Include="dist\css\slick-theme.css" />
+    <Content Include="dist\css\slick.css" />
+    <Content Include="dist\css\styles.min.css" />
+    <Content Include="dist\fonts\D-DIN-Exp.ttf.svg" />
+    <Content Include="dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="dist\fonts\line-awesome.svg" />
+    <Content Include="dist\fonts\slick.svg" />
+    <Content Include="dist\img\biz\biz-logo.png" />
+    <Content Include="dist\img\biz\coming-soon.png" />
+    <Content Include="dist\img\biz\menu-1.png" />
+    <Content Include="dist\img\biz\menu-2.png" />
+    <Content Include="dist\img\biz\menu-3.png" />
+    <Content Include="dist\img\biz\menu-4.png" />
+    <Content Include="dist\img\challenge\challenge-1\exp-1.jpg" />
+    <Content Include="dist\img\challenge\challenge-1\exp-main.jpg" />
+    <Content Include="dist\img\challenge\challenge-1\JOTO_1.jpg" />
+    <Content Include="dist\img\challenge\challenge-1\JOTO_1_1.jpg" />
+    <Content Include="dist\img\challenge\challenge-1\JOTO_2.jpg" />
+    <Content Include="dist\img\challenge\challenge-1\JOTO_3.jpg" />
+    <Content Include="dist\img\challenge\challenge-1\JOTO_4.jpg" />
+    <Content Include="dist\img\challenge\challenge-1\JOTO_4.png" />
+    <Content Include="dist\img\challenge\challenge-1\main.jpg" />
+    <Content Include="dist\img\challenge\challenge-2\exp-1.jpg" />
+    <Content Include="dist\img\challenge\challenge-2\exp-main.jpg" />
+    <Content Include="dist\img\challenge\challenge-2\JOTO_1.jpg" />
+    <Content Include="dist\img\challenge\challenge-2\JOTO_1_1.jpg" />
+    <Content Include="dist\img\challenge\challenge-2\JOTO_2.jpg" />
+    <Content Include="dist\img\challenge\challenge-2\JOTO_3.jpg" />
+    <Content Include="dist\img\challenge\challenge-2\JOTO_4.jpg" />
+    <Content Include="dist\img\challenge\challenge-2\JOTO_4.png" />
+    <Content Include="dist\img\challenge\challenge-2\main.jpg" />
+    <Content Include="dist\img\challenge\challenge-3\JOTO_1.jpg" />
+    <Content Include="dist\img\challenge\challenge-3\JOTO_1_1.jpg" />
+    <Content Include="dist\img\challenge\challenge-3\JOTO_3.jpg" />
+    <Content Include="dist\img\challenge\challenge-3\JOTO_4.png" />
+    <Content Include="dist\img\challenge\challenge-4\JOTO_1.jpg" />
+    <Content Include="dist\img\challenge\challenge-4\JOTO_1_1.jpg" />
+    <Content Include="dist\img\challenge\challenge-4\JOTO_3.jpg" />
+    <Content Include="dist\img\challenge\challenge-4\JOTO_4.png" />
+    <Content Include="dist\img\challenge\challenge-5\JOTO_1.jpg" />
+    <Content Include="dist\img\challenge\challenge-5\JOTO_1_1.jpg" />
+    <Content Include="dist\img\challenge\challenge-5\JOTO_3.jpg" />
+    <Content Include="dist\img\challenge\challenge-5\JOTO_4.png" />
+    <Content Include="dist\img\challenge\tmpl\bg.png" />
+    <Content Include="dist\img\challenge\tmpl\bg2.png" />
+    <Content Include="dist\img\challenge\tmpl\btn-2.png" />
+    <Content Include="dist\img\challenge\tmpl\btn-3.png" />
+    <Content Include="dist\img\challenge\tmpl\btn-4.jpg" />
+    <Content Include="dist\img\challenge\tmpl\challenging.png" />
+    <Content Include="dist\img\challenge\tmpl\close-title.png" />
+    <Content Include="dist\img\challenge\tmpl\closed.png" />
+    <Content Include="dist\img\challenge\tmpl\dock-icon.png" />
+    <Content Include="dist\img\challenge\tmpl\dock_entry.png" />
+    <Content Include="dist\img\challenge\tmpl\dock_entry2.png" />
+    <Content Include="dist\img\challenge\tmpl\dock_mypage.png" />
+    <Content Include="dist\img\challenge\tmpl\dock_mypage2.png" />
+    <Content Include="dist\img\challenge\tmpl\h2-bg-left-2.png" />
+    <Content Include="dist\img\challenge\tmpl\h2-bg-left.png" />
+    <Content Include="dist\img\challenge\tmpl\h2-bg-right-2.png" />
+    <Content Include="dist\img\challenge\tmpl\h2-bg-right.png" />
+    <Content Include="dist\img\challenge\tmpl\point-get.png" />
+    <Content Include="dist\img\challenge\tmpl\questionnaire-btn.png" />
+    <Content Include="dist\img\challenge\tmpl\smaho-btn.png" />
+    <Content Include="dist\img\challenge\tmpl\strong-bg-left.png" />
+    <Content Include="dist\img\challenge\tmpl\strong-bg-right.png" />
+    <Content Include="dist\img\column\click-btn-unread.png" />
+    <Content Include="dist\img\column\click-btn.png" />
+    <Content Include="dist\img\column\dr-1-title.png" />
+    <Content Include="dist\img\column\dr-1.png" />
+    <Content Include="dist\img\column\read-btn-unread.png" />
+    <Content Include="dist\img\column\read-btn.png" />
+    <Content Include="dist\img\column\title-bg-1.png" />
+    <Content Include="dist\img\column\title-bg-2.png" />
+    <Content Include="dist\img\confirm\bg.png" />
+    <Content Include="dist\img\gulf-mov\detail\mov-ico.png" />
+    <Content Include="dist\img\gulf-mov\detail\title-1.png" />
+    <Content Include="dist\img\gulf-mov\detail\title-2.png" />
+    <Content Include="dist\img\gulf-mov\detail\title-3.png" />
+    <Content Include="dist\img\gulf-mov\index-btn-1.jpg" />
+    <Content Include="dist\img\gulf-mov\index-btn-2.jpg" />
+    <Content Include="dist\img\gulf-mov\index-btn-3.jpg" />
+    <Content Include="dist\img\gulf-mov\index-btn-4.png" />
+    <Content Include="dist\img\gulf-mov\index-title.png" />
+    <Content Include="dist\img\health-age\bad.png" />
+    <Content Include="dist\img\health-age\good.png" />
+    <Content Include="dist\img\health-age\usual.png" />
+    <Content Include="dist\img\index\arrow-left-biz.png" />
+    <Content Include="dist\img\index\arrow-left.png" />
+    <Content Include="dist\img\index\arrow-right-biz.png" />
+    <Content Include="dist\img\index\arrow-right.png" />
+    <Content Include="dist\img\index\banner-1.jpg" />
+    <Content Include="dist\img\index\banner-13.jpg" />
+    <Content Include="dist\img\index\banner-14.jpg" />
+    <Content Include="dist\img\index\banner-23.jpg" />
+    <Content Include="dist\img\index\banner-24.jpg" />
+    <Content Include="dist\img\index\banner-25.jpg" />
+    <Content Include="dist\img\index\banner-27.jpg" />
+    <Content Include="dist\img\index\banner-28.jpg" />
+    <Content Include="dist\img\index\banner-29.jpg" />
+    <Content Include="dist\img\index\banner-3.jpg" />
+    <Content Include="dist\img\index\banner-4.jpg" />
+    <Content Include="dist\img\index\banner-7.jpg" />
+    <Content Include="dist\img\index\banner-9.jpg" />
+    <Content Include="dist\img\index\banner-top-ginowan-2.png" />
+    <Content Include="dist\img\index\banner-top-ginowan.png" />
+    <Content Include="dist\img\index\banner-top-iheya-2.png" />
+    <Content Include="dist\img\index\banner-top-iheya.png" />
+    <Content Include="dist\img\index\banner-top-nav2023-2.png" />
+    <Content Include="dist\img\index\banner-top-nav2023.png" />
+    <Content Include="dist\img\index\banner-top-nav2024-2-now.png" />
+    <Content Include="dist\img\index\banner-top-nav2024-2.png" />
+    <Content Include="dist\img\index\banner-top-nav2024-now.png" />
+    <Content Include="dist\img\index\banner-top-nav2024.png" />
+    <Content Include="dist\img\index\banner-top-oldginowan-2.png" />
+    <Content Include="dist\img\index\banner-top-oldginowan.png" />
+    <Content Include="dist\img\index\banner-top-taketomi-2.png" />
+    <Content Include="dist\img\index\banner-top-taketomi.png" />
+    <Content Include="dist\img\index\banner-26.png" />
+    <Content Include="dist\img\index\bg-gauge-over.png" />
+    <Content Include="dist\img\index\check-mark.png" />
+    <Content Include="dist\img\index\entry_banner.png" />
+    <Content Include="dist\img\index\federation-1.jpg" />
+    <Content Include="dist\img\index\federation-2.jpg" />
+    <Content Include="dist\img\index\federation-3.jpg" />
+    <Content Include="dist\img\index\federation-5.jpg" />
+    <Content Include="dist\img\index\federation-6.jpg" />
+    <Content Include="dist\img\index\in-cal-icon-biz.png" />
+    <Content Include="dist\img\index\in-cal-icon.png" />
+    <Content Include="dist\img\index\menu-nav-ico-1-biz.png" />
+    <Content Include="dist\img\index\menu-nav-ico-1.png" />
+    <Content Include="dist\img\index\menu-nav-ico-3-biz.png" />
+    <Content Include="dist\img\index\menu-nav-ico-3.png" />
+    <Content Include="dist\img\index\menu-nav-ico-5-biz.png" />
+    <Content Include="dist\img\index\menu-nav-ico-5.png" />
+    <Content Include="dist\img\index\menu-nav-ico-6-biz.png" />
+    <Content Include="dist\img\index\menu-nav-ico-6.png" />
+    <Content Include="dist\img\index\menu-nav-ico-7-biz.png" />
+    <Content Include="dist\img\index\menu-nav-ico-7.png" />
+    <Content Include="dist\img\index\menu-nav-spacer.png" />
+    <Content Include="dist\img\index\out-cal-icon-biz.png" />
+    <Content Include="dist\img\index\out-cal-icon.png" />
+    <Content Include="dist\img\index\points.svg" />
+    <Content Include="dist\img\index\support-1.jpg" />
+    <Content Include="dist\img\index\support-2-biz.jpg" />
+    <Content Include="dist\img\index\support-2.jpg" />
+    <Content Include="dist\img\index\support-3-biz.jpg" />
+    <Content Include="dist\img\index\support-3.jpg" />
+    <Content Include="dist\img\index\support-4.jpg" />
+    <Content Include="dist\img\index\support-5-biz.jpg" />
+    <Content Include="dist\img\index\support-5.jpg" />
+    <Content Include="dist\img\index\support-spacer.png" />
+    <Content Include="dist\img\index\table-drow-off-biz.png" />
+    <Content Include="dist\img\index\table-drow-off.png" />
+    <Content Include="dist\img\index\table-drow-on-biz.png" />
+    <Content Include="dist\img\index\table-drow-on.png" />
+    <Content Include="dist\img\index\touroku-shika.png" />
+    <Content Include="dist\img\index\txt-biz.png" />
+    <Content Include="dist\img\index\txt-premium.png" />
+    <Content Include="dist\img\index\undou-shika.png" />
+    <Content Include="dist\img\info\auid-off.png" />
+    <Content Include="dist\img\info\auid-on.png" />
+    <Content Include="dist\img\info\id-pass-off.png" />
+    <Content Include="dist\img\info\id-pass-on.png" />
+    <Content Include="dist\img\meal\calomeal_view2.jpg" />
+    <Content Include="dist\img\meal\calomeal_view1.jpg" />
+    <Content Include="dist\img\meal\error.png" />
+    <Content Include="dist\img\meal\loader-meal.gif" />
+    <Content Include="dist\img\medicine\medicine-patientcode.png" />
+    <Content Include="dist\img\mov-for-female\img-1.jpg" />
+    <Content Include="dist\img\mov-for-female\img-2.jpg" />
+    <Content Include="dist\img\mov-for-female\img-3.jpg" />
+    <Content Include="dist\img\mov-for-female\mv.jpg" />
+    <Content Include="dist\img\mov-for-female\title.jpg" />
+    <Content Include="dist\img\pharmacy-cooperation\btn-1.jpg" />
+    <Content Include="dist\img\pharmacy-cooperation\img-1.jpg" />
+    <Content Include="dist\img\pharmacy-cooperation\img-2.jpg" />
+    <Content Include="dist\img\point\amazon.png" />
+    <Content Include="dist\img\point\au.png" />
+    <Content Include="dist\img\point\clip-marche.png" />
+    <Content Include="dist\img\point\joto-online.png" />
+    <Content Include="dist\img\premium-info\1.png" />
+    <Content Include="dist\img\premium-info\2.png" />
+    <Content Include="dist\img\premium-info\3.png" />
+    <Content Include="dist\img\premium-info\4.png" />
+    <Content Include="dist\img\premium-info\5.png" />
+    <Content Include="dist\img\premium-info\logo.png" />
+    <Content Include="dist\img\recipe\detail\mov-ico.png" />
+    <Content Include="dist\img\recipe\detail\title-1.png" />
+    <Content Include="dist\img\recipe\index-btn-1.jpg" />
+    <Content Include="dist\img\recipe\index-coming-soon.png" />
+    <Content Include="dist\img\recipe\index-title.png" />
+    <Content Include="dist\img\sports\gulf-btn.png" />
+    <Content Include="dist\img\sports\stamp-1.png" />
+    <Content Include="dist\img\sports\stamp-10.png" />
+    <Content Include="dist\img\sports\stamp-11.png" />
+    <Content Include="dist\img\sports\stamp-12.png" />
+    <Content Include="dist\img\sports\stamp-13.png" />
+    <Content Include="dist\img\sports\stamp-14.png" />
+    <Content Include="dist\img\sports\stamp-15.png" />
+    <Content Include="dist\img\sports\stamp-16.png" />
+    <Content Include="dist\img\sports\stamp-17.png" />
+    <Content Include="dist\img\sports\stamp-18.png" />
+    <Content Include="dist\img\sports\stamp-2.png" />
+    <Content Include="dist\img\sports\stamp-3.png" />
+    <Content Include="dist\img\sports\stamp-4.png" />
+    <Content Include="dist\img\sports\stamp-5.png" />
+    <Content Include="dist\img\sports\stamp-6.png" />
+    <Content Include="dist\img\sports\stamp-7.png" />
+    <Content Include="dist\img\sports\stamp-8.png" />
+    <Content Include="dist\img\sports\stamp-9.png" />
+    <Content Include="dist\img\tanita\tanita.jpg" />
+    <Content Include="dist\img\tmpl\ajax-loader.gif" />
+    <Content Include="dist\img\tmpl\ajax-loader2.gif" />
+    <Content Include="dist\img\tmpl\app.png" />
+    <Content Include="dist\img\tmpl\balloon.png" />
+    <Content Include="dist\img\tmpl\cheering.png" />
+    <Content Include="dist\img\tmpl\dl-apple.png" />
+    <Content Include="dist\img\tmpl\dl-google.png" />
+    <Content Include="dist\img\tmpl\dot.png" />
+    <Content Include="dist\img\tmpl\error.png" />
+    <Content Include="dist\img\tmpl\eye-fill.svg" />
+    <Content Include="dist\img\tmpl\eye-off-fill.svg" />
+    <Content Include="dist\img\tmpl\icons-apple.svg" />
+    <Content Include="dist\img\tmpl\id-au.svg" />
+    <Content Include="dist\img\tmpl\joto-logo.png" />
+    <Content Include="dist\img\tmpl\loader-meal.gif" />
+    <Content Include="dist\img\tmpl\loader.gif" />
+    <Content Include="dist\img\tmpl\mark-bad.svg" />
+    <Content Include="dist\img\tmpl\mark-good.svg" />
+    <Content Include="dist\img\tmpl\mark-ordinary.svg" />
+    <Content Include="dist\img\tmpl\no-image.png" />
+    <Content Include="dist\img\tmpl\popper.png" />
+    <Content Include="dist\img\tmpl\premium.png" />
+    <Content Include="dist\img\tmpl\s-1.png" />
+    <Content Include="dist\img\tmpl\s-3.png" />
+    <Content Include="dist\img\tmpl\s-5.png" />
+    <Content Include="dist\img\tmpl\s-6.png" />
+    <Content Include="dist\img\tmpl\stamp.png" />
+    <Content Include="dist\img\tmpl\y-1.png" />
+    <Content Include="dist\img\tmpl\yt_icon_rgb.png" />
+    <Content Include="dist\js\bootstrap-3.3.7.min.js" />
+    <Content Include="dist\js\bootstrap-datepicker.js" />
+    <Content Include="dist\js\exif.min.js" />
+    <Content Include="dist\js\highcharts-draw.js" />
+    <Content Include="dist\js\highcharts-more.js" />
+    <Content Include="dist\js\highcharts.js" />
+    <Content Include="dist\js\jquery-qrcode-0.18.0.min.js" />
+    <Content Include="dist\js\oidc-client.js" />
+    <Content Include="dist\js\page-script\health-age.js" />
+    <Content Include="dist\js\page-script\mgf.health.age.js" />
+    <Content Include="dist\js\page-script\mgf.health.ageedit.js" />
+    <Content Include="dist\js\page-script\mgf.health.js" />
+    <Content Include="dist\js\page-script\mgf.js" />
+    <Content Include="dist\js\page-script\mgf.note.examination.js" />
+    <Content Include="dist\js\page-script\mgf.note.exercise.js" />
+    <Content Include="dist\js\page-script\mgf.note.gulfsportsmovie.js" />
+    <Content Include="dist\js\page-script\mgf.note.gulfsportsmovieindex.js" />
+    <Content Include="dist\js\page-script\mgf.note.heartrate.js" />
+    <Content Include="dist\js\page-script\mgf.note.js" />
+    <Content Include="dist\js\page-script\mgf.note.meal4.js" />
+    <Content Include="dist\js\page-script\mgf.note.mealedit.js" />
+    <Content Include="dist\js\page-script\mgf.note.mealregisterfromhistory.js" />
+    <Content Include="dist\js\page-script\mgf.note.mealregisterfromphoto.js" />
+    <Content Include="dist\js\page-script\mgf.note.mealregisterfromsearch.js" />
+    <Content Include="dist\js\page-script\mgf.note.mealsearchresult.js" />
+    <Content Include="dist\js\page-script\mgf.note.mets.js" />
+    <Content Include="dist\js\page-script\mgf.note.recipemovie.js" />
+    <Content Include="dist\js\page-script\mgf.note.recipemovieindex.js" />
+    <Content Include="dist\js\page-script\mgf.note.vital.js" />
+    <Content Include="dist\js\page-script\mgf.note.walk.js" />
+    <Content Include="dist\js\page-script\mgf.portal.localidverificationrequest.js" />
+    <Content Include="dist\js\page-script\mgf.portal.localidverification.js" />
+    <Content Include="dist\js\page-script\mgf.portal.localidverificationagreement.js" />
+    <Content Include="dist\js\page-script\mgf.portal.localidverificationregister.js" />
+    <Content Include="dist\js\page-script\mgf.portal.localidverificationdetail.js" />
+    <Content Include="dist\js\page-script\mgf.portal.smsauthentication.js" />
+    <Content Include="dist\js\page-script\mgf.passwordreset.recoversms.js" />
+    <Content Include="dist\js\page-script\mgf.portal.alkooconnection.js" />
+    <Content Include="dist\js\page-script\mgf.portal.amazongiftcard.js" />
+    <Content Include="dist\js\page-script\mgf.portal.aupoint.js" />
+    <Content Include="dist\js\page-script\mgf.portal.challenge.js" />
+    <Content Include="dist\js\page-script\mgf.portal.challengecolumn.js" />
+    <Content Include="dist\js\page-script\mgf.portal.challengedetail.js" />
+    <Content Include="dist\js\page-script\mgf.portal.challengeedit.js" />
+    <Content Include="dist\js\page-script\mgf.portal.challengeentry.js" />
+    <Content Include="dist\js\page-script\mgf.portal.companyconnection.js" />
+    <Content Include="dist\js\page-script\mgf.passwordreset.recover.js" />
+    <Content Include="dist\js\page-script\mgf.portal.companyconnectionedit.js" />
+    <Content Include="dist\js\page-script\mgf.portal.companyconnectionhome.js" />
+    <Content Include="dist\js\page-script\mgf.portal.companyconnectionrequest.js" />
+    <Content Include="dist\js\page-script\mgf.portal.couponforfitbit.js" />
+    <Content Include="dist\js\page-script\mgf.portal.datacharge.js" />
+    <Content Include="dist\js\page-script\mgf.portal.fitbitconnection.js" />
+    <Content Include="dist\js\page-script\mgf.portal.history.js" />
+    <Content Include="dist\js\page-script\mgf.portal.home.js" />
+    <Content Include="dist\js\page-script\mgf.portal.hospitalconnection.js" />
+    <Content Include="dist\js\page-script\mgf.portal.hospitalconnectionrequest.js" />
+    <Content Include="dist\js\page-script\mgf.portal.information.js" />
+    <Content Include="dist\js\page-script\mgf.portal.js" />
+    <Content Include="dist\js\page-script\mgf.portal.medicineconnection.js" />
+    <Content Include="dist\js\page-script\mgf.portal.medicineconnectionrequest.js" />
+    <Content Include="dist\js\page-script\mgf.portal.medicineconnectionsearch.js" />
+    <Content Include="dist\js\page-script\mgf.portal.movforfemale.js" />
+    <Content Include="dist\js\page-script\mgf.portal.pointexchange.js" />
+    <Content Include="dist\js\page-script\mgf.portal.search.js" />
+    <Content Include="dist\js\page-script\mgf.portal.tanitaconnection.js" />
+    <Content Include="dist\js\page-script\mgf.portal.targetsetting2.js" />
+    <Content Include="dist\js\page-script\mgf.portal.terms.js" />
+    <Content Include="dist\js\page-script\mgf.portal.unsubscribe.js" />
+    <Content Include="dist\js\page-script\mgf.portal.userinfomationedit.js" />
+    <Content Include="dist\js\page-script\mgf.portal.userinfomation.js" />
+    <Content Include="dist\js\page-script\mgf.premium.history.js" />
+    <Content Include="dist\js\page-script\mgf.premium.index.js" />
+    <Content Include="dist\js\page-script\mgf.premium.js" />
+    <Content Include="dist\js\page-script\mgf.premium.payjpagree.js" />
+    <Content Include="dist\js\page-script\mgf.premium.methodchange.js" />
+    <Content Include="dist\js\page-script\mgf.premium.payjpcardregister.js" />
+    <Content Include="dist\js\page-script\mgf.premium.payjpcardupdate.js" />
+    <Content Include="dist\js\page-script\mgf.premium.regist.js" />
+    <Content Include="dist\js\page-script\mgf.passwordreset.js" />
+    <Content Include="dist\js\page-script\mgf.start.js" />
+    <Content Include="dist\js\page-script\mgf.start.loginbyid.js" />
+    <Content Include="dist\js\page-script\mgf.start.loginedit.js" />
+    <Content Include="dist\js\page-script\mgf.start.register.js" />
+    <Content Include="dist\js\page-script\mgf.start.reregister.js" />
+    <Content Include="dist\js\page-script\mgf.start.setup2.js" />
+    <Content Include="dist\js\slick.min.js" />
+    <Content Include="dist\js\spc.lib.min.js" />
+    <Content Include="dist\js\spc.util.min.js" />
+    <Content Include="Global.asax" />
+    <Content Include="MachineKeyGenerator.txt" />
+    <Content Include="Views\Note\Error.vbhtml" />
+    <Content Include="Views\Note\Examination.vbhtml" />
+    <Content Include="Views\Note\Exercise.vbhtml" />
+    <Content Include="Views\Note\GulfSportsMovie.vbhtml" />
+    <Content Include="Views\Note\GulfSportsMovieIndex.vbhtml" />
+    <Content Include="Views\Note\HeartRate.vbhtml" />
+    <Content Include="Views\Note\Meal4.vbhtml" />
+    <Content Include="Views\Note\MealEdit.vbhtml" />
+    <Content Include="Views\Note\MealRegisterFromHistory.vbhtml" />
+    <Content Include="Views\Note\MealRegisterFromPhoto.vbhtml" />
+    <Content Include="Views\Note\MealRegisterFromSearch.vbhtml" />
+    <Content Include="Views\Note\MealSearchResult.vbhtml" />
+    <Content Include="Views\Note\Medicine.vbhtml" />
+    <Content Include="Views\Note\Mets.vbhtml" />
+    <Content Include="Views\Note\RecipeMovie.vbhtml" />
+    <Content Include="Views\Note\RecipeMovieIndex.vbhtml" />
+    <Content Include="Views\Note\Vital.vbhtml" />
+    <Content Include="Views\Note\Walk.vbhtml" />
+    <Content Include="Views\Portal\AmazonPoint.vbhtml" />
+    <Content Include="Views\Portal\AuPoint.vbhtml" />
+    <Content Include="Views\Portal\Datacharge.vbhtml" />
+    <Content Include="Views\Portal\Error.vbhtml" />
+    <Content Include="Views\Portal\History.vbhtml" />
+    <Content Include="Views\Portal\Home.vbhtml" />
+    <Content Include="Views\Portal\PointExchange.vbhtml" />
+    <Content Include="Views\Shared\_ErrorLayout.vbhtml" />
+    <Content Include="Views\Shared\_NoteFooterPartialView.vbhtml" />
+    <Content Include="Views\Shared\_NoteLayout.vbhtml" />
+    <Content Include="Views\Shared\_NoteVitalPressureDetailPartialView.vbhtml" />
+    <Content Include="Views\Shared\_NoteVitalPressureGraphPartialView.vbhtml" />
+    <Content Include="Views\Shared\_NoteVitalSugarDetailPartialView.vbhtml" />
+    <Content Include="Views\Shared\_NoteVitalSugarGraphPartialView.vbhtml" />
+    <Content Include="Views\Shared\_NoteVitalWeightDetailPartialView.vbhtml" />
+    <Content Include="Views\Shared\_NoteVitalWeightGraphPartialView.vbhtml" />
+    <Content Include="Views\Shared\_PortalFooterPartialView.vbhtml" />
+    <Content Include="Views\Shared\_PortalHomeDataAreaPartialView.vbhtml" />
+    <Content Include="Views\Shared\_PortalLayout.vbhtml" />
+    <Content Include="Views\Shared\_StartLayout.vbhtml" />
+    <Content Include="Views\Start\LoginById.vbhtml" />
+    <Content Include="Views\Start\LoginEdit.vbhtml" />
+    <Content Include="Views\web.config" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.vb" />
+    <Compile Include="App_Start\FilterConfig.vb" />
+    <Compile Include="App_Start\RouteConfig.vb" />
+    <Compile Include="App_Start\WebApiConfig.vb" />
+    <Compile Include="AzureStorage\AccessTable\Writer\AccessTableEntityWriter.vb" />
+    <Compile Include="AzureStorage\AccessTable\Writer\AccessTableEntityWriterArgs.vb" />
+    <Compile Include="AzureStorage\AccessTable\Writer\AccessTableEntityWriterResults.vb" />
+    <Compile Include="Controllers\Attribute\QjApiAuthorizeAttribute.vb" />
+    <Compile Include="Controllers\Attribute\QyAcceptCheckAttribute.vb" />
+    <Compile Include="Controllers\Attribute\QyActionMethodSelectorAttribute.vb" />
+    <Compile Include="Controllers\Attribute\QyAjaxOnlyAttribute.vb" />
+    <Compile Include="Controllers\Attribute\QyApiAuthorizeAttribute.vb" />
+    <Compile Include="Controllers\Attribute\QyAuthorizeAttribute.vb" />
+    <Compile Include="Controllers\Attribute\QyLoggingAttribute.vb" />
+    <Compile Include="Controllers\Attribute\QyRequireHttpsAttribute.vb" />
+    <Compile Include="Controllers\Attribute\QyViewCountAttribute.vb" />
+    <Compile Include="Controllers\Base\QyMvcControllerBase.vb" />
+    <Compile Include="Controllers\HealthController.vb" />
+    <Compile Include="Controllers\Helper\QyCookieHelper.vb" />
+    <Compile Include="Controllers\Helper\QyLoginHelper.vb" />
+    <Compile Include="Controllers\Helper\QySessionHelper.vb" />
+    <Compile Include="Controllers\NoteController.vb" />
+    <Compile Include="Controllers\PasswordResetController.vb" />
+    <Compile Include="Controllers\PortalController.vb" />
+    <Compile Include="Controllers\PremiumController.vb" />
+    <Compile Include="Controllers\StartController.vb" />
+    <Compile Include="Controllers\StorageController.vb" />
+    <Compile Include="Extension\QyApiEntityConverterExtension.vb" />
+    <Compile Include="Extension\QyJsonResultBaseExtension.vb" />
+    <Compile Include="Global.asax.vb">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AppleIdLoginModel.vb" />
+    <Compile Include="Models\Attribute\QyForceSanitizing.vb" />
+    <Compile Include="Models\AuIdLoginModel.vb" />
+    <Compile Include="Models\Base\QyAccountItemBase.vb" />
+    <Compile Include="Models\Base\QyHealthAgeReportPartialViewModelBase.vb" />
+    <Compile Include="Models\Base\QyHealthPageViewModelBase.vb" />
+    <Compile Include="Models\Base\QyJsonParameterBase.vb" />
+    <Compile Include="Models\Base\QyJsonResultBase.vb" />
+    <Compile Include="Models\Base\QyNotePageViewModelBase.vb" />
+    <Compile Include="Models\Base\QyPageViewModelBase.vb" />
+    <Compile Include="Models\Base\QyPartialViewModelBase.vb" />
+    <Compile Include="Models\Base\QyPasswordResetPageViewModelBase.vb" />
+    <Compile Include="Models\Base\QyPortalPageViewModelBase.vb" />
+    <Compile Include="Models\Base\QyVitalDetailPartialViewModelBase.vb" />
+    <Compile Include="Models\Base\QyVitalGraphPartialViewModelBase.vb" />
+    <Compile Include="Models\Enum\QyDosageFormTypeEnum.vb" />
+    <Compile Include="Models\Enum\QyExaminationDataTypeEnum.vb" />
+    <Compile Include="Models\Enum\QyExaminationItemTypeEnum.vb" />
+    <Compile Include="Models\Enum\QyExaminationItemValueTypeEnum.vb" />
+    <Compile Include="Models\Enum\QyFileRelationTypeEnum.vb" />
+    <Compile Include="Models\Enum\QyMealTypeEnum.vb" />
+    <Compile Include="Models\Enum\QyMedicalSearchTypeEnum.vb" />
+    <Compile Include="Models\Enum\QyPaymentTypeEnum.vb" />
+    <Compile Include="Models\Enum\QyPeriodTypeEnum.vb" />
+    <Compile Include="Models\Enum\QyPointItemTypeEnum.vb" />
+    <Compile Include="Models\Enum\QyRelationContentTypeEnum.vb" />
+    <Compile Include="Models\Enum\QyVitalConditionTypeEnum.vb" />
+    <Compile Include="Models\InnerModel\AmazonGiftCardHistItem.vb" />
+    <Compile Include="Models\InnerModel\AmazonGiftCardItem.vb" />
+    <Compile Include="Models\InnerModel\AssociatedFileItem.vb" />
+    <Compile Include="Models\InnerModel\AttachedFileItem.vb" />
+    <Compile Include="Models\InnerModel\AuthorAccountItem.vb" />
+    <Compile Include="Models\Enum\QyFileTypeEnum.vb" />
+    <Compile Include="Models\Enum\QyHealthAgeReportTypeEnum.vb" />
+    <Compile Include="Models\Enum\QyHealthAgeValueTypeEnum.vb" />
+    <Compile Include="Models\Enum\QyMemberShipTypeEnum.vb" />
+    <Compile Include="Models\Enum\QyPageNoTypeEnum.vb" />
+    <Compile Include="Models\Enum\QySexTypeEnum.vb" />
+    <Compile Include="Models\Enum\QyStandardValueTypeEnum.vb" />
+    <Compile Include="Models\Enum\QyVitalTypeEnum.vb" />
+    <Compile Include="Models\InnerModel\AuUserInf.vb" />
+    <Compile Include="Models\InnerModel\AuWalletPointHistItem.vb" />
+    <Compile Include="Models\InnerModel\AuWalletPointItem.vb" />
+    <Compile Include="Models\InnerModel\AvailableHealthAgeReportItem.vb" />
+    <Compile Include="Models\InnerModel\AvailableVitalItem.vb" />
+    <Compile Include="Models\InnerModel\CardItem.vb" />
+    <Compile Include="Models\InnerModel\ChallengeColumnItem.vb" />
+    <Compile Include="Models\InnerModel\ChallengeInputItem.vb" />
+    <Compile Include="Models\InnerModel\ChallengeInputValueItem.vb" />
+    <Compile Include="Models\InnerModel\ChallengeItem.vb" />
+    <Compile Include="Models\InnerModel\ChallengeStatusItem.vb" />
+    <Compile Include="Models\InnerModel\ChunkUploadFile.vb" />
+    <Compile Include="Models\InnerModel\CityItem.vb" />
+    <Compile Include="Models\InnerModel\ConnectionSettingCompanyItem.vb" />
+    <Compile Include="Models\InnerModel\ConnectionSettingHospitalItem.vb" />
+    <Compile Include="Models\InnerModel\ConnectionSettingItem.vb" />
+    <Compile Include="Models\InnerModel\ConnectionSettingPharmacyItem.vb" />
+    <Compile Include="Models\InnerModel\CouponItem.vb" />
+    <Compile Include="Models\InnerModel\DatachargeEventIdItem.vb" />
+    <Compile Include="Models\InnerModel\DatachargeHistItem.vb" />
+    <Compile Include="Models\InnerModel\DeviceItem.vb" />
+    <Compile Include="Models\InnerModel\ExaminationAssociatedFileItem.vb" />
+    <Compile Include="Models\InnerModel\ExaminationAxis.vb" />
+    <Compile Include="Models\InnerModel\ExaminationGroupItem.vb" />
+    <Compile Include="Models\InnerModel\ExaminationItem.vb" />
+    <Compile Include="Models\InnerModel\ExaminationJudgementItem.vb" />
+    <Compile Include="Models\InnerModel\ExaminationMatrix.vb" />
+    <Compile Include="Models\InnerModel\ExaminationSetItem.vb" />
+    <Compile Include="Models\InnerModel\ExerciseItem.vb" />
+    <Compile Include="Models\InnerModel\FoodItem.vb" />
+    <Compile Include="Models\InnerModel\HealthAgeAdviceGoalItem.vb" />
+    <Compile Include="Models\InnerModel\HealthAgeAdviceItem.vb" />
+    <Compile Include="Models\InnerModel\HealthAgeReportGraphItem.vb" />
+    <Compile Include="Models\InnerModel\HealthAgeReportItem.vb" />
+    <Compile Include="Models\InnerModel\HealthAgeValueItem.vb" />
+    <Compile Include="Models\InnerModel\JotoPointDailyLogItem.vb" />
+    <Compile Include="Models\InnerModel\JotoPointLogItem.vb" />
+    <Compile Include="Models\InnerModel\LinkageItem.vb" />
+    <Compile Include="Models\InnerModel\MealItem.vb" />
+    <Compile Include="Models\InnerModel\MedicalInstitutionAcceptedItem.vb" />
+    <Compile Include="Models\InnerModel\MedicalInstitutionItem.vb" />
+    <Compile Include="Models\InnerModel\MedicalOfficeHouers.vb" />
+    <Compile Include="Models\InnerModel\MedicineItem.vb" />
+    <Compile Include="Models\InnerModel\MovieItem.vb" />
+    <Compile Include="Models\InnerModel\PaymentInf.vb" />
+    <Compile Include="Models\InnerModel\PaymentLogItem.vb" />
+    <Compile Include="Models\InnerModel\PointExchangeHistItem.vb" />
+    <Compile Include="Models\InnerModel\PrescriptionItem.vb" />
+    <Compile Include="Models\InnerModel\QolmsPointGrantItem.vb" />
+    <Compile Include="Models\InnerModel\RecipeMovieItem.vb" />
+    <Compile Include="Models\InnerModel\RelationUserItem.vb" />
+    <Compile Include="Models\InnerModel\SearchMstItem.vb" />
+    <Compile Include="Models\InnerModel\VitalValueItem.vb" />
+    <Compile Include="Models\InnerModel\PostedFileItem.vb" />
+    <Compile Include="Models\InnerModel\VitalEvaluationItem.vb" />
+    <Compile Include="Models\InputModel\HealthAgeEditInputModel.vb" />
+    <Compile Include="Models\InputModel\NoteMeal2InputModel.vb" />
+    <Compile Include="Models\InputModel\PasswordResetRecoverInputModel.vb" />
+    <Compile Include="Models\InputModel\PasswordResetRecoverSMSInputModel.vb" />
+    <Compile Include="Models\InputModel\PasswordResetRecoveryIdentifierInputModel.vb" />
+    <Compile Include="Models\InputModel\PortalLocalIdVerificationRegisterInputModel.vb" />
+    <Compile Include="Models\InputModel\PortalUserInfomationEditInputModel.vb" />
+    <Compile Include="Models\InputModel\PortalUserInfomationInputModel.vb" />
+    <Compile Include="Models\JsonParameter\AppleIdEntryCookieJsonParameter.vb" />
+    <Compile Include="Models\JsonParameter\MonshinArgsJsonParamater.vb" />
+    <Compile Include="Models\JsonParameter\PasswordResetRecoveryIdentifierTokenJsonParameter.vb" />
+    <Compile Include="Models\JsonParameter\NoteExaminationHelthAgeJsonParamater.vb" />
+    <Compile Include="Models\JsonParameter\NoteVitalTanitaQrReferenceJsonParameter.vb" />
+    <Compile Include="Models\JsonResult\AttachedFileAddJsonResult.vb" />
+    <Compile Include="Models\JsonResult\AttachedFileRemoveJsonResult.vb" />
+    <Compile Include="Models\JsonResult\ChunkUploadJsonResult.vb" />
+    <Compile Include="Models\JsonResult\ChunkUploadSliceJsonResult.vb" />
+    <Compile Include="Models\JsonResult\ChunkUploadStartJsonResult.vb" />
+    <Compile Include="Models\JsonResult\NoteEditJsonResult.vb" />
+    <Compile Include="Models\InputModel\NoteExerciseInputModel.vb" />
+    <Compile Include="Models\InputModel\NoteMealInputModel.vb" />
+    <Compile Include="Models\InputModel\NoteMealListInputModel.vb" />
+    <Compile Include="Models\InputModel\NoteVitalEditInputModel.vb" />
+    <Compile Include="Models\InputModel\PortalChallengeEditInputModel.vb" />
+    <Compile Include="Models\InputModel\PortalChallengeEntryInputModel.vb" />
+    <Compile Include="Models\InputModel\PortalCompanyConnectionEditInputModel.vb" />
+    <Compile Include="Models\InputModel\PortalCompanyConnectionInputModel.vb" />
+    <Compile Include="Models\InputModel\PortalHospitalConnectionRequestInputModel.vb" />
+    <Compile Include="Models\InputModel\PortalMedicineConnectionRequestInputModel.vb" />
+    <Compile Include="Models\InputModel\PortalTanitaConnectionInputModel.vb" />
+    <Compile Include="Models\InputModel\PortalTargetSettingInputModel2.vb" />
+    <Compile Include="Models\InputModel\PortalUnsubscribeInputModel.vb" />
+    <Compile Include="Models\JsonResult\NoteExaminationPdfJsonResult.vb" />
+    <Compile Include="Models\JsonResult\NoteVitalEditJsonResult.vb" />
+    <Compile Include="Models\JsonResult\NoteVitalTanitaQrJsonResult.vb" />
+    <Compile Include="Models\JsonResult\PasswordResetRecoverSMSJsonResult.vb" />
+    <Compile Include="Models\JsonResult\PasswordResetRecoveryIdentifierJsonResult.vb" />
+    <Compile Include="Models\JsonResult\PortalCouponForFitbitJsonResult.vb" />
+    <Compile Include="Models\JsonResult\PortalLocalIdVerificationJsonResult.vb" />
+    <Compile Include="Models\JsonResult\PortalUnsubscribeJsonResult.vb" />
+    <Compile Include="Models\InputModel\StartLoginEditInputModel.vb" />
+    <Compile Include="Models\InputModel\StartRegisterInputModel.vb" />
+    <Compile Include="Models\InputModel\StartRegisterUserIdInputModel.vb" />
+    <Compile Include="Models\InputModel\StartSetupInputModel.vb" />
+    <Compile Include="Models\InputModel\StartSetupInputModel2.vb" />
+    <Compile Include="Models\InputModel\VitalValueInputModel.vb" />
+    <Compile Include="Models\interface\IQyModelUpdater.vb" />
+    <Compile Include="Models\JsonParameter\AssociatedFileStorageReferenceJsonParameter.vb" />
+    <Compile Include="Models\JsonParameter\AuIdLoginCookieJsonParameter.vb" />
+    <Compile Include="Models\JsonParameter\AuthTicketJsonParameter.vb" />
+    <Compile Include="Models\JsonParameter\FileStorageReferenceJsonParameter.vb" />
+    <Compile Include="Models\JsonParameter\RememberIdCookieJsonParameter.vb" />
+    <Compile Include="Models\JsonParameter\RememberLoginCookieJsonParameter.vb" />
+    <Compile Include="Models\JsonResult\NoteVitalDeleteJsonResult.vb" />
+    <Compile Include="Models\JsonResult\PortalAlkooConnectionJsonResult.vb" />
+    <Compile Include="Models\JsonResult\PortalAmazonGiftCardJsonResult.vb" />
+    <Compile Include="Models\JsonResult\PortalAuWalletJsonResult.vb" />
+    <Compile Include="Models\JsonResult\PortalChallengeColumnJsonResult.vb" />
+    <Compile Include="Models\JsonResult\PortalChallengeEntryJsonResult.vb" />
+    <Compile Include="Models\JsonResult\PortalCompanyConnectionEditJsonResult.vb" />
+    <Compile Include="Models\JsonResult\PortalCompanyConnectionRequestJsonResult.vb" />
+    <Compile Include="Models\JsonResult\PortalDatachargeJsonResult.vb" />
+    <Compile Include="Models\JsonResult\PortalFitbitConnectionJsonResult.vb" />
+    <Compile Include="Models\JsonResult\PortalHomeNewsJsonResult.vb" />
+    <Compile Include="Models\JsonResult\PortalHomeTaskJsonResult.vb" />
+    <Compile Include="Models\JsonResult\PortalHomeUrlResult.vb" />
+    <Compile Include="Models\JsonResult\PortalHomeWalkUpdateJsonResult.vb" />
+    <Compile Include="Models\JsonResult\PasswordResetRecoverJsonResult.vb" />
+    <Compile Include="Models\JsonResult\PortalUserInfomationEditJsonResult.vb" />
+    <Compile Include="Models\ViewModel\PasswordResetRecoverSMSPassCodeViewModel.vb" />
+    <Compile Include="Models\ViewModel\PortalCouponForFitbitViewModel.vb" />
+    <Compile Include="Models\ViewModel\PortalLocalIdVerificationDetailViewModel.vb" />
+    <Compile Include="Models\ViewModel\PortalLocalIdVerificationRequestViewModel.vb" />
+    <Compile Include="Models\ViewModel\PortalLocalIdVerificationAgreementViewModel.vb" />
+    <Compile Include="Models\ViewModel\PremiumPayJPAgreeViewModel.vb" />
+    <Compile Include="Workers\AppleIdLoginWorker.vb" />
+    <Compile Include="Workers\Calomeal\CalomealGoalSet.vb" />
+    <Compile Include="Workers\Calomeal\CalomealInstructInfo.vb" />
+    <Compile Include="Workers\Calomeal\CalomealUser.vb" />
+    <Compile Include="Workers\Calomeal\CalomealWebViewWorker.vb" />
+    <Compile Include="Workers\Common\LinkageWorker.vb" />
+    <Compile Include="Workers\Common\TarmsWorker.vb" />
+    <Compile Include="Workers\Crypt\AESCrypt.vb" />
+    <Compile Include="Workers\PasswordResetRecoverSmsWorker.vb" />
+    <Compile Include="Workers\PasswordResetRecoverWorker.vb" />
+    <Compile Include="Workers\PasswordResetRecoveryIdentifierWorker.vb" />
+    <Compile Include="Workers\PortalAppendLinkageIdWorker.vb" />
+    <Compile Include="Workers\PortalCouponForFitbitWorker.vb" />
+    <Compile Include="Workers\PortalHomeWorker.vb" />
+    <Compile Include="Models\JsonResult\PortalHospitalConnectionJsonResult.vb" />
+    <Compile Include="Models\JsonResult\PortalHospitalConnectionRequestJsonResult.vb" />
+    <Compile Include="Models\JsonResult\PortalMedicineConnectionJsonResult.vb" />
+    <Compile Include="Models\JsonResult\PortalMedicineConnectionRequestJsonResult.vb" />
+    <Compile Include="Models\JsonResult\PortalTanitaConnectionJsonResult.vb" />
+    <Compile Include="Models\JsonResult\PortalTargetSettingCalculationJsonResult.vb" />
+    <Compile Include="Models\JsonResult\PortalTargetSettingStandardValueJsonResult.vb" />
+    <Compile Include="Models\JsonResult\PostpayRequestJsonResult.vb" />
+    <Compile Include="Models\JsonResult\PremiumPayjpJsonResult.vb" />
+    <Compile Include="Models\JsonResult\StartLoginEditJsonResult.vb" />
+    <Compile Include="Models\JsonResult\StartSetup2JsonResult.vb" />
+    <Compile Include="Models\PartialViewModel\HealthAgeAdviceAreaPartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\HealthAgeDistributionReportPartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\HealthAgeFatReportPartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\HealthAgeGlucoseReportPartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\HealthAgeLipidReportPartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\HealthAgeLiverReportPartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\HealthAgePressureReportPartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\HealthAgeTransitionAreaPartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\HealthAgeUrineReportPartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\NoteExaminationTablePartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\NoteGulfSportsMovieJsonResult.vb" />
+    <Compile Include="Models\PartialViewModel\NoteMealAnalyzeResultPartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\NoteMealCardAreaPartialViewModel4.vb" />
+    <Compile Include="Models\PartialViewModel\NoteMealEditDatePartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\NoteMealEditHinmokuCalPartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\NoteMealSearchResultAreaPartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\NoteMedicineTablePartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\PortalChallengeColumnPartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\PortalChallengeEntryAgreeResultPartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\PortalChallengeEntryPassResultPartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\PortalHomeChallengeAreaPartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\PortalHomeDataAreaPartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\StartSetupStepOnePartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\StartSetupStepOnePartialViewModel2.vb" />
+    <Compile Include="Models\PartialViewModel\StartSetupStepThreePartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\StartSetupStepThreePartialViewModel2.vb" />
+    <Compile Include="Models\PartialViewModel\StartSetupStepTwoPartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\VitalPressureDetailPartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\VitalPressureGraphPartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\VitalStepsDetailPartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\VitalStepsGraphPartialViewModel.vb" />
+    <Compile Include="Models\JsonResult\CheckSessionJsonResult.vb" />
+    <Compile Include="Models\LoginModel.vb" />
+    <Compile Include="Models\PartialViewModel\VitalSugarDetailPartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\VitalSugarGraphPartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\VitalWeightDetailPartialViewModel.vb" />
+    <Compile Include="Models\PartialViewModel\VitalWeightGraphPartialViewModel.vb" />
+    <Compile Include="Models\QolmsYappliModel.vb" />
+    <Compile Include="Models\QyCacheManager.vb" />
+    <Compile Include="Models\QyConfiguration.vb" />
+    <Compile Include="Models\QyDictionary.vb" />
+    <Compile Include="Models\ViewModel\HealthAgeViewModel.vb" />
+    <Compile Include="Models\JsonResult\NoteExaminationJsonResult.vb" />
+    <Compile Include="Models\ViewModel\NoteExaminationViewModel.vb" />
+    <Compile Include="Models\ViewModel\NoteGulfMovieViewModel.vb" />
+    <Compile Include="Models\ViewModel\NoteHeartRateViewModel.vb" />
+    <Compile Include="Models\ViewModel\NoteMealViewModel.vb" />
+    <Compile Include="Models\ViewModel\NoteMetsViewModel.vb" />
+    <Compile Include="Models\ViewModel\NoteRecipeMovieViewModel.vb" />
+    <Compile Include="Models\ViewModel\PremiumHistoryViewModel.vb" />
+    <Compile Include="Models\ViewModel\PremiumRegistViewModel.vb" />
+    <Compile Include="Workers\AttachedFileWorker.vb" />
+    <Compile Include="Workers\au_Wallet\auPointRequestOfJson.vb" />
+    <Compile Include="Workers\au_Wallet\auPointResponseOfJson.vb" />
+    <Compile Include="Workers\Calomeal\CalomealAccessTokenSet.vb" />
+    <Compile Include="Workers\HealthAgeEditWorker.vb" />
+    <Compile Include="Workers\HealthAgeWorker.vb" />
+    <Compile Include="Models\InnerModel\MedicineConnectionFacilityItem.vb" />
+    <Compile Include="Models\ViewModel\NoteExerciseViewModel.vb" />
+    <Compile Include="Models\ViewModel\NoteMealSearchResultViewModel.vb" />
+    <Compile Include="Models\ViewModel\NoteMealViewModel4.vb" />
+    <Compile Include="Models\ViewModel\NoteMedicienViewModel.vb" />
+    <Compile Include="Models\ViewModel\NoteVitalViewModel.vb" />
+    <Compile Include="Models\ViewModel\NoteWalkViewModel.vb" />
+    <Compile Include="Models\ViewModel\PortalAlkooConnectionViewModel.vb" />
+    <Compile Include="Models\ViewModel\PortalAmazonGiftCardViewModel.vb" />
+    <Compile Include="Models\ViewModel\PortalAuWalletPointExchangeViewModel.vb" />
+    <Compile Include="Models\ViewModel\PortalChallengeColumnViewModel.vb" />
+    <Compile Include="Models\ViewModel\PortalChallengeDetailViewModel.vb" />
+    <Compile Include="Models\ViewModel\PortalChallengeViewModel.vb" />
+    <Compile Include="Models\ViewModel\PortalCompanyConnectionHomeViewModel.vb" />
+    <Compile Include="Models\ViewModel\PortalCompanyConnectionViewModel.vb" />
+    <Compile Include="Models\ViewModel\PortalConnectionSettingViewModel.vb" />
+    <Compile Include="Models\ViewModel\PortalDatachargeViewModel.vb" />
+    <Compile Include="Models\ViewModel\PortalFitbitConnectionViewModel.vb" />
+    <Compile Include="Models\ViewModel\PortalHistoryViewModel.vb" />
+    <Compile Include="Models\ViewModel\PortalHomeViewModel.vb" />
+    <Compile Include="Models\ViewModel\PortalHospitalConnectionViewModel.vb" />
+    <Compile Include="Models\ViewModel\PortalInformationViewModel.vb" />
+    <Compile Include="Models\ViewModel\PortalMedicineConnectionAgreementViewModel.vb" />
+    <Compile Include="Models\ViewModel\PortalMedicineConnectionSearchViewModel.vb" />
+    <Compile Include="Models\ViewModel\PortalMedicineConnectionViewModel.vb" />
+    <Compile Include="Models\ViewModel\PortalPointExchangeViewModel.vb" />
+    <Compile Include="Models\ViewModel\PortalSearchDetailViewModel.vb" />
+    <Compile Include="Models\ViewModel\PortalSearchViewModel.vb" />
+    <Compile Include="Models\ViewModel\PortalTermsViewModel.vb" />
+    <Compile Include="Models\ViewModel\PremiumPayJPViewModel.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="My Project\MyExtensions\MyWebExtension.vb">
+      <VBMyExtensionTemplateID>Microsoft.VisualBasic.Web.MyExtension</VBMyExtensionTemplateID>
+      <VBMyExtensionTemplateVersion>1.0.0.0</VBMyExtensionTemplateVersion>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Workers\AccessLogWorker.vb" />
+    <Compile Include="Workers\ApiAuthorizeWorker.vb" />
+    <Compile Include="Workers\AuIdLoginWorker.vb" />
+    <Compile Include="Workers\au_owl\AuOwlAccessWorker.vb" />
+    <Compile Include="Workers\au_owl\biscuitif.vb" />
+    <Compile Include="Workers\au_owl\request_biscuitif.vb" />
+    <Compile Include="Workers\au_Payment\AuPaymentAccessWorker.vb" />
+    <Compile Include="Workers\au_Payment\CustomActionResult.vb" />
+    <Compile Include="Workers\au_Wallet\BPIFMerchantPoint_I.vb" />
+    <Compile Include="Workers\au_Wallet\pointIf.vb" />
+    <Compile Include="Workers\au_Wallet\AuWalletPointExchangeWorker.vb" />
+    <Compile Include="Workers\au_Wallet\Control.vb" />
+    <Compile Include="Workers\au_Wallet\PointInfo.vb" />
+    <Compile Include="Workers\au_Wallet\ProcessResult.vb" />
+    <Compile Include="Workers\Fitbit\FitbitTokenSet.vb" />
+    <Compile Include="Workers\Fitbit\FitbitWorker.vb" />
+    <Compile Include="Workers\LoginWorker.vb" />
+    <Compile Include="Workers\NoteCalomealWorker.vb" />
+    <Compile Include="Workers\NoteExaminationWorker.vb" />
+    <Compile Include="Workers\NoteExerciseWorker.vb" />
+    <Compile Include="Workers\NoteGulfSportsMovieWorker.vb" />
+    <Compile Include="Workers\NoteHeartRateWorker.vb" />
+    <Compile Include="Workers\NoteMealWorker4.vb" />
+    <Compile Include="Workers\NoteMedicineWorker.vb" />
+    <Compile Include="Workers\NoteMetsWorker.vb" />
+    <Compile Include="Workers\NoteRecipeMovieWorker.vb" />
+    <Compile Include="Workers\NoteVitalWorker.vb" />
+    <Compile Include="Workers\NoteWalkWorker.vb" />
+    <Compile Include="Workers\NoticeMailWorker.vb" />
+    <Compile Include="Workers\OpenApiWorker.vb" />
+    <Compile Include="Workers\Pharumo\PharumoTokenSet.vb" />
+    <Compile Include="Workers\Pharumo\PharumoWorker.vb" />
+    <Compile Include="Workers\PortalAlkooConnectionWorker.vb" />
+    <Compile Include="Workers\PortalAmazonGiftCardWorker.vb" />
+    <Compile Include="Workers\PortalChallengeColumnWorker.vb" />
+    <Compile Include="Workers\PortalChallengeCompletedWorker.vb" />
+    <Compile Include="Workers\PortalChallengeDetailWorker.vb" />
+    <Compile Include="Workers\PortalChallengeEditWorker.vb" />
+    <Compile Include="Workers\PortalChallengeEntryWorker.vb" />
+    <Compile Include="Workers\PortalChallengeWorker.vb" />
+    <Compile Include="Workers\PortalCompanyConnectionEditWorker.vb" />
+    <Compile Include="Workers\PortalCompanyConnectionRegisterWorker.vb" />
+    <Compile Include="Workers\PortalCompanyConnectionWorker.vb" />
+    <Compile Include="Workers\PortalConnectionSettiongWorker.vb" />
+    <Compile Include="Workers\PortalDatachargeWorker.vb" />
+    <Compile Include="Workers\PortalFitbitConnectionWorker.vb" />
+    <Compile Include="Workers\PortalHistoryWorker.vb" />
+    <Compile Include="Workers\PortalHospitalConnectionRequestWorker.vb" />
+    <Compile Include="Workers\PortalHospitalConnectionWorker.vb" />
+    <Compile Include="Workers\PortalInformationWorker.vb" />
+    <Compile Include="Workers\PortalLocalIdVerificationAgreementWorker.vb" />
+    <Compile Include="Workers\PortalLocalIdVerificationDetailWorker.vb" />
+    <Compile Include="Workers\PortalLocalIdVerificationRegisterWorker.vb" />
+    <Compile Include="Workers\PortalLocalIdVerificationRequestWorker.vb" />
+    <Compile Include="Workers\PortalLocalIdVerificationWorker.vb" />
+    <Compile Include="Workers\PortalMedicineConnectionRequestWorker.vb" />
+    <Compile Include="Workers\PortalMedicineConnectionSearchWorker.vb" />
+    <Compile Include="Workers\PortalMedicineConnectionWorker.vb" />
+    <Compile Include="Workers\PortalMonshinWorker.vb" />
+    <Compile Include="Workers\PortalPointExchangeWorker.vb" />
+    <Compile Include="Workers\PortalSearchDetailWorker.vb" />
+    <Compile Include="Workers\PortalSearchWorker.vb" />
+    <Compile Include="Workers\PortalSmsAuthenticationWorker.vb" />
+    <Compile Include="Workers\PortalTanitaConnectionWorker.vb" />
+    <Compile Include="Workers\PortalTargetSettingWorker2.vb" />
+    <Compile Include="Workers\PortalTermsWorker.vb" />
+    <Compile Include="Workers\PortalUnsubscribeWorker.vb" />
+    <Compile Include="Workers\PortalUserInfomationEditWorker.vb" />
+    <Compile Include="Workers\PortalUserInfomationWorker.vb" />
+    <Compile Include="Workers\PremiumBizWorker.vb" />
+    <Compile Include="Workers\PremiumHistoryWorker.vb" />
+    <Compile Include="Workers\PremiumPayJPWorker.vb" />
+    <Compile Include="Workers\PremiumWorker.vb" />
+    <Compile Include="Workers\QolmsPointWorker.vb" />
+    <Compile Include="Workers\SignUpWorker.vb" />
+    <Compile Include="Workers\StandardValueWorker.vb" />
+    <Compile Include="Workers\StartLoginEditWorker.vb" />
+    <Compile Include="Workers\StartReregisterWorker.vb" />
+    <Compile Include="Workers\StartSetupWorker.vb" />
+    <Compile Include="Workers\StartSetupWorker2.vb" />
+    <Compile Include="Workers\TargetValueWorker.vb" />
+    <Compile Include="Workers\TestWorker.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Code\QyHtmlHelper.vbhtml" />
+    <Content Include="dist\fonts\D-DIN-Exp.ttf.eot" />
+    <Content Include="dist\fonts\D-DIN-Exp.ttf.woff" />
+    <Content Include="dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="dist\fonts\line-awesome.eot" />
+    <Content Include="dist\fonts\line-awesome.ttf" />
+    <Content Include="dist\fonts\line-awesome.woff" />
+    <Content Include="dist\fonts\line-awesome.woff2" />
+    <Content Include="dist\fonts\slick.eot" />
+    <Content Include="dist\fonts\slick.ttf" />
+    <Content Include="dist\fonts\slick.woff" />
+    <Content Include="dist\js\page-script\mgf.passwordreset.recoveryidentifier.js" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="My Project\PublishProfiles\qolms-dev-joto-west-app01 - FTP.pubxml" />
+    <None Include="My Project\PublishProfiles\qolms-dev-joto-west-app01 - FTP1.pubxml" />
+    <None Include="My Project\PublishProfiles\qolms-dev-joto-west-app01 - ReadOnly - FTP.pubxml" />
+    <None Include="My Project\PublishProfiles\qolms-dev-joto-west-app01 - ReadOnly - FTP1.pubxml" />
+    <None Include="My Project\PublishProfiles\qolms-dev-joto-west-app01 - Web Deploy.pubxml" />
+    <None Include="My Project\PublishProfiles\qolms-dev-joto-west-app01 - Web Deploy1.pubxml" />
+    <None Include="My Project\PublishProfiles\qolms-prod-joto-east-app01-slot01 - FTP.pubxml" />
+    <None Include="My Project\PublishProfiles\qolms-prod-joto-east-app01-slot01 - Web Deploy.pubxml" />
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+    <Content Include="Views\Health\Age.vbhtml" />
+    <Content Include="Views\Health\AgeEdit.vbhtml" />
+    <Content Include="Views\Health\Error.vbhtml" />
+    <Content Include="Views\Portal\AlkooConnection.vbhtml" />
+    <Content Include="Views\Portal\Challenge.vbhtml" />
+    <Content Include="Views\Portal\ChallengeColumn.vbhtml" />
+    <Content Include="Views\Portal\ChallengeCompleted.vbhtml" />
+    <Content Include="Views\Portal\ChallengeDetail.vbhtml" />
+    <Content Include="Views\Portal\ChallengeEdit.vbhtml" />
+    <Content Include="Views\Portal\ChallengeEntry.vbhtml" />
+    <Content Include="Views\Portal\CompanyConnection.vbhtml" />
+    <Content Include="Views\Portal\CompanyConnectionEdit.vbhtml" />
+    <Content Include="Views\Portal\CompanyConnectionHome.vbhtml" />
+    <Content Include="Views\Portal\CompanyConnectionRequest.vbhtml" />
+    <Content Include="Views\Portal\ConnectionSetting.vbhtml" />
+    <Content Include="Views\Portal\FitbitConnection.vbhtml" />
+    <Content Include="Views\Portal\HospitalConnection.vbhtml" />
+    <Content Include="Views\Portal\HospitalConnectionRequest.vbhtml" />
+    <Content Include="Views\Portal\MedicienConnectionPromote.vbhtml" />
+    <Content Include="Views\Portal\MedicineConnection.vbhtml" />
+    <Content Include="Views\Portal\MedicineConnectionAgreement.vbhtml" />
+    <Content Include="Views\Portal\MedicineConnectionRequest.vbhtml" />
+    <Content Include="Views\Portal\MedicineConnectionSearch.vbhtml" />
+    <Content Include="Views\Portal\Search.vbhtml" />
+    <Content Include="Views\Portal\SearchDetail.vbhtml" />
+    <Content Include="Views\Portal\TanitaConnection.vbhtml" />
+    <Content Include="Views\Portal\TargetSetting2.vbhtml" />
+    <Content Include="Views\Portal\Terms.vbhtml" />
+    <Content Include="Views\Portal\Unsubscribe.vbhtml" />
+    <Content Include="Views\Premium\Error.vbhtml" />
+    <Content Include="Views\Premium\History.vbhtml" />
+    <Content Include="Views\Premium\Index.vbhtml" />
+    <Content Include="Views\Premium\MethodChange.vbhtml" />
+    <Content Include="Views\Premium\PayJpCardRegister.vbhtml" />
+    <Content Include="Views\Premium\PayJpCardUpdate.vbhtml" />
+    <Content Include="Views\Premium\regist.vbhtml" />
+    <Content Include="Views\Shared\_HealthAgeAdviceAreaPartialView.vbhtml" />
+    <Content Include="Views\Shared\_HealthAgeDistributionReportPartialView.vbhtml" />
+    <Content Include="Views\Shared\_HealthAgeFatReportPartialView.vbhtml" />
+    <Content Include="Views\Shared\_HealthAgeGlucoseReportPartialView.vbhtml" />
+    <Content Include="Views\Shared\_HealthAgeLipidReportPartialView.vbhtml" />
+    <Content Include="Views\Shared\_HealthAgeLiverReportPartialView.vbhtml" />
+    <Content Include="Views\Shared\_HealthAgePressureReportPartialView.vbhtml" />
+    <Content Include="Views\Shared\_HealthAgeTransitionAreaPartialView.vbhtml" />
+    <Content Include="Views\Shared\_HealthAgeUrineReportPartialView.vbhtml" />
+    <Content Include="Views\Shared\_HealthFooterPartialView.vbhtml" />
+    <Content Include="Views\Shared\_HealthHeaderPartialView.vbhtml" />
+    <Content Include="Views\Shared\_HealthLayout.vbhtml" />
+    <Content Include="Views\Shared\_NoteExaminationFilterPartialView.vbhtml" />
+    <Content Include="Views\Shared\_NoteExaminationResultPartialView.vbhtml" />
+    <Content Include="Views\Shared\_NoteExerciseCardPartialView.vbhtml" />
+    <Content Include="Views\Shared\_NoteHeaderPartialView.vbhtml" />
+    <Content Include="Views\Shared\_NoteMealAnalyzeResultAreaPartialView.vbhtml" />
+    <Content Include="Views\Shared\_NoteMealAnalyzeResultPartialView.vbhtml" />
+    <Content Include="Views\Shared\_NoteMealCardAreaPartialView4.vbhtml" />
+    <Content Include="Views\Shared\_NoteMealCardPartialView.vbhtml" />
+    <Content Include="Views\Shared\_NoteMealEditDatePartialView.vbhtml" />
+    <Content Include="Views\Shared\_NoteMealEditHinmokuCalPartialView.vbhtml" />
+    <Content Include="Views\Shared\_NoteMealEditSearchAreaPartialView.vbhtml" />
+    <Content Include="Views\Shared\_NoteMealEditThumbnailPartialView.vbhtml" />
+    <Content Include="Views\Shared\_NoteMealInputSearchPartialView.vbhtml" />
+    <Content Include="Views\Shared\_NoteMealRegisterFromHistoryCardAreaPartialView.vbhtml" />
+    <Content Include="Views\Shared\_NoteMealSearchResultAreaPartialView.vbhtml" />
+    <Content Include="Views\Shared\_NoteMealSearchResultPartialView.vbhtml" />
+    <Content Include="Views\Shared\_NoteMedicineTablePartialView.vbhtml" />
+    <Content Include="Views\Shared\_NoteVitalStepsDetailPartialView.vbhtml" />
+    <Content Include="Views\Shared\_NoteVitalStepsGraphPartialView.vbhtml" />
+    <Content Include="Views\Shared\_PortalChallengeColumnPartialView.vbhtml" />
+    <Content Include="Views\Shared\_PortalChallengeDetail1PartialView.vbhtml" />
+    <Content Include="Views\Shared\_PortalChallengeDetail2PartialView.vbhtml" />
+    <Content Include="Views\Shared\_PortalChallengeDetail3PartialView.vbhtml" />
+    <Content Include="Views\Shared\_PortalChallengeDetailDefaltPartialView.vbhtml" />
+    <Content Include="Views\Shared\_PortalChallengeEntryAgreeResultPartialView.vbhtml" />
+    <Content Include="Views\Shared\_PortalChallengeEntryPassResultPartialView.vbhtml" />
+    <Content Include="Views\Shared\_PortalCompanyConnectionRegisterTermsPartialView.vbhtml" />
+    <Content Include="Views\Shared\_PortalHomeChallengeAreaPartialView.vbhtml" />
+    <Content Include="Views\Shared\_PortalSearchDetailResultPartialView.vbhtml" />
+    <Content Include="Views\Shared\_PortalSearchResultPartialView.vbhtml" />
+    <Content Include="Views\Shared\_PremiumFooterPartialView.vbhtml" />
+    <Content Include="Views\Shared\_PremiumLayout.vbhtml" />
+    <Content Include="Views\Shared\_StartRegisterDialogPartialView.vbhtml" />
+    <Content Include="Views\Shared\_StartSetupStepOnePartialView2.vbhtml" />
+    <Content Include="Views\Shared\_StartSetupStepThreePartialView2.vbhtml" />
+    <Content Include="Views\Shared\_StartSetupStepTwoPartialView.vbhtml" />
+    <Content Include="Views\Start\Error.vbhtml" />
+    <Content Include="Views\Start\Logout.vbhtml" />
+    <Content Include="Views\Start\Register.vbhtml" />
+    <Content Include="Views\Start\RegisterId.vbhtml" />
+    <Content Include="Views\Start\Reregister.vbhtml" />
+    <Content Include="Views\Start\Setup2.vbhtml" />
+    <Content Include="Views\Note\CalomealHistory.vbhtml" />
+    <Content Include="Views\Start\CalomealDiscription.vbhtml" />
+    <Content Include="Views\Portal\MovForFemale.vbhtml" />
+    <Content Include="Views\Shared\_PasswordResetLayout.vbhtml" />
+    <Content Include="Views\PasswordReset\Recover.vbhtml" />
+    <Content Include="Views\PasswordReset\RecoveryIdentifier.vbhtml" />
+    <Content Include="Views\Shared\_PasswordResetFooterPartialView.vbhtml" />
+    <Content Include="Views\PasswordReset\AppLink.vbhtml" />
+    <Content Include="Views\Shared\_PasswordResetRecoverSuccessPartialView.vbhtml" />
+    <Content Include="Views\Shared\_PasswordResetRecoveryIdentifierCompletionPartialView.vbhtml" />
+    <Content Include="Views\PasswordReset\Error.vbhtml" />
+    <Content Include="Views\Portal\UserInfomation.vbhtml" />
+    <Content Include="Views\Portal\CouponForFitbit.vbhtml" />
+    <Content Include="Views\Portal\UserInfomationEdit.vbhtml" />
+    <Content Include="Views\PasswordReset\RecoverSMS.vbhtml" />
+    <Content Include="Views\Shared\_PasswordResetRecoverSMSPassCodePartialView.vbhtml" />
+    <Content Include="Views\Portal\SMSAuthentication.vbhtml" />
+    <Content Include="Views\Shared\_PasswordResetRecoverySMSCompletionPartialView.vbhtml" />
+    <Content Include="Views\PasswordReset\RecoverSmsPasscode.vbhtml" />
+    <Content Include="Views\Shared\_PortalChallengeDetail5PartialView.vbhtml" />
+    <Content Include="Views\Start\AppLink.vbhtml" />
+    <Content Include="Views\Portal\AppendLinkageId.vbhtml" />
+    <Content Include="Views\Portal\TestPushApi.vbhtml" />
+    <Content Include="Views\Premium\PayJpAgree.vbhtml" />
+    <Content Include="Views\PasswordReset\SelectMethod.vbhtml" />
+    <Content Include="Views\Portal\LocalIdVerification.vbhtml" />
+    <Content Include="Views\Portal\LocalIdVerificationAgreement.vbhtml" />
+    <Content Include="Views\Portal\LocalIdVerificationRegister.vbhtml" />
+    <Content Include="Views\Portal\LocalIdVerificationDetail.vbhtml" />
+    <Content Include="Views\Portal\LocalIdVerificationRequest.vbhtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>On</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>Off</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PipelineRelease|AnyCPU'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>QolmsYappli.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>54072</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:4498/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

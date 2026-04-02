@@ -1,0 +1,23 @@
+﻿<header id="top" class="" role="banner">
+	<nav id="g-nav" role="navigation">
+		<div class="wrap">
+			<p class="on">
+				<a href="../Portal/Home" class="home"><i class="la la-home"></i></a>
+			</p>
+			<div class="mask">
+				<ul class="list">
+					<li><a href="../Note/Walk">歩 く</a></li>
+					<li><a href="../Note/Exercise">運 動</a></li>
+					<li><a href="../Note/Meal4">食 事</a></li>
+					<li><a href="../Note/Vital">バイタル</a></li>
+					<li><a href="../Health/Age">健康年齢</a></li>
+@*					<li><a href="../Health/Consult">健康相談</a></li>*@
+					<li><a href="../Portal/Search">医療機関検索</a></li>
+@*					<li><a href="http://www.shinryo.okinawa.med.or.jp/" target="_blank">おきなわ津梁ネット</a></li>*@
+                    <li><a href="../Portal/Information">その他</a></li>
+                    <li><a href="../Start/Logout">ログアウト</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</header>

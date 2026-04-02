@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "プレミアム会員";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+<body id="premium-info" class="lower">
+    <main id="main-cont" class="clearfix" role="main">
+        <section class="contents-area">
+            <h2 class="title relative">プレミアム会員</h2>
+            <hr />
+            <h3 class="title">プレミアム会員メニュー</h3>
+            <p class="balloon">プレミアム会員のご登録ありがとうございます。お支払い履歴の確認や、お支払い方法の変更はこちらから！</p>
+            <a class="btn btn-link back-FFF no-ico block" href="/premium/History">
+                <i class="la la-file-text"></i>
+                お支払い履歴を確認する
+            </a>
+            <a class="btn btn-link back-FFF no-ico block" href="@Url.Action("MethodChange", "Premium")">
+                <i class="la la-credit-card"></i>
+                お支払い方法を切り替える
+            </a>
+            <a class="btn btn-link back-FFF no-ico block" href="#" id="doc-premium-open" data-panel-target="#premium-benefits-panel">
+                <i class="la la-clipboard"></i>
+                プレミアム会員特典を確認する
+            </a>
+            <a class="btn btn-link back-FFF no-ico block" href="#" id="doc-open" data-panel-target="#premium-terms-panel">
+                <i class="la la-clipboard"></i>
+                会員利用規約を確認する
+            </a>
+        </section>
+
+        <div class="section default doc-default hide-elm" id="premium-benefits-panel" data-panel>
+            <section class="contents-area">
+                <h3 class="title">「プレミアム会員」とは？</h3>
+            </section>
+            @Html.Partial("~/Views/Shared/_PremiumBenefitsPartial.cshtml")
+            <p class="center">
+                <a class="btn btn-close" href="#" data-panel-close>閉じる</a>
+            </p>
+        </div>
+
+        <div class="section default doc-default hide-elm" id="premium-terms-panel" data-panel>
+            @Html.Partial("~/Views/Shared/_PremiumTermsPartial.cshtml")
+            <p class="center">
+                <a class="btn btn-close" href="#" data-panel-close>閉じる</a>
+            </p>
+        </div>
+    </main>
+
+    <div id="white-out" class="hide">
+        <div class="loader"></div>
+        <div id="progress-area">
+            <div class="progress progress-striped">
+                <div class="progress-bar progress-bar-warning active" style="width: 100%"></div>
+            </div>
+            <span>100%</span>進行中…
+        </div>
+        <p id="text-area"></p>
+    </div>
+
+    <section id="topbtn" class="hide topbtn__wrap">
+        <a href="#" class="topbtn"></a>
+    </section>
+
+    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
+    <script src="~/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/dist/js/spc.lib.min.js"></script>
+    <script src="~/dist/js/spc.util.min.js"></script>
+    <script src="~/dist/js/page-script/mgf.js"></script>
+    <script src="~/dist/js/page-script/mgf.premium.js"></script>
+    <script src="~/dist/js/page-script/mgf.premium.info.js"></script>
+</body>

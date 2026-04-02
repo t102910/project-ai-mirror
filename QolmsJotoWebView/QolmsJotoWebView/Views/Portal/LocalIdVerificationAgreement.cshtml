@@ -1,0 +1,70 @@
+﻿@model PortalLocalIdVerificationAgreementViewModel
+
+@{
+    ViewBag.Title = "規約同意";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+
+    var dateNow = DateTime.Now;
+}
+
+<body id="confirm" class="lower ginowan">
+    @Html.AntiForgeryToken()
+
+    <main id="main-cont" class="clearfix" role="main">
+        @*<section class="home-btn-wrap" data-pageno="1">
+            <a href="../Portal/LocalIdVerification" class="home-btn"><i class="la la-angle-left"></i></a>
+        </section>*@
+        <section class="contents-area mb20">
+            <div class="box type-2">
+                <div class="wrap">
+
+                    <h2 class="title">
+                        参加同意書
+                    </h2>
+                    <div class="document-scroll-wrap">
+
+                        <p class="mb10">
+                            @Html.Raw(Model.Terms.Replace("\r\n", "<br/>"))
+
+                        </p>
+                        <p class="bold orange mb20 small">
+                            併せてアプリのプライバシーポリシーもご確認ください
+                        </p>
+                    </div>
+                    <div class="bottom-fix-wrap mt10">
+                        <p class="center mb10">
+                            <a href="native:/tab/bio/0a078204" class="btn btn-default type-3">
+                                JOTOホームドクター プライバシーポリシー
+                            </a>
+                        </p>
+                        <p class="center mb30">
+                            <label class="accept">
+                                <input type="checkbox" id="policy">
+                                プライバシーポリシーを確認し、同意しました。<span>必須</span>
+                            </label>
+                        </p>
+                        <p>
+                            <a href="../Portal/LocalIdVerificationRegister" class="btn btn-default disabled agree">
+                                同意する
+                            </a>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    @Html.Action("PortalFooterPartialView", "Portal")
+
+    @*@QjHtmlHelper.RenderScriptTag("~/dist/js/portal/localidverificationagreement")*@
+    
+    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
+    <script src="~/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/dist/js/slick.min.js"></script>
+    <script src="~/dist/js/spc.lib.min.js"></script>
+    <script src="~/dist/js/spc.util.min.js"></script>
+    <script src="~/dist/js/page-script/mgf.js"></script>
+    <script src="~/dist/js/page-script/mgf.portal.js"></script>
+    <script src="~/dist/js/page-script/mgf.portal.localidverificationagreement.js"></script>
+</body>

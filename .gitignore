@@ -1,0 +1,11 @@
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.pubxml
+appsettings*.json
+web.config
+.env
+packages/
+*.nupkg

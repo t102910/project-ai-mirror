@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "QolmsYappli", "QolmsYappli\QolmsYappli.vbproj", "{DE82BDD6-23C7-4BD4-93D4-07443F2B946B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		PipelineRelease|Any CPU = PipelineRelease|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE82BDD6-23C7-4BD4-93D4-07443F2B946B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE82BDD6-23C7-4BD4-93D4-07443F2B946B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE82BDD6-23C7-4BD4-93D4-07443F2B946B}.PipelineRelease|Any CPU.ActiveCfg = PipelineRelease|Any CPU
+		{DE82BDD6-23C7-4BD4-93D4-07443F2B946B}.PipelineRelease|Any CPU.Build.0 = PipelineRelease|Any CPU
+		{DE82BDD6-23C7-4BD4-93D4-07443F2B946B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE82BDD6-23C7-4BD4-93D4-07443F2B946B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {58323DC5-4A8F-4A53-8C48-9A1DD05FF8E7}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://mgfactory.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = QolmsYappli\\QolmsYappli.vbproj
+		SccProjectName1 = QolmsYappli
+		SccLocalPath1 = QolmsYappli
+	EndGlobalSection
+EndGlobal

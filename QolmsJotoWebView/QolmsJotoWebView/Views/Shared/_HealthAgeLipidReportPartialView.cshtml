@@ -1,0 +1,155 @@
+﻿@using MGF.QOLMS.QolmsApiCoreV1
+@model HealthAgeLipidReportPartialViewModel
+
+@{
+    bool hasData = Model.ReportItem.HealthAgeValueN.Any();
+}
+
+@if (hasData)
+{
+    <article id="lipid-area" class="reload-area" data-report-type="@QjHealthAgeReportTypeEnum.Lipid.ToString()">
+        <h2 class="box-title">
+            <b>脂質</b>についてのレポート
+        </h2>
+
+        <section class="inner">
+            <!-- 総合評価 -->
+            <div class="section default grade">
+                <span class="bold">総合<br>評価</span>
+                @switch (Model.InsDeviance)
+                {
+                    case 1M:
+                        <span>
+                            <i class="grade-icon bad"></i>
+                        </span>
+                        <span class="bold bad">改善して！</span>
+                        break;
+
+                    case 2M:
+                        <span>
+                            <i class="grade-icon ordinary"></i>
+                        </span>
+                        <span class="bold bad">注意が必要！</span>
+                        break;
+
+                    case 3M:
+                        <span>
+                            <i class="grade-icon good"></i>
+                        </span>
+                        <span class="bold bad">よく頑張りました！</span>
+                        break;
+                }
+            </div>
+        </section>
+
+        <section class="inner reload-area">
+            <!-- AJAX-非同期更新エリア load中は.loadingを付与してください。gifアニメーションと文言出ます。-->
+            <!-- 比較グラフ -->
+            <script type="text/javascript">
+                // グラフデータ
+                var hrChartData_nb4 = {
+                    data: {
+                        title: @Html.Raw(Model.InsComparisonGraphSetting.Title),
+                        max: 3,
+                        min: -3,
+                        dayLabel: @Html.Raw(Model.InsComparisonGraphSetting.Label),
+                        targetValues: @Html.Raw(Model.InsComparisonGraphSetting.TargetValue),
+                        data: @Html.Raw(Model.InsComparisonGraphSetting.Data)
+                    }
+                };
+            </script>
+
+            <h3 class="line mb10">同性・同年代との数値比較</h3>
+
+            <div class="chart-draw mb30">
+                <div class="chart-area" data-ref="nb4" data-kind="negativebar">
+                    <div class="chart-draw-area" style="background-color:#f7f7f7; height:160px;"></div>
+                </div>
+            </div>
+
+            <!-- 測定値グラフ 1 -->
+            <script type="text/javascript">
+                // グラフデータ
+                var hrChartData_nfat = {
+                    data: {
+                        title: @Html.Raw(Model.Ch019GraphSetting.Title),
+                        max: @Html.Raw(Model.Ch019GraphSetting.AxisMax),
+                        min: @Html.Raw(Model.Ch019GraphSetting.AxisMin),
+                        dayLabel: @Html.Raw(Model.Ch019GraphSetting.Label),
+                        targetValues: @Html.Raw(Model.Ch019GraphSetting.TargetValue), // [0]正常値min [1]正常値max / [2]注意値min [3]注意値max / [4]注意値min [5]注意値max / [6]警告値min [7]警告値max / [8]警告値min [9]警告値max
+                        data: @Html.Raw(Model.Ch019GraphSetting.Data)
+                    }
+                };
+            </script>
+
+            <h3 class="line mb10">中性脂肪</h3>
+
+            <div class="chart-draw mb20">
+                <div class="chart-area" data-ref="nfat">
+                    <div class="chart-draw-area" style="background-color:#f7f7f7; height:130px;"></div>
+                </div>
+            </div>
+
+            <!-- 測定値グラフ 2 -->
+            <script type="text/javascript">
+                // グラフデータ
+                var hrChartData_hdl = {
+                    data: {
+                        title: @Html.Raw(Model.Ch021GraphSetting.Title),
+                        max: @Html.Raw(Model.Ch021GraphSetting.AxisMax),
+                        min: @Html.Raw(Model.Ch021GraphSetting.AxisMin),
+                        dayLabel: @Html.Raw(Model.Ch021GraphSetting.Label),
+                        targetValues: @Html.Raw(Model.Ch021GraphSetting.TargetValue), // [0]正常値min [1]正常値max / [2]注意値min [3]注意値max / [4]注意値min [5]注意値max / [6]警告値min [7]警告値max / [8]警告値min [9]警告値max
+                        data: @Html.Raw(Model.Ch021GraphSetting.Data)
+                    }
+                };
+            </script>
+
+            <h3 class="line mb10">HDLコレステロール</h3>
+
+            <div class="chart-draw mb20">
+                <div class="chart-area" data-ref="hdl">
+                    <div class="chart-draw-area" style="background-color:#f7f7f7; height:130px;"></div>
+                </div>
+            </div>
+
+            <!-- 測定値グラフ 3 -->
+            <script type="text/javascript">
+                // グラフデータ
+                var hrChartData_ldl = {
+                    data: {
+                        title: @Html.Raw(Model.Ch023GraphSetting.Title),
+                        max: @Html.Raw(Model.Ch023GraphSetting.AxisMax),
+                        min: @Html.Raw(Model.Ch023GraphSetting.AxisMin),
+                        dayLabel: @Html.Raw(Model.Ch023GraphSetting.Label),
+                        targetValues: @Html.Raw(Model.Ch023GraphSetting.TargetValue), // [0]正常値min [1]正常値max / [2]注意値min [3]注意値max / [4]注意値min [5]注意値max / [6]警告値min [7]警告値max / [8]警告値min [9]警告値max
+                        data: @Html.Raw(Model.Ch023GraphSetting.Data)
+                    }
+                };
+            </script>
+
+            <h3 class="line mb10">LDLコレステロール</h3>
+
+            <div class="chart-draw mb20">
+                <div class="chart-area" data-ref="ldl">
+                    <div class="chart-draw-area" style="background-color:#f7f7f7; height:130px;"></div>
+                </div>
+                <p class="legend-area">
+                    <span class="legend bad"></span>要改善 / <span class="legend poor"></span>要注意 / <span class="legend good"></span>正常
+                </p>
+            </div>
+        </section>
+    </article>
+}
+else
+{
+    <article id="lipid-area" class="reload-area" data-report-empty-type="@QjHealthAgeReportTypeEnum.Lipid.ToString()">
+        <h2 class="box-title">
+            <b>脂質</b>についてのレポート
+        </h2>
+
+        <section class="section caution mt10 mb0">
+            未測定です
+        </section>
+    </article>
+}

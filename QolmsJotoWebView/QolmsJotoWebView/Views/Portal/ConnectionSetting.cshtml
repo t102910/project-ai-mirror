@@ -1,0 +1,111 @@
+﻿@using System
+@using MGF.QOLMS.QolmsJotoWebView
+
+@{
+    ViewData["Title"] = "連携設定";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+
+    byte fromPageNo = Convert.ToByte(QjPageNoTypeEnum.PortalConnectionSetting);
+    const int companyLinkageSystemNo = 47001;
+    const string companyLinkageSystemName = "企業";
+    const string hospitalName = "城東区医師会病院";
+}
+
+<body id="" class="lower">
+    @Html.AntiForgeryToken()
+
+    <main id="main-cont" class="clearfix" role="main">
+        <section class="home-btn-wrap" data-pageno="@fromPageNo">
+            <a href="../Portal/Home" class="home-btn"><i class="la la-angle-left"></i></a>
+        </section>
+
+        <section class="contents-area mb0">
+            <h2 class="title">連携設定</h2>
+            <hr>
+            <section class="section default">外部データ連携を設定します。</section>
+            <ul class="nav nav-tabs nav-fill mb20">
+                <li class="nav-item"><a href="javascript:void(0);" class="nav-link active" data-bs-toggle="tab" data-bs-target="#input-2"><span>法 人</span></a></li>
+                <li class="nav-item"><a href="javascript:void(0);" class="nav-link" data-bs-toggle="tab" data-bs-target="#input-3"><span>病 院</span></a></li>
+            </ul>
+        </section>
+
+        <section class="data-area tab-content">
+            <div class="tab-pane active" id="input-2">
+                <article class="data-card">
+                    <h3 class="card-title two-pane">
+                        <span>タニタ連携</span>
+                        <span class="right-area"><a class="ico" href="../Integration/TanitaConnection?fromPageNo=@fromPageNo&amp;mockConnected=true"><i class="la la-pencil"></i>変更</a></span>
+                    </h3>
+                    <section class="inner">
+                        <div class="federation-status low-height center">
+                            <p class="off">体 重</p>
+                            <p class="off">血 圧</p>
+                            <p class="off">歩 数</p>
+                        </div>
+                    </section>
+                </article>
+
+                <article class="data-card">
+                    <h3 class="card-title two-pane">
+                        <span>ALKOO連携</span>
+                        <span class="right-area"><a class="ico" href="javascript:void(0);"><i class="la la-pencil"></i>変更</a></span>
+                    </h3>
+                    <section class="inner">
+                        <div class="federation-status low-height center">
+                            <p class="off">歩 数</p>
+                        </div>
+                    </section>
+                </article>
+
+                <article class="data-card">
+                    <h3 class="card-title two-pane">
+                        <span>Fitbit連携</span>
+                        <span class="right-area"><a class="ico" href="../Integration/FitbitConnection?fromPageNo=@fromPageNo&amp;mockConnected=true"><i class="la la-pencil"></i>変更</a></span>
+                    </h3>
+                    <section class="inner">
+                        <div class="federation-status low-height center">
+                            <p class="off">連 携</p>
+                        </div>
+                    </section>
+                </article>
+
+                <a href="../Integration/CompanyConnection?fromPageNo=@fromPageNo&amp;linkageSystemNo=@companyLinkageSystemNo&amp;linkageSystemName=@companyLinkageSystemName&amp;mockConnected=true" class="data-card">
+                    <h3 class="card-title two-pane">
+                        <span>@companyLinkageSystemName</span>
+                        <span class="right-area"><span class="ico on"><i class="la la-check-circle-o"></i>連携済み</span></span>
+                    </h3>
+                    <section class="inner">
+                        <div class="federation-status low-height center">
+                            <p class="on">健 診</p>
+                        </div>
+                    </section>
+                </a>
+            </div>
+
+            <div class="tab-pane" id="input-3">
+                <p class="center"><a href="../Integration/HospitalConnectionRequest?fromPageNo=@fromPageNo&amp;hospitalName=@hospitalName" class="btn btn-submit">新規連携登録</a></p>
+                <a href="../Integration/HospitalConnection?fromPageNo=@fromPageNo&amp;hospitalName=@hospitalName&amp;mockConnected=true" class="data-card">
+                    <h3 class="card-title two-pane">
+                        <span>@hospitalName</span>
+                        <span class="right-area"><span class="ico pending"><i class="la la-clock-o on"></i>連携申請中</span></span>
+                    </h3>
+                    <section class="inner">
+                        <div class="federation-status low-height center">
+                            <p class="on">健 診</p>
+                        </div>
+                    </section>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    @Html.Action("PortalFooterPartialView", "Portal")
+
+    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
+    <script src="~/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/dist/js/slick.min.js"></script>
+    <script src="~/dist/js/spc.lib.min.js"></script>
+    <script src="~/dist/js/spc.util.min.js"></script>
+    <script src="~/dist/js/page-script/mgf.js"></script>
+    <script src="~/dist/js/page-script/mgf.portal.js"></script>
+</body>

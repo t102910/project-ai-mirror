@@ -1,0 +1,65 @@
+﻿@using System.Collections.ObjectModel
+@using System.Collections.Generic
+@using System.Linq
+
+@model MGF.QOLMS.QolmsJotoWebView.NoteExaminationResultPartialViewModel
+
+<div id="filter">
+    <h3 id="anc-1" class="title mt10 mb10">
+        <span>結果を絞り込む</span>
+    </h3>
+
+    <section class="contents-block no-padding">
+        <ul id="abnormal-only-filter" class="form-list">
+            <li>
+                <label><input type="checkbox"> 異常値のみ表示</label>
+            </li>
+        </ul>
+
+        @{
+            var group = new Dictionary<string, string>();
+
+            foreach (ExaminationGroupItem item in Model.PageViewModel.ExaminationGroupN)
+            {
+                var key = item.GroupNo.ToString();
+                if (!group.ContainsKey(key))
+                {
+                    group.Add(key, item.Name);
+                }
+            }
+        }
+
+        <h3 class="line type-3 @(group.Count <= 1 ? "hide" : string.Empty)">検査種別で絞り込み</h3>
+        <ul id="group-filter" class="form-list @(group.Count <= 1 ? "hide" : string.Empty)">
+            @foreach (KeyValuePair<string, string> item in group)
+            {
+                <li>
+                    <label><input type="checkbox" value="@item.Key"> @item.Value</label>
+                </li>
+            }
+        </ul>
+
+        @{
+            var facilitis = new Dictionary<string, string>();
+
+            foreach (ExaminationSetItem item in Model.PageViewModel.ExaminationSetN)
+            {
+                if (!facilitis.ContainsKey(item.OrganizationKey))
+                {
+                    facilitis.Add(item.OrganizationKey, item.OrganizationName);
+                }
+            }
+        }
+
+        <h3 class="line type-3 @(facilitis.Count <= 1 ? "hide" : string.Empty)">施設で絞り込み</h3>
+        <ul id="facility-filter" class="form-list @(facilitis.Count <= 1 ? "hide" : string.Empty)">
+            @foreach (KeyValuePair<string, string> item in facilitis)
+            {
+                <li>
+                    <label><input type="checkbox" value="@item.Key" data-key="@item.Key"> @item.Value</label>
+                </li>
+            }
+        </ul>
+
+    </section>
+</div>

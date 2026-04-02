@@ -1,0 +1,309 @@
+﻿@model HealthAgeViewModel
+
+@{
+    ViewData["Title"] = "健康年齢";
+    Layout = "~/Views/Shared/_HealthLayout.cshtml";
+
+    bool hasData = false;
+}
+
+<body id="health-age" class="lower">
+    @Html.AntiForgeryToken()
+    @*@Html.Action("HealthHeaderPartialView", "Health")*@
+
+    <main id="main-cont mb100" class="clearfix mt10" role="main" style="margin-top: 15px;">
+        @*@switch (Model.FromPageNoType)
+        {
+            case QjPageNoTypeEnum.PortalHome:
+                <section class="home-btn-wrap" data-pageno="1">
+                    <a href="../Portal/Home" class="home-btn"><i class="la la-angle-left"></i><i class="la la-home la-15x"></i><span> ホーム</span></a>
+                </section>
+                break;
+
+            case QjPageNoTypeEnum.NoteExamination:
+        <section class="home-btn-wrap" data-pageno="23">
+        <a href="../Note/Examination" class="home-btn">
+            <i class="la la-angle-left"></i>
+        </a>
+    </section>
+                break;
+        }*@
+
+        <section class="contents-area">
+            <h2 class="title">@ViewData["Title"]</h2>
+            <hr />
+            <section id="age-area">
+                @if (Model.HealthAge > decimal.Zero)
+                {
+                    if (Model.HealthAgeDistance > decimal.Zero)
+                    {
+                        <div id="result">
+                            <p class="inner age-result">
+                                <span>あなたの健康年齢は</span>
+                                <em class="logona bad">@Model.HealthAge.ToString("0.#")</em>
+                                <i>歳です</i>
+                            </p>
+                            <p class="inner high-low">
+                                実際より<span class="high-light">@Math.Abs(Model.HealthAgeDistance).ToString("0.#")</span>歳<span class="high-light high">高い</span>です
+                            </p>
+                            <p class="date">@Model.LatestDate.ToString("yyyy年M月d日現在")</p>
+                        </div>
+                        <p id="result-img">
+                            <img src="../dist/img/health-age/bad.png">
+                            <a id="view-more" href="javascript:void(0);">
+                                <i class="la la-pencil-square-o"></i>
+                                測定する
+                            </a>
+                        </p>
+                    }
+                    else if (Model.HealthAgeDistance < decimal.Zero)
+                    {
+                        <div id="result">
+                            <p class="inner age-result">
+                                <span>あなたの健康年齢は</span>
+                                <em class="logona good">@Model.HealthAge.ToString("0.#")</em>
+                                <i>歳です</i>
+                            </p>
+                            <p class="inner high-low">
+                                実際より<span class="high-light">@Math.Abs(Model.HealthAgeDistance).ToString("0.#")</span>歳<span class="high-light low">低い</span>です
+                            </p>
+                            <p class="date">@Model.LatestDate.ToString("yyyy年M月d日現在")</p>
+                        </div>
+                        <p id="result-img">
+                            <img src="../dist/img/health-age/good.png">
+                            <a id="view-more" href="javascript:void(0);">
+                                <i class="la la-pencil-square-o"></i>
+                                測定する
+                            </a>
+                        </p>
+                    }
+                    else
+                    {
+                        <div id="result">
+                            <p class="inner age-result">
+                                <span>あなたの健康年齢は</span>
+                                <em class="logona good">@Model.HealthAge.ToString("0.#")</em>
+                                <i>歳です</i>
+                            </p>
+                            <p class="inner high-low">
+                                実際と同じです
+                            </p>
+                            <p class="date">@Model.LatestDate.ToString("yyyy年M月d日現在")</p>
+                        </div>
+                        <p id="result-img">
+                            <img src="../dist/img/health-age/usual.png">
+                            <a id="view-more" href="javascript:void(0);">
+                                <i class="la la-pencil-square-o"></i>
+                                測定する
+                            </a>
+                        </p>
+                    }
+                }
+                else
+                {
+                    <div id="result">
+                        <p class="inner age-result">
+                            <span>あなたの健康年齢は</span>
+                            <em class="logona">未測定</em>
+                        </p>
+                        <p class="inner high-low"></p>
+                        <p class="date">@DateTime.Now.ToString("yyyy年M月d日現在")</p>
+                    </div>
+                    <p id="result-img">
+                        <img src="../dist/img/health-age/usual.png">
+                        <a id="view-more" href="javascript:void(0);">
+                            <i class="la la-pencil-square-o"></i>
+                            測定する
+                        </a>
+                    </p>
+                }
+            </section>
+        </section>
+
+        @if (Model.MembershipType == QjMemberShipTypeEnum.Premium
+            || Model.MembershipType == QjMemberShipTypeEnum.LimitedTime
+            || Model.MembershipType == QjMemberShipTypeEnum.Business
+            || Model.MembershipType == QjMemberShipTypeEnum.BusinessFree
+            || Model.HasHospitalConnection)
+        {
+            <div id="data-area" class="" style="padding-bottom: 100px;">
+                <section class="inner">
+                    @Html.Action("HealthAgeAdviceAreaPartialView", "Health")
+
+                    @Html.Action("HealthAgeTransitionAreaPartialView", "Health")
+
+                    <h3 class="title mt10">
+                        <span>健康年齢の詳細</span>
+                    </h3>
+
+                    @if (Model.IsAvailableHealthAgeReportType(QjHealthAgeReportTypeEnum.Distribution, ref hasData) && hasData)
+                    {
+                        <article id="distribution-area" class="reload-area" data-report-type="@QjHealthAgeReportTypeEnum.Distribution.ToString()">
+                            <div class="reload-area loading"></div>
+                        </article>
+                    }
+                    else
+                    {
+                        <article id="distribution-area" class="reload-area" data-report-empty-type="@QjHealthAgeReportTypeEnum.Distribution.ToString()">
+                            <section class="section caution mt10 mb0">
+                                未測定です
+                            </section>
+                        </article>
+                    }
+
+                    @if (Model.IsAvailableHealthAgeReportType(QjHealthAgeReportTypeEnum.Fat, ref hasData) && hasData)
+                    {
+                        <article id="fat-area" class="reload-area" data-report-type="@QjHealthAgeReportTypeEnum.Fat.ToString()">
+                            <h2 class="box-title">
+                                <b>肥満</b>についてのレポート
+                            </h2>
+
+                            <div class="reload-area loading"></div>
+                        </article>
+                    }
+                    else
+                    {
+                        <article id="fat-area" class="reload-area" data-report-empty-type="@QjHealthAgeReportTypeEnum.Fat.ToString()">
+                            <h2 class="box-title">
+                                <b>肥満</b>についてのレポート
+                            </h2>
+
+                            <section class="section caution mt10 mb0">
+                                未測定です
+                            </section>
+                        </article>
+                    }
+
+                    @if (Model.IsAvailableHealthAgeReportType(QjHealthAgeReportTypeEnum.Glucose, ref hasData) && hasData)
+                    {
+                        <article id="glucose-area" class="reload-area" data-report-type="@QjHealthAgeReportTypeEnum.Glucose.ToString()">
+                            <h2 class="box-title">
+                                <b>血糖</b>についてのレポート
+                            </h2>
+
+                            <div class="reload-area loading"></div>
+                        </article>
+                    }
+                    else
+                    {
+                        <article id="glucose-area" class="reload-area" data-report-empty-type="@QjHealthAgeReportTypeEnum.Glucose.ToString()">
+                            <h2 class="box-title">
+                                <b>血糖</b>についてのレポート
+                            </h2>
+
+                            <section class="section caution mt10 mb0">
+                                未測定です
+                            </section>
+                        </article>
+                    }
+
+                    @if (Model.IsAvailableHealthAgeReportType(QjHealthAgeReportTypeEnum.Pressure, ref hasData) && hasData)
+                    {
+                        <article id="pressure-area" class="reload-area" data-report-type="@QjHealthAgeReportTypeEnum.Pressure.ToString()">
+                            <h2 class="box-title">
+                                <b>血圧</b>についてのレポート
+                            </h2>
+
+                            <div class="reload-area loading"></div>
+                        </article>
+                    }
+                    else
+                    {
+                        <article id="pressure-area" class="reload-area" data-report-empty-type="@QjHealthAgeReportTypeEnum.Pressure.ToString()">
+                            <h2 class="box-title">
+                                <b>血圧</b>についてのレポート
+                            </h2>
+
+                            <section class="section caution mt10 mb0">
+                                未測定です
+                            </section>
+                        </article>
+                    }
+
+                    @if (Model.IsAvailableHealthAgeReportType(QjHealthAgeReportTypeEnum.Lipid, ref hasData) && hasData)
+                    {
+                        <article id="lipid-area" class="reload-area" data-report-type="@QjHealthAgeReportTypeEnum.Lipid.ToString()">
+                            <h2 class="box-title">
+                                <b>脂質</b>についてのレポート
+                            </h2>
+
+                            <div class="reload-area loading"></div>
+                        </article>
+                    }
+                    else
+                    {
+                        <article id="lipid-area" class="reload-area" data-report-empty-type="@QjHealthAgeReportTypeEnum.Lipid.ToString()">
+                            <h2 class="box-title">
+                                <b>脂質</b>についてのレポート
+                            </h2>
+
+                            <section class="section caution mt10 mb0">
+                                未測定です
+                            </section>
+                        </article>
+                    }
+
+                    @if (Model.IsAvailableHealthAgeReportType(QjHealthAgeReportTypeEnum.Liver, ref hasData) && hasData)
+                    {
+                        <article id="liver-area" class="reload-area" data-report-type="@QjHealthAgeReportTypeEnum.Liver.ToString()">
+                            <h2 class="box-title">
+                                <b>肝臓</b>についてのレポート
+                            </h2>
+
+                            <div class="reload-area loading"></div>
+                        </article>
+                    }
+                    else
+                    {
+                        <article id="liver-area" class="reload-area" data-report-empty-type="@QjHealthAgeReportTypeEnum.Liver.ToString()">
+                            <h2 class="box-title">
+                                <b>肝臓</b>についてのレポート
+                            </h2>
+
+                            <section class="section caution mt10 mb0">
+                                未測定です
+                            </section>
+                        </article>
+                    }
+
+                    @if (Model.IsAvailableHealthAgeReportType(QjHealthAgeReportTypeEnum.Urine, ref hasData) && hasData)
+                    {
+                        <article id="urine-area" class="reload-area" data-report-type="@QjHealthAgeReportTypeEnum.Urine.ToString()">
+                            <h2 class="box-title">
+                                <b>尿糖・尿蛋白</b>についてのレポート
+                            </h2>
+
+                            <div class="reload-area loading"></div>
+                        </article>
+                    }
+                    else
+                    {
+                        <article id="urine-area" class="reload-area" data-report-empty-type="@QjHealthAgeReportTypeEnum.Urine.ToString()">
+                            <h2 class="box-title">
+                                <b>尿糖・尿蛋白</b>についてのレポート
+                            </h2>
+
+                            <section class="section caution mt10 mb0">
+                                未測定です
+                            </section>
+                        </article>
+                    }
+                </section>
+            </div>
+        }
+    </main>
+
+    @Html.Action("HealthFooterPartialView", "Health")
+        
+    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
+    <script src="~/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/dist/js/highcharts.js"></script>
+    <script src="~/dist/js/highcharts-more.js"></script>
+    <script src="~/dist/js/slick.min.js"></script>
+    <script src="~/dist/js/spc.lib.min.js"></script>
+    <script src="~/dist/js/spc.util.min.js"></script>
+    <script src="~/dist/js/page-script/mgf.js"></script>
+    <script src="~/dist/js/page-script/mgf.health.js"></script>
+    <script src="~/dist/js/page-script/mgf.health.age.js"></script>
+    @*@Scripts.Render("~/dist/js/health/age")*@
+</body>

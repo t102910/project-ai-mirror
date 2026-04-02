@@ -1,0 +1,130 @@
+﻿@using System
+
+@using MGF.QOLMS.QolmsJotoWebView
+
+@model IntegrationCompanyConnectionEditViewModel
+
+
+
+@{
+
+    ViewData["Title"] = string.Format("{0}連携編集", Model.LinkageSystemName);
+
+    Layout = "~/Views/Shared/_IntegrationLayout.cshtml";
+
+}
+
+
+
+<body id="gulf-cont" class="lower gulf">
+
+    @Html.AntiForgeryToken()
+
+
+
+    <main id="main-cont" class="clearfix" role="main">
+
+        <section class="home-btn-wrap">
+            <a href="../Portal/Home" class="home-btn"><i class="la la-angle-left"></i></a>
+        </section>
+
+
+
+        <section class="contents-area">
+
+            <h2 class="title">@ViewData["Title"]</h2>
+
+            <hr>
+
+
+
+            <h3 class="title mt10"><span>連携情報</span></h3>
+
+            <div class="form wizard-form mb30">
+
+                <div class="t-row">
+
+                    <label class="label-txt"><span class="ico required">必須</span> 開示許可</label>
+
+                    <div class="wizard-form inline-block link-ico tanita" id="connection-data">
+
+                        <input id="BasicInfo" type="checkbox" value="true" @(Model.ShareBasicInfo ? "checked=\"checked\"" : string.Empty) />
+
+                        <label for="BasicInfo">基本情報</label>
+
+                        <input id="ContactNotebook" type="checkbox" value="true" @(Model.ShareContactNotebook ? "checked=\"checked\"" : string.Empty) />
+
+                        <label for="ContactNotebook">連絡手帳</label>
+
+                        <input id="VitalNotebook" type="checkbox" value="true" @(Model.ShareVitalNotebook ? "checked=\"checked\"" : string.Empty) />
+
+                        <label for="VitalNotebook">バイタル手帳</label>
+
+                        <input id="MedicineNotebook" type="checkbox" value="true" @(Model.ShareMedicineNotebook ? "checked=\"checked\"" : string.Empty) />
+
+                        <label for="MedicineNotebook">お薬手帳</label>
+
+                        <input id="ExaminationNotebook" type="checkbox" value="true" @(Model.ShareExaminationNotebook ? "checked=\"checked\"" : string.Empty) />
+
+                        <label for="ExaminationNotebook">検査手帳</label>
+
+                    </div>
+
+                </div>
+
+
+
+                <label for="mail" class="t-row">
+
+                    <span class="label-txt"><span class="ico required">必須</span> 従業員連絡用メールアドレス</span>
+
+                    <input type="email" id="mail" class="form-control mb10" placeholder="メールアドレス" value="@Model.MailAddress" maxlength="100" autocomplete="off" />
+
+                </label>
+
+
+
+                <section id="summary-cation" class="section caution mt10 mb0">
+
+                    <h4>ご案内</h4>
+
+                    この画面はモック表示です。編集結果は保存せず、遷移のみ確認できます。
+
+                </section>
+
+                <p class="submit-area mb30">
+
+                    <a id="request" href="javascript:void(0);" class="btn btn-submit" data-no="@Model.LinkageSystemNo" data-linkagesystemname="@Model.LinkageSystemName">確 認</a>
+
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    @Html.Action("IntegrationFooterPartialView", "Integration")
+
+
+
+    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
+
+    <script src="~/dist/js/bootstrap.bundle.js"></script>
+
+    <script src="~/dist/js/slick.min.js"></script>
+
+    <script src="~/dist/js/spc.lib.min.js"></script>
+
+    <script src="~/dist/js/spc.util.min.js"></script>
+
+    <script src="~/dist/js/page-script/mgf.js"></script>
+
+    <script src="~/dist/js/page-script/mgf.portal.js"></script>
+
+    <script src="~/dist/js/page-script/mgf.integration.companyconnectionedit.js"></script>
+
+</body>
+

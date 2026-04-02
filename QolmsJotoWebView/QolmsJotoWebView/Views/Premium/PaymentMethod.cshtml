@@ -1,0 +1,90 @@
+﻿﻿@using System
+@using MGF.QOLMS.QolmsJotoWebView
+
+@{
+    ViewData["Title"] = "プレミアム会員登録";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+
+    int selectedPaymentType = Convert.ToInt32(ViewBag.PaymentType ?? 1);
+    byte? fromPageNo = ViewBag.FromPageNo == null ? (byte?)null : Convert.ToByte(ViewBag.FromPageNo);
+    string auChecked = selectedPaymentType == 1 ? "checked='checked'" : String.Empty;
+    string cardChecked = selectedPaymentType == 2 ? "checked='checked'" : String.Empty;
+}
+
+<body id="premium-regist" class="lower">
+    <main id="main-cont" class="clearfix" role="main">
+        <section class="contents-area">
+            <h2 class="title relative">プレミアム会員登録</h2>
+            <hr>
+
+            <div id="momentum" class="t-row">
+                <div class="section default">
+                    2026年2月1日 以後、 毎月1日に課金が発生します。<br />
+                    月額・・・・330円(税込)<br />
+                    * 消費税率変更により請求額が変更になる可能性があります。<br />
+                    お支払い方法を選択してください。
+                </div>
+
+                <label>
+                    <span></span>
+                    <span>お支払い方法</span>
+                </label>
+
+                <label for="payment-au">
+                    <span>
+                        <input type="radio" id="payment-au" name="payment" value="1" @Html.Raw(auChecked)>
+                    </span>
+                    <span>
+                        <img class="au-logo" src="~/dist/img/premium-info/logo.png" alt="au PAY">
+                    </span>
+                </label>
+
+                <label for="payment-card">
+                    <span>
+                        <input type="radio" id="payment-card" name="payment" value="2" @Html.Raw(cardChecked)>
+                    </span>
+                    <span>
+                        <i class="la la-credit-card"></i>クレジットカード
+                    </span>
+                </label>
+            </div>
+
+            <div class="submit-area no-line">
+                <form id="payment-method-form" method="post" action="@Url.Action("RegistResult", "Premium")">
+                    @Html.AntiForgeryToken()
+                    @if (fromPageNo.HasValue)
+                    {
+                        <input type="hidden" name="fromPageNo" value="@fromPageNo.Value" />
+                    }
+                    <input id="paymentType" name="paymentType" type="hidden" value="@selectedPaymentType" />
+                    <button class="btn btn-submit mb10" type="submit">プレミアム会員登録</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <div id="white-out" class="hide">
+        <div class="loader"></div>
+        <div id="progress-area">
+            <div class="progress progress-striped">
+                <div class="progress-bar progress-bar-warning active" style="width: 100%"></div>
+            </div>
+            <span>100%</span>進行中…
+        </div>
+        <p id="text-area"></p>
+    </div>
+
+    <section id="topbtn" class="hide topbtn__wrap">
+        <a href="#" class="topbtn"></a>
+    </section>
+
+    @Html.Action("PortalFooterPartialView", "Portal")
+
+    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
+    <script src="~/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/dist/js/spc.lib.min.js"></script>
+    <script src="~/dist/js/spc.util.min.js"></script>
+    <script src="~/dist/js/page-script/mgf.js"></script>
+    <script src="~/dist/js/page-script/mgf.premium.js"></script>
+    <script src="~/dist/js/page-script/mgf.premium.paymentmethod.js"></script>
+</body>

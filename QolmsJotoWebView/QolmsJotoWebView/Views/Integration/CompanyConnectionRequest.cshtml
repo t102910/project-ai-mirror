@@ -1,0 +1,223 @@
+﻿@using System
+
+@using MGF.QOLMS.QolmsJotoWebView
+
+@model IntegrationCompanyConnectionRequestViewModel
+
+
+
+@{
+
+    ViewData["Title"] = "法人連携申請";
+
+    Layout = "~/Views/Shared/_IntegrationLayout.cshtml";
+
+}
+
+
+
+<body id="gulf-cont" class="lower gulf">
+
+    @Html.AntiForgeryToken()
+
+
+
+    <main id="main-cont" class="clearfix" role="main">
+
+        <section class="home-btn-wrap">
+            <a href="../Portal/Home" class="home-btn"><i class="la la-angle-left"></i></a>
+        </section>
+
+
+        <section class="contents-area">
+
+            <h2 class="title">@ViewData["Title"]</h2>
+
+            <hr>
+
+            <section class="section default">
+
+                @Model.LinkageSystemName と連携します。<br />
+
+                連携が完了すると健診情報がある場合は1時間程度で閲覧いただけるようになります。
+
+            </section>
+
+
+
+            <h3 class="title mt10"><span>連携情報</span></h3>
+
+            <div class="form wizard-form mb30">
+
+                <label for="code" class="t-row line">
+
+                    <span class="label-txt"><span class="ico required">必須</span> 企業コード</span>
+
+                    <input type="text" id="code" name="CompanyCode" class="form-control mb10" placeholder="企業コード" value="@Model.CompanyCode" maxlength="25" autocomplete="off" />
+
+                </label>
+
+
+
+                <label for="id" class="t-row line">
+
+                    <span class="label-txt"><span class="ico required">必須</span> 社員番号</span>
+
+                    <input type="text" id="id" name="EmployeeNo" class="form-control mb10" placeholder="社員番号" value="@Model.EmployeeNo" maxlength="25" autocomplete="off" />
+
+                </label>
+
+
+
+                <div class="t-row line">
+
+                    <label class="label-txt"><span class="ico required">必須</span> お名前</label>
+
+                    <input type="text" id="family-name" class="form-control mb10" placeholder="姓" value="@Model.FamilyName" maxlength="25" autocomplete="off" />
+
+                    <input type="text" id="given-name" class="form-control" placeholder="名" value="@Model.GivenName" maxlength="25" autocomplete="off" />
+
+                </div>
+
+
+
+                <div class="t-row line">
+
+                    <label class="label-txt"><span class="ico required">必須</span> お名前（カナ）</label>
+
+                    <input type="text" id="family-kana-name" class="form-control mb10" placeholder="セイ" value="@Model.FamilyKanaName" maxlength="25" autocomplete="off" />
+
+                    <input type="text" id="given-kana-name" class="form-control" placeholder="メイ" value="@Model.GivenKanaName" maxlength="25" autocomplete="off" />
+
+                </div>
+
+
+
+                <label class="t-row line">
+
+                    <span class="label-txt"><span class="ico required">必須</span> 性別</span>
+
+                    <p id="sex" style="font-size:16px; padding:10px 12px;" data-value="@Model.SexLabel">@Model.SexLabel</p>
+
+                </label>
+
+
+
+                <div class="t-row">
+
+                    <label class="label-txt"><span class="ico required">必須</span> 生年月日</label>
+
+                    <p id="birthday" style="font-size:16px; padding:10px 12px;">@Model.BirthDateLabel</p>
+
+                </div>
+
+
+
+                <div class="t-row">
+
+                    <label class="label-txt"><span class="ico required">必須</span> 開示許可</label>
+
+                    <div class="wizard-form inline-block link-ico tanita" id="connection-data">
+
+                        <input id="BasicInfo" type="checkbox" value="true" @(Model.ShareBasicInfo ? "checked=\"checked\"" : string.Empty) />
+
+                        <label for="BasicInfo">基本情報</label>
+
+                        <input id="ContactNotebook" type="checkbox" value="true" @(Model.ShareContactNotebook ? "checked=\"checked\"" : string.Empty) />
+
+                        <label for="ContactNotebook">連絡手帳</label>
+
+                        <input id="VitalNotebook" type="checkbox" value="true" @(Model.ShareVitalNotebook ? "checked=\"checked\"" : string.Empty) />
+
+                        <label for="VitalNotebook">バイタル手帳</label>
+
+                        <input id="MedicineNotebook" type="checkbox" value="true" @(Model.ShareMedicineNotebook ? "checked=\"checked\"" : string.Empty) />
+
+                        <label for="MedicineNotebook">お薬手帳</label>
+
+                        <input id="ExaminationNotebook" type="checkbox" value="true" @(Model.ShareExaminationNotebook ? "checked=\"checked\"" : string.Empty) />
+
+                        <label for="ExaminationNotebook">検査手帳</label>
+
+                    </div>
+
+                </div>
+
+
+
+                <section id="summary-cation" class="section caution mt10 mb0">
+
+                    <h4>ご案内</h4>
+
+                    この画面はモック表示です。入力内容の送信は行わず、確認導線のみ表示します。
+
+                </section>
+
+                <p class="submit-area mb30">
+
+                    <a id="request" href="javascript:void(0);" class="btn btn-submit" data-linkagesystemname="@Model.LinkageSystemName">確 認</a>
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <div class="modal fade" id="disconnect-modal" tabindex="-1" data-backdrop="static" data-keyboard="false">
+
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+
+                        <button type="button" class="close"><span>×</span></button>
+
+                        <h4 class="modal-title">確認</h4>
+
+                    </div>
+
+                    <div class="modal-body">企業連携のモック完了画面へ移動します。よろしいですか？</div>
+
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-close no-ico mb0">閉じる</button>
+
+                        <button type="button" class="btn btn-delete">進 む</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+    @Html.Action("IntegrationFooterPartialView", "Integration")
+
+
+
+    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
+
+    <script src="~/dist/js/bootstrap.bundle.js"></script>
+
+    <script src="~/dist/js/slick.min.js"></script>
+
+    <script src="~/dist/js/spc.lib.min.js"></script>
+
+    <script src="~/dist/js/spc.util.min.js"></script>
+
+    <script src="~/dist/js/page-script/mgf.js"></script>
+
+    <script src="~/dist/js/page-script/mgf.portal.js"></script>
+
+    <script src="~/dist/js/page-script/mgf.integration.companyconnectionrequest.js"></script>
+
+</body>
+

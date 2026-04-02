@@ -1,0 +1,76 @@
+﻿@using System
+@using MGF.QOLMS.QolmsJotoWebView
+@model IntegrationCompanyConnectionHomeViewModel
+
+@{
+    ViewData["Title"] = "企業連携ホーム";
+    Layout = "~/Views/Shared/_IntegrationLayout.cshtml";
+}
+
+<header class="contents-header">
+    <h1><img src="/dist/img/biz/biz-logo.png" /></h1>
+    @if (Model.FromPageNoType == QjPageNoTypeEnum.PortalHome)
+    {
+        <section class="home-btn-wrap">
+            <a href="../Portal/Home" class="home-btn"><i class="la la-angle-left"></i></a>
+        </section>
+    }
+</header>
+<body id="menu" class="lower business">
+    @Html.AntiForgeryToken()
+
+    <main id="main-cont" class="clearfix" role="main">
+        <section class="contents-area mb20">
+            <section id="mock-info" class="section caution mt10 mb20">
+                <h4>ご案内</h4>
+                この画面はモック表示です。企業連携ホームの導線確認用として移植しています。
+            </section>
+            <div class="flex-wrap">
+                <section class="menu-list left-cont examination" data-url="../Note/Examination">
+                    <h3><img src="/dist/img/biz/menu-1.png" alt="" /></h3>
+                    <div class="inner">健康診断の結果を表示します</div>
+                </section>
+                <section class="menu-list right-cont mov-for-female" data-url="../Integration/CompanyConnectionHome?fromPageNo=@Convert.ToByte(Model.FromPageNoType)">
+                    <h3><img src="/dist/img/biz/menu-2.png" alt="" /></h3>
+                    <div class="inner">セミナー動画など女性の健康に関する各種コンテンツを配信しています。</div>
+                </section>
+            </div>
+            <div class="flex-wrap">
+                <section class="menu-list left-cont coming-soon" data-url="../Integration/CompanyConnectionHome?fromPageNo=@Convert.ToByte(Model.FromPageNoType)">
+                    <h3><img src="/dist/img/biz/menu-3.png" alt="" /></h3>
+                    <div class="inner"></div>
+                </section>
+                <section class="menu-list right-cont coming-soon" data-url="../Integration/CompanyConnectionHome?fromPageNo=@Convert.ToByte(Model.FromPageNoType)">
+                    <h3><img src="/dist/img/biz/menu-4.png" alt="" /></h3>
+                    <div class="inner"></div>
+                </section>
+            </div>
+        </section>
+
+        <div class="modal fade" id="info-modal" tabindex="-1" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"><span>×</span></button>
+                        <h4 class="modal-title">ご案内</h4>
+                    </div>
+                    <div class="modal-body">この導線はモック表示です。画面遷移のみ確認できます。</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-close no-ico mb0">閉じる</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    @Html.Action("IntegrationFooterPartialView", "Integration")
+
+    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
+    <script src="~/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/dist/js/slick.min.js"></script>
+    <script src="~/dist/js/spc.lib.min.js"></script>
+    <script src="~/dist/js/spc.util.min.js"></script>
+    <script src="~/dist/js/page-script/mgf.js"></script>
+    <script src="~/dist/js/page-script/mgf.portal.js"></script>
+    <script src="~/dist/js/page-script/mgf.integration.companyconnectionhome.js"></script>
+</body>

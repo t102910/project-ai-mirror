@@ -1,0 +1,130 @@
+﻿@using MGF.QOLMS.QolmsApiCoreV1
+@model HealthAgePressureReportPartialViewModel
+
+@{
+    bool hasData = Model.ReportItem.HealthAgeValueN.Any();
+}
+
+@if (hasData)
+{
+    <article id="pressure-area" class="reload-area" data-report-type="@QjHealthAgeReportTypeEnum.Pressure.ToString()">
+        <h2 class="box-title">
+            <b>血圧</b>についてのレポート
+        </h2>
+
+        <section class="inner">
+            <!-- 総合評価 -->
+            <div class="section default grade">
+                <span class="bold">総合<br>評価</span>
+                @switch (Model.InsDeviance)
+                {
+                    case 1M:
+                        <span>
+                            <i class="grade-icon bad"></i>
+                        </span>
+                        <span class="bold bad">改善して！</span>
+                        break;
+
+                    case 2M:
+                        <span>
+                            <i class="grade-icon ordinary"></i>
+                        </span>
+                        <span class="bold bad">注意が必要！</span>
+                        break;
+
+                    case 3M:
+                        <span>
+                            <i class="grade-icon good"></i>
+                        </span>
+                        <span class="bold bad">よく頑張りました！</span>
+                        break;
+                }
+            </div>
+        </section>
+
+        <section class="inner reload-area">
+            <!-- 比較グラフ -->
+            <script type="text/javascript">
+                var hrChartData_nb3 = {
+                    data: {
+                        title: @Html.Raw(Model.InsComparisonGraphSetting.Title),
+                        max: 3,
+                        min: -3,
+                        dayLabel: @Html.Raw(Model.InsComparisonGraphSetting.Label),
+                        targetValues: @Html.Raw(Model.InsComparisonGraphSetting.TargetValue),
+                        data: @Html.Raw(Model.InsComparisonGraphSetting.Data)
+                    }
+                };
+            </script>
+
+            <h3 class="line mb10">同性・同年代との数値比較</h3>
+
+            <div class="chart-draw mb30">
+                <div class="chart-area" data-ref="nb3" data-kind="negativebar">
+                    <div class="chart-draw-area" style="background-color:#f7f7f7; height:130px;"></div>
+                </div>
+            </div>
+
+            <!-- 測定値グラフ 1 -->
+            <script type="text/javascript">
+                var hrChartData_blood1 = {
+                    data: {
+                        title: @Html.Raw(Model.Ch014GraphSetting.Title),
+                        max: @Html.Raw(Model.Ch014GraphSetting.AxisMax),
+                        min: @Html.Raw(Model.Ch014GraphSetting.AxisMin),
+                        dayLabel: @Html.Raw(Model.Ch014GraphSetting.Label),
+                        targetValues: @Html.Raw(Model.Ch014GraphSetting.TargetValue),
+                        data: @Html.Raw(Model.Ch014GraphSetting.Data)
+                    }
+                };
+            </script>
+
+            <h3 class="line mb10">血圧（上）</h3>
+
+            <div class="chart-draw mb20">
+                <div class="chart-area" data-ref="blood1">
+                    <div class="chart-draw-area" style="background-color:#f7f7f7; height:130px;"></div>
+                </div>
+            </div>
+
+            <!-- 測定値グラフ 2 -->
+            <script type="text/javascript">
+                var hrChartData_blood2 = {
+                    data: {
+                        title: @Html.Raw(Model.Ch016GraphSetting.Title),
+                        max: @Html.Raw(Model.Ch016GraphSetting.AxisMax),
+                        min: @Html.Raw(Model.Ch016GraphSetting.AxisMin),
+                        dayLabel: @Html.Raw(Model.Ch016GraphSetting.Label),
+                        targetValues: @Html.Raw(Model.Ch016GraphSetting.TargetValue),
+                        data: @Html.Raw(Model.Ch016GraphSetting.Data)
+                    }
+                };
+            </script>
+
+            <h3 class="line mb10">血圧（下）</h3>
+
+            <div class="chart-draw">
+                <div class="chart-area" data-ref="blood2">
+                    <div class="chart-draw-area" style="background-color:#f7f7f7; height:130px;"></div>
+                </div>
+                <p class="legend-area">
+                    <span class="legend bad"></span>要改善 /
+                    <span class="legend poor"></span>要注意 /
+                    <span class="legend good"></span>正常
+                </p>
+            </div>
+        </section>
+    </article>
+}
+else
+{
+    <article id="pressure-area" class="reload-area" data-report-empty-type="@QjHealthAgeReportTypeEnum.Pressure.ToString()">
+        <h2 class="box-title">
+            <b>血圧</b>についてのレポート
+        </h2>
+
+        <section class="section caution mt10 mb0">
+            未測定です
+        </section>
+    </article>
+}

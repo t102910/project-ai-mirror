@@ -1,0 +1,110 @@
+﻿@using System
+@using MGF.QOLMS.QolmsJotoWebView
+@model IntegrationCompanyConnectionViewModel
+
+@{
+    ViewData["Title"] = "法人連携";
+    Layout = "~/Views/Shared/_IntegrationLayout.cshtml";
+}
+
+<body id="gulf-cont" class="lower gulf">
+    @Html.AntiForgeryToken()
+
+    <main id="main-cont" class="clearfix" role="main">
+        <section class="home-btn-wrap">
+            <a href="../Portal/Home" class="home-btn"><i class="la la-angle-left"></i></a>
+        </section>
+
+        <section class="contents-area mb0">
+            <h2 class="title">@string.Format("{0}連携", Model.LinkageSystemName)</h2>
+            <hr>
+            <section class="section default">
+                連携が完了すると健診情報がある場合は1時間程度で閲覧いただけるようになります。
+            </section>
+
+            <section class="section caution mt10 mb10">
+                <h4>ご案内</h4>
+                この画面はモック表示です。企業連携APIはまだ実装していません。
+            </section>
+
+            <section class="section center">
+                @if (Model.MockConnectedFlag)
+                {
+                    <span class="ico main"><i class="la la-check-circle-o"></i> 連携済み</span>
+                }
+                else
+                {
+                    <span class="ico line">未連携</span>
+                }
+            </section>
+
+            <h3 class="title">受け取る情報</h3>
+            <p class="mb40"><span class="ico line">検査・健診情報</span></p>
+
+            <h3 class="title">開示する情報</h3>
+            <p class="mb40">
+                @if (Model.ShareBasicInfo)
+                {<span class="ico line">基本情報</span>}
+                @if (Model.ShareContactNotebook)
+                {<span class="ico line">連絡手帳</span>}
+                @if (Model.ShareVitalNotebook)
+                {<span class="ico line">バイタル手帳</span>}
+                @if (Model.ShareMedicineNotebook)
+                {<span class="ico line">お薬手帳</span>}
+                @if (Model.ShareExaminationNotebook)
+                {<span class="ico line">検査手帳</span>}
+            </p>
+
+            @if (Model.MockConnectedFlag)
+            {
+                <p class="submit-area">
+                    <a href="javascript:void(0);" id="edit" class="btn btn-submit" data-no="@Model.LinkageSystemNo" data-linkagesystemname="@Model.LinkageSystemName">編集する</a>
+                </p>
+            }
+            else
+            {
+                <p class="submit-area">
+                    <a href="../Integration/CompanyConnectionRequest?fromPageNo=@Convert.ToByte(Model.FromPageNoType)&linkageSystemName=@Uri.EscapeDataString(Model.LinkageSystemName)" class="btn btn-submit">申請する</a>
+                </p>
+            }
+        </section>
+
+        @if (Model.MockConnectedFlag)
+        {
+            <section class="contents-area mb0">
+                <h3 class="title mt10">連携を解除</h3>
+                連携を解除すると連携したユーザーが閲覧できなくなります。ご注意下さい。
+                <div class="submit-area">
+                    <a href="javascript:void(0);" id="delete" class="btn btn-close" data-no="@Model.LinkageSystemNo" data-linkagesystemname="@Model.LinkageSystemName">連携を解除する</a>
+                </div>
+            </section>
+        }
+
+        <div class="modal fade" id="delete-modal" tabindex="-1" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"><span>×</span></button>
+                        <h4 class="modal-title">連携解除の確認</h4>
+                    </div>
+                    <div class="modal-body">企業連携のモック状態を解除して申請画面へ戻ります。よろしいですか？</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-close no-ico mb0">閉じる</button>
+                        <button type="button" class="btn btn-delete">解 除</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    @Html.Action("IntegrationFooterPartialView", "Integration")
+
+    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
+    <script src="~/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/dist/js/slick.min.js"></script>
+    <script src="~/dist/js/spc.lib.min.js"></script>
+    <script src="~/dist/js/spc.util.min.js"></script>
+    <script src="~/dist/js/page-script/mgf.js"></script>
+    <script src="~/dist/js/page-script/mgf.portal.js"></script>
+    <script src="~/dist/js/page-script/mgf.integration.companyconnection.js"></script>
+</body>

@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.35229.62
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QolmsJotoWebView", "QolmsJotoWebView\QolmsJotoWebView.csproj", "{39229BBD-4943-413E-B926-92DFDC75BE4A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QolmsJotoWebView.Tests", "QolmsJotoWebView.Tests\QolmsJotoWebView.Tests.csproj", "{B4A21E85-5023-4899-BC78-5C66ADC24108}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_TestJotoWebView", "_TestJotoWebView\_TestJotoWebView.csproj", "{E8384C98-2DB7-4D7E-9C31-E01EE7FCDE26}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{39229BBD-4943-413E-B926-92DFDC75BE4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39229BBD-4943-413E-B926-92DFDC75BE4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39229BBD-4943-413E-B926-92DFDC75BE4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39229BBD-4943-413E-B926-92DFDC75BE4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4A21E85-5023-4899-BC78-5C66ADC24108}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4A21E85-5023-4899-BC78-5C66ADC24108}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4A21E85-5023-4899-BC78-5C66ADC24108}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4A21E85-5023-4899-BC78-5C66ADC24108}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8384C98-2DB7-4D7E-9C31-E01EE7FCDE26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8384C98-2DB7-4D7E-9C31-E01EE7FCDE26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8384C98-2DB7-4D7E-9C31-E01EE7FCDE26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8384C98-2DB7-4D7E-9C31-E01EE7FCDE26}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5D56FB8E-F69E-427F-BCFE-785CAFF67127}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://mgfactory.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = QolmsJotoWebView.Tests\\QolmsJotoWebView.Tests.csproj
+		SccProjectName1 = QolmsJotoWebView.Tests
+		SccLocalPath1 = QolmsJotoWebView.Tests
+		SccProjectUniqueName2 = QolmsJotoWebView\\QolmsJotoWebView.csproj
+		SccProjectName2 = QolmsJotoWebView
+		SccLocalPath2 = QolmsJotoWebView
+		SccProjectUniqueName3 = _TestJotoWebView\\_TestJotoWebView.csproj
+		SccProjectName3 = _TestJotoWebView
+		SccLocalPath3 = _TestJotoWebView
+	EndGlobalSection
+EndGlobal

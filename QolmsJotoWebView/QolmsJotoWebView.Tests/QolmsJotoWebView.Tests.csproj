@@ -1,0 +1,73 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <UseAppHost>false</UseAppHost>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="DevApp.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ChainingAssertion-NUnit.Bin" Version="1.8.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+    <PackageReference Include="Moq" Version="4.20.69" />
+    <PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.3" />
+    <PackageReference Include="NSubstitute" Version="5.3.0" />
+    <PackageReference Include="NUnit" Version="3.13.3" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.6.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="QolmsApiCoreV1F472" Version="1.0.345" />
+    <PackageReference Include="QolmsApiEntityV1F472" Version="1.0.732" />
+    <PackageReference Include="QolmsAzureStorageCoreV1F472" Version="1.0.38" />
+    <PackageReference Include="QolmsCalomealWebViewApiCoreV1F472" Version="1.0.2" />
+    <PackageReference Include="QolmsCryptV1F472" Version="1.0.9" />
+    <PackageReference Include="QolmsDbCoreV1F472" Version="1.0.6" />
+    <PackageReference Include="QolmsDbEntityV1F472" Version="1.0.346" />
+    <PackageReference Include="QolmsJwtAuthCoreV1F472" Version="1.0.13" />
+    <PackageReference Include="QolmsYappliRequestFilterModuleV1F472" Version="1.0.2" />
+    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="8.0.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.15.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\QolmsJotoWebView\QolmsJotoWebView.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="QolmsApiCoreV1F472">
+      <HintPath>..\..\..\..\..\..\QOLMS\V1\Common\QolmsApiCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsApiEntityV1F472">
+      <HintPath>..\..\..\..\..\..\QOLMS\V1\Common\QolmsApiEntityV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="App.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>App.config</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="App.config">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>App.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>

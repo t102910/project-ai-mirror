@@ -1,0 +1,526 @@
+﻿@using MGF.QOLMS.QolmsJotoWebView
+@using System
+@using System.Collections.Generic
+@using System.Linq
+@using System.Web.Optimization
+
+@helper RenderStyleTag(string virtualPath)
+{
+    var urlList = new List<string>();
+
+    if (BundleTable.EnableOptimizations)
+    {
+        urlList.Add(Styles.Url(virtualPath).ToHtmlString());
+    }
+    else
+    {
+        urlList.AddRange(
+            new BundleResolver(BundleTable.Bundles)
+                .GetBundleContents(virtualPath)
+                .ToList()
+                .ConvertAll(i => Styles.Url(i).ToHtmlString())
+        );
+    }
+
+    foreach (string url0 in urlList)
+    {
+        string url = url0;
+
+        if (!string.IsNullOrWhiteSpace(url))
+        {
+            if (url.StartsWith("/QolmsJotoWebView/", StringComparison.CurrentCultureIgnoreCase))
+            {
+                // "/QolmsJotoWebView/".Length == 18
+                url = url.Remove(0, 18);
+            }
+
+            @Styles.RenderFormat("<link rel=\"stylesheet\" href=\"..{0}\" type=\"text/css\">", url)
+        }
+    }
+}
+
+@helper RenderScriptTag(string virtualPath)
+{
+    var urlList = new List<string>();
+
+    if (BundleTable.EnableOptimizations)
+    {
+        urlList.Add(Scripts.Url(virtualPath).ToHtmlString());
+    }
+    else
+    {
+        urlList.AddRange(
+            new BundleResolver(BundleTable.Bundles)
+                .GetBundleContents(virtualPath)
+                .ToList()
+                .ConvertAll(i => Scripts.Url(i).ToHtmlString())
+        );
+    }
+
+    foreach (string url0 in urlList)
+    {
+        string url = url0;
+
+        if (!string.IsNullOrWhiteSpace(url))
+        {
+            if (url.StartsWith("/QolmsJotoWebView/", StringComparison.CurrentCultureIgnoreCase))
+            {
+                // "/QolmsJotoWebView/".Length == 18
+                url = url.Remove(0, 18);
+            }
+
+            @Scripts.RenderFormat("<script type=\"text/javascript\" src=\"..{0}\"></script>", url)
+        }
+    }
+}
+
+@helper CrLfToSpanTag(string s)
+{
+    List<string> items = (s ?? string.Empty)
+        .Replace("\r\n", "\n")
+        .Replace("\r", "\n")
+        .Split('\n')
+        .ToList();
+
+    if (items != null)
+    {
+        if (items.Count > 0)
+        {
+            foreach (string item in items)
+            {
+                <span>@item</span>
+            }
+        }
+        else
+        {
+            <span>@s</span>
+        }
+    }
+}
+
+@helper CrLfToBreakTag(string s)
+{
+    List<string> items = (s ?? string.Empty)
+        .Replace("\r\n", "\n")
+        .Replace("\r", "\n")
+        .Split('\n')
+        .ToList();
+
+    if (items != null)
+    {
+        if (items.Count > 0)
+        {
+            foreach (string item in items)
+            {
+                @item
+                <br />
+            }
+        }
+        else
+        {
+            @s
+        }
+    }
+}
+
+@*@helper ToMeridiemTimeString(DateTime value)
+    {
+        @String.Format("{0} {1}:{2:d2}", value.ToString("tt"), value.Hour % 12, value.Minute)
+    }
+
+    @helper ToMeridiemDropDownList(string id, string name, string selected, string css = "form-control ap")
+    {
+        <select id="@id" name="@name" class="@css">
+            @foreach (KeyValuePair<string, string> kv in QjDictionary.Meridiem)
+            {
+                if (kv.Key.CompareTo((selected ?? string.Empty).ToLower()) == 0)
+                {
+                    <option value="@kv.Key" selected="selected">@kv.Value</option>
+                }
+                else
+                {
+                    <option value="@kv.Key">@kv.Value</option>
+                }
+            }
+        </select>
+    }*@
+
+@helper ToHourDropDownList(string id, string name, string selected, string css = "form-control hour")
+{
+    string value = string.Empty;
+
+    <select id="@id" name="@name" class="@css">
+        @for (int a = 0; a <= 11; a++)
+        {
+            value = a.ToString();
+
+            if ((selected ?? string.Empty).CompareTo(value) == 0)
+            {
+                <option value="@value" selected="selected">@String.Format("{0}", value)</option>
+            }
+            else
+            {
+                <option value="@value">@String.Format("{0}", value)</option>
+            }
+        }
+    </select>
+    <span class="input-group-addon hour2">時</span>
+}
+
+@helper ToMinuteDropDownList(string id, string name, string selected, string css = "form-control minute")
+{
+    var hash = new HashSet<string>();
+
+    for (int a = 0; a <= 59; a++)
+    {
+        hash.Add(a.ToString());
+    }
+
+    <select id="@id" name="@name" class="@css">
+        @foreach (string s in hash)
+        {
+            if (s.CompareTo(selected) == 0)
+            {
+                <option value="@s" selected="selected">@String.Format("{0}", s)</option>
+            }
+            else
+            {
+                <option value="@s">@String.Format("{0}", s)</option>
+            }
+        }
+    </select>
+    <span class="input-group-addon minute2">分</span>
+}
+
+@*
+        @helper ToMealTypeDropDownList(string id, string name, string selected, string css = "form-control")
+        {
+    <div id="@id" name="@name" class="@css">
+        @foreach (KeyValuePair<QjMealTypeEnum, string> kv in QjDictionary.MealType)
+            {
+                if (kv.Key.ToString().CompareTo(selected) == 0)
+                {
+        <p>
+            <input type="radio" name="@name" id="@id-@kv.Key" value="@kv.Key" checked="checked">
+            <label class="button-style-label" for="@id-@kv.Key">@kv.Value</label>
+        </p>
+                }
+                else
+                {
+        <p>
+            <input type="radio" name="@name" id="@id-@kv.Key" value="@kv.Key" checked="">
+            <label class="button-style-label" for="@id-@kv.Key">@kv.Value</label>
+        </p>
+                }
+            }
+    </div>
+    }
+
+    @helper ToMealTypeRadioButton(string id, string name, string selected, string css = "form-control")
+    {
+        <div id="@id" name="@name" class="@css">
+            @foreach (KeyValuePair<QjMealTypeEnum, string> kv in QjDictionary.MealType)
+            {
+                if (kv.Key.ToString().CompareTo(selected) == 0)
+                {
+                    <p>
+                        <input type="radio" name="@name" id="@id-@kv.Key" value="@kv.Key" checked="checked">
+                        <label class="button-style-label" for="@id-@kv.Key">@kv.Value</label>
+                    </p>
+                }
+                else
+                {
+                    <p>
+                        <input type="radio" name="@name" id="@id-@kv.Key" value="@kv.Key">
+                        <label class="button-style-label" for="@id-@kv.Key">@kv.Value</label>
+                    </p>
+                }
+            }
+        </div>
+    }
+
+    @helper ToVitalConditionDropDownList(string id, string name, string selected, string css = "form-control val")
+    {
+        <select id="@id" name="@name" class="@css">
+            @foreach (KeyValuePair<QjVitalConditionTypeEnum, string> kv in QjDictionary.VitalConditionType)
+            {
+                if (kv.Key.ToString().CompareTo(selected) == 0)
+                {
+                    <option value="@kv.Key" selected="selected">@kv.Value</option>
+                }
+                else
+                {
+                    <option value="@kv.Key">@kv.Value</option>
+                }
+            }
+        </select>
+    }
+*@
+
+@helper ToValidationMessageArea(IEnumerable<string> keys, object errorMessage, string css = "block alert alert-danger thin mt10", bool useP = false)
+{
+    var messages = new List<string>();
+
+    if (keys != null && keys.Count() > 0 && errorMessage != null && (errorMessage is Dictionary<string, string>))
+    {
+        var dic = (Dictionary<string, string>)errorMessage;
+
+        foreach (string key in keys)
+        {
+            if (dic.ContainsKey(key) && !string.IsNullOrWhiteSpace(dic[key]))
+            {
+                messages.Add(dic[key]);
+            }
+        }
+    }
+
+    if (messages.Count > 0)
+    {
+        if (!useP)
+        {
+            <span class="@css">@QjHtmlHelper.CrLfToBreakTag(string.Join(Environment.NewLine, messages))</span>
+        }
+        else
+        {
+            <p class="@css">@QjHtmlHelper.CrLfToBreakTag(string.Join(Environment.NewLine, messages))</p>
+        }
+    }
+    else
+    {
+        if (!useP)
+        {
+            <span class="@css hide"></span>
+        }
+        else
+        {
+            <p class="@css hide"></p>
+        }
+    }
+}
+
+@*
+
+    @helper ToSexDropDownList(string id, string name, string selected, string css = "form-control")
+    {
+        <select id="@id" name="@name" class="@css" required="required">
+            <option value="">性別</option>
+            @foreach (KeyValuePair<QjSexTypeEnum, string> kv in QjDictionary.SexType)
+            {
+                if (kv.Key.ToString().CompareTo(selected) == 0)
+                {
+                    <option value="@kv.Key" selected="selected">@kv.Value</option>
+                }
+                else
+                {
+                    <option value="@kv.Key">@kv.Value</option>
+                }
+            }
+        </select>
+    }
+
+    @helper ToYearDropDownList(string id, string name, string selected, string css = "form-control")
+    {
+        string value = string.Empty;
+
+        <select id="@id" name="@name" class="@css" required="required">
+            <option value="">西暦（和暦）年</option>
+            @foreach (KeyValuePair<string, string> kv in QjDictionary.Year)
+            {
+                value = kv.Key.ToString();
+
+                if ((selected ?? string.Empty).CompareTo(value) == 0)
+                {
+                    <option value="@kv.Key" selected="selected">@kv.Value</option>
+                }
+                else
+                {
+                    <option value="@kv.Key">@kv.Value</option>
+                }
+            }
+        </select>
+    }
+*@
+
+@helper ToMonthDropDownList(string id, string name, string selected, string css = "form-control")
+{
+    string value = string.Empty;
+
+    <select id="@id" name="@name" class="@css" required="required">
+        <option value="">月</option>
+        @for (int a = 1; a <= 12; a++)
+        {
+            value = a.ToString();
+
+            if ((selected ?? string.Empty).CompareTo(value) == 0)
+            {
+                <option value="@value" selected="selected">@String.Format("{0}月", value)</option>
+            }
+            else
+            {
+                <option value="@value">@String.Format("{0}月", value)</option>
+            }
+        }
+    </select>
+}
+
+@helper ToDayDropDownList(string id, string name, string selected, string css = "form-control")
+{
+    string value = string.Empty;
+
+    <select id="@id" name="@name" class="@css" required="required">
+        <option value="">日</option>
+        @for (int a = 1; a <= 31; a++)
+        {
+            value = a.ToString();
+
+            if ((selected ?? string.Empty).CompareTo(value) == 0)
+            {
+                <option value="@value" selected="selected">@String.Format("{0}日", value)</option>
+            }
+            else
+            {
+                <option value="@value">@String.Format("{0}日", value)</option>
+            }
+        }
+    </select>
+}
+
+@helper Pager(int index, int count, int pagerSize = 5)
+{
+    if (pagerSize < 1)
+    {
+        return;
+    }
+
+    int newIndex = index;
+    int newCount = count;
+
+    if (count < 1)
+    {
+        newCount = 1;
+    }
+
+    if (newIndex < 0)
+    {
+        newIndex = 0;
+    }
+    if (newIndex >= newCount)
+    {
+        newIndex = newCount - 1;
+    }
+
+    int minIndex = (newIndex / 5) * pagerSize;
+    int maxIndex = (minIndex + pagerSize > newCount) ? newCount - 1 : minIndex + pagerSize - 1;
+
+    <nav class="center" aria-label="Page navigation">
+        <ul class="pagination">
+            @if (minIndex == 0)
+            {
+                <li class="page-item disabled">
+                    <a class="page-link disabled" href="javascript:void(0);" aria-label="Previous">
+                        <span aria-hidden="false">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <a class="page-link" href="javascript:void(0);" aria-label="Previous" data-page-index="@(minIndex - 1)">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+            }
+
+            @for (int a = minIndex; a <= maxIndex; a++)
+            {
+                if (a == newIndex)
+                {
+                    <li class="page-item active">
+                        <a class="page-link disabled" href="javascript:void(0);" data-page-index="@a">@(a + 1)</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="javascript:void(0);" data-page-index="@a">@(a + 1)</a>
+                    </li>
+                }
+            }
+
+            @if (maxIndex == newCount - 1)
+            {
+                <li class="page-item disabled">
+                    <a class="page-link disabled" href="javascript:void(0);" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <a class="page-link" href="javascript:void(0);" aria-label="Next" data-page-index="@(maxIndex + 1)">
+                        <span aria-hidden="false">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+}
+
+@helper ToValidationMessageInSectionTag(IEnumerable<string> keys, object errorMessage, string css = "section caution mt10 mb0")
+{
+    var messages = new List<string>();
+
+    if (keys != null && keys.Count() > 0 && errorMessage != null && (errorMessage is Dictionary<string, string>))
+    {
+        var dic = (Dictionary<string, string>)errorMessage;
+
+        foreach (string key in keys)
+        {
+            if (dic.ContainsKey(key) && !string.IsNullOrWhiteSpace(dic[key]))
+            {
+                messages.Add(dic[key]);
+            }
+        }
+    }
+
+    if (messages.Count > 0)
+    {
+        <section class="@css">@QjHtmlHelper.CrLfToBreakTag(string.Join(Environment.NewLine, messages))</section>
+    }
+    else
+    {
+        <section class="@css hide"></section>
+    }
+}
+
+@helper ToUrineDropDownList(string id, string name, string selected, string css = "form-control")
+{
+    var dic = new Dictionary<string, string>()
+{
+        { "0", "選択してください" },
+        { "1", "－" },
+        { "2", "±" },
+        { "3", "＋" },
+        { "4", "＋＋" },
+        { "5", "＋＋＋" }
+    };
+
+<select id="@id" name="@name" class="@css">
+    @foreach (KeyValuePair<string, string> kv in dic)
+    {
+        if ((selected ?? string.Empty).CompareTo(kv.Key) == 0)
+        {
+            <option value="@kv.Key" selected="selected">@kv.Value</option>
+        }
+        else
+        {
+            <option value="@kv.Key">@kv.Value</option>
+        }
+    }
+</select>
+}

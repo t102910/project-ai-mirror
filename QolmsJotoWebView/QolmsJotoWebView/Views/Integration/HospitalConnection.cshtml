@@ -1,0 +1,96 @@
+﻿@using System
+@using MGF.QOLMS.QolmsJotoWebView
+@model IntegrationHospitalConnectionViewModel
+
+@{
+    ViewData["Title"] = "病院連携";
+    Layout = "~/Views/Shared/_IntegrationLayout.cshtml";
+}
+
+<body id="hospital-connection" class="lower">
+    @Html.AntiForgeryToken()
+
+    <main id="main-cont" class="clearfix" role="main">
+        <section class="home-btn-wrap">
+            <a href="../Portal/Home" class="home-btn"><i class="la la-angle-left"></i></a>
+        </section>
+
+        <section class="contents-area mb0">
+            <h2 class="title">病院連携</h2>
+            <hr>
+
+            <section class="section default">
+                医療機関と連携すると、検査・健診情報がある場合に閲覧いただけるようになります。<br />
+                この画面では病院連携のモックUIのみ確認できます。
+            </section>
+
+            <section class="section center">
+                @if (Model.MockConnectedFlag)
+                {
+                    <span class="ico main"><i class="la la-check-circle-o"></i> 連携済み</span>
+                }
+                else
+                {
+                    <span class="ico line">未連携</span>
+                }
+            </section>
+
+            <h3 class="title">連携先</h3>
+            <p class="mb20"><span class="ico line">@Model.HospitalName</span></p>
+
+            @if (Model.MockConnectedFlag && !string.IsNullOrWhiteSpace(Model.PatientNo))
+            {
+                <h3 class="title">登録情報</h3>
+                <p class="mb20"><span class="ico line">診察券番号: @Model.PatientNo</span></p>
+            }
+
+            <h3 class="title">受け取る情報</h3>
+            <p class="mb40">
+                @if (Model.ExaminationConnectedFlag)
+                {
+                    <span class="ico line">検査・健診情報</span>
+                }
+            </p>
+
+            @if (Model.MockConnectedFlag)
+            {
+                <div class="submit-area">
+                    <a href="javascript:void(0);" id="delete" class="btn btn-close" data-hospitalname="@Model.HospitalName">連携を解除する</a>
+                </div>
+            }
+            else
+            {
+                <div class="submit-area">
+                    <a href="../Integration/HospitalConnectionRequest?fromPageNo=@Convert.ToByte(Model.FromPageNoType)&hospitalName=@Uri.EscapeDataString(Model.HospitalName)" class="btn btn-submit">申請する</a>
+                </div>
+            }
+        </section>
+
+        <div class="modal fade" id="delete-modal" tabindex="-1" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"><span>×</span></button>
+                        <h4 class="modal-title">連携解除の確認</h4>
+                    </div>
+                    <div class="modal-body">病院連携のモック状態を解除して申請画面へ戻ります。よろしいですか？</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-close no-ico mb0">閉じる</button>
+                        <button type="button" class="btn btn-delete">解 除</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    @Html.Action("IntegrationFooterPartialView", "Integration")
+
+    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
+    <script src="~/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/dist/js/slick.min.js"></script>
+    <script src="~/dist/js/spc.lib.min.js"></script>
+    <script src="~/dist/js/spc.util.min.js"></script>
+    <script src="~/dist/js/page-script/mgf.js"></script>
+    <script src="~/dist/js/page-script/mgf.portal.js"></script>
+    <script src="~/dist/js/page-script/mgf.integration.hospitalconnection.js"></script>
+</body>

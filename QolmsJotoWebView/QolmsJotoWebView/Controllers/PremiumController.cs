@@ -26,6 +26,7 @@ namespace MGF.QOLMS.QolmsJotoWebView
             {
                 new { Label = "プレミアム会員紹介", Url = authority + Url.Action(nameof(LightMember), "Premium", null) },
                 new { Label = "プレミアム会員", Url = authority + Url.Action(nameof(PremiumMember), "Premium", null) },
+                new { Label = "プレミアム会員の退会", Url = authority + Url.Action(nameof(Withdraw), "Premium", null) },
                 new { Label = "プレミアム会員登録（お支払い方法 / au PAY）", Url = authority + Url.Action(nameof(PaymentMethod), "Premium", new { paymentType = 1 }) },
                 new { Label = "プレミアム会員参加同意書", Url = authority + Url.Action(nameof(Agreement), "Premium", null) },
                 new { Label = "プレミアム会員登録（カード情報）", Url = authority + Url.Action(nameof(CardInfo), "Premium", null) },
@@ -56,6 +57,16 @@ namespace MGF.QOLMS.QolmsJotoWebView
 
         [HttpGet]
         public ActionResult PremiumMember()
+        {
+            return View();
+        }
+
+        #endregion
+
+        #region 「プレミアム会員の退会」画面
+
+        [HttpGet]
+        public ActionResult Withdraw()
         {
             return View();
         }

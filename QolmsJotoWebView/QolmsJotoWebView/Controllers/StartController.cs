@@ -165,7 +165,6 @@ namespace MGF.QOLMS.QolmsJotoWebView
             return RedirectToAction("LocalIdVerification", "Portal", routeValuesDictionary);
         }
 
-
         /// <summary>
         /// SSO による画面遷移を処理します。（auログイン画面）
         /// </summary>

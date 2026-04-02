@@ -220,6 +220,13 @@ namespace MGF.QOLMS.QolmsJotoWebView {
             return View();
         }
 
+        [HttpGet()]
+        [QjLogging]
+        public ActionResult MedicalPayment()
+        {
+            return View();
+        }
+
         #endregion
 
         #region パーシャル ビュー アクション

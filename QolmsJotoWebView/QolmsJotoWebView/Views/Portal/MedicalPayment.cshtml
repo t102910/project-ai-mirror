@@ -1,0 +1,67 @@
+@{
+    ViewData["Title"] = "医療費あと払い";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+
+    string myPageUrl = "https://mcs-mem.mdcom.jp/wms/mypage/login";
+    string infoUrl = "http://iwai2.sp-center.org/pay-later/info.html";
+    string faqUrl = "http://iwai2.sp-center.org/pay-later/faq.html";
+}
+
+<body id="pay-later" class="lower">
+    @Html.AntiForgeryToken()
+
+    <main id="main-cont" class="clearfix" role="main">
+        <section class="home-btn-wrap" data-pageno="8">
+            <a href="../Portal/Home" class="home-btn"><i class="la la-angle-left"></i></a>
+        </section>
+
+        <section class="contents-area">
+            <h2 class="title">医療費あと払い</h2>
+            <hr>
+
+            <p class="center mb20">
+                <img src="~/dist/img/pay-later/logo.png" alt="医療費あと払い" class="max-image pay-later-logo">
+            </p>
+
+            <a href="@myPageUrl" class="img-link">
+                マイページ
+                <span class="small">利用状況・家族会員登録など</span>
+            </a>
+
+            <a href="javascript:void(0);" class="img-link">
+                新規申し込みはこちらから
+                <span class="small">画面モックのため申込処理は未実装です</span>
+            </a>
+
+            <p class="center mb20">
+                <a href="@infoUrl" class="btn btn-submit block">医療費あと払いとは</a>
+                <a href="@faqUrl" class="btn btn-submit block">よくあるご質問</a>
+            </p>
+
+            <section class="section default">
+                <h3 class="title">医療費あと払い お客様窓口</h3>
+                <p>
+                    お客さま窓口は「金額確認」及び「あと払い」のご利用方法についての窓口です。<br>
+                    診療内容についてはご利用の医療機関にお問い合わせください。
+                </p>
+            </section>
+
+            <a href="tel:0120-515-851" class="tel-link">0120-515-851</a>
+
+            <section class="section default">
+                受付時間 9:00〜17:00（土・日・祝祭日・年末年始除く）<br>
+                株式会社エムイーエックステクノロジーズ
+            </section>
+        </section>
+    </main>
+
+    @Html.Action("PortalFooterPartialView", "Portal")
+
+    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
+    <script src="~/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/dist/js/slick.min.js"></script>
+    <script src="~/dist/js/spc.lib.min.js"></script>
+    <script src="~/dist/js/spc.util.min.js"></script>
+    <script src="~/dist/js/page-script/mgf.js"></script>
+    <script src="~/dist/js/page-script/mgf.portal.js"></script>
+</body>

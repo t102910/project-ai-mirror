@@ -1,7 +1,4 @@
-﻿@using System
-@using System.Collections.Generic
-@using MGF.QOLMS.QolmsJotoWebView
-@model PortalAuWalletPointExchangeViewModel
+﻿@model PortalAuWalletPointExchangeViewModel
 
 @{
     ViewData["Title"] = "Pontaポイント";
@@ -9,40 +6,11 @@
 
     bool isYappli = Context.Request.UserAgent != null && Context.Request.UserAgent.ToLower().Contains("yappli");
     string auWalletLink = "https%3A%2F%2Fwallet.auone.jp%2Fcontents%2Fsp%2Fguide%2Fpoint.html";
-
-    // デモ用
-    var demoModel = new PortalAuWalletPointExchangeViewModel
-    {
-        Point = 1200,
-        FromPageNoType = (int)QjPageNoTypeEnum.PointPonta,
-        AuWalletPointItemN = new List<AuWalletPointItem>
-{
-            new AuWalletPointItem { AuWalletPointItemId = "3", Point = 500, DispName = "500ポイント" },
-            new AuWalletPointItem { AuWalletPointItemId = "4", Point = 1000, DispName = "1000ポイント" },
-            new AuWalletPointItem { AuWalletPointItemId = "5", Point = 2000, DispName = "2000ポイント" }
-        },
-        AuWalletPointHistN = new List<AuWalletPointHistItem>
-{
-            new AuWalletPointHistItem
-            {
-                ActionDate = DateTime.Now.AddDays(-1),
-                Point = 500,
-                DispName = "500ポイント"
-            },
-            new AuWalletPointHistItem
-            {
-                ActionDate = DateTime.Now.AddDays(-2),
-                Point = 1000,
-                DispName = "1000ポイント"
-            }
-        }
-    };
-
-    var vm = demoModel;
+    
 }
 
 <body id="data-charge" class="lower">
-    @*@Html.AntiForgeryToken()*@
+    @Html.AntiForgeryToken()
 
     <main id="main-cont" class="clearfix" role="main">
         <section class="contents-area">
@@ -61,16 +29,16 @@
                     <b style="color: #ff0000;">※JOTOホームドクターで登録したauIDと連携しているPontaポイントへ加算されます。</b>
                 </p>
 
-                <a href="native:/action/open_browser?url=@auWalletLink" class="btn btn-submit block">Pontaポイントについて詳しく</a>
+                <a href="jotohdr2://deep.link/action/open_browser?url=@auWalletLink" class="btn btn-submit block">Pontaポイントについて詳しく</a>
                 <a href="/Point/Terms" class="btn btn-submit block">JOTOポイントプログラム利用規約</a>
                 <div class="remaining-point">
                     <h3>
                         現在の保有ポイント
-                        <span>@vm.Point<i>pt</i></span>
+                        <span>@this.Model.Point<i>pt</i></span>
                     </h3>
                 </div>
 
-                @{
+                @*@{
                     string page = string.Empty;
 
                     if (vm.FromPageNoType == (int)QjPageNoTypeEnum.PortalHome)
@@ -81,17 +49,17 @@
 
                 <div class="right">
                     <a id="back" href="@string.Format("../Portal/history{0}", page)" class="btn btn-close no-ico">戻 る</a>
-                </div>
+                </div>*@
 
                 <form class="form charge-form mb30">
-                    @foreach (var item in vm.AuWalletPointItemN)
+                    @foreach (var item in this.Model.AuWalletPointItemN)
                     {
                         int itemId;
                         bool isParsed = int.TryParse(item.AuWalletPointItemId, out itemId);
 
                         if (isParsed && itemId > 2)
                         {
-                            if (item.Point <= vm.Point)
+                            if (item.Point <= this.Model.Point)
                             {
                                 <a href="javascript:void(0);" class="btn btn-blue exchange" data-itemid="@item.AuWalletPointItemId">
                                     <i>@item.Point</i>P → <i>@item.DispName</i>と交換
@@ -117,9 +85,9 @@
                     <span>Pontaポイント交換履歴</span>
                 </h3>
 
-                @if (vm.AuWalletPointHistN.Count > 0)
+                @if (this.Model.AuWalletPointHistN.Count > 0)
                 {
-                    foreach (var item in vm.AuWalletPointHistN)
+                    foreach (var item in this.Model.AuWalletPointHistN)
                     {
                         <article>
                             <section class="inner">
@@ -150,5 +118,14 @@
     </main>
 
     @Html.Action("PointFooterPartialView", "Point")
-
+        
+    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
+    <script src="~/dist/js/bootstrap-5.3.6.min.js"></script>
+    <script src="~/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/dist/js/slick.min.js"></script>
+    <script src="~/dist/js/spc.lib.min.js"></script>
+    <script src="~/dist/js/spc.util.min.js"></script>
+    <script src="~/dist/js/page-script/mgf.js"></script>
+    <script src="~/dist/js/page-script/mgf.point.js"></script>
+    <script src="~/dist/js/page-script/mgf.point.aupoint.js"></script>
 </body>

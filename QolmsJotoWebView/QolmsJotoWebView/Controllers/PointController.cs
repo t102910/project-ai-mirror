@@ -253,8 +253,8 @@ namespace MGF.QOLMS.QolmsJotoWebView
 
         #endregion
 
+        #region JOTOポイント履歴 画面
 
-        //[NoClientCache()]
         [HttpGet()]
         [QjAuthorize()]
         [QjApiAuthorize()]
@@ -265,8 +265,11 @@ namespace MGF.QOLMS.QolmsJotoWebView
             var mainmodel = this.GetQolmsJotoModel();
 
             var worker = new PointHistoryWorker(new PointRepository());
-            return View(worker.CreateViewModel(mainmodel, year, month,QjPageNoTypeEnum.None));
+            return View(worker.CreateViewModel(mainmodel, year, month, QjPageNoTypeEnum.None));
         }
+
+        #endregion
+
         #region Terms
 
         [HttpGet()]
@@ -274,11 +277,10 @@ namespace MGF.QOLMS.QolmsJotoWebView
         {
             return View();
         }
-		#endregion
+        #endregion
 
-		#region Exchange
-
-		[HttpGet()]
+        #region 沖縄マルシェクーポン交換 画面
+        [HttpGet()]
         [QjAuthorize()]
         [QyApiAuthorize()]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
@@ -339,10 +341,9 @@ namespace MGF.QOLMS.QolmsJotoWebView
             }
         }
 
-
         #endregion
 
-        #region "「Amazonポイント交換」画面"
+        #region Amazonポイント交換 画面
 
         [HttpGet()]
         [QjAuthorize()]
@@ -351,93 +352,176 @@ namespace MGF.QOLMS.QolmsJotoWebView
         [QjLogging()]
         public ActionResult AmazonGiftCard()
         {
-            var mainmodel = this.GetQolmsJotoModel();
             var worker = new PointAmazonGiftCardWorker( new PointRepository(),new AmazonGiftCardRepository());
+            return View(worker.CreateViewModel(this.GetQolmsJotoModel()));
+        }
 
-            //// デモ用
-            //var model = new PointAmazonGiftCardViewModel()
-            //{
-            //    FromPageNoType = fromPageNoType,
+        [HttpPost]
+        [QjAjaxOnly]
+        [QjAuthorize(true)]
+        [ValidateAntiForgeryToken(Order = int.MaxValue)]
+        [QyApiAuthorize]
+        [QjLogging]
+        public ActionResult AmazonGiftCardResult(byte itemid)
+        {
+            var worker = new PointAmazonGiftCardWorker( new PointRepository(),new AmazonGiftCardRepository());
+            try
+            {
+                // データチャージ呼び出す
+                if (worker.Exchange(this.GetQolmsJotoModel(), itemid))
+                {
+                    this.TempData["IsFinish"] = true;
 
-            //    // 現在の保有ポイント
-            //    Point = 1200,
+                    return new MessageJsonResult()
+                    {
+                        Message = HttpUtility.HtmlEncode("Amazonギフト券の交換が完了しました。"),
+                        IsSuccess = bool.TrueString
+                    }.ToJsonResult();
+                }
+                else
+                {
+                    return new MessageJsonResult()
+                    {
+                        Message = HttpUtility.HtmlEncode("Amazonギフト券の交換が失敗しました。"),
+                        IsSuccess = bool.FalseString
+                    }.ToJsonResult();
+                }
+            }
+            catch (Exception ex)
+            {
+                AccessLogWorker.WriteAccessLog(this.HttpContext, string.Empty, AccessLogWorker.AccessTypeEnum.Error, string.Format(ex.Message));
 
-            //    // 交換対象ギフト券リスト（View が foreach してボタン出す）
-            //    GiftCardN = new List<AmazonGiftCardItem>()
-            //    {
-            //        new AmazonGiftCardItem()
-            //        {
-            //            GiftCardType = 1,
-            //            GiftCardName = "Amazonギフト券 500円分",
-            //            DemandPoint = 500
-            //        },
-            //        new AmazonGiftCardItem()
-            //        {
-            //            GiftCardType = 2,
-            //            GiftCardName = "Amazonギフト券 1000円分",
-            //            DemandPoint = 1000
-            //        },
-            //        new AmazonGiftCardItem()
-            //        {
-            //            GiftCardType = 3,
-            //            GiftCardName = "Amazonギフト券 1500円分",
-            //            DemandPoint = 1500
-            //        }
-            //    },
-
-            //    // 交換履歴（View が Count 判定＆foreach で表示）
-            //    GiftCardHistN = new List<AmazonGiftCardHistItem>()
-            //    {
-            //        new AmazonGiftCardHistItem()
-            //        {
-            //            IssueDate = DateTime.Now.AddDays(-2),
-            //            DemandPoint = 500,
-            //            GiftCardName = "Amazonギフト券 500円分",
-            //            ExpirationDate = DateTime.Now.AddMonths(6),
-            //            GiftCardId = "TEST-COUPON-0001"
-            //        },
-            //        new AmazonGiftCardHistItem()
-            //        {
-            //            IssueDate = DateTime.Now.AddDays(-10),
-            //            DemandPoint = 1000,
-            //            GiftCardName = "Amazonギフト券 1000円分",
-            //            ExpirationDate = DateTime.Now.AddMonths(6),
-            //            GiftCardId = "TEST-COUPON-0002"
-            //        }
-            //    },
-
-            //    Description = string.Empty
-            //};
-
-            return View(worker.CreateViewModel(mainmodel));
+                return new MessageJsonResult()
+                {
+                    Message = HttpUtility.HtmlEncode("Amazonギフト券の交換が失敗しました。"),
+                    IsSuccess = bool.FalseString
+                }.ToJsonResult();
+            }
         }
 
         #endregion
 
         #region "「Auポイントポイント交換」画面"
-
         [HttpGet()]
-        //[QjAuthorize()]
-        //[QyApiAuthorize()]
-        //[OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
-        //[QjLogging()]
-        public ActionResult AuPoint()
+        [QjAuthorize()]
+        [QjApiAuthorize()]
+        [QjLogging()]
+        public ActionResult AuPoint(byte? fromPageNo)
         {
-            return View();
+            //QjPageNoTypeEnum fromPageNoType = QjPageNoTypeEnum.None;
+            //if (fromPageNo.HasValue)
+            //{
+            //    fromPageNoType = fromPageNo.ToString().TryToValueType(QjPageNoTypeEnum.None);
+            //}
+            var worker = new PointPontaExchangeWorker(new PointRepository(), new PontaExchangeRepository());
+
+            return View(worker.CreateViewModel(this.GetQolmsJotoModel()));
         }
+
+        [HttpPost()]
+        [QjAjaxOnly()]
+        [QjAuthorize(true)]
+        [ValidateAntiForgeryToken(Order = int.MaxValue)]
+        [QjApiAuthorize()]
+        [QjLogging()]
+        public ActionResult AuPointResult(int itemid)
+        {
+            try
+            {
+                var worker = new PointPontaExchangeWorker(new PointRepository(), new PontaExchangeRepository());
+
+                // データチャージ呼び出す
+                if (worker.Exchange(this.GetQolmsJotoModel(), itemid))
+                {
+                    this.TempData["IsFinish"] = true;
+
+                    return new MessageJsonResult()
+                    {
+                        Message = HttpUtility.HtmlEncode("Pontaポイント交換が成功しました。"),
+                        IsSuccess = bool.TrueString
+                    }.ToJsonResult();
+                }
+                else
+                {
+                    return new MessageJsonResult()
+                    {
+                        Message = HttpUtility.HtmlEncode("Pontaポイント交換が失敗しました。"),
+                        IsSuccess = bool.FalseString
+                    }.ToJsonResult();
+                }
+            }
+            catch (Exception ex)
+            {
+                AccessLogWorker.WriteAccessLog(this.HttpContext, string.Empty, AccessLogWorker.AccessTypeEnum.Error, string.Format(ex.Message));
+                return new MessageJsonResult()
+                {
+                    Message = HttpUtility.HtmlEncode("Pontaポイント交換が失敗しました。"),
+                    IsSuccess = bool.FalseString
+                }.ToJsonResult();
+            }
+        }
+
 
         #endregion
 
-        #region "「オンラインストアポイント交換」画面"
+        #region オンラインストアポイント交換 画面
 
-        [HttpGet()]
-        //[QjAuthorize()]
-        //[QyApiAuthorize()]
-        //[OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
-        //[QjLogging()]
-        public ActionResult OnlineStore()
+        [HttpGet]
+        [QjAuthorize]
+        [QjApiAuthorize]
+        [QjLogging]
+        public ActionResult OnlineStore(byte? fromPageNo)
         {
-            return View();
+            //QyPageNoTypeEnum fromPageNoType = QyPageNoTypeEnum.None;
+            //if (fromPageNo.HasValue)
+            //{
+            //    fromPageNoType = fromPageNo.ToString().TryToValueType(QyPageNoTypeEnum.None);
+            //}
+            var worker = new PointOnlineStoreWorker(new PointRepository(), new OnlineStoreCouponRepository());
+
+            return View(worker.CreateViewModel(this.GetQolmsJotoModel()));
+        }
+
+        [HttpPost]
+        [QjAjaxOnly]
+        [QjAuthorize(true)]
+        [ValidateAntiForgeryToken(Order = int.MaxValue)]
+        [QyApiAuthorize]
+        [QjLogging]
+        public ActionResult OnlineStoreResult(byte couponType)
+        {
+            var worker = new PointOnlineStoreWorker(new PointRepository(), new OnlineStoreCouponRepository());
+            try
+            {
+                if (worker.Exchange(this.GetQolmsJotoModel(), couponType))
+                {
+                    this.TempData["IsFinish"] = true;
+
+                    return new MessageJsonResult()
+                    {
+                        Message = HttpUtility.HtmlEncode("ポイント交換が完了しました。"),
+                        IsSuccess = bool.TrueString
+                    }.ToJsonResult();
+                }
+                else
+                {
+                    return new MessageJsonResult()
+                    {
+                        Message = HttpUtility.HtmlEncode("ポイント交換が失敗しました。"),
+                        IsSuccess = bool.FalseString
+                    }.ToJsonResult();
+                }
+            }
+            catch (Exception ex)
+            {
+                AccessLogWorker.WriteAccessLog(this.HttpContext, string.Empty, AccessLogWorker.AccessTypeEnum.Error, string.Format(ex.Message));
+
+                return new MessageJsonResult()
+                {
+                    Message = HttpUtility.HtmlEncode("ポイント交換が失敗しました。"),
+                    IsSuccess = bool.FalseString
+                }.ToJsonResult();
+            }
         }
 
         #endregion

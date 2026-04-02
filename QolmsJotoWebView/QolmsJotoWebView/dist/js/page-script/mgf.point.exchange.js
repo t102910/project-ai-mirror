@@ -41,9 +41,9 @@ mgf.point.exchange = (function () {
                     couponType: $(this).data("coupon")
                 },
                 async: true,
-                //beforeSend: function (jqXHR) {
-                //    //mgf.portal.checkSessionByAjax();
-                //}
+                beforeSend: function (jqXHR) {
+                    mgf.point.checkSession();
+                }
             }).done(function (data, textStatus, jqXHR) {
                 try {
                     //console.log(data)

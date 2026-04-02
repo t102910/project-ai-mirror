@@ -8,7 +8,7 @@ namespace MGF.QOLMS.QolmsJotoWebView
     /// このクラスは継承できません。
     /// </summary>
     [Serializable()]
-    public sealed class DatachargeViewModel : QjPageViewModelBase
+    public sealed class DatachargeViewModel : QjPointPageViewModelBase
     {
         #region Public Property
 

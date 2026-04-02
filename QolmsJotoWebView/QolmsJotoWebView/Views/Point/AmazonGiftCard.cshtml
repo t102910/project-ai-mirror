@@ -31,7 +31,7 @@
                     @*<b style="color: #ff0000;">※ギフト券は現在準備中です。</b>*@
                 </p>
 
-                <a href="native:/action/open_browser?url=@amazonGiftLink" class="btn btn-submit block">Amazonギフト券について詳しく</a>
+                <a href="jotohdr2://deep.link/action/open_browser?url=@amazonGiftLink" class="btn btn-submit block">Amazonギフト券について詳しく</a>
                 <a href="/Point/Terms" class="btn btn-submit block">JOTOポイントプログラム利用規約</a>
 
                 <div class="remaining-point">
@@ -181,5 +181,14 @@
 
     @Html.Action("PointFooterPartialView", "Point")
         
-    @QjHtmlHelper.RenderScriptTag("~/dist/js/point/amazongiftcard")
+    @*@QjHtmlHelper.RenderScriptTag("~/dist/js/point/amazongiftcard")*@
+    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
+    <script src="~/dist/js/bootstrap-5.3.6.min.js"></script>
+    <script src="~/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/dist/js/slick.min.js"></script>
+    <script src="~/dist/js/spc.lib.min.js"></script>
+    <script src="~/dist/js/spc.util.min.js"></script>
+    <script src="~/dist/js/page-script/mgf.js"></script>
+    <script src="~/dist/js/page-script/mgf.point.js"></script>
+    <script src="~/dist/js/page-script/mgf.point.amazongiftcard.js"></script>
 </body>

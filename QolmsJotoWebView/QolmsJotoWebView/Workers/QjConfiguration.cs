@@ -234,9 +234,68 @@ namespace MGF.QOLMS.QolmsJotoWebView
 
         #endregion
 
+        #region Pontaポイント
+
+        /// <summary>
+        /// 加盟店ID
+        /// </summary>
+        private const string Config_AuWalletPointKameitenId_KeyName = "AuWalletPointKameitenId";
+        private const string Config_AuWalletPointKameitenId_DefaultValue = "";
+
+        /// <summary>
+        /// 加盟店IDを取得します。
+        /// </summary>
+        public static string AuWalletPointKameitenId => GetConfiguration(Config_AuWalletPointKameitenId_KeyName, Config_AuWalletPointKameitenId_DefaultValue);
+
+        /// <summary>
+        /// サービスID
+        /// </summary>
+        private const string Config_AuPaymentServiceId_KeyName = "AuPaymentServiceId";
+        private const string Config_AuPaymentServiceId_DefaultValue = "";
+
+        /// <summary>
+        /// サービスIDを取得します。
+        /// </summary>
+        public static string AuPaymentServiceId => GetConfiguration(Config_AuPaymentServiceId_KeyName, Config_AuPaymentServiceId_DefaultValue);
+
+        /// <summary>
+        /// セキュリティキー
+        /// </summary>
+        private const string Config_AuPaymentSecureKey_KeyName = "AuPaymentSecureKey";
+        private const string Config_AuPaymentSecureKey_DefaultValue = "";
+
+        /// <summary>
+        /// セキュリティキーを取得します。
+        /// </summary>
+        public static string AuPaymentSecureKey => GetConfiguration(Config_AuPaymentSecureKey_KeyName, Config_AuPaymentSecureKey_DefaultValue);
+
+        /// <summary>
+        /// 要求URI
+        /// </summary>
+        private const string Config_AuWalletPointExchangeUri_KeyName = "AuWalletPointExchangeUri";
+        private const string Config_AuWalletPointExchangeUri_DefaultValue = "";
+
+        /// <summary>
+        /// 要求URIを取得します。
+        /// </summary>
+        public static string AuWalletPointExchangeUri => GetConfiguration(Config_AuWalletPointExchangeUri_KeyName, Config_AuWalletPointExchangeUri_DefaultValue);
+
+        /// <summary>
+        /// APIキー
+        /// </summary>
+        private const string Config_AuWalletPointApiKey_KeyName = "AuWalletPointApiKey";
+        private const string Config_AuWalletPointApiKey_DefaultValue = "";
+
+        /// <summary>
+        /// APIキーを取得します。
+        /// </summary>
+        public static string AuWalletPointApiKey => GetConfiguration(Config_AuWalletPointApiKey_KeyName, Config_AuWalletPointApiKey_DefaultValue);
+
+        #endregion
+
         #region ぎのわん
 
-        
+
         /// <summary>
         /// ポイントサービス番号
         /// </summary>
@@ -249,6 +308,7 @@ namespace MGF.QOLMS.QolmsJotoWebView
         public static string GinowanApplyUrl => GetConfiguration(Config_GinowanApplyUrl_KeyName, Config_GinowanApplyUrl_DefaultValue);
 
         #endregion
+
 
 
         #region "Private Method"

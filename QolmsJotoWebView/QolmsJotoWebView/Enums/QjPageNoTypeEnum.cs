@@ -72,11 +72,19 @@ namespace MGF.QOLMS.QolmsJotoWebView
 
         //ここよリ↑画面番号提供済みのため変更不可
 
-        //使っていい空き番号です。,
-        //13,
+        /// <summary>
+        /// 病院連携
+        /// </summary>
+        HospitalConnection = 13,
+        
+        /// <summary>
+        /// 法人連携
+        /// </summary>
+        CompanyConnection = 14,
 
-        //14,
-
+        /// <summary>
+        /// 
+        /// </summary>
         PortalSearchDetail = 15,
         
         /// <summary>
@@ -108,6 +116,17 @@ namespace MGF.QOLMS.QolmsJotoWebView
         /// データチャージ 画面
         /// </summary>
         PointDatacharge = 21,
+
+
+        /// <summary>
+        /// タニタ連携 画面
+        /// </summary>
+        TanitaConnection = 22,
+
+        /// <summary>
+        /// プレミアム会員退会 画面
+        /// </summary>
+        PremiumUnsubscribe = 23,
 
         //PortalSearchDetail,
         //HealthAgeEdit = 4,

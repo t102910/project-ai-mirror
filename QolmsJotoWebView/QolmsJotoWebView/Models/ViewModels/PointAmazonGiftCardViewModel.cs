@@ -8,7 +8,7 @@ namespace MGF.QOLMS.QolmsJotoWebView
     /// このクラスは継承できません。
     /// </summary>
     [Serializable]
-    public sealed class PointAmazonGiftCardViewModel : QjPageViewModelBase
+    public sealed class PointAmazonGiftCardViewModel : QjPointPageViewModelBase
     {
         #region Public Property
 

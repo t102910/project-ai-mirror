@@ -113,7 +113,7 @@
       <HintPath>..\packages\QolmsApiCoreV1F472.1.0.348\lib\net472\QolmsApiCoreV1F472.dll</HintPath>
     </Reference>
     <Reference Include="QolmsApiEntityV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\QolmsApiEntityV1F472.1.0.736\lib\net472\QolmsApiEntityV1F472.dll</HintPath>
+      <HintPath>..\packages\QolmsApiEntityV1F472.1.0.747\lib\net472\QolmsApiEntityV1F472.dll</HintPath>
     </Reference>
     <Reference Include="QolmsAzureStorageCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\QolmsAzureStorageCoreV1F472.1.0.39\lib\net472\QolmsAzureStorageCoreV1F472.dll</HintPath>
@@ -302,6 +302,11 @@
     <Compile Include="Models\ThirdParty\Calomeal\CalomealGoalSet.cs" />
     <Compile Include="Models\ThirdParty\Calomeal\CalomealInstructInfo.cs" />
     <Compile Include="Models\ThirdParty\Calomeal\CalomealUser.cs" />
+    <Compile Include="Models\ThirdParty\Ponta\BPIFMerchantPoint_I.cs" />
+    <Compile Include="Models\ThirdParty\Ponta\Control.cs" />
+    <Compile Include="Models\ThirdParty\Ponta\pointIf.cs" />
+    <Compile Include="Models\ThirdParty\Ponta\PointInfo.cs" />
+    <Compile Include="Models\ThirdParty\Ponta\ProcessResult.cs" />
     <Compile Include="Models\ViewModels\HealthAgeViewModel.cs" />
     <Compile Include="Models\ViewModels\DemoViewModel.cs" />
     <Compile Include="Models\ViewModels\IntegrationCompanyConnectionEditViewModel.cs" />
@@ -316,7 +321,7 @@
     <Compile Include="Models\ViewModels\PointAmazonGiftCardViewModel.cs" />
     <Compile Include="Models\ViewModels\PointAuWalletPointExchangeViewModel.cs" />
     <Compile Include="Models\ViewModels\PointDatacharge.cs" />
-    <Compile Include="Models\ViewModels\PointOnlineStore.cs" />
+    <Compile Include="Models\ViewModels\PointOnlineStoreViewModel.cs" />
     <Compile Include="Models\ViewModels\PortalLocalIdVerificationAgreementViewModel.cs" />
     <Compile Include="Models\ViewModels\PortalLocalIdVerificationDetailViewModel.cs" />
     <Compile Include="Models\ViewModels\PortalLocalIdVerificationRequestViewModel.cs" />
@@ -328,12 +333,16 @@
     <Compile Include="Repositories\LocalIdVerificationRepository.cs" />
     <Compile Include="Repositories\OcmCouponRepository.cs" />
     <Compile Include="Repositories\LocalPointRepository.cs" />
+    <Compile Include="Repositories\OnlineStoreCouponRepository.cs" />
     <Compile Include="Repositories\PointRepository.cs" />
+    <Compile Include="Repositories\PontaExchangeRepository.cs" />
     <Compile Include="Repositories\QolmsSystemKeyRepository.cs" />
     <Compile Include="Repositories\TermsRepository.cs" />
     <Compile Include="Repositories\VitalRepository.cs" />
     <Compile Include="Workers\AccessLogWorker.cs" />
     <Compile Include="Workers\ApiAuthorizeWorker.cs" />
+    <Compile Include="Models\ThirdParty\Ponta\auPointRequestOfJson.cs" />
+    <Compile Include="Models\ThirdParty\Ponta\auPointResponseOfJson.cs" />
     <Compile Include="Workers\CalomealWebViewWorker.cs" />
     <Compile Include="Workers\DemoWorker.cs" />
     <Compile Include="Workers\HealthAgeEditWorker.cs" />
@@ -341,11 +350,13 @@
     <Compile Include="Workers\LoginWorker.cs" />
     <Compile Include="Workers\NoticeMailWorker.cs" />
     <Compile Include="Workers\PointAmazonGiftCardWorker.cs" />
+    <Compile Include="Workers\PointOnlineStoreWorker.cs" />
     <Compile Include="Workers\PointExchangeWorker.cs" />
     <Compile Include="Workers\NoteCalomealWorker.cs" />
     <Compile Include="Workers\NoteExaminationWorker.cs" />
     <Compile Include="Workers\NoteMonshinWorker.cs" />
     <Compile Include="Workers\PointHistoryWorker.cs" />
+    <Compile Include="Workers\PointPontaExchangeWorker.cs" />
     <Compile Include="Workers\PortalLocalIdVerificationAgreementWorker.cs" />
     <Compile Include="Workers\PortalLocalIdVerificationDetailWorker.cs" />
     <Compile Include="Workers\PortalLocalIdVerificationRegisterWorker.cs" />
@@ -389,11 +400,6 @@
     <Content Include="dist\js\page-script\mgf.integration.hospitalconnection.js" />
     <Content Include="dist\js\page-script\mgf.integration.hospitalconnectionrequest.js" />
     <Content Include="dist\js\page-script\mgf.integration.tanitaconnection.js" />
-    <Content Include="dist\js\page-script\mgf.premium.agreement.js" />
-    <Content Include="dist\js\page-script\mgf.premium.cardinfo.js" />
-    <Content Include="dist\js\page-script\mgf.premium.info.js" />
-    <Content Include="dist\js\page-script\mgf.premium.js" />
-    <Content Include="dist\js\page-script\mgf.premium.paymentmethod.js" />
     <Content Include="dist\js\__highcharts-draw.js" />
     <Content Include="Views\Integration\CompanyConnection.cshtml" />
     <Content Include="Views\Integration\CompanyConnectionEdit.cshtml" />
@@ -403,7 +409,6 @@
     <Content Include="Views\Integration\HospitalConnection.cshtml" />
     <Content Include="Views\Integration\HospitalConnectionRequest.cshtml" />
     <Content Include="Views\Integration\OmronConnection.cshtml" />
-    <None Include="Views\Point\AmazonGiftCard.cshtml" />
     <Compile Include="Models\ViewModels\PointExchangeViewModel.cs" />
     <Compile Include="Repositories\CalomealRepository.cs" />
     <Compile Include="Repositories\CalomealWebViewApiRepository.cs" />
@@ -767,6 +772,7 @@
     <Content Include="Views\Premium\PremiumMember.cshtml" />
     <Content Include="Views\Shared\_PremiumBenefitsPartial.cshtml" />
     <Content Include="Views\Shared\_PremiumTermsPartial.cshtml" />
+    <Content Include="Views\Premium\Unsubscribe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -876,6 +882,7 @@
     <Content Include="Views\Shared\_HealthHeaderPartialView.cshtml" />
     <Content Include="Views\Health\AgeEdit.cshtml" />
     <Content Include="Views\Point\LocalHistory.cshtml" />
+    <Content Include="Views\Point\AmazonGiftCard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

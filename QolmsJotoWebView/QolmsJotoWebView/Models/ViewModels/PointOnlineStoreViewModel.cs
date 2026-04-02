@@ -4,11 +4,11 @@ using System.Collections.Generic;
 namespace MGF.QOLMS.QolmsJotoWebView
 {
     /// <summary>
-    /// 「au WALLETポイント交換」画面ビュー モデルを表します。
+    /// 「オンラインストアポイント交換」画面ビュー モデルを表します。
     /// このクラスは継承できません。
     /// </summary>
     [Serializable()]
-    public sealed class PortalAuWalletPointExchangeViewModel : QjPointPageViewModelBase
+    public sealed class PointOnlineStoreViewModel : QjPointPageViewModelBase
     {
         #region Public Property
 
@@ -18,9 +18,9 @@ namespace MGF.QOLMS.QolmsJotoWebView
         public int FromPageNoType { get; set; } = int.MinValue;
 
         /// <summary>
-        /// ポイント交換対象のリストを取得または設定します。
+        /// 交換対象クーポンのリストを取得または設定します。
         /// </summary>
-        public List<AuWalletPointItem> AuWalletPointItemN { get; set; } = new List<AuWalletPointItem>();
+        public List<CouponItem> CouponN { get; set; } = new List<CouponItem>();
 
         /// <summary>
         /// 保持ポイントを取得または設定します。
@@ -30,10 +30,10 @@ namespace MGF.QOLMS.QolmsJotoWebView
         /// <summary>
         /// ポイント交換履歴のリストを取得または設定します。
         /// </summary>
-        public List<AuWalletPointHistItem> AuWalletPointHistN { get; set; } = new List<AuWalletPointHistItem>();
+        public List<PointExchangeHistItem> PointExchangeHistN { get; set; } = new List<PointExchangeHistItem>();
 
         /// <summary>
-        /// ポイント交換説明文を取得または設定します。
+        /// ポイント交換の説明文を取得または設定します。
         /// </summary>
         public string Description { get; set; } = string.Empty;
 
@@ -42,20 +42,20 @@ namespace MGF.QOLMS.QolmsJotoWebView
         #region Constructor
 
         /// <summary>
-        /// <see cref="PortalAuWalletPointExchangeViewModel" /> クラスの新しいインスタンスを初期化します。
+        /// <see cref="PointOnlineStoreViewModel" /> クラスの新しいインスタンスを初期化します。
         /// </summary>
-        public PortalAuWalletPointExchangeViewModel()
+        public PointOnlineStoreViewModel()
             : base()
         {
         }
 
         /// <summary>
         /// メイン モデルを指定して、
-        /// <see cref="PortalAuWalletPointExchangeViewModel" /> クラスの新しいインスタンスを初期化します。
+        /// <see cref="PointOnlineStoreViewModel" /> クラスの新しいインスタンスを初期化します。
         /// </summary>
         /// <param name="mainModel">メイン モデル。</param>
-        public PortalAuWalletPointExchangeViewModel(QolmsJotoModel mainModel)
-            : base(mainModel, QjPageNoTypeEnum.PointPonta)
+        public PointOnlineStoreViewModel(QolmsJotoModel mainModel)
+            : base(mainModel, QjPageNoTypeEnum.PointOnlineStore)
         {
         }
 

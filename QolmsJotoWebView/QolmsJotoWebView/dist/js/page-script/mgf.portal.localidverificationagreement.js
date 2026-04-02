@@ -7,7 +7,7 @@ mgf.portal.localidverificationagreement = (function () {
     //if ($("section.contents-area").hasClass("first")) {
 
     //    var timer = setTimeout(function () {
-    //        location.href = "native:/action/open_browser?url=https%3A%2F%2Fwww.smartkensa.com%2Fgp%2Fentry%2F459"
+    //        location.href = "jotohdr2://deep.link/action/open_browser?url=https%3A%2F%2Fwww.smartkensa.com%2Fgp%2Fentry%2F459"
     //    }, 1000);
 
     //}

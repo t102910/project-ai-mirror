@@ -332,7 +332,7 @@ mgf.note.examination = (function () {
         var token = $("input[name='__RequestVerificationToken']").val()
         location.href = "../Note/ExaminationPdf?__RequestVerificationToken=" + token + "&reference=" + reference
 
-        //location.href = "native:/action/open_browser?url=https%3A%2F%2Fjoto-hdrsub.qolms.com%2F%2FNote%2FExaminationPdf%3F__RequestVerificationToken%3D" + token + "%26reference%3D" + reference
+        //location.href = "jotohdr2://deep.link/action/open_browser?url=https%3A%2F%2Fjoto-hdrsub.qolms.com%2F%2FNote%2FExaminationPdf%3F__RequestVerificationToken%3D" + token + "%26reference%3D" + reference
 
         //mgf.lockScreen();
         ////console.log($(this))

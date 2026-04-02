@@ -1,0 +1,98 @@
+﻿@model MGF.QOLMS.QolmsJotoWebView.NoteGulfSportsMovieViewModel
+
+@{
+    ViewBag.Title = "ガルフ動画";
+    Layout = "~/Views/Shared/_NoteLayout.cshtml";
+}
+<script type="text/javascript" src="https://www.youtube.com/player_api"></script>
+
+<body id="gulf-cont" class="lower gulf">
+    @Html.AntiForgeryToken()
+
+    <main id="main-cont" class="clearfix" role="main">
+        <section class="contents-area mb20">
+            <h2 class="img-max-cont mb10">
+                @if (Model.MovieType == 1)
+                {
+                    <img class="mb10" src="/dist/img/gulf-mov/detail/title-1.png" alt="動画タイトル1" />
+                    <img src="/dist/img/gulf-mov/index-btn-1.jpg" alt="動画1" />
+                }
+                else if (Model.MovieType == 2)
+                {
+                    <img class="mb10" src="/dist/img/gulf-mov/detail/title-2.png" alt="動画タイトル2" />
+                    <img src="/dist/img/gulf-mov/index-btn-2.jpg" alt="動画2" />
+                }
+                else if (Model.MovieType == 3)
+                {
+                    <img class="mb10" src="/dist/img/gulf-mov/detail/title-3.png" alt="動画タイトル3" />
+                    <img src="/dist/img/gulf-mov/index-btn-3.jpg" alt="動画3" />
+                }
+            </h2>
+            <div class="right">
+                <a href="../Note/GulfSportsMovieIndex" class="btn btn-close no-ico">戻 る</a>
+            </div>
+        </section>
+
+        <section class="data-area">
+            @foreach (var item in Model.MovieItemN)
+            {
+                <article>
+                    <section class="inner">
+                        <p class="mov-area disabled" data-yturl="@item.Id">
+                            <img class="icon" src="/dist/img/gulf-mov/detail/mov-ico.png" alt="再生" />
+                        </p>
+                        <div class="info">
+                            <p class="time"><span>@item.Time</span></p>
+                            <p class="bold">@item.Description</p>
+                            <p class="cal-area">
+                                @{
+                                    var youtubeUrl = string.Format("https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D{0}", item.Id);
+                                }
+                                <span class="youtube-icon-area"><a href="https://www.youtube.com/watch?v=@item.Id" target="_blank" rel="noopener noreferrer" class="youtube-icon"></a></span>
+                                <span class="cal right">@item.Calorie<i>kcal</i></span>
+                                <span>
+                                    <a href="javascript:void(0);"
+                                       class="btn btn-submit no-ico narrow low-height mb0 mt10 list-submit"
+                                       data-exercisetype="@item.ExerciseType"
+                                       data-calorie="@item.Calorie">カロリー登録</a>
+                                </span>
+                            </p>
+                        </div>
+                    </section>
+                </article>
+            }
+        </section>
+
+        <!-- 動画再生 -->
+        <div id="mov-stage">
+            <div class="mov-wrap">
+                <div id="mov">
+                    <div id="ytplayer"></div>
+                </div>
+                <div id="info-copy"></div>
+            </div>
+            <i class="la la-close" id="mov-stage-close"></i>
+        </div>
+
+        <!-- 「登録完了」ダイアログ -->
+        <div class="modal fade" id="finish-modal" tabindex="-1" data-backdrop="static" data-keyboard="false" style="z-index:100000;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"><span>×</span></button>
+                        <h4 class="modal-title">確認</h4>
+                    </div>
+                    <div class="modal-body">
+                        運動を登録しました。
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-close no-ico mb0">閉じる</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    @Html.Action("NoteFooterPartialView", "Note")
+    @QjHtmlHelper.RenderScriptTag("~/dist/js/note/gulfsportsmovie")
+</body>

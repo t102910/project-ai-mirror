@@ -562,6 +562,61 @@ namespace MGF.QOLMS.QolmsJotoWebView
         }
         #endregion
 
+        #region ガルフスポーツ動画画面
+
+        /// <summary>
+        /// 「ガルフスポーツ動画」TOP 画面の表示要求を処理します。
+        /// </summary>
+        /// <returns>
+        /// アクションの結果。
+        /// </returns>
+        [HttpGet]
+        [QjAuthorize]
+        [QjApiAuthorize]
+        [QjLogging]
+        public ActionResult GulfSportsMovieIndex()
+        {
+            // ビューを返却
+            return View();
+        }
+
+        /// <summary>
+        /// 「ガルフスポーツ動画」詳細画面の表示要求を処理します。
+        /// </summary>
+        /// <param name="movieType">動画の種別（1〜3）。</param>
+        /// <returns>
+        /// アクションの結果。
+        /// </returns>
+        [HttpGet]
+        [QjAuthorize]
+        [QjApiAuthorize]
+        [QjLogging]
+        public ActionResult GulfSportsMovie(string movieType)
+        {
+            byte movieTypeValue;
+            if (!byte.TryParse(movieType, out movieTypeValue) || movieTypeValue < 1 || movieTypeValue > 3)
+            {
+                return RedirectToAction("GulfSportsMovieIndex");
+            }
+
+            // ダミーデータ（モック用）
+            var viewModel = new NoteGulfSportsMovieViewModel()
+            {
+                MovieType = movieTypeValue,
+                MovieItemN = new System.Collections.Generic.List<GulfSportsMovieItem>()
+                {
+                    new GulfSportsMovieItem() { Id = "dQw4w9WgXcQ", ExerciseType = 1, Calorie = 150, Description = "ゴルフ スイング 基礎トレーニング", Time = "10:30" },
+                    new GulfSportsMovieItem() { Id = "aBcDeFgHiJk", ExerciseType = 2, Calorie = 200, Description = "体幹強化ストレッチ", Time = "08:15" },
+                    new GulfSportsMovieItem() { Id = "lMnOpQrStUv", ExerciseType = 3, Calorie = 120, Description = "肩・腕のウォームアップ", Time = "05:45" },
+                }
+            };
+
+            // ビューを返却
+            return View(viewModel);
+        }
+
+        #endregion
+
         #endregion
 
         #region 共通 パーツ

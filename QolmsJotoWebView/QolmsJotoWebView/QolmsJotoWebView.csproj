@@ -718,6 +718,8 @@
     <Content Include="dist\js\page-script\mgf.health.js" />
     <Content Include="dist\js\page-script\mgf.js" />
     <Content Include="dist\js\page-script\mgf.note.examination.js" />
+    <Content Include="dist\js\page-script\mgf.note.gulfsportsmovieindex.js" />
+    <Content Include="dist\js\page-script\mgf.note.gulfsportsmovie.js" />
     <Content Include="dist\js\page-script\mgf.note.js" />
     <Content Include="dist\js\page-script\mgf.point.js" />
     <Content Include="dist\js\page-script\mgf.point.exchange.js" />
@@ -829,6 +831,7 @@
     <Compile Include="Models\QjPageViewModelBase.cs" />
     <Compile Include="Models\QolmsJotoModel.cs" />
     <Compile Include="Models\ViewModels\NoteExaminationViewModel.cs" />
+    <Compile Include="Models\ViewModels\NoteGulfSportsMovieViewModel.cs" />
     <Compile Include="Models\ViewModels\PointHistoryViewModel.cs" />
     <Compile Include="Models\ViewModels\IntegrationFitbitConnectionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -863,6 +866,8 @@
     <Content Include="Views\Shared\_PointLayout.cshtml" />
     <None Include="Properties\PublishProfiles\qolms-dev-joto-west-app02 - Web Deploy.pubxml" />
     <Content Include="Views\Note\Examination.cshtml" />
+    <Content Include="Views\Note\GulfSportsMovieIndex.cshtml" />
+    <Content Include="Views\Note\GulfSportsMovie.cshtml" />
     <Content Include="Views\Shared\_NoteLayout.cshtml" />
     <Content Include="Views\Shared\_NoteExaminationResultPartialView.cshtml" />
     <Content Include="Views\Shared\_NoteExaminationFilterPartialView.cshtml" />

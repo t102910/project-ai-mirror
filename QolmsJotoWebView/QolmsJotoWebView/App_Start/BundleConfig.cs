@@ -269,6 +269,44 @@ namespace MGF.QOLMS.QolmsJotoWebView
             );
 
             bundles.Add(bundle);
+
+            // ガルフスポーツ動画 TOP
+            var gulfIndexBundle = new Bundle("~/dist/js/note/gulfsportsmovieindex", new NoJsTransform())
+            {
+                Orderer = new NonOrderingBundleOrderer()
+            };
+            gulfIndexBundle.Include(
+                new string[]
+                {
+                    "~/dist/js/jquery-3.7.1.min.js",
+                    "~/dist/js/bootstrap.bundle.js",
+                    "~/dist/js/spc.lib.min.js",
+                    "~/dist/js/spc.util.min.js",
+                    "~/dist/js/page-script/mgf.js",
+                    "~/dist/js/page-script/mgf.note.js",
+                    "~/dist/js/page-script/mgf.note.gulfsportsmovieindex.js"
+                }
+            );
+            bundles.Add(gulfIndexBundle);
+
+            // ガルフスポーツ動画 詳細
+            var gulfBundle = new Bundle("~/dist/js/note/gulfsportsmovie", new NoJsTransform())
+            {
+                Orderer = new NonOrderingBundleOrderer()
+            };
+            gulfBundle.Include(
+                new string[]
+                {
+                    "~/dist/js/jquery-3.7.1.min.js",
+                    "~/dist/js/bootstrap.bundle.js",
+                    "~/dist/js/spc.lib.min.js",
+                    "~/dist/js/spc.util.min.js",
+                    "~/dist/js/page-script/mgf.js",
+                    "~/dist/js/page-script/mgf.note.js",
+                    "~/dist/js/page-script/mgf.note.gulfsportsmovie.js"
+                }
+            );
+            bundles.Add(gulfBundle);
         }
 
         /// <summary>

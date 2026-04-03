@@ -10,6 +10,9 @@
     @Html.AntiForgeryToken()
 
     <main id="main-cont" class="clearfix" role="main">
+        <section class="home-btn-wrap">
+            <a href="../Note/GulfSportsMovieIndex" class="home-btn"><i class="la la-angle-left"></i></a>
+        </section>
         <section class="contents-area mb20">
             <h2 class="img-max-cont mb10">
                 @if (Model.MovieType == 1)
@@ -28,9 +31,6 @@
                     <img src="/dist/img/gulf-mov/index-btn-3.jpg" alt="動画3" />
                 }
             </h2>
-            <div class="right">
-                <a href="../Note/GulfSportsMovieIndex" class="btn btn-close no-ico">戻 る</a>
-            </div>
         </section>
 
         <section class="data-area">

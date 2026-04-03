@@ -12,7 +12,6 @@ namespace MGF.QOLMS.QolmsJotoWebView
         private const int MockCompanyLinkageSystemNo = 47001;
         private const string MockCompanyLinkageSystemName = "企業";
         private const string MockHospitalName = "城東区医師会病院";
-        private const string MockHospitalPatientNo = "00012345";
 
         [HttpGet]
         //[QjAuthorize]
@@ -152,17 +151,25 @@ namespace MGF.QOLMS.QolmsJotoWebView
         [HttpGet]
         //[QjAuthorize]
         //[QjLogging]
-        public ActionResult HospitalConnection(byte? fromPageNo, string hospitalName, string patientNo, bool? mockConnected)
+        public ActionResult HospitalConnection(byte? fromPageNo, string hospitalName, bool? mockConnected, byte? mockStatus)
         {
-            bool isConnected = mockConnected ?? true;
+            int statusType;
+            if (mockStatus.HasValue)
+                statusType = mockStatus.Value;
+            else
+                statusType = (mockConnected ?? false) ? 2 : 1;
 
             var viewModel = new IntegrationHospitalConnectionViewModel()
             {
                 FromPageNoType = ResolveFromPageNoType(fromPageNo),
+                LinkageSystemNo = 47106,
                 HospitalName = string.IsNullOrWhiteSpace(hospitalName) ? MockHospitalName : hospitalName,
-                PatientNo = isConnected ? (string.IsNullOrWhiteSpace(patientNo) ? MockHospitalPatientNo : patientNo) : string.Empty,
-                MockConnectedFlag = isConnected,
-                ExaminationConnectedFlag = true
+                StatusType = statusType,
+                ShareBasicInfo = true,
+                ShareVitalInfo = true,
+                ShareMedicineInfo = true,
+                ShareExaminationInfo = true,
+                ShareMealInfo = true
             };
 
             return View(viewModel);
@@ -171,18 +178,34 @@ namespace MGF.QOLMS.QolmsJotoWebView
         [HttpGet]
         //[QjAuthorize]
         //[QjLogging]
-        public ActionResult HospitalConnectionRequest(byte? fromPageNo, string hospitalName)
+        public ActionResult HospitalConnectionRequest(byte? fromPageNo, int? linkageSystemNo)
         {
+            var hospitalList = new System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<int, string>>
+            {
+                new System.Collections.Generic.KeyValuePair<int, string>(47106, "中部地区医師会"),
+                new System.Collections.Generic.KeyValuePair<int, string>(47000016, "すながわ内科クリニック"),
+                new System.Collections.Generic.KeyValuePair<int, string>(47000017, "やんばる健診2025"),
+                new System.Collections.Generic.KeyValuePair<int, string>(47000018, "もとぶコホート健診2025"),
+            };
+
             var viewModel = new IntegrationHospitalConnectionRequestViewModel()
             {
                 FromPageNoType = ResolveFromPageNoType(fromPageNo),
-                HospitalName = string.IsNullOrWhiteSpace(hospitalName) ? MockHospitalName : hospitalName,
-                HospitalCode = string.Empty,
-                PatientNo = string.Empty,
-                FamilyName = "城東",
-                GivenName = "太郎",
-                BirthDateLabel = "1990年 1月 1日",
-                ConsentFlag = true
+                LinkageSystemNo = linkageSystemNo ?? 0,
+                HospitalList = hospitalList,
+                LinkageSystemId = string.Empty,
+                FamilyName = "検証",
+                GivenName = "たかはし",
+                FamilyKanaName = "ケンショウ",
+                GivenKanaName = "タカハシ",
+                SexLabel = "男性",
+                BirthDateLabel = "2000年 11月 3日",
+                MailAddress = "yukari_takahashi@mgfactory.co.jp",
+                ShareBasicInfo = true,
+                ShareVitalInfo = true,
+                ShareMedicineInfo = true,
+                ShareExaminationInfo = true,
+                ShareMealInfo = true
             };
 
             return View(viewModel);
@@ -208,9 +231,9 @@ namespace MGF.QOLMS.QolmsJotoWebView
                 new { Label = "企業連携 連携済み", Url = authority + Url.Action(nameof(CompanyConnection), "Integration", new { linkageSystemNo = MockCompanyLinkageSystemNo, linkageSystemName = MockCompanyLinkageSystemName, mockConnected = true }) },
                 new { Label = "企業連携 未連携", Url = authority + Url.Action(nameof(CompanyConnection), "Integration", new { linkageSystemNo = MockCompanyLinkageSystemNo, linkageSystemName = MockCompanyLinkageSystemName, mockConnected = false }) },
                 new { Label = "企業連携 編集", Url = authority + Url.Action(nameof(CompanyConnectionEdit), "Integration", new { linkageSystemNo = MockCompanyLinkageSystemNo, linkageSystemName = MockCompanyLinkageSystemName }) },
-                new { Label = "病院連携 未連携", Url = authority + Url.Action(nameof(HospitalConnection), "Integration", new { hospitalName = MockHospitalName, mockConnected = false }) },
-                new { Label = "病院連携 申請", Url = authority + Url.Action(nameof(HospitalConnectionRequest), "Integration", new { hospitalName = MockHospitalName }) },
-                new { Label = "病院連携 連携済み", Url = authority + Url.Action(nameof(HospitalConnection), "Integration", new { hospitalName = MockHospitalName, patientNo = MockHospitalPatientNo, mockConnected = true }) }
+                new { Label = "病院連携 申請", Url = authority + Url.Action(nameof(HospitalConnectionRequest), "Integration", null) },
+                new { Label = "病院連携 承認待ち", Url = authority + Url.Action(nameof(HospitalConnection), "Integration", new { hospitalName = MockHospitalName, mockStatus = 1 }) },
+                new { Label = "病院連携 連携済み", Url = authority + Url.Action(nameof(HospitalConnection), "Integration", new { hospitalName = MockHospitalName, mockStatus = 2 }) }
             };
 
             string html = "<!DOCTYPE html><html><head><meta charset=\"utf-8\" /><title>Integration Mock Pages</title></head><body>"

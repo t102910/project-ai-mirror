@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MGF.QOLMS.QolmsJotoWebView
 {
@@ -7,18 +8,34 @@ namespace MGF.QOLMS.QolmsJotoWebView
     {
         public QjPageNoTypeEnum FromPageNoType { get; set; } = QjPageNoTypeEnum.PortalConnectionSetting;
 
-        public string HospitalName { get; set; } = "城東区医師会病院";
+        public int LinkageSystemNo { get; set; } = 0;
 
-        public string HospitalCode { get; set; } = string.Empty;
+        public List<KeyValuePair<int, string>> HospitalList { get; set; } = new List<KeyValuePair<int, string>>();
 
-        public string PatientNo { get; set; } = string.Empty;
+        public string LinkageSystemId { get; set; } = string.Empty;
 
-        public string FamilyName { get; set; } = "城東";
+        public string FamilyName { get; set; } = string.Empty;
 
-        public string GivenName { get; set; } = "太郎";
+        public string GivenName { get; set; } = string.Empty;
 
-        public string BirthDateLabel { get; set; } = "1990年 1月 1日";
+        public string FamilyKanaName { get; set; } = string.Empty;
 
-        public bool ConsentFlag { get; set; } = true;
+        public string GivenKanaName { get; set; } = string.Empty;
+
+        public string SexLabel { get; set; } = string.Empty;
+
+        public string BirthDateLabel { get; set; } = string.Empty;
+
+        public string MailAddress { get; set; } = string.Empty;
+
+        public bool ShareBasicInfo { get; set; } = true;
+
+        public bool ShareVitalInfo { get; set; } = true;
+
+        public bool ShareMedicineInfo { get; set; } = true;
+
+        public bool ShareExaminationInfo { get; set; } = true;
+
+        public bool ShareMealInfo { get; set; } = true;
     }
 }

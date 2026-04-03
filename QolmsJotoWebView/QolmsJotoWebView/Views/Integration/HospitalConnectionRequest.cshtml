@@ -20,58 +20,113 @@
             <hr>
 
             <section class="section default">
-                @Model.HospitalName と連携します。<br />
-                病院コードと診察券番号を入力し、連携内容を確認してください。
+                病院にデータ連携の申請をします。<br />
+                連携申請を行うと、病院側へアプリ内の各種データが開示されます。
             </section>
 
+            <h3 class="title mt10"><span> 連携情報</span></h3>
+
             <div class="form wizard-form mb30">
-                <label for="hospital-code" class="t-row line">
-                    <span class="label-txt"><span class="ico required">必須</span> 病院コード</span>
-                    <input type="text" id="hospital-code" class="form-control mb10" placeholder="病院コード" value="@Model.HospitalCode" maxlength="25" autocomplete="off" />
+                <label for="no" class="t-row line">
+                    <span class="label-txt">
+                        <span class="ico required">必須</span>
+                        病 院
+                    </span>
+                    <select id="no" name="model.LinkageSystemNo" class="form-control" required="required" @(Model.LinkageSystemNo > 0 ? "disabled=\"disabled\"" : string.Empty)>
+                        <option value="0">選択してください</option>
+                        @foreach (var item in Model.HospitalList)
+                        {
+                            <option value="@item.Key" @(item.Key == Model.LinkageSystemNo ? "selected=\"selected\"" : string.Empty)>@item.Value</option>
+                        }
+                    </select>
+                    <section class="section caution mt10 mb0 hide"><h4></h4>アラートエリアです。不要時.hideで消してください。</section>
                 </label>
 
-                <label for="patient-no" class="t-row line">
-                    <span class="label-txt"><span class="ico required">必須</span> 診察券番号</span>
-                    <input type="text" id="patient-no" class="form-control mb10" placeholder="診察券番号" value="@Model.PatientNo" maxlength="25" autocomplete="off" />
+                <label for="id" class="t-row line">
+                    <span class="label-txt">
+                        <span class="ico required">必須</span>
+                        診察券番号/個人番号
+                    </span>
+                    <input type="text" id="id" name="model.LinkageSystemId" class="form-control mb10" placeholder="診察券番号/個人番号" value="@Model.LinkageSystemId" required="required" maxlength="12" autocomplete="off" />
+                    <section class="section caution mt10 mb0 hide"><h4></h4>アラートエリアです。不要時.hideで消してください。</section>
                 </label>
 
                 <div class="t-row line">
-                    <label class="label-txt"><span class="ico required">必須</span> お名前</label>
-                    <input type="text" id="family-name" class="form-control mb10" placeholder="姓" value="@Model.FamilyName" maxlength="25" autocomplete="off" />
-                    <input type="text" id="given-name" class="form-control" placeholder="名" value="@Model.GivenName" maxlength="25" autocomplete="off" />
+                    <label for="family-name" class="label-txt"><span class="ico required">必須</span> お名前</label>
+                    <input type="text" id="family-name" name="model.FamilyName" class="form-control mb10" placeholder="姓" value="@Model.FamilyName" maxlength="25" autocomplete="off" />
+                    <input type="text" id="given-name" name="model.GivenName" class="form-control" placeholder="名" value="@Model.GivenName" maxlength="25" autocomplete="off" />
+                    <section class="section caution mt10 mb0 hide"><h4></h4>アラートエリアです。不要時.hideで消してください。</section>
                 </div>
 
                 <div class="t-row line">
-                    <label class="label-txt"><span class="ico required">必須</span> 生年月日</label>
+                    <label for="family-kana-name" class="label-txt"><span class="ico required">必須</span> お名前（カナ）</label>
+                    <input type="text" id="family-kana-name" name="model.FamilyKanaName" class="form-control mb10" placeholder="セイ" value="@Model.FamilyKanaName" maxlength="25" autocomplete="off" />
+                    <input type="text" id="given-kana-name" name="model.GivenKanaName" class="form-control" placeholder="メイ" value="@Model.GivenKanaName" maxlength="25" autocomplete="off" />
+                    <section class="section caution mt10 mb0 hide"><h4></h4>アラートエリアです。不要時.hideで消してください。</section>
+                </div>
+
+                <label class="t-row line">
+                    <span class="label-txt">
+                        <span class="ico required">必須</span>
+                        性 別
+                    </span>
+                    <p id="sex" style="font-size:16px; padding:10px 12px;" data-value="@Model.SexLabel">@Model.SexLabel</p>
+                </label>
+
+                <div class="t-row line">
+                    <label for="birthday" class="label-txt">
+                        <span class="ico required">必須</span>
+                        生年月日
+                    </label>
                     <p id="birthday" style="font-size:16px; padding:10px 12px;">@Model.BirthDateLabel</p>
+                    <section class="section caution mt10 mb0 hide"><h4></h4>アラートエリアです。不要時.hideで消してください。</section>
                 </div>
+
+                <label for="mail" class="t-row line">
+                    <span class="label-txt"><span class="ico required">必須</span> 連絡先メールアドレス</span>
+                    <input type="text" id="mail" name="model.MailAddress" class="form-control w-max" value="@Model.MailAddress" maxlength="256" autocomplete="off" />
+                    <section class="section caution mt10 mb0 hide"><h4></h4>アラートエリアです。不要時.hideで消してください。</section>
+                </label>
 
                 <div class="t-row">
-                    <label class="label-txt"><span class="ico required">必須</span> 同意確認</label>
+                    <label for="BasicInfo" class="label-txt">
+                        <span class="ico required">必須</span>
+                        開示許可
+                    </label>
                     <div class="wizard-form inline-block link-ico tanita" id="connection-data">
-                        <input id="ConsentFlag" type="checkbox" value="true" @(Model.ConsentFlag ? "checked=\"checked\"" : string.Empty) />
-                        <label for="ConsentFlag">検査・健診情報を取得することに同意する</label>
+                        <input id="BasicInfo" type="checkbox" value="true" @(Model.ShareBasicInfo ? "checked=\"checked\"" : string.Empty) />
+                        <label for="BasicInfo">基本情報</label>
+                        <input id="VitalInfo" type="checkbox" value="true" @(Model.ShareVitalInfo ? "checked=\"checked\"" : string.Empty) />
+                        <label for="VitalInfo">バイタル情報</label>
+                        <input id="MedicineInfo" type="checkbox" value="true" @(Model.ShareMedicineInfo ? "checked=\"checked\"" : string.Empty) />
+                        <label for="MedicineInfo">お薬情報</label>
+                        <input id="ExaminationInfo" type="checkbox" value="true" @(Model.ShareExaminationInfo ? "checked=\"checked\"" : string.Empty) />
+                        <label for="ExaminationInfo">検査・健診情報</label>
+                        <input id="MealInfo" type="checkbox" value="true" @(Model.ShareMealInfo ? "checked=\"checked\"" : string.Empty) />
+                        <label for="MealInfo">食事情報</label>
                     </div>
                 </div>
 
-
+                <section id="summary-cation" class="section caution mt10 mb0 hide"><h4></h4>アラートエリアです。不要時.hideで消してください。</section>
                 <p class="submit-area mb30">
-                    <a id="request" href="javascript:void(0);" class="btn btn-submit" data-hospitalname="@Model.HospitalName">確 認</a>
+                    <a href="javascript:void(0);" id="reconnection" class="btn btn-submit">申 請</a>
                 </p>
             </div>
         </section>
 
-        <div class="modal fade" id="confirm-modal" tabindex="-1" data-backdrop="static" data-keyboard="false">
+        <div class="modal fade" id="identity-modal" tabindex="-1" data-backdrop="static" data-keyboard="false" data-row-no="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close"><span>×</span></button>
-                        <h4 class="modal-title">確認</h4>
+                        <h4 class="modal-title">更新の確認</h4>
                     </div>
-                    <div class="modal-body">病院連携の完了画面へ移動します。よろしいですか？</div>
+                    <div class="modal-body">
+                        入力された個人情報が登録と一致しませんでした。個人情報更新しますか？
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-close no-ico mb0">閉じる</button>
-                        <button type="button" class="btn btn-delete mb0" style=" padding: 9px 18px; height: auto;">進 む</button>
+                        <button type="button" class="btn btn-submit">更 新</button>
                     </div>
                 </div>
             </div>

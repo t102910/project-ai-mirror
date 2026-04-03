@@ -16,67 +16,111 @@
         </section>
 
         <section class="contents-area mb0">
-            <h2 class="title">病院連携</h2>
+            <h2 class="title">@(Model.HospitalName)連携</h2>
             <hr>
 
-            <section class="section default">
-                医療機関と連携すると、検査・健診情報がある場合に閲覧いただけるようになります。<br />
-                この画面では病院連携のモックUIのみ確認できます。
-            </section>
-
             <section class="section center">
-                @if (Model.MockConnectedFlag)
+                @if (Model.StatusType == 1)
+                {
+                    <span class="ico line"><i class="la la-clock-o la-lg"></i> 連携承認待ち</span>
+                }
+                else if (Model.StatusType == 2)
                 {
                     <span class="ico main"><i class="la la-check-circle-o"></i> 連携済み</span>
                 }
-                else
+                else if (Model.StatusType == 3)
                 {
-                    <span class="ico line">未連携</span>
+                    <span class="ico line mb10"><i class="la la-times"></i> 承認不可</span>
+                    if (!string.IsNullOrWhiteSpace(Model.DisapprovedReason))
+                    {
+                        <p>@Model.DisapprovedReason</p>
+                    }
                 }
             </section>
-
-            <h3 class="title">連携先</h3>
-            <p class="mb20"><span class="ico line">@Model.HospitalName</span></p>
-
-            @if (Model.MockConnectedFlag && !string.IsNullOrWhiteSpace(Model.PatientNo))
-            {
-                <h3 class="title">登録情報</h3>
-                <p class="mb20"><span class="ico line">診察券番号: @Model.PatientNo</span></p>
-            }
-
-            <h3 class="title">受け取る情報</h3>
-            <p class="mb40">
-                @if (Model.ExaminationConnectedFlag)
-                {
-                    <span class="ico line">検査・健診情報</span>
-                }
-            </p>
-
-            @if (Model.MockConnectedFlag)
-            {
-                <div class="submit-area">
-                    <a href="javascript:void(0);" id="delete" class="btn btn-close" data-hospitalname="@Model.HospitalName">連携を解除する</a>
-                </div>
-            }
-            else
-            {
-                <div class="submit-area">
-                    <a href="../Integration/HospitalConnectionRequest?fromPageNo=@Convert.ToByte(Model.FromPageNoType)&hospitalName=@Uri.EscapeDataString(Model.HospitalName)" class="btn btn-submit">申請する</a>
-                </div>
-            }
         </section>
 
-        <div class="modal fade" id="delete-modal" tabindex="-1" data-backdrop="static" data-keyboard="false">
+        <section class="contents-area">
+            <h3 class="title">受け取る情報</h3>
+            <p class="mb40">
+                <span class="ico line">健診情報</span>
+            </p>
+            <h3 class="title">開示する情報</h3>
+            <p class="mb40">
+                @if (Model.ShareBasicInfo) { <span class="ico line">基本情報</span> }
+                @if (Model.ShareVitalInfo) { <span class="ico line">バイタル情報</span> }
+                @if (Model.ShareMedicineInfo) { <span class="ico line">お薬情報</span> }
+                @if (Model.ShareExaminationInfo) { <span class="ico line">検査・健診情報</span> }
+                @if (Model.ShareMealInfo) { <span class="ico line">食事情報</span> }
+            </p>
+        </section>
+
+        @if (Model.StatusType == 1)
+        {
+            <section class="contents-area">
+                <h3 class="title mt10"><span>申請を編集する</span></h3>
+                <p class="mb20">連携申請内容を編集します。</p>
+                <section class="section caution mt10 mb10 hide"><h4></h4>アラートエリアです。不要時.hideで消してください。</section>
+                <p class="submit-area">
+                    <a href="javascript:void(0);" id="edit" class="btn btn-submit" data-no="@Model.LinkageSystemNo">編集する</a>
+                </p>
+                <h3 class="title mt10"><span>申請を取り消す</span></h3>
+                <p class="mb20">病院への連携申請が取り消されます。<br />ご注意下さい。</p>
+                <section class="section caution mt10 mb10 hide"><h4></h4>アラートエリアです。不要時.hideで消してください。</section>
+                <p class="submit-area">
+                    <a href="javascript:void(0);" id="cancel" class="btn btn-delete request" data-no="@Model.LinkageSystemNo">取り消す</a>
+                </p>
+            </section>
+        }
+        else if (Model.StatusType == 2)
+        {
+            <section class="contents-area">
+                <p class="submit-area">
+                    <a href="javascript:void(0);" id="edit" class="btn btn-submit" data-no="@Model.LinkageSystemNo">編集する</a>
+                </p>
+                <div class="mb100">
+                    <h3 class="title mt10"><span>病院連携を解除する</span></h3>
+                    <p class="mb20">
+                        連携を解除すると連携した病院の健診データが閲覧できなくなります。<br />
+                        ご注意下さい。
+                    </p>
+                    <section class="section caution mt10 mb10 hide"><h4></h4>アラートエリアです。不要時.hideで消してください。</section>
+                    <p class="submit-area">
+                        <a href="javascript:void(0);" id="cancel" class="btn btn-delete" data-no="@Model.LinkageSystemNo">解除する</a>
+                    </p>
+                </div>
+            </section>
+        }
+
+        <div class="modal fade" id="delete-modal" tabindex="-1" data-backdrop="static" data-keyboard="false" data-row-no="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close"><span>×</span></button>
-                        <h4 class="modal-title">連携解除の確認</h4>
+                        <h4 class="modal-title">確認</h4>
                     </div>
-                    <div class="modal-body">病院連携のモック状態を解除して申請画面へ戻ります。よろしいですか？</div>
+                    <div class="modal-body">
+                        病院との連携を解除しますか？
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-close no-ico mb0">閉じる</button>
-                        <button type="button" class="btn btn-delete mb0" style=" padding: 9px 18px; height: auto;">解 除</button>
+                        <button type="button" class="btn btn-delete">解除する</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="info-modal" tabindex="-1" data-backdrop="static" data-keyboard="false" data-row-no="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"><span>×</span></button>
+                        <h4 class="modal-title">お知らせ</h4>
+                    </div>
+                    <div class="modal-body">
+                        エラーメッセージが入ります
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-close no-ico mb0">閉じる</button>
                     </div>
                 </div>
             </div>

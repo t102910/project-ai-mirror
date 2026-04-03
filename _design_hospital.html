@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+
+<html lang="ja" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<meta name="format-detection" content="telephone=no">
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta name="ROBOTS" content="NOINDEX,NOFOLLOW,NOARCHIVE" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>JOTOホームドクター - 病院連携申請</title>
+<link rel="stylesheet" href="/dist/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="/dist/css/styles.min.css" type="text/css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+<script src="https://use.typekit.net/tpf8tba.js"></script> 
+<script>try { Typekit.load({ async: true }); } catch (e) { }</script>
+</head>
+
+<body id="gulf-cont" class="lower gulf">
+<input name="__RequestVerificationToken" type="hidden" value="AIaHgpS0Cwzzb7pLCqKXN8FzldRNr-Q7EgWNPMqEbbusw6TIcFmEWi_syzd7oWsrnAqCONggfZleHtX-jxHHcXyeYhrhdQjDIjhQemVNpOl39OJqv-ij5-bD0Zdw5Ucb0" />
+<main id="main-cont" class="clearfix" role="main">
+	<section class="home-btn-wrap" data-pageno="1">
+		<a href="../Portal/Home" class="home-btn"><i class="la la-angle-left"></i></a>
+	</section>
+	<section class="contents-area mb100">
+		<h2 class="title">病院連携申請</h2>
+		<hr>
+		<div>
+			<section class="section default"> 2025/4より、診察券番号は8桁から12桁に変更になりました。<br />
+				登録済みの8桁の診察券番号は、前に0を追加して12桁にしています。<br />
+				病院にデータ連携の申請をします。<br />
+				連携申請を行うと、病院側へアプリ内の各種データが開示されます。 </section>
+			<h3 class="title mt10"> <span> 連携情報</span> </h3>
+			<div class="form wizard-form mb30">
+				<label for="input1" class="t-row line">
+				<span class="label-txt"> <span class="ico required">必須</span> 病 院 </span>
+				<select id="no" name="model.LinkageSystemNo" class="form-control" required="required" disabled>
+					<option value="0">選択してください</option>
+					<option value="47000016" selected>北部地区医師会病院</option>
+				</select>
+				<section class="section caution mt10 mb0 hide">
+					<h4>
+					</h4>
+					アラートエリアです。不要時.hideで消してください。</section>
+				</label>
+				<label for="id" class="t-row line">
+				<span class="label-txt"> <span class="ico required">必須</span> 診察券番号/個人番号 </span>
+				<input type="text" id="id" name="model.LinkageSystemId" class="form-control mb10" placeholder="診察券番号/個人番号" value="202504160000" required="required" maxlength="12" style="ime-mode:active;" autocomplete="off" >
+				<section class="section caution mt10 mb0 hide">
+					<h4>
+					</h4>
+					アラートエリアです。不要時.hideで消してください。</section>
+				</label>
+				<div class="t-row line">
+					<label for="name" class="label-txt"><span class="ico required">必須</span> お名前</label>
+					<input type="text" id="family-name" name="model.FamilyName" class="form-control mb10" placeholder="姓" value="検証" required="required" maxlength="25" style="ime-mode:active;" autocomplete="off" >
+					<input type="text" id="given-name" name="model.GivenName" class="form-control" placeholder="名" value="たかはし" required="required" maxlength="25" style="ime-mode:active;" autocomplete="off" >
+					<section class="section caution mt10 mb0 hide">
+						<h4></h4>
+						アラートエリアです。不要時.hideで消してください。</section>
+				</div>
+				<div class="t-row line">
+					<label for="222" class="label-txt"><span class="ico required">必須</span> お名前（カナ）</label>
+					<input type="text" id="family-kana-name" name="model.FamilyKanaName" class="form-control mb10 disabled" placeholder="セイ" value="ケンショウ" required="required" maxlength="25" style="ime-mode:active;" autocomplete="off" >
+					<input type="text" id="given-kana-name" name="model.GivenKanaName" class="form-control" placeholder="メイ" value="タカハシ" required="required" maxlength="25" style="ime-mode:active;" autocomplete="off" >
+					<section class="section caution mt10 mb0 hide">
+						<h4></h4>
+						アラートエリアです。不要時.hideで消してください。</section>
+				</div>
+				<label for="sex" class="t-row line">
+				<span class="label-txt"> <span class="ico required">必須</span> 性 別 </span>
+				<p id="sex" name="model.SexType" style="font-size:16px; padding:10px 12px;" data-value="Male">男性</p>
+				</label>
+				<div class="t-row line">
+					<label for="birth-year" class="label-txt"> <span class="ico required">必須</span> 生年月日 </label>
+					<p id="birthday" name="model.SexType" style="font-size:16px; padding:10px 12px;" data-birthyear="2000" data-birthmonth="11" data-birthday="3">2000年 11月 3日 </p>
+					<section class="section caution mt10 mb0 hide">
+						<h4></h4>
+						アラートエリアです。不要時.hideで消してください。</section>
+				</div>
+				<label for="mail" class="t-row line">
+				<span class="label-txt"><span class="ico required">必須</span> 連絡先メールアドレス</span>
+				<input type="text" id="mail" name="model.MailAddress" class="form-control w-max" value="yukari_takahashi@mgfactory.co.jp" required="required" maxlength="256" style="ime-mode:disabled;" autocomplete="off" >
+				<section class="section caution mt10 mb0 hide">
+					<h4>
+					</h4>
+					アラートエリアです。不要時.hideで消してください。</section>
+				</label>
+				<div class="t-row">
+					<label for="input2" class="label-txt"> <span class="ico required">必須</span> 開示許可 </label>
+					<div class="wizard-form inline-block link-ico tanita" id="connection-data">
+						<input id="Information" type="checkbox" name="" value="true" checked data-content="1">
+						<label for="Information">基本情報</label>
+						<input id="Vital" type="checkbox" name="" value="true" checked data-content="2">
+						<label for="Vital">バイタル情報</label>
+						<input id="Medicine" type="checkbox" name="" value="true" checked data-content="4">
+						<label for="Medicine">お薬情報</label>
+						<input id="Examination" type="checkbox" name="" value="true" checked data-content="8">
+						<label for="Examination">検査・健診情報</label>
+						<input id="Meal" type="checkbox" name="" value="true" checked data-content="128">
+						<label for="Meal">食事情報</label>
+					</div>
+				</div>
+				<section id="summary-cation" class="section caution mt10 mb0 hide">
+					<h4></h4>
+					アラートエリアです。不要時.hideで消してください。</section>
+				<p class="submit-area mb30"> <a href="javascript:void(0);" id="reconnection" class="btn btn-submit">申 請</a> </p>
+			</div>
+		</div>
+	</section>
+	<!-- 「個人情報更新の確認」ダイアログ -->
+	<div class="modal fade" id="identity-modal" tabindex="-1" data-backdrop="static" data-keyboard="false" data-row-no="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close"><span>×</span></button>
+					<h4 class="modal-title">更新の確認</h4>
+				</div>
+				<div class="modal-body"> 入力された個人情報が登録と一致しませんでした。個人情報更新しますか？ </div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-close no-ico mb0">閉じる</button>
+					<button type="button" class="btn btn-submit">更 新</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+<div id="white-out" class="hide">
+	<div class="loader"> </div>
+	<div id="progress-area">
+		<div class="progress progress-striped">
+			<div class="progress-bar progress-bar-warning active" style="width: 100%"></div>
+			<!-- styleを動的に書き換えるとアニメーションします。 --> 
+		</div>
+		<span>100%</span>進行中…<!-- ここも同じ値を --> 
+	</div>
+	<p id="text-area"></p>
+</div>
+<section id="topbtn" class="hide topbtn__wrap"> <a href="#" class="topbtn"></a> </section>
+<script type="text/javascript" src="/dist/js/bootstrap.bundle.js"></script>
+<script type="text/javascript" src="/dist/js/spc.lib.min.js"></script>
+<script type="text/javascript" src="/dist/js/spc.util.min.js"></script>
+</body>
+</html>

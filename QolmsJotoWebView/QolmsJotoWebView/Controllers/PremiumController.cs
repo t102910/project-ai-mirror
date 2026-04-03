@@ -71,6 +71,39 @@ namespace MGF.QOLMS.QolmsJotoWebView
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken(Order = int.MaxValue)]
+        [QjAuthorize]
+        [QyApiAuthorize]
+        public ActionResult UnsubscribeResult()
+        {
+            var mainModel = this.GetQolmsJotoModel();
+            var repo = new Repositories.PremiumRepository();
+
+            // 現在のプレミアム会員情報を取得
+            var premiumInfo = repo.GetPremiumInfo(
+                mainModel.ApiExecutor,
+                mainModel.ApiExecutorName,
+                mainModel.SessionId,
+                mainModel.ApiAuthorizeKey,
+                mainModel.AuthorAccount.AccountKey
+            );
+
+            // TODO: PayJP サブスクリプションキャンセル処理（別途実装）
+
+            // プレミアム会員退会処理（DB レコード更新）
+            repo.CancelPremium(
+                mainModel.ApiExecutor,
+                mainModel.ApiExecutorName,
+                mainModel.SessionId,
+                mainModel.ApiAuthorizeKey,
+                mainModel.AuthorAccount.AccountKey,
+                premiumInfo
+            );
+
+            return RedirectToAction(nameof(LightMember));
+        }
+
         #endregion
 
         #region 「プレミアム会員登録（お支払い方法）」画面

@@ -18,10 +18,15 @@
                 </p>
             </div>
 
-            <div class="submit-area two-pane">
-                <a class="btn btn-default js-unsubscribe-noop" href="javascript:void(0);">戻る</a>
-                <a class="btn btn-submit js-unsubscribe-noop" href="javascript:void(0);">プレミアム会員を解約する</a>
-            </div>
+            <a class="btn btn-default" href="@Url.Action("PremiumMember", "Premium")">戻る</a>
+
+            @using (Html.BeginForm("UnsubscribeResult", "Premium", FormMethod.Post, new { id = "unsubscribe-form" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="submit-area">
+                    <a class="btn btn-submit js-unsubscribe-submit" href="javascript:void(0);">プレミアム会員を解約する</a>
+                </div>
+            }
         </section>
     </main>
 

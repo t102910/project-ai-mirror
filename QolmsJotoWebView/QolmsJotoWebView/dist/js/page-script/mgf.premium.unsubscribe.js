@@ -2,18 +2,20 @@
 mgf.premium.unsubscribe = mgf.premium.unsubscribe || {};
 
 mgf.premium.unsubscribe = (function () {
-    function noop() {
-        return false;
+    function submitUnsubscribe() {
+        mgf.premium.promiseLockScreen($("#unsubscribe-form")).then(function () {
+            this.submit();
+        });
     }
 
-    $("main").on("click", ".js-unsubscribe-noop", function (event) {
+    $("main").on("click", ".js-unsubscribe-submit", function (event) {
         event.preventDefault();
-        noop();
+        submitUnsubscribe();
     });
 
     mgf.prohibitHistoryBack();
 
     return {
-        noop: noop
+        submitUnsubscribe: submitUnsubscribe
     };
 })();

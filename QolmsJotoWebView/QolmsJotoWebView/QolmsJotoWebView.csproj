@@ -767,6 +767,10 @@
     <Content Include="Views\Shared\_IntegrationLayout.cshtml" />
     <Content Include="Views\Point\Terms.cshtml" />
     <Content Include="Views\Portal\ConnectionSetting.cshtml" />
+    <Content Include="Views\Portal\MedicalPayment.cshtml" />
+    <Content Include="Views\Portal\MedicalPaymentFaq.cshtml" />
+    <Content Include="Views\Portal\MedicalPaymentInfo.cshtml" />
+    <Content Include="Views\Portal\MedicalPaymentFlow.cshtml" />
     <Content Include="Views\Premium\Agreement.cshtml" />
     <Content Include="Views\Premium\CardInfo.cshtml" />
     <Content Include="Views\Premium\LightMember.cshtml" />

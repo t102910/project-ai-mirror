@@ -1,8 +1,6 @@
 ﻿@{
     ViewData["Title"] = "医療費あと払い";
     Layout = "~/Views/Shared/_PortalLayout.cshtml";
-
-    string myPageUrl = "https://mcs-mem.mdcom.jp/wms/mypage/login";
 }
 
 <body id="pay-later" class="lower">
@@ -13,43 +11,44 @@
             <a href="../Portal/Home" class="home-btn"><i class="la la-angle-left"></i></a>
         </section>
 
-        <section class="contents-area">
+        <section class="contents-area mb0">
             <h2 class="title">医療費あと払い</h2>
             <hr>
 
-            <p class="center mb20">
-                <img src="~/dist/img/pay-later/logo.png" alt="医療費あと払い" class="max-image pay-later-logo">
-            </p>
-
-            <a href="@myPageUrl" class="img-link">
+            <a href="https://mcs-mem.mdcom.jp/wms/mypage/login" target="_blank" class="img-link">
+                <img src="/dist/img/pay-later/logo.png" alt="医療費あと払い" />
                 マイページ
-                <span class="small">利用状況・家族会員登録など</span>
+                <span class="small">（利用状況・家族会員登録など）</span>
             </a>
 
-            <a href="javascript:void(0);" class="img-link">
-                新規申し込みはこちらから
-                <span class="small">画面モックのため申込処理は未実装です</span>
-            </a>
-
-            <p class="center mb20">
-                <a href="@Url.Action("MedicalPaymentInfo", "Portal")" class="btn btn-submit block">医療費あと払いとは</a>
-                <a href="@Url.Action("MedicalPaymentFaq", "Portal")" class="btn btn-submit block">よくあるご質問</a>
+            <p class="center mb30">
+                <a href="">新規申し込みはこちらから</a>
             </p>
 
+            <a href="@Url.Action("MedicalPaymentInfo", "Portal")" class="btn btn-link block mb20">
+                医療費あと払いとは
+            </a>
+            <a href="@Url.Action("MedicalPaymentFaq", "Portal")" class="btn btn-link block mb20">
+                よくあるご質問
+            </a>
+
+            <h3 class="title">
+                医療費あと払い お客様窓口
+            </h3>
+
             <section class="section default">
-                <h3 class="title">医療費あと払い お客様窓口</h3>
-                <p>
-                    お客さま窓口は「金額確認」及び「あと払い」のご利用方法についての窓口です。<br>
-                    診療内容についてはご利用の医療機関にお問い合わせください。
-                </p>
+                お客さま窓口は「金額確認」及び「あと払い」のご利用方法についての窓口です。診療内容についてはご利用の医療機関にお問い合わせください。
             </section>
 
-            <a href="tel:0120-515-851" class="tel-link">0120-515-851</a>
+            <a href="tel:0120-515-851" class="tel-link">
+                <i class="la la-phone"></i>0120-515-851
+            </a>
 
-            <section class="section default">
-                受付時間 9:00〜17:00（土・日・祝祭日・年末年始除く）<br>
+            <p class="center">
+                <span class="small">受付時間 9:00~17:00</span>
+                <strong>（土・日・祝祭日・年末年始除く）</strong><br>
                 株式会社エムイーエックステクノロジーズ
-            </section>
+            </p>
         </section>
     </main>
 

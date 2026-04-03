@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_PortalLayout.cshtml";
 }
 
-<body id="pay-later" class="lower">
+<body id="pay-later-info" class="lower">
     @Html.AntiForgeryToken()
 
     <main id="main-cont" class="clearfix" role="main">
@@ -12,52 +12,46 @@
         </section>
 
         <section class="contents-area">
-            <h2 class="title">医療費あと払いとは</h2>
-            <hr>
+            <div id="contents-wrap">
+                <h2 class="title relative"> 医療費あと払いとは </h2>
+                <hr>
 
-            <p class="center mb20">
-                <img src="~/dist/img/pay-later/info-logo.png" alt="医療費あと払いとは" class="max-image pay-later-logo">
-            </p>
+                <p class="center mb10"><img class="pay-later-logo" src="/dist/img/pay-later/info-logo.png" alt="医療費あと払いとは" /></p>
+                <p class="mb20">対象の病院での医療費を「あと払い」にすることで受診後に会計を待たずにお帰りいただけるサービスです</p>
 
-            <section class="section default">
-                <p>
-                    対象の病院での医療費を「あと払い」にすることで受診後に会計を待たずにお帰りいただけるサービスです。
+                <h3 class="title mt10"><span>メリット</span></h3>
+
+                <h4 class="point-title"><i class="num">1</i><span>受診後会計持ち無しで帰れる</span></h4>
+                <p class="center"><img class="w300" src="/dist/img/pay-later/info-1.png" alt="受診後会計持ち無しで帰れる" /></p>
+                <p class="mb20">
+                    病院の待ち時間、少しでも減らしたいと思ったことありませんか？<br>
+                    <strong class="high-light">「医療費あと払い」を使えば、会計の待ち時間をなくすことができます。</strong><br>
+                    だから、診察後すぐ帰れるんです。
                 </p>
-            </section>
 
-            <section class="section default">
-                <h3 class="title">メリット</h3>
+                <hr class="mb20">
 
-                <div class="mb20">
-                    <h4 class="sub-title"><span class="num">1</span> 受診後 会計待ち無しで帰れる</h4>
-                    <p class="center mb10">
-                        <img src="~/dist/img/pay-later/info-1.png" alt="受診後 会計待ち無しで帰れる" class="max-image">
-                    </p>
-                    <p>
-                        病院の待ち時間、少しでも減らしたいと思ったことありませんか？「医療費あと払い」を使えば、会計の待ち時間をなくすことができます。だから、診察後すぐ帰れるんです。
-                    </p>
-                </div>
+                <h4 class="point-title"><i class="num">2</i><span>通院時必要なのは診察券のみ</span></h4>
+                <p class="center"><img class="w300" src="/dist/img/pay-later/info-2.png" alt="通院時必要なのは診察券のみ" /></p>
+                <p class="mb20">
+                    通院時、必要なのは診察券だけ<br>
+                    会計をする必要がないのでお財布いらず。<br>
+                    <strong class="high-light">診察券さえあれば通院が可能になります。</strong>
+                </p>
 
-                <div class="mb20">
-                    <h4 class="sub-title"><span class="num">2</span> 通院時 必要なのは診察券のみ</h4>
-                    <p class="center mb10">
-                        <img src="~/dist/img/pay-later/info-2.png" alt="通院時 必要なのは診察券のみ" class="max-image">
-                    </p>
-                    <p>
-                        会計をする必要がないのでお財布いらず。診察券さえあれば通院が可能になります。
-                    </p>
-                </div>
+                <hr class="mb20">
 
-                <div class="mb20">
-                    <h4 class="sub-title"><span class="num">3</span> ご家族の分もまとめてお支払いできる</h4>
-                    <p class="center mb10">
-                        <img src="~/dist/img/pay-later/info-3.png" alt="ご家族の分もまとめてお支払いできる" class="max-image">
-                    </p>
-                    <p>
-                        会員登録をした本人だけではなく家族の分もまとめてお支払いいただけます。
-                    </p>
-                </div>
-            </section>
+                <h4 class="point-title"><i class="num">3</i><span>ご家族の分もまとめてお支払いできる</span></h4>
+                <p class="center"><img class="w300" src="/dist/img/pay-later/info-3.png" alt="ご家族の分もまとめてお支払いできる" /></p>
+                <p class="mb20">
+                    家族の分もまとめて支払える<br>
+                    <strong class="high-light">会員登録をした本人だけではなく家族の分もまとめてお支払い。</strong>
+                </p>
+
+                <p class="center">
+                    <a href="@Url.Action("MedicalPaymentFlow", "Portal")" class="btn btn-link block">ご利用の流れ</a>
+                </p>
+            </div>
         </section>
     </main>
 

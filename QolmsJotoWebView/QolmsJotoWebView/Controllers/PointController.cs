@@ -402,9 +402,10 @@ namespace MGF.QOLMS.QolmsJotoWebView
         #endregion
 
         #region "「Auポイントポイント交換」画面"
+
         [HttpGet()]
         [QjAuthorize()]
-        [QjApiAuthorize()]
+        [QyApiAuthorize()]
         [QjLogging()]
         public ActionResult AuPoint(byte? fromPageNo)
         {
@@ -422,7 +423,7 @@ namespace MGF.QOLMS.QolmsJotoWebView
         [QjAjaxOnly()]
         [QjAuthorize(true)]
         [ValidateAntiForgeryToken(Order = int.MaxValue)]
-        [QjApiAuthorize()]
+        [QyApiAuthorize()]
         [QjLogging()]
         public ActionResult AuPointResult(int itemid)
         {
@@ -461,7 +462,6 @@ namespace MGF.QOLMS.QolmsJotoWebView
             }
         }
 
-
         #endregion
 
         #region オンラインストアポイント交換 画面
@@ -472,10 +472,10 @@ namespace MGF.QOLMS.QolmsJotoWebView
         [QjLogging]
         public ActionResult OnlineStore(byte? fromPageNo)
         {
-            //QyPageNoTypeEnum fromPageNoType = QyPageNoTypeEnum.None;
+            //QjPageNoTypeEnum fromPageNoType = QjPageNoTypeEnum.None;
             //if (fromPageNo.HasValue)
             //{
-            //    fromPageNoType = fromPageNo.ToString().TryToValueType(QyPageNoTypeEnum.None);
+            //    fromPageNoType = fromPageNo.ToString().TryToValueType(QjPageNoTypeEnum.None);
             //}
             var worker = new PointOnlineStoreWorker(new PointRepository(), new OnlineStoreCouponRepository());
 
@@ -486,7 +486,7 @@ namespace MGF.QOLMS.QolmsJotoWebView
         [QjAjaxOnly]
         [QjAuthorize(true)]
         [ValidateAntiForgeryToken(Order = int.MaxValue)]
-        [QyApiAuthorize]
+        [QjApiAuthorize]
         [QjLogging]
         public ActionResult OnlineStoreResult(byte couponType)
         {
@@ -529,13 +529,69 @@ namespace MGF.QOLMS.QolmsJotoWebView
         #region "データチャージ画面"
 
         [HttpGet()]
-        //[QjAuthorize()]
-        //[QyApiAuthorize()]
-        //[OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
-        //[QjLogging()]
-        public ActionResult Datacharge()
+        [QjAuthorize()]
+        [QjApiAuthorize()]
+        [QjLogging()]
+        public ActionResult Datacharge(byte? fromPageNo)
         {
-            return View();
+            //QjPageNoTypeEnum fromPageNoType = QjPageNoTypeEnum.None;
+            //if (fromPageNo.HasValue)
+            //    fromPageNoType = fromPageNo.ToString().TryToValueType(QjPageNoTypeEnum.None);
+            var worker = new PointDatachargeWorker(new PointRepository(), new DatachargeRepository());
+
+            PointDatachargeViewModel viewModel = worker.CreateViewModel(this.GetQolmsJotoModel());
+            string path = this.HttpContext.Server.MapPath("~/App_Data/DatachargeDescription.txt");
+            string str = string.Empty;
+
+            if (!string.IsNullOrWhiteSpace(path) && System.IO.File.Exists(path))
+            {
+                str = System.IO.File.ReadAllText(path);
+            }
+
+            viewModel.Description = str;
+
+            return View(viewModel);
+        }
+
+        [HttpPost()]
+        [QjAjaxOnly()]
+        [QjAuthorize(true)]
+        [ValidateAntiForgeryToken(Order = int.MaxValue)]
+        [QjApiAuthorize()]
+        [QjLogging()]
+        public JsonResult DatachargeResult(int capacity)
+        {
+            try
+            {
+                var worker = new PointDatachargeWorker(new PointRepository(), new DatachargeRepository());
+                // データチャージ呼び出す
+                if (worker.Charge(this.GetQolmsJotoModel(), capacity))
+                {
+                    return new MessageJsonResult()
+                    {
+                        Message = HttpUtility.HtmlEncode("チャージが完了しました。"),
+                        IsSuccess = bool.TrueString
+                    }.ToJsonResult();
+                }
+                else
+                {
+                    // ここに返ってくることはないはず
+                    return new MessageJsonResult()
+                    {
+                        Message = HttpUtility.HtmlEncode("チャージが失敗しました。"),
+                        IsSuccess = bool.FalseString
+                    }.ToJsonResult();
+                }
+            }
+            catch (Exception ex)
+            {
+                AccessLogWorker.WriteAccessLog(this.HttpContext, string.Empty, AccessLogWorker.AccessTypeEnum.Error, string.Format(ex.Message));
+                return new MessageJsonResult()
+                {
+                    Message = HttpUtility.HtmlEncode("チャージが失敗しました。"),
+                    IsSuccess = bool.FalseString
+                }.ToJsonResult();
+            }
         }
 
         #endregion

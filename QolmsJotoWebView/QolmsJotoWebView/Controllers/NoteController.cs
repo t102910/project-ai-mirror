@@ -571,9 +571,9 @@ namespace MGF.QOLMS.QolmsJotoWebView
         /// アクションの結果。
         /// </returns>
         [HttpGet]
-        [QjAuthorize]
-        [QjApiAuthorize]
-        [QjLogging]
+        //[QjAuthorize]
+        //[QjApiAuthorize]
+        //[QjLogging]
         public ActionResult GulfSportsMovieIndex()
         {
             // ビューを返却
@@ -588,9 +588,9 @@ namespace MGF.QOLMS.QolmsJotoWebView
         /// アクションの結果。
         /// </returns>
         [HttpGet]
-        [QjAuthorize]
-        [QjApiAuthorize]
-        [QjLogging]
+        //[QjAuthorize]
+        //[QjApiAuthorize]
+        //[QjLogging]
         public ActionResult GulfSportsMovie(string movieType)
         {
             byte movieTypeValue;

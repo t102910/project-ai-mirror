@@ -232,6 +232,17 @@ namespace MGF.QOLMS.QolmsJotoWebView
         /// </summary>
         public static int PointServiceno => GetConfiguration(Config_PointServiceno_KeyName, Config_PointServiceno_DefaultValue);
 
+        /// <summary>
+        /// 交換エラーでメールを送る
+        /// </summary>
+        private const string Config_IsSendMailPointExcange_KeyName = "IsSendMailPointExcange";
+        private const string Config_IsSendMailPointExcange_DefaultValue = "false";
+
+        /// <summary>
+        /// エラーでメールを送るかどうかを取得します。
+        /// </summary>
+        public static string IsSendMailPointExcange => GetConfiguration(Config_IsSendMailPointExcange_KeyName, Config_IsSendMailPointExcange_DefaultValue);
+
         #endregion
 
         #region Pontaポイント
@@ -293,6 +304,43 @@ namespace MGF.QOLMS.QolmsJotoWebView
 
         #endregion
 
+        #region データチャージ
+
+        /// <summary>
+        /// 加盟店ID
+        /// </summary>
+        private const string Config_AuPaymentKameitenId_KeyName = "AuPaymentKameitenId";
+        private const string Config_AuPaymentKameitenId_DefaultValue = "";
+
+        /// <summary>
+        /// 加盟店IDを取得します。
+        /// </summary>
+        public static string AuPaymentKameitenId => GetConfiguration(Config_AuPaymentKameitenId_KeyName, Config_AuPaymentKameitenId_DefaultValue);
+
+        /// <summary>
+        /// 要求URI
+        /// </summary>
+        private const string Config_AuDatachargeUri_KeyName = "AuDatachargeUri";
+        private const string Config_AuDatachargeUri_DefaultValue = "";
+
+        /// <summary>
+        /// 要求URIを取得します。
+        /// </summary>
+        public static string AuDatachargeUri => GetConfiguration(Config_AuDatachargeUri_KeyName, Config_AuDatachargeUri_DefaultValue);
+
+        /// <summary>
+        /// テストサーバーの仮想日
+        /// </summary>
+        private const string Config_AuPaymentTestServerVirtualDate_KeyName = "AuPaymentTestServerVirtualDate";
+        private const string Config_AuPaymentTestServerVirtualDate_DefaultValue = "";
+
+        /// <summary>
+        /// テストサーバーの仮想日を取得します。
+        /// </summary>
+        public static string AuPaymentTestServerVirtualDate => GetConfiguration(Config_AuPaymentTestServerVirtualDate_KeyName, Config_AuPaymentTestServerVirtualDate_DefaultValue);
+
+        #endregion
+
         #region ぎのわん
 
 
@@ -308,8 +356,6 @@ namespace MGF.QOLMS.QolmsJotoWebView
         public static string GinowanApplyUrl => GetConfiguration(Config_GinowanApplyUrl_KeyName, Config_GinowanApplyUrl_DefaultValue);
 
         #endregion
-
-
 
         #region "Private Method"
         /// <summary>

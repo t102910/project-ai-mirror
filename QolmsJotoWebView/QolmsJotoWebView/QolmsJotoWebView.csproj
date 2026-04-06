@@ -317,10 +317,11 @@
     <Compile Include="Models\ViewModels\IntegrationHospitalConnectionRequestViewModel.cs" />
     <Compile Include="Models\ViewModels\IntegrationHospitalConnectionViewModel.cs" />
     <Compile Include="Models\ViewModels\IntegrationTanitaConnectionViewModel.cs" />
+    <Compile Include="Models\ViewModels\NoteGulfSportsMovieViewModel.cs" />
     <Compile Include="Models\ViewModels\NoteMeal2InputModel.cs" />
     <Compile Include="Models\ViewModels\PointAmazonGiftCardViewModel.cs" />
     <Compile Include="Models\ViewModels\PointAuWalletPointExchangeViewModel.cs" />
-    <Compile Include="Models\ViewModels\PointDatacharge.cs" />
+    <Compile Include="Models\ViewModels\PointDatachargeViewModel.cs" />
     <Compile Include="Models\ViewModels\PointOnlineStoreViewModel.cs" />
     <Compile Include="Models\ViewModels\PortalLocalIdVerificationAgreementViewModel.cs" />
     <Compile Include="Models\ViewModels\PortalLocalIdVerificationDetailViewModel.cs" />
@@ -328,6 +329,7 @@
     <Compile Include="Repositories\AmazonGiftCardRepository.cs" />
     <Compile Include="Repositories\ExaminationRepository.cs" />
     <Compile Include="Repositories\HealthAgeRepository.cs" />
+    <Compile Include="Repositories\IDatachargeRepository.cs" />
     <Compile Include="Repositories\JmdcHealthAgeApiRepository.cs" />
     <Compile Include="Repositories\LinkageRepository.cs" />
     <Compile Include="Repositories\LocalIdVerificationRepository.cs" />
@@ -350,6 +352,7 @@
     <Compile Include="Workers\LoginWorker.cs" />
     <Compile Include="Workers\NoticeMailWorker.cs" />
     <Compile Include="Workers\PointAmazonGiftCardWorker.cs" />
+    <Compile Include="Workers\PointDatachargeWorker.cs" />
     <Compile Include="Workers\PointOnlineStoreWorker.cs" />
     <Compile Include="Workers\PointExchangeWorker.cs" />
     <Compile Include="Workers\NoteCalomealWorker.cs" />
@@ -400,6 +403,16 @@
     <Content Include="dist\js\page-script\mgf.integration.hospitalconnection.js" />
     <Content Include="dist\js\page-script\mgf.integration.hospitalconnectionrequest.js" />
     <Content Include="dist\js\page-script\mgf.integration.tanitaconnection.js" />
+    <Content Include="dist\js\page-script\mgf.note.gulfsportsmovie.js" />
+    <Content Include="dist\js\page-script\mgf.note.gulfsportsmovieindex.js" />
+    <Content Include="dist\js\page-script\mgf.point.aupoint.js" />
+    <Content Include="dist\js\page-script\mgf.point.onlinestore.js" />
+    <Content Include="dist\js\page-script\mgf.premium.agreement.js" />
+    <Content Include="dist\js\page-script\mgf.premium.cardinfo.js" />
+    <Content Include="dist\js\page-script\mgf.premium.info.js" />
+    <Content Include="dist\js\page-script\mgf.premium.js" />
+    <Content Include="dist\js\page-script\mgf.premium.paymentmethod.js" />
+    <Content Include="dist\js\page-script\mgf.premium.unsubscribe.js" />
     <Content Include="dist\js\__highcharts-draw.js" />
     <Content Include="Views\Integration\CompanyConnection.cshtml" />
     <Content Include="Views\Integration\CompanyConnectionEdit.cshtml" />
@@ -718,8 +731,6 @@
     <Content Include="dist\js\page-script\mgf.health.js" />
     <Content Include="dist\js\page-script\mgf.js" />
     <Content Include="dist\js\page-script\mgf.note.examination.js" />
-    <Content Include="dist\js\page-script\mgf.note.gulfsportsmovieindex.js" />
-    <Content Include="dist\js\page-script\mgf.note.gulfsportsmovie.js" />
     <Content Include="dist\js\page-script\mgf.note.js" />
     <Content Include="dist\js\page-script\mgf.point.js" />
     <Content Include="dist\js\page-script\mgf.point.exchange.js" />
@@ -767,10 +778,6 @@
     <Content Include="Views\Shared\_IntegrationLayout.cshtml" />
     <Content Include="Views\Point\Terms.cshtml" />
     <Content Include="Views\Portal\ConnectionSetting.cshtml" />
-    <Content Include="Views\Portal\MedicalPayment.cshtml" />
-    <Content Include="Views\Portal\MedicalPaymentFaq.cshtml" />
-    <Content Include="Views\Portal\MedicalPaymentInfo.cshtml" />
-    <Content Include="Views\Portal\MedicalPaymentFlow.cshtml" />
     <Content Include="Views\Premium\Agreement.cshtml" />
     <Content Include="Views\Premium\CardInfo.cshtml" />
     <Content Include="Views\Premium\LightMember.cshtml" />
@@ -835,7 +842,6 @@
     <Compile Include="Models\QjPageViewModelBase.cs" />
     <Compile Include="Models\QolmsJotoModel.cs" />
     <Compile Include="Models\ViewModels\NoteExaminationViewModel.cs" />
-    <Compile Include="Models\ViewModels\NoteGulfSportsMovieViewModel.cs" />
     <Compile Include="Models\ViewModels\PointHistoryViewModel.cs" />
     <Compile Include="Models\ViewModels\IntegrationFitbitConnectionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -870,8 +876,6 @@
     <Content Include="Views\Shared\_PointLayout.cshtml" />
     <None Include="Properties\PublishProfiles\qolms-dev-joto-west-app02 - Web Deploy.pubxml" />
     <Content Include="Views\Note\Examination.cshtml" />
-    <Content Include="Views\Note\GulfSportsMovieIndex.cshtml" />
-    <Content Include="Views\Note\GulfSportsMovie.cshtml" />
     <Content Include="Views\Shared\_NoteLayout.cshtml" />
     <Content Include="Views\Shared\_NoteExaminationResultPartialView.cshtml" />
     <Content Include="Views\Shared\_NoteExaminationFilterPartialView.cshtml" />
@@ -892,6 +896,12 @@
     <Content Include="Views\Health\AgeEdit.cshtml" />
     <Content Include="Views\Point\LocalHistory.cshtml" />
     <Content Include="Views\Point\AmazonGiftCard.cshtml" />
+    <Content Include="Views\Portal\MedicalPayment.cshtml" />
+    <Content Include="Views\Portal\MedicalPaymentFaq.cshtml" />
+    <Content Include="Views\Portal\MedicalPaymentInfo.cshtml" />
+    <Content Include="Views\Note\GulfSportsMovie.cshtml" />
+    <Content Include="Views\Note\GulfSportsMovieIndex.cshtml" />
+    <Content Include="Views\Portal\MedicalPaymentFlow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

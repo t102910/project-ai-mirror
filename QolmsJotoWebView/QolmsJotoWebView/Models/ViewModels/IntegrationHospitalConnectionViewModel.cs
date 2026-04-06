@@ -2,28 +2,28 @@
 
 namespace MGF.QOLMS.QolmsJotoWebView
 {
+    /// <summary>
+    /// 病院連携詳細画面に渡すビューモデルです。
+    /// </summary>
     [Serializable]
     public class IntegrationHospitalConnectionViewModel
     {
         public QjPageNoTypeEnum FromPageNoType { get; set; } = QjPageNoTypeEnum.PortalConnectionSetting;
 
-        public int LinkageSystemNo { get; set; } = 0;
+        public int LinkageSystemNo { get; set; } = int.MinValue;
 
         public string HospitalName { get; set; } = "城東区医師会病院";
 
-        /// <summary>1=連携承認待ち, 2=連携済み, 3=承認不可</summary>
-        public int StatusType { get; set; } = 1;
+        public string PatientNo { get; set; } = string.Empty;
+
+        public QjLinkageStatusTypeEnum StatusType { get; set; } = QjLinkageStatusTypeEnum.None;
 
         public string DisapprovedReason { get; set; } = string.Empty;
 
-        public bool ShareBasicInfo { get; set; } = true;
+        public QjRelationContentTypeEnum ShowType { get; set; } = QjRelationContentTypeEnum.None;
 
-        public bool ShareVitalInfo { get; set; } = true;
+        public bool HospitalConnectedFlag { get; set; } = false;
 
-        public bool ShareMedicineInfo { get; set; } = true;
-
-        public bool ShareExaminationInfo { get; set; } = true;
-
-        public bool ShareMealInfo { get; set; } = true;
+        public bool ExaminationConnectedFlag { get; set; } = true;
     }
 }

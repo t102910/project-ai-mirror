@@ -24,8 +24,15 @@
 
     <main id="main-cont" class="clearfix" role="main">
 
-        <section class="home-btn-wrap">
-            <a href="../Portal/Home" class="home-btn"><i class="la la-angle-left"></i></a>
+        <section class="home-btn-wrap" data-pageno="@Convert.ToByte(Model.FromPageNoType)">
+            @if (Model.FromPageNoType == QjPageNoTypeEnum.PortalHome)
+            {
+                <a href="@Url.Action("CompanyConnection", "Integration", new { fromPageNo = 1, linkageSystemNo = Model.LinkageSystemNo, linkageSystemName = Model.LinkageSystemName })" class="home-btn"><i class="la la-angle-left"></i></a>
+            }
+            else
+            {
+                <a href="@Url.Action("CompanyConnection", "Integration", new { linkageSystemNo = Model.LinkageSystemNo, linkageSystemName = Model.LinkageSystemName })" class="home-btn"><i class="la la-angle-left"></i></a>
+            }
         </section>
 
 
@@ -48,23 +55,23 @@
 
                     <div class="wizard-form inline-block link-ico tanita" id="connection-data">
 
-                        <input id="BasicInfo" type="checkbox" value="true" @(Model.ShareBasicInfo ? "checked=\"checked\"" : string.Empty) />
+                        <input id="BasicInfo" type="checkbox" value="true" data-content="@Convert.ToInt64(QjRelationContentTypeEnum.Information)" @(Model.ShareBasicInfo ? "checked=\"checked\"" : string.Empty) />
 
                         <label for="BasicInfo">基本情報</label>
 
-                        <input id="ContactNotebook" type="checkbox" value="true" @(Model.ShareContactNotebook ? "checked=\"checked\"" : string.Empty) />
+                        <input id="ContactNotebook" type="checkbox" value="true" data-content="@Convert.ToInt64(QjRelationContentTypeEnum.Contact)" @(Model.ShareContactNotebook ? "checked=\"checked\"" : string.Empty) />
 
                         <label for="ContactNotebook">連絡手帳</label>
 
-                        <input id="VitalNotebook" type="checkbox" value="true" @(Model.ShareVitalNotebook ? "checked=\"checked\"" : string.Empty) />
+                        <input id="VitalNotebook" type="checkbox" value="true" data-content="@Convert.ToInt64(QjRelationContentTypeEnum.Vital)" @(Model.ShareVitalNotebook ? "checked=\"checked\"" : string.Empty) />
 
                         <label for="VitalNotebook">バイタル手帳</label>
 
-                        <input id="MedicineNotebook" type="checkbox" value="true" @(Model.ShareMedicineNotebook ? "checked=\"checked\"" : string.Empty) />
+                        <input id="MedicineNotebook" type="checkbox" value="true" data-content="@Convert.ToInt64(QjRelationContentTypeEnum.Medicine)" @(Model.ShareMedicineNotebook ? "checked=\"checked\"" : string.Empty) />
 
                         <label for="MedicineNotebook">お薬手帳</label>
 
-                        <input id="ExaminationNotebook" type="checkbox" value="true" @(Model.ShareExaminationNotebook ? "checked=\"checked\"" : string.Empty) />
+                        <input id="ExaminationNotebook" type="checkbox" value="true" data-content="@Convert.ToInt64(QjRelationContentTypeEnum.Examination)" @(Model.ShareExaminationNotebook ? "checked=\"checked\"" : string.Empty) />
 
                         <label for="ExaminationNotebook">検査手帳</label>
 
@@ -78,17 +85,17 @@
 
                     <span class="label-txt"><span class="ico required">必須</span> 従業員連絡用メールアドレス</span>
 
-                    <input type="email" id="mail" class="form-control mb10" placeholder="メールアドレス" value="@Model.MailAddress" maxlength="100" autocomplete="off" />
+                    <input type="email" id="mail" name="MailAddress" class="form-control mb10" placeholder="メールアドレス" value="@Model.MailAddress" maxlength="100" autocomplete="off" />
 
                 </label>
 
 
 
-                <section id="summary-cation" class="section caution mt10 mb0">
+                <section id="summary-cation" class="section caution mt10 mb0 hide">
 
                     <h4>ご案内</h4>
 
-                    この画面はモック表示です。編集結果は保存せず、遷移のみ確認できます。
+                    入力内容に不備がある場合はここに表示されます。
 
                 </section>
 
@@ -108,23 +115,7 @@
 
     @Html.Action("IntegrationFooterPartialView", "Integration")
 
-
-
-    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
-
-    <script src="~/dist/js/bootstrap.bundle.js"></script>
-
-    <script src="~/dist/js/slick.min.js"></script>
-
-    <script src="~/dist/js/spc.lib.min.js"></script>
-
-    <script src="~/dist/js/spc.util.min.js"></script>
-
-    <script src="~/dist/js/page-script/mgf.js"></script>
-
-    <script src="~/dist/js/page-script/mgf.portal.js"></script>
-
-    <script src="~/dist/js/page-script/mgf.integration.companyconnectionedit.js"></script>
+    @Scripts.Render("~/dist/js/integration/companyconnectionedit")
 
 </body>
 

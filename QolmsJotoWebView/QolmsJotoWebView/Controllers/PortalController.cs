@@ -214,10 +214,25 @@ namespace MGF.QOLMS.QolmsJotoWebView {
 
 
         [HttpGet()]
+        [QjAuthorize]
+        [QjApiAuthorize]
         [QjLogging]
-        public ActionResult ConnectionSetting()
+        public ActionResult ConnectionSetting(byte? fromPageNo, byte? tabNo)
         {
-            return View();
+            QjPageNoTypeEnum fromPageNoType = QjPageNoTypeEnum.PortalConnectionSetting;
+            if (fromPageNo.HasValue && Enum.IsDefined(typeof(QjPageNoTypeEnum), fromPageNo.Value))
+            {
+                fromPageNoType = (QjPageNoTypeEnum)fromPageNo.Value;
+            }
+
+            byte tabNoType = 2;
+            if (tabNo.HasValue && (tabNo.Value == 2 || tabNo.Value == 3))
+            {
+                tabNoType = tabNo.Value;
+            }
+
+            var worker = new PortalConnectionSettiongWorker();
+            return View(worker.CreateViewModel(this.GetQolmsJotoModel(), fromPageNoType, tabNoType));
         }
 
         [HttpGet()]

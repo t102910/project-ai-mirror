@@ -2,6 +2,9 @@
 
 namespace MGF.QOLMS.QolmsJotoWebView
 {
+    /// <summary>
+    /// 企業連携申請画面に渡すビューモデルです。
+    /// </summary>
     [Serializable]
     public class IntegrationCompanyConnectionRequestViewModel
     {
@@ -21,7 +24,15 @@ namespace MGF.QOLMS.QolmsJotoWebView
 
         public string GivenKanaName { get; set; } = string.Empty;
 
+        public QjSexTypeEnum SexType { get; set; } = QjSexTypeEnum.None;
+
         public string SexLabel { get; set; } = string.Empty;
+
+        public string BirthYear { get; set; } = string.Empty;
+
+        public string BirthMonth { get; set; } = string.Empty;
+
+        public string BirthDay { get; set; } = string.Empty;
 
         public string BirthDateLabel { get; set; } = string.Empty;
 

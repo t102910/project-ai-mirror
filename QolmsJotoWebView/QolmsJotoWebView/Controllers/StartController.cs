@@ -165,6 +165,20 @@ namespace MGF.QOLMS.QolmsJotoWebView
             return RedirectToAction("LocalIdVerification", "Portal", routeValuesDictionary);
         }
 
+        /// <summary>
+        /// SSO による画面遷移を処理します。（法人連携・病院連携画面）
+        /// </summary>
+        /// <returns>
+        /// アクション の結果。
+        /// </returns>
+        private ActionResult RedirectToPortalConnectionSetting()
+        {
+            var routeValuesDictionary = new RouteValueDictionary();
+            this.Request.QueryString.AllKeys.ToList().ForEach(key => routeValuesDictionary.Add(key, Request.QueryString[key]));
+
+            return RedirectToAction("ConnectionSetting", "Portal", routeValuesDictionary);
+        }
+
 
         /// <summary>
         /// SSO による画面遷移を処理します。（auログイン画面）
@@ -220,34 +234,6 @@ namespace MGF.QOLMS.QolmsJotoWebView
             this.Request.QueryString.AllKeys.ToList().ForEach(key => routeValuesDictionary.Add(key, Request.QueryString[key]));
 
             return RedirectToAction("TanitaConnection", "Integration", routeValuesDictionary);
-        }
-
-        /// <summary>
-        /// SSO による画面遷移を処理します。（連携設定画面）
-        /// </summary>
-        /// <returns>
-        /// アクション の結果。
-        /// </returns>
-        private ActionResult RedirectToConnectionSetting()
-        {
-            var routeValuesDictionary = new RouteValueDictionary();
-            this.Request.QueryString.AllKeys.ToList().ForEach(key => routeValuesDictionary.Add(key, Request.QueryString[key]));
-
-            return RedirectToAction("ConnectionSetting", "Potal", routeValuesDictionary);
-        }
-
-        /// <summary>
-        /// SSO による画面遷移を処理します。（プレミアム会員退会画面）
-        /// </summary>
-        /// <returns>
-        /// アクション の結果。
-        /// </returns>
-        private ActionResult RedirectToPremiumUnsubscribe()
-        {
-            var routeValuesDictionary = new RouteValueDictionary();
-            this.Request.QueryString.AllKeys.ToList().ForEach(key => routeValuesDictionary.Add(key, Request.QueryString[key]));
-
-            return RedirectToAction("Unsubscribe", "Premium", routeValuesDictionary);
         }
 
         /// <summary>
@@ -338,7 +324,7 @@ namespace MGF.QOLMS.QolmsJotoWebView
                     else if (pageNo == (int)QjPageNoTypeEnum.PortalConnectionSetting)
                     {
                         // 「法人連携・病院連携」画面へ遷移
-                        return this.RedirectToConnectionSetting();
+                        return this.RedirectToPortalConnectionSetting();
                     }
                     else if (pageNo == (int)QjPageNoTypeEnum.PortalMedicalPayment)
                     {
@@ -379,11 +365,6 @@ namespace MGF.QOLMS.QolmsJotoWebView
                     {
                         // 「タニタ連携」画面へ遷移
                         return this.RedirectToTanitaConnection();
-                    }
-                    else if (pageNo == (int)QjPageNoTypeEnum.PremiumUnsubscribe)
-                    {
-                        // 「プレミアム会員退会」画面へ遷移
-                        return this.RedirectToPremiumUnsubscribe();
                     }
                 }
                 else
@@ -448,6 +429,10 @@ namespace MGF.QOLMS.QolmsJotoWebView
                         ))
                         {
                             // 成功
+                            // ログイン直後に会員種別を取得してセッションへ反映する。
+                            var mainModel = this.GetQolmsJotoModel();
+                            mainModel.AuthorAccount.MembershipType = (QjMemberShipTypeEnum)PremiumWorker.GetMemberShipType(mainModel);
+
                             // ログイン 済み
                             if (pageNo == (int)QjPageNoTypeEnum.NoteExamination)
                             {
@@ -477,7 +462,7 @@ namespace MGF.QOLMS.QolmsJotoWebView
                             else if (pageNo == (int)QjPageNoTypeEnum.PortalConnectionSetting)
                             {
                                 // 「法人連携・病院連携」画面へ遷移
-                                return this.RedirectToConnectionSetting();
+                                return this.RedirectToPortalConnectionSetting();
                             }
                             else if (pageNo == (int)QjPageNoTypeEnum.PortalMedicalPayment)
                             {
@@ -519,11 +504,7 @@ namespace MGF.QOLMS.QolmsJotoWebView
                                 // 「タニタ連携」画面へ遷移
                                 return this.RedirectToTanitaConnection();
                             }
-                            else if (pageNo == (int)QjPageNoTypeEnum.PremiumUnsubscribe)
-                            {
-                                // 「プレミアム会員退会」画面へ遷移
-                                return this.RedirectToPremiumUnsubscribe();
-                            }
+
                         }
                         break;
                 }

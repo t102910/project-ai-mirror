@@ -24,8 +24,15 @@
 
     <main id="main-cont" class="clearfix" role="main">
 
-        <section class="home-btn-wrap">
-            <a href="../Portal/Home" class="home-btn"><i class="la la-angle-left"></i></a>
+        <section class="home-btn-wrap" data-pageno="@Convert.ToByte(Model.FromPageNoType)">
+            @if (Model.FromPageNoType == QjPageNoTypeEnum.PortalHome)
+            {
+                <a href="@Url.Action("ConnectionSetting", "Portal", new { fromPageNo = 1, tabNo = 2 })" class="home-btn"><i class="la la-angle-left"></i></a>
+            }
+            else
+            {
+                <a href="@Url.Action("ConnectionSetting", "Portal", new { tabNo = 2 })" class="home-btn"><i class="la la-angle-left"></i></a>
+            }
         </section>
 
 
@@ -73,9 +80,9 @@
 
                     <label class="label-txt"><span class="ico required">必須</span> お名前</label>
 
-                    <input type="text" id="family-name" class="form-control mb10" placeholder="姓" value="@Model.FamilyName" maxlength="25" autocomplete="off" />
+                    <input type="text" id="family-name" name="FamilyName" class="form-control mb10" placeholder="姓" value="@Model.FamilyName" maxlength="25" autocomplete="off" />
 
-                    <input type="text" id="given-name" class="form-control" placeholder="名" value="@Model.GivenName" maxlength="25" autocomplete="off" />
+                    <input type="text" id="given-name" name="GivenName" class="form-control" placeholder="名" value="@Model.GivenName" maxlength="25" autocomplete="off" />
 
                 </div>
 
@@ -85,9 +92,9 @@
 
                     <label class="label-txt"><span class="ico required">必須</span> お名前（カナ）</label>
 
-                    <input type="text" id="family-kana-name" class="form-control mb10" placeholder="セイ" value="@Model.FamilyKanaName" maxlength="25" autocomplete="off" />
+                    <input type="text" id="family-kana-name" name="FamilyKanaName" class="form-control mb10" placeholder="セイ" value="@Model.FamilyKanaName" maxlength="25" autocomplete="off" />
 
-                    <input type="text" id="given-kana-name" class="form-control" placeholder="メイ" value="@Model.GivenKanaName" maxlength="25" autocomplete="off" />
+                    <input type="text" id="given-kana-name" name="GivenKanaName" class="form-control" placeholder="メイ" value="@Model.GivenKanaName" maxlength="25" autocomplete="off" />
 
                 </div>
 
@@ -97,7 +104,7 @@
 
                     <span class="label-txt"><span class="ico required">必須</span> 性別</span>
 
-                    <p id="sex" style="font-size:16px; padding:10px 12px;" data-value="@Model.SexLabel">@Model.SexLabel</p>
+                    <p id="sex" style="font-size:16px; padding:10px 12px;" data-value="@Convert.ToByte(Model.SexType)">@Model.SexLabel</p>
 
                 </label>
 
@@ -107,7 +114,7 @@
 
                     <label class="label-txt"><span class="ico required">必須</span> 生年月日</label>
 
-                    <p id="birthday" style="font-size:16px; padding:10px 12px;">@Model.BirthDateLabel</p>
+                    <p id="birthday" style="font-size:16px; padding:10px 12px;" data-birthyear="@Model.BirthYear" data-birthmonth="@Model.BirthMonth" data-birthday="@Model.BirthDay">@Model.BirthDateLabel</p>
 
                 </div>
 
@@ -119,23 +126,23 @@
 
                     <div class="wizard-form inline-block link-ico tanita" id="connection-data">
 
-                        <input id="BasicInfo" type="checkbox" value="true" @(Model.ShareBasicInfo ? "checked=\"checked\"" : string.Empty) />
+                        <input id="BasicInfo" type="checkbox" value="true" data-content="@Convert.ToInt64(QjRelationContentTypeEnum.Information)" @(Model.ShareBasicInfo ? "checked=\"checked\"" : string.Empty) />
 
                         <label for="BasicInfo">基本情報</label>
 
-                        <input id="ContactNotebook" type="checkbox" value="true" @(Model.ShareContactNotebook ? "checked=\"checked\"" : string.Empty) />
+                        <input id="ContactNotebook" type="checkbox" value="true" data-content="@Convert.ToInt64(QjRelationContentTypeEnum.Contact)" @(Model.ShareContactNotebook ? "checked=\"checked\"" : string.Empty) />
 
                         <label for="ContactNotebook">連絡手帳</label>
 
-                        <input id="VitalNotebook" type="checkbox" value="true" @(Model.ShareVitalNotebook ? "checked=\"checked\"" : string.Empty) />
+                        <input id="VitalNotebook" type="checkbox" value="true" data-content="@Convert.ToInt64(QjRelationContentTypeEnum.Vital)" @(Model.ShareVitalNotebook ? "checked=\"checked\"" : string.Empty) />
 
                         <label for="VitalNotebook">バイタル手帳</label>
 
-                        <input id="MedicineNotebook" type="checkbox" value="true" @(Model.ShareMedicineNotebook ? "checked=\"checked\"" : string.Empty) />
+                        <input id="MedicineNotebook" type="checkbox" value="true" data-content="@Convert.ToInt64(QjRelationContentTypeEnum.Medicine)" @(Model.ShareMedicineNotebook ? "checked=\"checked\"" : string.Empty) />
 
                         <label for="MedicineNotebook">お薬手帳</label>
 
-                        <input id="ExaminationNotebook" type="checkbox" value="true" @(Model.ShareExaminationNotebook ? "checked=\"checked\"" : string.Empty) />
+                        <input id="ExaminationNotebook" type="checkbox" value="true" data-content="@Convert.ToInt64(QjRelationContentTypeEnum.Examination)" @(Model.ShareExaminationNotebook ? "checked=\"checked\"" : string.Empty) />
 
                         <label for="ExaminationNotebook">検査手帳</label>
 
@@ -145,11 +152,11 @@
 
 
 
-                <section id="summary-cation" class="section caution mt10 mb0">
+                <section id="summary-cation" class="section caution mt10 mb0 hide">
 
                     <h4>ご案内</h4>
 
-                    この画面はモック表示です。入力内容の送信は行わず、確認導線のみ表示します。
+                    入力内容に不備がある場合はここに表示されます。
 
                 </section>
 
@@ -165,7 +172,40 @@
 
 
 
-        <div class="modal fade" id="disconnect-modal" tabindex="-1" data-backdrop="static" data-keyboard="false">
+        @if (Model.IsPremiumMember)
+        {
+            <div class="modal fade" id="disconnect-modal" tabindex="-1" data-backdrop="static" data-keyboard="false">
+
+                <div class="modal-dialog">
+
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+
+                            <button type="button" class="close"><span>×</span></button>
+
+                            <h4 class="modal-title">確認</h4>
+
+                        </div>
+
+                        <div class="modal-body">企業連携を利用するとプレミアム会員が解約されます。<br />よろしいですか？</div>
+
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-close no-ico mb0">閉じる</button>
+
+                            <button type="button" class="btn btn-delete">解 除</button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
+        <div class="modal fade" id="identity-modal" tabindex="-1" data-backdrop="static" data-keyboard="false">
 
             <div class="modal-dialog">
 
@@ -179,13 +219,13 @@
 
                     </div>
 
-                    <div class="modal-body">企業連携のモック完了画面へ移動します。よろしいですか？</div>
+                    <div class="modal-body">入力された個人情報が登録と一致しませんでした。個人情報更新しますか？</div>
 
                     <div class="modal-footer">
 
                         <button type="button" class="btn btn-close no-ico mb0">閉じる</button>
 
-                        <button type="button" class="btn btn-delete mb0" style=" padding: 9px 18px; height: auto;">進 む</button>
+                        <button type="button" class="btn btn-submit">更 新</button>
 
                     </div>
 
@@ -201,23 +241,7 @@
 
     @Html.Action("IntegrationFooterPartialView", "Integration")
 
-
-
-    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
-
-    <script src="~/dist/js/bootstrap.bundle.js"></script>
-
-    <script src="~/dist/js/slick.min.js"></script>
-
-    <script src="~/dist/js/spc.lib.min.js"></script>
-
-    <script src="~/dist/js/spc.util.min.js"></script>
-
-    <script src="~/dist/js/page-script/mgf.js"></script>
-
-    <script src="~/dist/js/page-script/mgf.portal.js"></script>
-
-    <script src="~/dist/js/page-script/mgf.integration.companyconnectionrequest.js"></script>
+    @Scripts.Render("~/dist/js/integration/companyconnectionrequest")
 
 </body>
 

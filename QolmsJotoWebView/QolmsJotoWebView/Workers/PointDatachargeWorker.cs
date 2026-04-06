@@ -398,7 +398,7 @@ namespace MGF.QOLMS.QolmsJotoWebView
                     }
 
                     // メール
-                    if (!string.IsNullOrWhiteSpace(QjConfiguration.IsSendMailPointExcange) && bool.Parse(QjConfiguration.IsSendMailPointExcange))
+                    if (!string.IsNullOrWhiteSpace(QjConfiguration.IsSendMailPointExchang) && bool.Parse(QjConfiguration.IsSendMailPointExchang))
                     {
                         StringBuilder bodyString = new StringBuilder();
                         bodyString.AppendLine("データチャージのエラーです。");

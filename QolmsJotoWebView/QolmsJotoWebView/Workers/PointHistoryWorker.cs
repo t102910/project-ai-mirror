@@ -1,5 +1,4 @@
-﻿using MGF.QOLMS.QolmsApiCoreV1;
-using MGF.QOLMS.QolmsApiEntityV1;
+﻿using MGF.QOLMS.QolmsApiEntityV1;
 using MGF.QOLMS.QolmsJotoWebView.Models;
 using MGF.QOLMS.QolmsJotoWebView.Repositories;
 using System;
@@ -129,22 +128,22 @@ namespace MGF.QOLMS.QolmsJotoWebView.Workers
 
             //// au契約があるかどうか
             bool isMobileSubscriberOfAu = false;
-            //try
-            //{
-            //    isMobileSubscriberOfAu = AuOwlAccessWorker.IsMobileSubscriberOfAu(mainModel.AuthorAccount.OpenId);
-            //}
-            //catch (Exception ex)
-            //{
-            //    string message = ex.Message;
-            //}
+            try
+            {
+                isMobileSubscriberOfAu = AuOwlAccessUsecase.IsMobileSubscriberOfAu(mainModel.AuthorAccount.OpenId);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
 
             isMobileSubscriberOfAu = false;
 
             // 最新の会員ステータスを取得
-            //mainModel.AuthorAccount.MembershipType = (QjMemberShipTypeEnum)Enum.ToObject(
-            //    typeof(QjMemberShipTypeEnum),
-            //    PremiumWorker.GetMemberShipType(mainModel)
-            //);
+            mainModel.AuthorAccount.MembershipType = (QjMemberShipTypeEnum)Enum.ToObject(
+                typeof(QjMemberShipTypeEnum),
+                PremiumWorker.GetMemberShipType(mainModel)
+            );
 
             // プレミアムかどうか
             bool isPremium =
@@ -158,10 +157,10 @@ namespace MGF.QOLMS.QolmsJotoWebView.Workers
 
             // 病院連携があるかどうか
             bool IsConnectedHospital = false;
-                
-                //PortalHomeWorker.GetMedicalLinkageList(mainModel)
-                //.Where(i => i.StatusType == "2")
-                //.Count() > 0;
+
+            //PortalHomeWorker.GetMedicalLinkageList(mainModel)
+            //.Where(i => i.StatusType == "2")
+            //.Count() > 0;
 
             var challengeList = new Dictionary<Guid,string>();
                 //PortalChallengeWorker.GetChallengeEntryList(mainModel);

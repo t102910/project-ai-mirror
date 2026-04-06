@@ -3,16 +3,23 @@ using System.Collections.Generic;
 
 namespace MGF.QOLMS.QolmsJotoWebView
 {
+    /// <summary>
+    /// 病院連携申請画面に渡すビューモデルです。
+    /// </summary>
     [Serializable]
     public class IntegrationHospitalConnectionRequestViewModel
     {
         public QjPageNoTypeEnum FromPageNoType { get; set; } = QjPageNoTypeEnum.PortalConnectionSetting;
 
-        public int LinkageSystemNo { get; set; } = 0;
+        public int LinkageSystemNo { get; set; } = int.MinValue;
 
-        public List<KeyValuePair<int, string>> HospitalList { get; set; } = new List<KeyValuePair<int, string>>();
+        public bool IsHospitalSelectionFixed { get; set; } = false;
 
-        public string LinkageSystemId { get; set; } = string.Empty;
+        public List<KeyValuePair<int, string>> HospitalList { get; } = new List<KeyValuePair<int, string>>();
+
+        public string HospitalName { get; set; } = "城東区医師会病院";
+
+        public string PatientNo { get; set; } = string.Empty;
 
         public string FamilyName { get; set; } = string.Empty;
 
@@ -22,20 +29,20 @@ namespace MGF.QOLMS.QolmsJotoWebView
 
         public string GivenKanaName { get; set; } = string.Empty;
 
-        public string SexLabel { get; set; } = string.Empty;
+        public QjSexTypeEnum SexType { get; set; } = QjSexTypeEnum.None;
+
+        public string BirthYear { get; set; } = string.Empty;
+
+        public string BirthMonth { get; set; } = string.Empty;
+
+        public string BirthDay { get; set; } = string.Empty;
 
         public string BirthDateLabel { get; set; } = string.Empty;
 
         public string MailAddress { get; set; } = string.Empty;
 
-        public bool ShareBasicInfo { get; set; } = true;
+        public bool IdentityUpdateFlag { get; set; } = false;
 
-        public bool ShareVitalInfo { get; set; } = true;
-
-        public bool ShareMedicineInfo { get; set; } = true;
-
-        public bool ShareExaminationInfo { get; set; } = true;
-
-        public bool ShareMealInfo { get; set; } = true;
+        public QjRelationContentTypeEnum RelationContentFlags { get; set; } = QjRelationContentTypeEnum.None;
     }
 }

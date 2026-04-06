@@ -2,6 +2,9 @@
 
 namespace MGF.QOLMS.QolmsJotoWebView
 {
+    /// <summary>
+    /// 企業連携詳細画面に渡すビューモデルです。
+    /// </summary>
     [Serializable]
     public class IntegrationCompanyConnectionViewModel
     {
@@ -11,7 +14,7 @@ namespace MGF.QOLMS.QolmsJotoWebView
 
         public string LinkageSystemName { get; set; } = "企業";
 
-        public bool MockConnectedFlag { get; set; } = true;
+        public bool CompanyConnectedFlag { get; set; } = true;
 
         public bool ShareBasicInfo { get; set; } = true;
 

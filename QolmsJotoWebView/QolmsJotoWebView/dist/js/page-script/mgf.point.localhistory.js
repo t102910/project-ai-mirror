@@ -147,6 +147,11 @@ mgf.point.localhistory = (function () {
 
 		mgf.lockScreen();
 
+		function unlockAndRedirectToLogin() {
+			mgf.unlockScreen();
+			mgf.redirectToLogin();
+		}
+
 		mgf.point.checkSessionAsync($(this)).then(function () {
 
 			// ポイント変換を実行し、成功時は履歴HTMLと残高を受け取る
@@ -160,30 +165,33 @@ mgf.point.localhistory = (function () {
 				traditional: true,
 				async: true
 			}).done(function (data, textStatus, jqXHR) {
-				if (jqXHR.status === 200 && jqXHR.getResponseHeader("Content-Type").indexOf("application/json") >= 0) {
-					var resultJson = parseJsonResult(data);
+				try {
+					if (jqXHR.status === 200 && jqXHR.getResponseHeader("Content-Type").indexOf("application/json") >= 0) {
+						var resultJson = parseJsonResult(data);
 
-					mgf.unlockScreen();
+						if (resultJson && $.isTrueString(resultJson["IsSuccess"])) {
+							if (resultJson["HistoryHtml"]) {
+								$("main").find("#point_daily_log").replaceWith($(resultJson["HistoryHtml"]));
+							}
 
-					if (resultJson && $.isTrueString(resultJson["IsSuccess"])) {
-						if (resultJson["HistoryHtml"]) {
-							$("main").find("#point_daily_log").replaceWith($(resultJson["HistoryHtml"]));
+							setCurrentPoint(resultJson["Point"]);
+							showRedeemSuccess(resultJson["Message"]);
+						} else {
+							showRedeemError(resultJson ? resultJson["Message"] : "ポイント変換に失敗しました。");
 						}
-
-						setCurrentPoint(resultJson["Point"]);
-						showRedeemSuccess(resultJson["Message"]);
 					} else {
-						showRedeemError(resultJson ? resultJson["Message"] : "ポイント変換に失敗しました。");
+						showRedeemError("ポイント変換に失敗しました。");
 					}
-				} else {
-					mgf.unlockScreen();
+				} catch (ex) {
 					showRedeemError("ポイント変換に失敗しました。");
+				} finally {
+					mgf.unlockScreen();
 				}
 			}).fail(function () {
 				mgf.unlockScreen();
 				showRedeemError("ポイント変換に失敗しました。");
 			});
-		}, mgf.redirectToLogin);
+		}, unlockAndRedirectToLogin);
 	}
 
 	// 年月変更ボタン押下で履歴を非同期更新

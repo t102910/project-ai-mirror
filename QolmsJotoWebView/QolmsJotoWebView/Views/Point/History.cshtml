@@ -23,13 +23,13 @@
         isPontaDisabled = "disabled";
     }
 
-    @*//'表示したいチャレンジのGUIDを宣言してください。
-    Dim iheya As Guid = Guid.Parse("a87c8371-e556-4d0f-8cae-c08b8f5a3d2c")
-    Dim taketomi As Guid = Guid.Parse("6550b115-7411-4c0e-9ac3-9121ac7093b1")
+    //'表示したいチャレンジのGUIDを宣言してください。
+    var iheya = Guid.Parse("a87c8371-e556-4d0f-8cae-c08b8f5a3d2c");
+    var taketomi = Guid.Parse("6550b115-7411-4c0e-9ac3-9121ac7093b1");
 
     //'表示したいチャレンジを追加したらこちらに条件を追加してください。
-    Dim isChallenge As Boolean = Me.Model.ChallengeEntryList.ContainsKey(iheya) _
-        OrElse Me.Model.ChallengeEntryList.ContainsKey(taketomi)*@
+    var isChallenge = Model.ChallengeEntryList.ContainsKey(iheya) 
+        || Model.ChallengeEntryList.ContainsKey(taketomi);
 }
 
 <body id="point-log" class="lower">
@@ -227,19 +227,22 @@
         </a>
         <p Class="center mb30">沖縄の特産品を販売する通販サイト「沖縄CLIPマルシェ」</p>
 
-        ※一旦権限関係なしでボタン出てます
         @*@If Me.Model.IsPremium OrElse Me.Model.IsforBiz OrElse Me.Model.IsConnectedHospital OrElse isChallenge Then*@
-        <a href="@String.Format("../point/aupoint")" Class="btn btn-link no-ico back-FFF logona super-btn mb5">
-            @*@isPontaDisabled*@
-            <i Class="sans-serif">auID限定</i>
-            Pontaポイントと交換
-        </a>
+        @if (Model.IsPremium || Model.IsforBiz ||Model.IsConnectedHospital || isChallenge )
+        { 
+             <a href="@String.Format("../point/aupoint")" Class="btn btn-link no-ico back-FFF logona super-btn mb5 @(Model.IsAuId ? "" : "disabled")">
+                @**@
+                <i Class="sans-serif">auID限定</i>
+                Pontaポイントと交換
+            </a>
 
-        <p Class="center mb30">au携帯電話料金の充当など利用方法がたくさん</p>
+            <p Class="center mb30">au携帯電話料金の充当など利用方法がたくさん</p>
+
+        }
 
         @*End If*@
 
-        <a href="@String.Format("../point/datacharge")" Class="btn btn-link no-ico back-FFF logona super-btn mb5">
+        <a href="@String.Format("../point/datacharge")" Class="btn btn-link no-ico back-FFF logona super-btn mb5 @(Model.IsMobileSubscriberOfAu ? "" : "disabled")">
             @*@IIf(Me.Model.IsMobileSubscriberOfAu, String.Empty, "disabled")*@
             <i Class="sans-serif">au限定</i>
             auデータと交換(データチャージ)
@@ -249,7 +252,10 @@
         </p>
 
         @*@If Me.Model.IsPremium OrElse Me.Model.IsforBiz OrElse Me.Model.IsConnectedHospital OrElse isChallenge Then*@
+        @if ( Model.IsPremium || Model.IsforBiz || Model.IsConnectedHospital || isChallenge )
+        {
 
+        }
         <a href="@String.Format("../point/amazongiftcard")" Class="btn btn-link no-ico back-FFF logona super-btn mb5">
             <i Class="sans-serif">みんな使える</i>
             Amazonギフト券と交換

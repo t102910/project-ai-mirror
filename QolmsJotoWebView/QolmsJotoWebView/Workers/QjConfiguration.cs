@@ -235,13 +235,13 @@ namespace MGF.QOLMS.QolmsJotoWebView
         /// <summary>
         /// 交換エラーでメールを送る
         /// </summary>
-        private const string Config_IsSendMailPointExcange_KeyName = "IsSendMailPointExcange";
-        private const string Config_IsSendMailPointExcange_DefaultValue = "false";
+        private const string Config_IsSendMailPointExchang_KeyName = "IsSendMailPointExchang";
+        private const string Config_IsSendMailPointExchang_DefaultValue = "false";
 
         /// <summary>
         /// エラーでメールを送るかどうかを取得します。
         /// </summary>
-        public static string IsSendMailPointExcange => GetConfiguration(Config_IsSendMailPointExcange_KeyName, Config_IsSendMailPointExcange_DefaultValue);
+        public static string IsSendMailPointExchang => GetConfiguration(Config_IsSendMailPointExchang_KeyName, Config_IsSendMailPointExchang_DefaultValue);
 
         #endregion
 
@@ -341,6 +341,54 @@ namespace MGF.QOLMS.QolmsJotoWebView
 
         #endregion
 
+        #region OWL
+
+        /// <summary>
+        /// OWL API URI
+        /// </summary>
+        private const string Config_AuOwlUri_KeyName = "AuOwlUri";
+        private const string Config_AuOwlUri_DefaultValue = "";
+
+        /// <summary>
+        /// OWL APIのURIを取得します。
+        /// </summary>
+        public static string AuOwlUri => GetConfiguration(Config_AuOwlUri_KeyName, Config_AuOwlUri_DefaultValue);
+
+        /// <summary>
+        /// OWL APIアクセスキー
+        /// </summary>
+        private const string Config_AuOwlKey_KeyName = "AuOwlKey";
+        private const string Config_AuOwlKey_DefaultValue = "";
+
+        /// <summary>
+        /// OWL APIのアクセスキーを取得します。
+        /// </summary>
+        public static string AuOwlKey => GetConfiguration(Config_AuOwlKey_KeyName, Config_AuOwlKey_DefaultValue);
+
+        /// <summary>
+        /// OWL APIサービスID
+        /// </summary>
+        private const string Config_AuOwlSid_KeyName = "AuOwlSid";
+        private const string Config_AuOwlSid_DefaultValue = "";
+
+        /// <summary>
+        /// OWL APIのサービスIDを取得します。
+        /// </summary>
+        public static string AuOwlSid => GetConfiguration(Config_AuOwlSid_KeyName, Config_AuOwlSid_DefaultValue);
+
+        /// <summary>
+        /// OWL API機能ID
+        /// </summary>
+        private const string Config_AuOwlFid_KeyName = "AuOwlFid";
+        private const string Config_AuOwlFid_DefaultValue = "";
+
+        /// <summary>
+        /// OWL APIの機能IDを取得します。
+        /// </summary>
+        public static string AuOwlFid => GetConfiguration(Config_AuOwlFid_KeyName, Config_AuOwlFid_DefaultValue);
+
+        #endregion
+
         #region ぎのわん
 
 
@@ -354,6 +402,17 @@ namespace MGF.QOLMS.QolmsJotoWebView
         /// ポイントサービス番号を取得します。
         /// </summary>
         public static string GinowanApplyUrl => GetConfiguration(Config_GinowanApplyUrl_KeyName, Config_GinowanApplyUrl_DefaultValue);
+
+        /// <summary>
+        /// 病院連携の有効病院リスト
+        /// </summary>
+        private const string Config_HospitalEnableLinkageList_KeyName = "HospitalEnableLinkageList";
+        private const string Config_HospitalEnableLinkageList_DefaultValue = "";
+
+        /// <summary>
+        /// 病院連携の有効病院リストを取得します。
+        /// </summary>
+        public static string HospitalEnableLinkageList => GetConfiguration(Config_HospitalEnableLinkageList_KeyName, Config_HospitalEnableLinkageList_DefaultValue);
 
         #endregion
 

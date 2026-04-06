@@ -11,8 +11,15 @@
     @Html.AntiForgeryToken()
 
     <main id="main-cont" class="clearfix" role="main">
-        <section class="home-btn-wrap">
-            <a href="../Portal/Home" class="home-btn"><i class="la la-angle-left"></i></a>
+        <section class="home-btn-wrap" data-pageno="@Convert.ToByte(Model.FromPageNoType)">
+            @if (Model.FromPageNoType == QjPageNoTypeEnum.PortalHome)
+            {
+                <a href="@Url.Action("ConnectionSetting", "Portal", new { fromPageNo = 1, tabNo = 2 })" class="home-btn"><i class="la la-angle-left"></i></a>
+            }
+            else
+            {
+                <a href="@Url.Action("ConnectionSetting", "Portal", new { tabNo = 2 })" class="home-btn"><i class="la la-angle-left"></i></a>
+            }
         </section>
 
         <section class="contents-area mb0">
@@ -22,13 +29,13 @@
                 連携が完了すると健診情報がある場合は1時間程度で閲覧いただけるようになります。
             </section>
 
-            <section class="section caution mt10 mb10">
+            <section id="caution" class="section caution mt10 mb10 hide">
                 <h4>ご案内</h4>
-                この画面はモック表示です。企業連携APIはまだ実装していません。
+                連携処理でエラーが発生した場合はここに表示されます。
             </section>
 
             <section class="section center">
-                @if (Model.MockConnectedFlag)
+                @if (Model.CompanyConnectedFlag)
                 {
                     <span class="ico main"><i class="la la-check-circle-o"></i> 連携済み</span>
                 }
@@ -55,7 +62,7 @@
                 {<span class="ico line">検査手帳</span>}
             </p>
 
-            @if (Model.MockConnectedFlag)
+            @if (Model.CompanyConnectedFlag)
             {
                 <p class="submit-area">
                     <a href="javascript:void(0);" id="edit" class="btn btn-submit" data-no="@Model.LinkageSystemNo" data-linkagesystemname="@Model.LinkageSystemName">編集する</a>
@@ -69,7 +76,7 @@
             }
         </section>
 
-        @if (Model.MockConnectedFlag)
+        @if (Model.CompanyConnectedFlag)
         {
             <section class="contents-area mb0">
                 <h3 class="title mt10">連携を解除</h3>
@@ -87,7 +94,7 @@
                         <button type="button" class="close"><span>×</span></button>
                         <h4 class="modal-title">連携解除の確認</h4>
                     </div>
-                    <div class="modal-body">企業連携のモック状態を解除して申請画面へ戻ります。よろしいですか？</div>
+                    <div class="modal-body">企業連携を解除します。よろしいですか？</div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-close no-ico mb0">閉じる</button>
                         <button type="button" class="btn btn-delete mb0" style=" padding: 9px 18px; height: auto;">解 除</button>
@@ -99,12 +106,5 @@
 
     @Html.Action("IntegrationFooterPartialView", "Integration")
 
-    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
-    <script src="~/dist/js/bootstrap.bundle.js"></script>
-    <script src="~/dist/js/slick.min.js"></script>
-    <script src="~/dist/js/spc.lib.min.js"></script>
-    <script src="~/dist/js/spc.util.min.js"></script>
-    <script src="~/dist/js/page-script/mgf.js"></script>
-    <script src="~/dist/js/page-script/mgf.portal.js"></script>
-    <script src="~/dist/js/page-script/mgf.integration.companyconnection.js"></script>
+    @Scripts.Render("~/dist/js/integration/companyconnection")
 </body>

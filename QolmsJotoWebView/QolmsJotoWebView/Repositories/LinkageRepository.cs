@@ -140,6 +140,5 @@ namespace MGF.QOLMS.QolmsJotoWebView.Repositories
                 );
             }
         }
-
     }
 }

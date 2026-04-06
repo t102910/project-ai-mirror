@@ -366,6 +366,26 @@ namespace MGF.QOLMS.QolmsJotoWebView
             );
 
             bundles.Add(bundle);
+
+            var connectionSettingBundle = new Bundle("~/dist/js/portal/ConnectionSetting", new NoJsTransform())
+            {
+                Orderer = new NonOrderingBundleOrderer()
+            };
+
+            connectionSettingBundle.Include(
+                new string[]
+                {
+                    "~/dist/js/jquery-3.7.1.min.js",
+                    "~/dist/js/bootstrap.bundle.js",
+                    "~/dist/js/slick.min.js",
+                    "~/dist/js/spc.lib.min.js",
+                    "~/dist/js/spc.util.min.js",
+                    "~/dist/js/page-script/mgf.js",
+                    "~/dist/js/page-script/mgf.portal.js"
+                }
+            );
+
+            bundles.Add(connectionSettingBundle);
         }
 
         /// <summary>
@@ -375,14 +395,9 @@ namespace MGF.QOLMS.QolmsJotoWebView
         /// <param name="bundles">バンドル オブジェクト の セット の コレクション。</param>
         private static void BundleScriptsOfIntegration(BundleCollection bundles)
         {
-            var bundle = new Bundle("~/dist/js/integration", new NoJsTransform())
-            {
-                Orderer = new NonOrderingBundleOrderer()
-            };
-
-            bundle.Include(
-                new string[]
-                {
+            // integration 共通ページ用 Script（結合のみ）
+            bundles.Add(
+                new Bundle("~/dist/js/integration", new NoJsTransform()) { Orderer = new NonOrderingBundleOrderer() }.Include(
                     "~/dist/js/jquery-3.7.1.min.js",
                     "~/dist/js/bootstrap.bundle.js",
                     "~/dist/js/bootstrap-datepicker.js",
@@ -390,10 +405,92 @@ namespace MGF.QOLMS.QolmsJotoWebView
                     "~/dist/js/spc.util.min.js",
                     "~/dist/js/page-script/mgf.js",
                     "~/dist/js/page-script/mgf.health.age.js"
-                }
+                )
             );
 
-            bundles.Add(bundle);
+            // /integration/companyconnection ページ用 Script（結合のみ）
+            bundles.Add(
+                new Bundle("~/dist/js/integration/companyconnection", new NoJsTransform()) { Orderer = new NonOrderingBundleOrderer() }.Include(
+                    "~/dist/js/jquery-3.7.1.min.js",
+                    "~/dist/js/bootstrap.bundle.js",
+                    "~/dist/js/slick.min.js",
+                    "~/dist/js/spc.lib.min.js",
+                    "~/dist/js/spc.util.min.js",
+                    "~/dist/js/page-script/mgf.js",
+                    "~/dist/js/page-script/mgf.portal.js",
+                    "~/dist/js/page-script/mgf.integration.companyconnection.js"
+                )
+            );
+
+            // /integration/companyconnectionedit ページ用 Script（結合のみ）
+            bundles.Add(
+                new Bundle("~/dist/js/integration/companyconnectionedit", new NoJsTransform()) { Orderer = new NonOrderingBundleOrderer() }.Include(
+                    "~/dist/js/jquery-3.7.1.min.js",
+                    "~/dist/js/bootstrap.bundle.js",
+                    "~/dist/js/slick.min.js",
+                    "~/dist/js/spc.lib.min.js",
+                    "~/dist/js/spc.util.min.js",
+                    "~/dist/js/page-script/mgf.js",
+                    "~/dist/js/page-script/mgf.portal.js",
+                    "~/dist/js/page-script/mgf.integration.companyconnectionedit.js"
+                )
+            );
+
+            // /integration/companyconnectionhome ページ用 Script（結合のみ）
+            bundles.Add(
+                new Bundle("~/dist/js/integration/companyconnectionhome", new NoJsTransform()) { Orderer = new NonOrderingBundleOrderer() }.Include(
+                    "~/dist/js/jquery-3.7.1.min.js",
+                    "~/dist/js/bootstrap.bundle.js",
+                    "~/dist/js/slick.min.js",
+                    "~/dist/js/spc.lib.min.js",
+                    "~/dist/js/spc.util.min.js",
+                    "~/dist/js/page-script/mgf.js",
+                    "~/dist/js/page-script/mgf.portal.js",
+                    "~/dist/js/page-script/mgf.integration.companyconnectionhome.js"
+                )
+            );
+
+            // /integration/companyconnectionrequest ページ用 Script（結合のみ）
+            bundles.Add(
+                new Bundle("~/dist/js/integration/companyconnectionrequest", new NoJsTransform()) { Orderer = new NonOrderingBundleOrderer() }.Include(
+                    "~/dist/js/jquery-3.7.1.min.js",
+                    "~/dist/js/bootstrap.bundle.js",
+                    "~/dist/js/slick.min.js",
+                    "~/dist/js/spc.lib.min.js",
+                    "~/dist/js/spc.util.min.js",
+                    "~/dist/js/page-script/mgf.js",
+                    "~/dist/js/page-script/mgf.portal.js",
+                    "~/dist/js/page-script/mgf.integration.companyconnectionrequest.js"
+                )
+            );
+
+            // /integration/hospitalconnection ページ用 Script（結合のみ）
+            bundles.Add(
+                new Bundle("~/dist/js/integration/hospitalconnection", new NoJsTransform()) { Orderer = new NonOrderingBundleOrderer() }.Include(
+                    "~/dist/js/jquery-3.7.1.min.js",
+                    "~/dist/js/bootstrap.bundle.js",
+                    "~/dist/js/slick.min.js",
+                    "~/dist/js/spc.lib.min.js",
+                    "~/dist/js/spc.util.min.js",
+                    "~/dist/js/page-script/mgf.js",
+                    "~/dist/js/page-script/mgf.portal.js",
+                    "~/dist/js/page-script/mgf.integration.hospitalconnection.js"
+                )
+            );
+
+            // /integration/hospitalconnectionrequest ページ用 Script（結合のみ）
+            bundles.Add(
+                new Bundle("~/dist/js/integration/hospitalconnectionrequest", new NoJsTransform()) { Orderer = new NonOrderingBundleOrderer() }.Include(
+                    "~/dist/js/jquery-3.7.1.min.js",
+                    "~/dist/js/bootstrap.bundle.js",
+                    "~/dist/js/slick.min.js",
+                    "~/dist/js/spc.lib.min.js",
+                    "~/dist/js/spc.util.min.js",
+                    "~/dist/js/page-script/mgf.js",
+                    "~/dist/js/page-script/mgf.portal.js",
+                    "~/dist/js/page-script/mgf.integration.hospitalconnectionrequest.js"
+                )
+            );
         }
 
         /// <summary>

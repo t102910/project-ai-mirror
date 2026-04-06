@@ -429,6 +429,10 @@ namespace MGF.QOLMS.QolmsJotoWebView
                         ))
                         {
                             // 成功
+                            // ログイン直後に会員種別を取得してセッションへ反映する。
+                            var mainModel = this.GetQolmsJotoModel();
+                            mainModel.AuthorAccount.MembershipType = (QjMemberShipTypeEnum)PremiumWorker.GetMemberShipType(mainModel);
+
                             // ログイン 済み
                             if (pageNo == (int)QjPageNoTypeEnum.NoteExamination)
                             {

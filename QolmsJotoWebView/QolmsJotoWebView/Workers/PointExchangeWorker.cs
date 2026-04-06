@@ -69,6 +69,13 @@ namespace MGF.QOLMS.QolmsJotoWebView.Workers
 
             //result.FromPageNoType = (int)pageno;
 
+            // 説明文を App_Data から読み込む
+            string descPath = System.Web.HttpContext.Current.Server.MapPath("~/App_Data/PointExchangeDescription.txt");
+            if (!string.IsNullOrWhiteSpace(descPath) && File.Exists(descPath))
+            {
+                result.Description = File.ReadAllText(descPath);
+            }
+
             // ポイント数の表示
             try
             {

@@ -257,6 +257,7 @@ namespace MGF.QOLMS.QolmsJotoWebView
 
         [HttpGet()]
         [QjAuthorize()]
+        [QyApiAuthorize]
         [QjApiAuthorize()]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         [QjLogging()]

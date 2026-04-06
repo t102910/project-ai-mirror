@@ -199,6 +199,7 @@ namespace MGF.QOLMS.QolmsJotoWebView
         /// </summary>
         [HttpPost]
         [QjAuthorize]
+        [QyApiAuthorize]
         [QjApiAuthorize]
         //[QjLogging]
         [QjActionMethodSelector("Delete")]
@@ -302,6 +303,7 @@ namespace MGF.QOLMS.QolmsJotoWebView
         /// 企業連携申請の実行要求を処理し、結果を JSON で返します。
         /// </summary>        [HttpPost]
         [QjAuthorize]
+        [QyApiAuthorize]
         [QjApiAuthorize]
         //[QjLogging]
         [QjActionMethodSelector("Request")]

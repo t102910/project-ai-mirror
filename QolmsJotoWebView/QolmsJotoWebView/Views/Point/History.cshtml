@@ -37,17 +37,7 @@
     @*@Html.Action("PortalHeaderPartialView", "Portal")*@
 
     <main id="main-cont" class="clearfix" role="main">
-        @switch (Model.FromPageNoType)
-        {
-            case (int)QjPageNoTypeEnum.PointHistory:
-            <section class="home-btn-wrap" data-pageno="1">
-                <a href="../Portal/Home" class="home-btn"><i class="la la-angle-left"></i><i class="la la-home la-15x"></i><span> ホーム</span></a>
-            </section>
-                break;
 
-            default:
-                break;
-        }
 
     <section class="contents-area">
         <h2 class="title relative">

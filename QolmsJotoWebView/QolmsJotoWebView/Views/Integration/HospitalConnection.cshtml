@@ -11,17 +11,6 @@
     @Html.AntiForgeryToken()
 
     <main id="main-cont" class="clearfix" role="main">
-        <section class="home-btn-wrap" data-pageno="@Convert.ToByte(Model.FromPageNoType)">
-            @if (Model.FromPageNoType == QjPageNoTypeEnum.PortalHome)
-            {
-                <a href="@Url.Action("ConnectionSetting", "Portal", new { fromPageNo = 1, tabNo = 3 })" class="home-btn"><i class="la la-angle-left"></i></a>
-            }
-            else
-            {
-                <a href="@Url.Action("ConnectionSetting", "Portal", new { tabNo = 3 })" class="home-btn"><i class="la la-angle-left"></i></a>
-            }
-        </section>
-
         <section class="contents-area mb0">
             <h2 class="title">@string.Format("{0}連携", Model.HospitalName)</h2>
             <hr>

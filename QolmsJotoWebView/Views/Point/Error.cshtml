@@ -3,7 +3,7 @@
     ViewData["Title"] = "エラー";
     Layout = "~/Views/Shared/_ErrorLayout.cshtml";
     
-    var segments = Context.Request.Path.Value.Split('/');
+    var segments = Request.Path.Split('/');
     var returnPath = string.Empty;
     
     if (segments != null && segments.Length == 3)
@@ -43,7 +43,7 @@
         </section>
     </main>
 
-    @await Html.PartialAsync("PortalFooterPartialView", "Portal")
+    @Html.Action("PortalFooterPartialView", "Portal")
 
     @Html.Raw(QjHtmlHelper.RenderScriptTag("~/dist/js/point/error"))
 </body>

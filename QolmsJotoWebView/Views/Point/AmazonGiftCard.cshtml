@@ -41,19 +41,6 @@
                     </h3>
                 </div>
 
-                @{
-                    string page = string.Empty;
-
-                    if (Model.FromPageNoType == (int)QjPageNoTypeEnum.PortalHome)
-                    {
-                        page = string.Format("?fromPageNo={0}", Convert.ToByte(Model.FromPageNoType));
-                    }
-                }
-
-                <div class="right">
-                    <a id="back" href="@string.Format("../Point/history{0}", page)" class="btn btn-close no-ico" data-back="@page">戻 る</a>
-                </div>
-
                 <section id="caution" class="section caution mt10 mb10 hide"><h4>heading...</h4>アラートエリアです。不要時.hideで消してください。</section>
 
                 <form class="form exchange-form mb30">

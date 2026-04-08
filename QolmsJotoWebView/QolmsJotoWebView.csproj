@@ -1,0 +1,994 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{39229BBD-4943-413E-B926-92DFDC75BE4A}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MGF.QOLMS.QolmsJotoWebView</RootNamespace>
+    <AssemblyName>QolmsJotoWebView</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44384</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac, Version=7.1.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.7.1.0\lib\netstandard2.0\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=6.1.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Mvc5.6.1.0\lib\net472\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.WebApi, Version=6.1.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.WebApi2.6.1.1\lib\net472\Autofac.Integration.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.Memory, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Memory.9.0.0\lib\net462\Microsoft.Bcl.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.TimeProvider, Version=8.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.TimeProvider.8.0.1\lib\net462\Microsoft.Bcl.TimeProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Edm.5.6.2\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.OData.5.6.2\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Services.Client.5.6.2\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.2.1.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Abstractions, Version=8.15.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Abstractions.8.15.0\lib\net472\Microsoft.IdentityModel.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=8.15.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.JsonWebTokens.8.15.0\lib\net472\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=8.15.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.8.15.0\lib\net472\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=8.15.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.8.15.0\lib\net472\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.3.2.3\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=4.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAzure.Storage.4.3.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Bson, Version=1.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.Bson.1.0.3\lib\net45\Newtonsoft.Json.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsApiCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsApiCoreV1F472.1.0.348\lib\net472\QolmsApiCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsApiEntityV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsApiEntityV1F472.1.0.747\lib\net472\QolmsApiEntityV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsAzureStorageCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsAzureStorageCoreV1F472.1.0.39\lib\net472\QolmsAzureStorageCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsCalomealWebViewApiCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsCalomealWebViewApiCoreV1F472.1.0.2\lib\net472\QolmsCalomealWebViewApiCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsCryptV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsCryptV1F472.1.0.9\lib\net472\QolmsCryptV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsDbCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsDbCoreV1F472.1.0.6\lib\net472\QolmsDbCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsDbEntityV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsDbEntityV1F472.1.0.361\lib\net472\QolmsDbEntityV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsDbLibraryV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsDbLibraryV1F472.1.0.7\lib\net472\QolmsDbLibraryV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsHealthAgeApiCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsHealthAgeApiCoreV1F472.1.0.4\lib\net472\QolmsHealthAgeApiCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsJwtAuthCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsJwtAuthCoreV1F472.1.0.13\lib\net472\QolmsJwtAuthCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsKaradaKaruteApiCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsKaradaKaruteApiCoreV1F472.1.0.1\lib\net472\QolmsKaradaKaruteApiCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsLibraryV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsLibraryV1F472.1.0.15\lib\net472\QolmsLibraryV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsNoticeApiCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsNoticeApiCoreV1F472.1.0.4\lib\net472\QolmsNoticeApiCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsYappliRequestFilterModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsYappliRequestFilterModuleV1F472.1.0.2\lib\net472\QolmsYappliRequestFilterModule.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.8.0.0\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=8.15.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.8.15.0\lib\net472\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.6.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Spatial, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Spatial.5.6.2\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.8.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=8.0.0.5, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.8.0.5\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.3.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.3.0\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.3.0\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.3.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.3.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.3.0\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.3.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.3.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\Attributes\QjActionMethodSelectorAttribute.cs" />
+    <Compile Include="Controllers\Attributes\QyApiAuthorizeAttribute.cs" />
+    <Compile Include="Controllers\HealthController.cs" />
+    <Compile Include="Controllers\Helper\DateHelper.cs" />
+    <Compile Include="Controllers\IntegrationController.cs" />
+    <Compile Include="Controllers\PortalController.cs" />
+    <Compile Include="Controllers\PremiumController.cs" />
+    <Compile Include="Enums\QjDosageFormTypeEnum.cs" />
+    <Compile Include="Enums\QjMealTypeEnum.cs" />
+    <Compile Include="Enums\QjVitalConditionTypeEnum.cs" />
+    <Compile Include="Enums\QyMealTypeEnum.cs" />
+    <Compile Include="Extensions\QjApiEntityConverterExtension.cs" />
+    <Compile Include="Models\Base\QjHealthAgeReportPartialViewModelBase.cs" />
+    <Compile Include="Models\Base\QjHealthPageViewModelBase.cs" />
+    <Compile Include="Models\Base\QjDemoPageViewModelBase.cs" />
+    <Compile Include="Models\Base\QjPartialViewModelBase.cs" />
+    <Compile Include="Models\Base\QjPointAmazonGiftCardViewModelBase.cs" />
+    <Compile Include="Models\Enum\QjHealthAgeReportTypeEnum.cs" />
+    <Compile Include="Models\Base\QjLocalPageViewModelBase.cs" />
+    <Compile Include="Models\Enum\QjHealthAgeValueTypeEnum.cs" />
+    <Compile Include="Models\Enum\QjMealTypeEnum.cs" />
+    <Compile Include="Models\Enum\QjLinkageStatusTypeEnum.cs" />
+    <Compile Include="Models\Enum\QjPointItemTypeEnum.cs" />
+    <Compile Include="Models\Enum\QjRelationContentTypeEnum.cs" />
+    <Compile Include="Models\InnerModels\AmazonGiftCardHistItem.cs" />
+    <Compile Include="Models\InnerModels\AmazonGiftCardItem.cs" />
+    <Compile Include="Models\InnerModels\AuWalletPointHistItem.cs" />
+    <Compile Include="Models\InnerModels\AuWalletPointItem.cs" />
+    <Compile Include="Models\InnerModels\AvailableHealthAgeReportItem.cs" />
+    <Compile Include="Models\InnerModels\CardItem.cs" />
+    <Compile Include="Models\InnerModels\CouponItem.cs" />
+    <Compile Include="Models\InnerModels\DatachargeEventIdItem.cs" />
+    <Compile Include="Models\InnerModels\DatachargeHistItem.cs" />
+    <Compile Include="Models\InnerModels\DeviceItem.cs" />
+    <Compile Include="Models\InnerModels\HealthAgeAdviceGoalItem.cs" />
+    <Compile Include="Models\InnerModels\HealthAgeAdviceItem.cs" />
+    <Compile Include="Models\InnerModels\HealthAgeReportGraphItem.cs" />
+    <Compile Include="Models\InnerModels\HealthAgeReportItem.cs" />
+    <Compile Include="Models\InnerModels\HealthAgeValueItem.cs" />
+    <Compile Include="Models\InnerModels\ConnectionSettingCompanyItem.cs" />
+    <Compile Include="Models\InnerModels\ConnectionSettingHospitalItem.cs" />
+    <Compile Include="Models\InnerModels\ConnectionSettingItem.cs" />
+    <Compile Include="Models\InnerModels\ConnectionSettingPharmacyItem.cs" />
+    <Compile Include="Models\InnerModels\LinkageItem.cs" />
+    <Compile Include="Models\InnerModels\MedicalInstitutionItem.cs" />
+    <Compile Include="Models\InnerModels\PointExchangeHistItem.cs" />
+    <Compile Include="Models\InnerModels\QolmsPointGrantItem.cs" />
+    <Compile Include="Models\InputModel\HealthAgeEditInputModel.cs" />
+    <Compile Include="Models\InputModel\IntegrationCompanyConnectionEditInputModel.cs" />
+    <Compile Include="Models\InputModel\IntegrationCompanyConnectionRequestInputModel.cs" />
+    <Compile Include="Models\InputModel\IntegrationHospitalConnectionRequestInputModel.cs" />
+    <Compile Include="Models\InputModel\PointLocalHistoryInputModel.cs" />
+    <Compile Include="Models\InputModel\PointLocalRedeemInputModel.cs" />
+    <Compile Include="Models\InputModel\PortalLocalIdVerificationRegisterInputModel.cs" />
+    <Compile Include="Models\Interface\IQyModelUpdater.cs" />
+    <Compile Include="Models\JsonParameter\MonshinArgsJsonParamater.cs" />
+    <Compile Include="Models\JsonParameter\NoteExaminationHelthAgeJsonParamater.cs" />
+    <Compile Include="Models\JsonResult\IntegrationCompanyConnectionJsonResult.cs" />
+    <Compile Include="Models\JsonResult\IntegrationTanitaConnectionJsonResult.cs" />
+    <Compile Include="Models\JsonResult\MessageJsonResult.cs" />
+    <Compile Include="Models\JsonResult\MessageListJsonResult.cs" />
+    <Compile Include="Models\JsonResult\NoteExaminationJsonResult.cs" />
+    <Compile Include="Models\PartialViewModel\HealthAgeAdviceAreaPartialViewModel.cs" />
+    <Compile Include="Models\PartialViewModel\HealthAgeDistributionReportPartialViewModel.cs" />
+    <Compile Include="Models\PartialViewModel\HealthAgeFatReportPartialViewModel.cs" />
+    <Compile Include="Models\PartialViewModel\HealthAgeGlucoseReportPartialViewModel.cs" />
+    <Compile Include="Models\PartialViewModel\HealthAgeLipidReportPartialViewModel.cs" />
+    <Compile Include="Models\PartialViewModel\HealthAgeLiverReportPartialViewModel.cs" />
+    <Compile Include="Models\PartialViewModel\HealthAgePressureReportPartialViewModel.cs" />
+    <Compile Include="Models\PartialViewModel\HealthAgeTransitionAreaPartialViewModel.cs" />
+    <Compile Include="Models\PartialViewModel\HealthAgeUrineReportPartialViewModel.cs" />
+    <Compile Include="Models\PartialViewModel\PointLocalHistoryPartialViewModel.cs" />
+    <Compile Include="Models\PartialViewModel\NoteExaminationTablePartialViewModel.cs" />
+    <Compile Include="Models\QjDictionary.cs" />
+    <Compile Include="Models\ThirdParty\Calomeal\CalomealAccessTokenSet.cs" />
+    <Compile Include="Models\ThirdParty\Calomeal\CalomealGoalSet.cs" />
+    <Compile Include="Models\ThirdParty\Calomeal\CalomealInstructInfo.cs" />
+    <Compile Include="Models\ThirdParty\Calomeal\CalomealUser.cs" />
+    <Compile Include="Models\ThirdParty\OWL\AuUserInf.cs" />
+    <Compile Include="Models\ThirdParty\OWL\biscuitif.cs" />
+    <Compile Include="Models\ThirdParty\OWL\biscuitifAuCntrctAttrib.cs" />
+    <Compile Include="Models\ThirdParty\OWL\biscuitifAuIdAttrib.cs" />
+    <Compile Include="Models\ThirdParty\OWL\biscuitifCsAttrib.cs" />
+    <Compile Include="Models\ThirdParty\OWL\request_biscuitif.cs" />
+    <Compile Include="Models\ThirdParty\Ponta\BPIFMerchantPoint_I.cs" />
+    <Compile Include="Models\ThirdParty\Ponta\Control.cs" />
+    <Compile Include="Models\ThirdParty\Ponta\pointIf.cs" />
+    <Compile Include="Models\ThirdParty\Ponta\PointInfo.cs" />
+    <Compile Include="Models\ThirdParty\Ponta\ProcessResult.cs" />
+    <Compile Include="Models\ViewModels\HealthAgeViewModel.cs" />
+    <Compile Include="Models\ViewModels\DemoViewModel.cs" />
+    <Compile Include="Models\ViewModels\IntegrationCompanyConnectionEditViewModel.cs" />
+    <Compile Include="Models\ViewModels\IntegrationCompanyConnectionHomeViewModel.cs" />
+    <Compile Include="Models\ViewModels\IntegrationCompanyConnectionRequestViewModel.cs" />
+    <Compile Include="Models\ViewModels\IntegrationCompanyConnectionViewModel.cs" />
+    <Compile Include="Models\ViewModels\IntegrationOmronConnectionViewModel.cs" />
+    <Compile Include="Models\ViewModels\IntegrationHospitalConnectionRequestViewModel.cs" />
+    <Compile Include="Models\ViewModels\IntegrationHospitalConnectionViewModel.cs" />
+    <Compile Include="Models\ViewModels\IntegrationTanitaConnectionViewModel.cs" />
+    <Compile Include="Models\ViewModels\NoteGulfSportsMovieViewModel.cs" />
+    <Compile Include="Models\ViewModels\NoteMeal2InputModel.cs" />
+    <Compile Include="Models\ViewModels\PointAmazonGiftCardViewModel.cs" />
+    <Compile Include="Models\ViewModels\PointAuWalletPointExchangeViewModel.cs" />
+    <Compile Include="Models\ViewModels\PointDatachargeViewModel.cs" />
+    <Compile Include="Models\ViewModels\PointOnlineStoreViewModel.cs" />
+    <Compile Include="Models\ViewModels\PortalConnectionSettingViewModel.cs" />
+    <Compile Include="Models\ViewModels\PortalLocalIdVerificationAgreementViewModel.cs" />
+    <Compile Include="Models\ViewModels\PortalLocalIdVerificationDetailViewModel.cs" />
+    <Compile Include="Models\ViewModels\PortalLocalIdVerificationRequestViewModel.cs" />
+    <Compile Include="Repositories\AmazonGiftCardRepository.cs" />
+    <Compile Include="Repositories\ExaminationRepository.cs" />
+    <Compile Include="Repositories\HealthAgeRepository.cs" />
+    <Compile Include="Repositories\DatachargeRepository.cs" />
+    <Compile Include="Repositories\JmdcHealthAgeApiRepository.cs" />
+    <Compile Include="Repositories\KaradaKaruteApiRepository.cs" />
+    <Compile Include="Repositories\LinkageRepository.cs" />
+    <Compile Include="Repositories\LocalIdVerificationRepository.cs" />
+    <Compile Include="Repositories\OcmCouponRepository.cs" />
+    <Compile Include="Repositories\LocalPointRepository.cs" />
+    <Compile Include="Repositories\OnlineStoreCouponRepository.cs" />
+    <Compile Include="Repositories\PointRepository.cs" />
+    <Compile Include="Repositories\PontaExchangeRepository.cs" />
+    <Compile Include="Repositories\PremiumRepository.cs" />
+    <Compile Include="Repositories\QolmsSystemKeyRepository.cs" />
+    <Compile Include="Repositories\TanitaConnectionRepository.cs" />
+    <Compile Include="Repositories\TermsRepository.cs" />
+    <Compile Include="Repositories\VitalRepository.cs" />
+    <Compile Include="UseCases\AuOwlAccessUsecase.cs" />
+    <Compile Include="Workers\AccessLogWorker.cs" />
+    <Compile Include="Workers\ApiAuthorizeWorker.cs" />
+    <Compile Include="Models\ThirdParty\Ponta\auPointRequestOfJson.cs" />
+    <Compile Include="Models\ThirdParty\Ponta\auPointResponseOfJson.cs" />
+    <Compile Include="Workers\CalomealWebViewWorker.cs" />
+    <Compile Include="Workers\DemoWorker.cs" />
+    <Compile Include="Workers\HealthAgeEditWorker.cs" />
+    <Compile Include="Workers\HealthAgeWorker.cs" />
+    <Compile Include="Workers\IntegrationCompanyConnectionEditWorker.cs" />
+    <Compile Include="Workers\IntegrationCompanyConnectionRequestWorker.cs" />
+    <Compile Include="Workers\IntegrationCompanyConnectionWorker.cs" />
+    <Compile Include="Workers\IntegrationHospitalConnectionRequestWorker.cs" />
+    <Compile Include="Workers\IntegrationHospitalConnectionWorker.cs" />
+    <Compile Include="Workers\IntegrationTanitaConnectionWorker.cs" />
+    <Compile Include="Workers\LoginWorker.cs" />
+    <Compile Include="Workers\PremiumWorker.cs" />
+    <Compile Include="Workers\NoticeMailWorker.cs" />
+    <Compile Include="Workers\PointAmazonGiftCardWorker.cs" />
+    <Compile Include="Workers\PointDatachargeWorker.cs" />
+    <Compile Include="Workers\PointOnlineStoreWorker.cs" />
+    <Compile Include="Workers\PointExchangeWorker.cs" />
+    <Compile Include="Workers\NoteCalomealWorker.cs" />
+    <Compile Include="Workers\NoteExaminationWorker.cs" />
+    <Compile Include="Workers\NoteMonshinWorker.cs" />
+    <Compile Include="Workers\PointHistoryWorker.cs" />
+    <Compile Include="Workers\PointPontaExchangeWorker.cs" />
+    <Compile Include="Workers\PortalLocalIdVerificationAgreementWorker.cs" />
+    <Compile Include="Workers\PortalLocalIdVerificationDetailWorker.cs" />
+    <Compile Include="Workers\PortalLocalIdVerificationRegisterWorker.cs" />
+    <Compile Include="Workers\PortalLocalIdVerificationRequestWorker.cs" />
+    <Compile Include="Workers\PortalLocalIdVerificationWorker.cs" />
+    <Compile Include="Workers\PortalConnectionSettiongWorker.cs" />
+    <Compile Include="Workers\QjConfiguration.cs" />
+    <Compile Include="Workers\QjLinkageSystemNo.cs" />
+    <Content Include="App_Data\CouponForFitbitDescription.txt" />
+    <Content Include="App_Data\PointExchangeDescription.txt" />
+    <Content Include="dist\img\challenge\challenge-1\JOTO_1.jpg" />
+    <Content Include="dist\img\challenge\challenge-1\JOTO_1_1.jpg" />
+    <Content Include="dist\img\challenge\challenge-1\JOTO_2.jpg" />
+    <Content Include="dist\img\challenge\challenge-1\JOTO_3.jpg" />
+    <Content Include="dist\img\challenge\challenge-1\JOTO_4.jpg" />
+    <Content Include="dist\img\challenge\challenge-1\JOTO_4.png" />
+    <Content Include="dist\img\challenge\challenge-2\exp-1.jpg" />
+    <Content Include="dist\img\challenge\challenge-2\exp-main.jpg" />
+    <Content Include="dist\img\challenge\challenge-2\JOTO_1.jpg" />
+    <Content Include="dist\img\challenge\challenge-2\JOTO_1_1.jpg" />
+    <Content Include="dist\img\challenge\challenge-2\JOTO_2.jpg" />
+    <Content Include="dist\img\challenge\challenge-2\JOTO_3.jpg" />
+    <Content Include="dist\img\challenge\challenge-2\JOTO_4.jpg" />
+    <Content Include="dist\img\challenge\challenge-2\JOTO_4.png" />
+    <Content Include="dist\img\challenge\challenge-2\main.jpg" />
+    <Content Include="dist\img\challenge\challenge-3\JOTO_1.jpg" />
+    <Content Include="dist\img\challenge\challenge-3\JOTO_1_1.jpg" />
+    <Content Include="dist\img\challenge\challenge-3\JOTO_3.jpg" />
+    <Content Include="dist\img\challenge\challenge-3\JOTO_4.png" />
+    <Content Include="dist\img\challenge\challenge-4\JOTO_1.jpg" />
+    <Content Include="dist\img\challenge\challenge-4\JOTO_1_1.jpg" />
+    <Content Include="dist\img\challenge\challenge-4\JOTO_3.jpg" />
+    <Content Include="dist\img\challenge\challenge-4\JOTO_4.png" />
+    <Content Include="dist\img\challenge\challenge-5\JOTO_1.jpg" />
+    <Content Include="dist\img\challenge\challenge-5\JOTO_1_1.jpg" />
+    <Content Include="dist\img\challenge\challenge-5\JOTO_3.jpg" />
+    <Content Include="dist\img\challenge\challenge-5\JOTO_4.png" />
+    <Content Include="dist\img\index\icn-vital.psd" />
+    <Content Include="dist\js\page-script\mgf.integration.companyconnection.js" />
+    <Content Include="dist\js\page-script\mgf.integration.companyconnectionedit.js" />
+    <Content Include="dist\js\page-script\mgf.integration.companyconnectionhome.js" />
+    <Content Include="dist\js\page-script\mgf.integration.companyconnectionrequest.js" />
+    <Content Include="dist\js\page-script\mgf.integration.omronconnection.js" />
+    <Content Include="dist\js\page-script\mgf.integration.hospitalconnection.js" />
+    <Content Include="dist\js\page-script\mgf.integration.hospitalconnectionrequest.js" />
+    <Content Include="dist\js\page-script\mgf.integration.tanitaconnection.js" />
+    <Content Include="dist\js\page-script\mgf.note.gulfsportsmovie.js" />
+    <Content Include="dist\js\page-script\mgf.note.gulfsportsmovieindex.js" />
+    <Content Include="dist\js\page-script\mgf.integration.js" />
+    <Content Include="dist\js\page-script\mgf.point.aupoint.js" />
+    <Content Include="dist\js\page-script\mgf.point.onlinestore.js" />
+    <Content Include="dist\js\page-script\mgf.premium.agreement.js" />
+    <Content Include="dist\js\page-script\mgf.premium.cardinfo.js" />
+    <Content Include="dist\js\page-script\mgf.premium.info.js" />
+    <Content Include="dist\js\page-script\mgf.premium.js" />
+    <Content Include="dist\js\page-script\mgf.premium.paymentmethod.js" />
+    <Content Include="dist\js\page-script\mgf.premium.unsubscribe.js" />
+    <Content Include="dist\js\__highcharts-draw.js" />
+    <Content Include="Views\Integration\CompanyConnection.cshtml" />
+    <Content Include="Views\Integration\CompanyConnectionEdit.cshtml" />
+    <Content Include="Views\Integration\CompanyConnectionHome.cshtml" />
+    <Content Include="Views\Integration\CompanyConnectionRequest.cshtml" />
+    <Content Include="Views\Integration\TanitaConnection.cshtml" />
+    <Content Include="Views\Integration\HospitalConnection.cshtml" />
+    <Content Include="Views\Integration\HospitalConnectionRequest.cshtml" />
+    <Content Include="Views\Integration\OmronConnection.cshtml" />
+    <Compile Include="Models\ViewModels\PointExchangeViewModel.cs" />
+    <Compile Include="Repositories\CalomealRepository.cs" />
+    <Compile Include="Repositories\CalomealWebViewApiRepository.cs" />
+    <Compile Include="Models\ViewModels\LocalHistoryViewModel.cs" />
+    <Compile Include="Workers\DemoWorker.cs" />
+    <Compile Include="Workers\NoteCalomealWorker.cs" />
+    <Compile Include="Workers\LocalPointWorker.cs" />
+    <Compile Include="Workers\NoteExaminationWorker.cs" />
+    <Content Include="dist\css\bootstrap.min.css" />
+    <Content Include="dist\css\slick-theme.css" />
+    <Content Include="dist\css\slick.css" />
+    <Content Include="dist\css\styles.min.css" />
+    <Content Include="dist\fonts\D-DIN-Exp.ttf.svg" />
+    <Content Include="dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="dist\fonts\line-awesome.svg" />
+    <Content Include="dist\fonts\slick.svg" />
+    <Content Include="dist\img\biz\biz-logo.png" />
+    <Content Include="dist\img\biz\coming-soon.png" />
+    <Content Include="dist\img\biz\menu-1.png" />
+    <Content Include="dist\img\biz\menu-2.png" />
+    <Content Include="dist\img\biz\menu-3.png" />
+    <Content Include="dist\img\biz\menu-4.png" />
+    <Content Include="dist\img\challenge\challenge-1\exp-1.jpg" />
+    <Content Include="dist\img\challenge\challenge-1\exp-main.jpg" />
+    <Content Include="dist\img\challenge\challenge-1\img-1.png" />
+    <Content Include="dist\img\challenge\challenge-1\img-2.png" />
+    <Content Include="dist\img\challenge\challenge-1\img-3.png" />
+    <Content Include="dist\img\challenge\challenge-1\img-4.png" />
+    <Content Include="dist\img\challenge\challenge-1\img-5.png" />
+    <Content Include="dist\img\challenge\challenge-1\main.jpg" />
+    <Content Include="dist\img\challenge\challenge-2\main.png" />
+    <Content Include="dist\img\challenge\tmpl\bg.png" />
+    <Content Include="dist\img\challenge\tmpl\bg2.png" />
+    <Content Include="dist\img\challenge\tmpl\btn-2.png" />
+    <Content Include="dist\img\challenge\tmpl\btn-3.png" />
+    <Content Include="dist\img\challenge\tmpl\btn-4.jpg" />
+    <Content Include="dist\img\challenge\tmpl\challenging.png" />
+    <Content Include="dist\img\challenge\tmpl\close-title.png" />
+    <Content Include="dist\img\challenge\tmpl\closed.png" />
+    <Content Include="dist\img\challenge\tmpl\dock-icon.png" />
+    <Content Include="dist\img\challenge\tmpl\h2-bg-left-2.png" />
+    <Content Include="dist\img\challenge\tmpl\h2-bg-left.png" />
+    <Content Include="dist\img\challenge\tmpl\h2-bg-right-2.png" />
+    <Content Include="dist\img\challenge\tmpl\h2-bg-right.png" />
+    <Content Include="dist\img\challenge\tmpl\point-get.png" />
+    <Content Include="dist\img\challenge\tmpl\questionnaire-btn.png" />
+    <Content Include="dist\img\challenge\tmpl\smaho-btn.png" />
+    <Content Include="dist\img\challenge\tmpl\strong-bg-left.png" />
+    <Content Include="dist\img\challenge\tmpl\strong-bg-right.png" />
+    <Content Include="dist\img\column\click-btn-unread.png" />
+    <Content Include="dist\img\column\click-btn.png" />
+    <Content Include="dist\img\column\dr-1-title.png" />
+    <Content Include="dist\img\column\dr-1.png" />
+    <Content Include="dist\img\column\img-1.jpg" />
+    <Content Include="dist\img\column\read-btn-unread.png" />
+    <Content Include="dist\img\column\read-btn.png" />
+    <Content Include="dist\img\column\thumb-1-unread.jpg" />
+    <Content Include="dist\img\column\thumb-1.jpg" />
+    <Content Include="dist\img\column\title-bg-1.png" />
+    <Content Include="dist\img\column\title-bg-2.png" />
+    <Content Include="dist\img\confirm\bg.png" />
+    <Content Include="dist\img\first-time\img-1.jpg" />
+    <Content Include="dist\img\first-time\img-2.jpg" />
+    <Content Include="dist\img\first-time\img-3.jpg" />
+    <Content Include="dist\img\gulf-mov\detail\mov-ico.png" />
+    <Content Include="dist\img\gulf-mov\detail\title-1.png" />
+    <Content Include="dist\img\gulf-mov\detail\title-2.png" />
+    <Content Include="dist\img\gulf-mov\detail\title-3.png" />
+    <Content Include="dist\img\gulf-mov\index-btn-1.jpg" />
+    <Content Include="dist\img\gulf-mov\index-btn-2.jpg" />
+    <Content Include="dist\img\gulf-mov\index-btn-3.jpg" />
+    <Content Include="dist\img\gulf-mov\index-btn-4.png" />
+    <Content Include="dist\img\gulf-mov\index-title.png" />
+    <Content Include="dist\img\health-age\bad.png" />
+    <Content Include="dist\img\health-age\good.png" />
+    <Content Include="dist\img\health-age\usual.png" />
+    <Content Include="dist\img\index\alkoo-icon.png" />
+    <Content Include="dist\img\index\arrow-left-biz.png" />
+    <Content Include="dist\img\index\arrow-left.png" />
+    <Content Include="dist\img\index\arrow-right-biz.png" />
+    <Content Include="dist\img\index\arrow-right.png" />
+    <Content Include="dist\img\index\balloon.png" />
+    <Content Include="dist\img\index\banner-1.jpg" />
+    <Content Include="dist\img\index\banner-2.jpg" />
+    <Content Include="dist\img\index\banner-3.jpg" />
+    <Content Include="dist\img\index\banner-4.jpg" />
+    <Content Include="dist\img\index\banner-5.jpg" />
+    <Content Include="dist\img\index\banner-6.jpg" />
+    <Content Include="dist\img\index\banner-7.jpg" />
+    <Content Include="dist\img\index\banner-8.jpg" />
+    <Content Include="dist\img\index\bg-gauge-over.png" />
+    <Content Include="dist\img\index\btn-exercise.png" />
+    <Content Include="dist\img\index\btn-meal.png" />
+    <Content Include="dist\img\index\btn-vital.png" />
+    <Content Include="dist\img\index\btn-walk.png" />
+    <Content Include="dist\img\index\cal-in.png" />
+    <Content Include="dist\img\index\cal-out.png" />
+    <Content Include="dist\img\index\check-mark.png" />
+    <Content Include="dist\img\index\clinics-icon.png" />
+    <Content Include="dist\img\index\federation-1.jpg" />
+    <Content Include="dist\img\index\federation-2.jpg" />
+    <Content Include="dist\img\index\federation-3.jpg" />
+    <Content Include="dist\img\index\federation-4.jpg" />
+    <Content Include="dist\img\index\federation-5.jpg" />
+    <Content Include="dist\img\index\federation-6.jpg" />
+    <Content Include="dist\img\index\gulf-icon.png" />
+    <Content Include="dist\img\index\icn-4.png" />
+    <Content Include="dist\img\index\icn-5.png" />
+    <Content Include="dist\img\index\icn-6.png" />
+    <Content Include="dist\img\index\icn-7.png" />
+    <Content Include="dist\img\index\icn-8.png" />
+    <Content Include="dist\img\index\icn-arrow.png" />
+    <Content Include="dist\img\index\icn-arrow2.png" />
+    <Content Include="dist\img\index\icn-comingsoon.png" />
+    <Content Include="dist\img\index\icn-exercise.png" />
+    <Content Include="dist\img\index\icn-fin.png" />
+    <Content Include="dist\img\index\icn-meal.png" />
+    <Content Include="dist\img\index\icn-none.png" />
+    <Content Include="dist\img\index\icn-point-premium.png" />
+    <Content Include="dist\img\index\icn-point.png" />
+    <Content Include="dist\img\index\icn-premiumlimited.png" />
+    <Content Include="dist\img\index\icn-vital.png" />
+    <Content Include="dist\img\index\icn-walk-premium.png" />
+    <Content Include="dist\img\index\icn-walk.png" />
+    <Content Include="dist\img\index\icn-yet.png" />
+    <Content Include="dist\img\index\ico-1.png" />
+    <Content Include="dist\img\index\ico-2.png" />
+    <Content Include="dist\img\index\in-cal-icon-biz.png" />
+    <Content Include="dist\img\index\in-cal-icon.png" />
+    <Content Include="dist\img\index\menu-nav-ico-1-biz.png" />
+    <Content Include="dist\img\index\menu-nav-ico-1.png" />
+    <Content Include="dist\img\index\menu-nav-ico-2-biz.png" />
+    <Content Include="dist\img\index\menu-nav-ico-2.png" />
+    <Content Include="dist\img\index\menu-nav-ico-3-biz.png" />
+    <Content Include="dist\img\index\menu-nav-ico-3.png" />
+    <Content Include="dist\img\index\menu-nav-ico-4-biz.png" />
+    <Content Include="dist\img\index\menu-nav-ico-4.png" />
+    <Content Include="dist\img\index\menu-nav-ico-5-biz.png" />
+    <Content Include="dist\img\index\menu-nav-ico-5.png" />
+    <Content Include="dist\img\index\menu-nav-ico-6-biz.png" />
+    <Content Include="dist\img\index\menu-nav-ico-6.png" />
+    <Content Include="dist\img\index\menu-nav-ico-7-biz.png" />
+    <Content Include="dist\img\index\menu-nav-ico-7.png" />
+    <Content Include="dist\img\index\menu-nav-spacer.png" />
+    <Content Include="dist\img\index\okinawa-icon.png" />
+    <Content Include="dist\img\index\out-cal-icon-biz.png" />
+    <Content Include="dist\img\index\out-cal-icon.png" />
+    <Content Include="dist\img\index\point-off.png" />
+    <Content Include="dist\img\index\point-on.png" />
+    <Content Include="dist\img\index\point.png" />
+    <Content Include="dist\img\index\points-chiiki.svg" />
+    <Content Include="dist\img\index\points.svg" />
+    <Content Include="dist\img\index\shika-coin-1.svg" />
+    <Content Include="dist\img\index\shika-coin-2.svg" />
+    <Content Include="dist\img\index\shika-coin-3.svg" />
+    <Content Include="dist\img\index\shika-coin.svg" />
+    <Content Include="dist\img\index\shika-excercise.png" />
+    <Content Include="dist\img\index\shika-over.png" />
+    <Content Include="dist\img\index\shika.png" />
+    <Content Include="dist\img\index\support-1.jpg" />
+    <Content Include="dist\img\index\support-2-biz.jpg" />
+    <Content Include="dist\img\index\support-2.jpg" />
+    <Content Include="dist\img\index\support-3-biz.jpg" />
+    <Content Include="dist\img\index\support-3.jpg" />
+    <Content Include="dist\img\index\support-4.jpg" />
+    <Content Include="dist\img\index\support-5-biz.jpg" />
+    <Content Include="dist\img\index\support-5.jpg" />
+    <Content Include="dist\img\index\support-spacer.png" />
+    <Content Include="dist\img\index\table-drow-off-biz.png" />
+    <Content Include="dist\img\index\table-drow-off.png" />
+    <Content Include="dist\img\index\table-drow-on-biz.png" />
+    <Content Include="dist\img\index\table-drow-on.png" />
+    <Content Include="dist\img\index\tanita-icon.png" />
+    <Content Include="dist\img\index\test-1.png" />
+    <Content Include="dist\img\index\test-2.png" />
+    <Content Include="dist\img\index\touroku-shika.png" />
+    <Content Include="dist\img\index\txt-biz.png" />
+    <Content Include="dist\img\index\txt-premium.png" />
+    <Content Include="dist\img\index\undou-shika.png" />
+    <Content Include="dist\img\info\auid-off.png" />
+    <Content Include="dist\img\info\auid-on.png" />
+    <Content Include="dist\img\info\id-pass-off.png" />
+    <Content Include="dist\img\info\id-pass-on.png" />
+    <Content Include="dist\img\kenshin\summary\arrow-2.png" />
+    <Content Include="dist\img\kenshin\summary\arrow.png" />
+    <Content Include="dist\img\kenshin\summary\doctor-male.png" />
+    <Content Include="dist\img\meal\arrow.png" />
+    <Content Include="dist\img\meal\error.png" />
+    <Content Include="dist\img\mov-for-female\img-1.jpg" />
+    <Content Include="dist\img\mov-for-female\img-2.jpg" />
+    <Content Include="dist\img\mov-for-female\img-3.jpg" />
+    <Content Include="dist\img\mov-for-female\mv.jpg" />
+    <Content Include="dist\img\mov-for-female\title.jpg" />
+    <Content Include="dist\img\pay-later\flow-1.png" />
+    <Content Include="dist\img\pay-later\flow-2.png" />
+    <Content Include="dist\img\pay-later\flow-3.png" />
+    <Content Include="dist\img\pay-later\flow-4.png" />
+    <Content Include="dist\img\pay-later\info-1.png" />
+    <Content Include="dist\img\pay-later\info-2.png" />
+    <Content Include="dist\img\pay-later\info-3.png" />
+    <Content Include="dist\img\pay-later\info-logo.png" />
+    <Content Include="dist\img\pay-later\logo.png" />
+    <Content Include="dist\img\pharmacy-cooperation\btn-1.jpg" />
+    <Content Include="dist\img\pharmacy-cooperation\img-1.jpg" />
+    <Content Include="dist\img\pharmacy-cooperation\img-2.jpg" />
+    <Content Include="dist\img\point\amazon.png" />
+    <Content Include="dist\img\point\au.png" />
+    <Content Include="dist\img\point\clip-marche.png" />
+    <Content Include="dist\img\point\joto-online.png" />
+    <Content Include="dist\img\premium-info\1.png" />
+    <Content Include="dist\img\premium-info\2.png" />
+    <Content Include="dist\img\premium-info\3.png" />
+    <Content Include="dist\img\premium-info\4.png" />
+    <Content Include="dist\img\premium-info\5.png" />
+    <Content Include="dist\img\premium-info\logo.png" />
+    <Content Include="dist\img\premium-info\premium-ico.png" />
+    <Content Include="dist\img\recipe\detail\mov-ico.png" />
+    <Content Include="dist\img\recipe\detail\title-1.png" />
+    <Content Include="dist\img\recipe\index-btn-1.jpg" />
+    <Content Include="dist\img\recipe\index-coming-soon.png" />
+    <Content Include="dist\img\recipe\index-title.png" />
+    <Content Include="dist\img\sample\image-sample.png" />
+    <Content Include="dist\img\sample\sports-other.png" />
+    <Content Include="dist\img\sports\gulf-btn.png" />
+    <Content Include="dist\img\sports\stamp-1.png" />
+    <Content Include="dist\img\sports\stamp-10.png" />
+    <Content Include="dist\img\sports\stamp-11.png" />
+    <Content Include="dist\img\sports\stamp-12.png" />
+    <Content Include="dist\img\sports\stamp-13.png" />
+    <Content Include="dist\img\sports\stamp-14.png" />
+    <Content Include="dist\img\sports\stamp-15.png" />
+    <Content Include="dist\img\sports\stamp-2.png" />
+    <Content Include="dist\img\sports\stamp-3.png" />
+    <Content Include="dist\img\sports\stamp-4.png" />
+    <Content Include="dist\img\sports\stamp-5.png" />
+    <Content Include="dist\img\sports\stamp-6.png" />
+    <Content Include="dist\img\sports\stamp-7.png" />
+    <Content Include="dist\img\sports\stamp-8.png" />
+    <Content Include="dist\img\sports\stamp-9.png" />
+    <Content Include="dist\img\tanita\tanita.jpg" />
+    <Content Include="dist\img\test-img\chart.png" />
+    <Content Include="dist\img\test-img\img-1.png" />
+    <Content Include="dist\img\test-img\img-2.png" />
+    <Content Include="dist\img\test-img\img-3.png" />
+    <Content Include="dist\img\test-img\stamp-1.png" />
+    <Content Include="dist\img\test-img\stamp-2.png" />
+    <Content Include="dist\img\test-img\stamp-3.png" />
+    <Content Include="dist\img\tmpl\ajax-loader.gif" />
+    <Content Include="dist\img\tmpl\ajax-loader2.gif" />
+    <Content Include="dist\img\tmpl\app.png" />
+    <Content Include="dist\img\tmpl\arrow-gray.png" />
+    <Content Include="dist\img\tmpl\arrow.png" />
+    <Content Include="dist\img\tmpl\balloon.png" />
+    <Content Include="dist\img\tmpl\balloon2.png" />
+    <Content Include="dist\img\tmpl\cheering.png" />
+    <Content Include="dist\img\tmpl\dl-apple.png" />
+    <Content Include="dist\img\tmpl\dl-google.png" />
+    <Content Include="dist\img\tmpl\dot.png" />
+    <Content Include="dist\img\tmpl\error.png" />
+    <Content Include="dist\img\tmpl\eye-fill.svg" />
+    <Content Include="dist\img\tmpl\eye-off-fill.svg" />
+    <Content Include="dist\img\tmpl\Gulf.png" />
+    <Content Include="dist\img\tmpl\icn-service_d.svg" />
+    <Content Include="dist\img\tmpl\icons-apple.svg" />
+    <Content Include="dist\img\tmpl\id-au.svg" />
+    <Content Include="dist\img\tmpl\id-wow.svg" />
+    <Content Include="dist\img\tmpl\joto-logo.png" />
+    <Content Include="dist\img\tmpl\loader-meal.gif" />
+    <Content Include="dist\img\tmpl\loader.gif" />
+    <Content Include="dist\img\tmpl\logo.svg" />
+    <Content Include="dist\img\tmpl\mark-bad.svg" />
+    <Content Include="dist\img\tmpl\mark-good.svg" />
+    <Content Include="dist\img\tmpl\mark-ordinary.svg" />
+    <Content Include="dist\img\tmpl\no-image.png" />
+    <Content Include="dist\img\tmpl\popper.png" />
+    <Content Include="dist\img\tmpl\premium-bannar.png" />
+    <Content Include="dist\img\tmpl\premium-info-1.png" />
+    <Content Include="dist\img\tmpl\premium.png" />
+    <Content Include="dist\img\tmpl\s-1.png" />
+    <Content Include="dist\img\tmpl\s-2.png" />
+    <Content Include="dist\img\tmpl\s-3.png" />
+    <Content Include="dist\img\tmpl\s-4.png" />
+    <Content Include="dist\img\tmpl\s-5.png" />
+    <Content Include="dist\img\tmpl\s-6.png" />
+    <Content Include="dist\img\tmpl\s-7.png" />
+    <Content Include="dist\img\tmpl\shika-2.png" />
+    <Content Include="dist\img\tmpl\splash-logo.svg" />
+    <Content Include="dist\img\tmpl\stamp.png" />
+    <Content Include="dist\img\tmpl\y-1.png" />
+    <Content Include="dist\img\tmpl\yt_icon_rgb.png" />
+    <Content Include="dist\js\bootstrap-5.3.6.min.js" />
+    <Content Include="dist\js\bootstrap-3.3.7.min.js" />
+    <Content Include="dist\js\bootstrap-datepicker.js" />
+    <Content Include="dist\js\bootstrap.bundle.js" />
+    <Content Include="dist\js\exif.min.js" />
+    <Content Include="dist\js\highcharts-draw.js" />
+    <Content Include="dist\js\highcharts-more.js" />
+    <Content Include="dist\js\highcharts.js" />
+    <Content Include="dist\js\jquery-qrcode-0.18.0.min.js" />
+    <Content Include="dist\js\oidc-client.js" />
+    <Content Include="dist\js\jquery-3.7.1.min.js" />
+    <Content Include="dist\js\page-script\mgf.point.datacharge.js" />
+    <Content Include="dist\js\page-script\mgf.point.history.js" />
+    <Content Include="dist\js\page-script\mgf.point.localhistory.js" />
+    <Content Include="dist\js\page-script\mgf.health.age.js" />
+    <Content Include="dist\js\page-script\mgf.health.ageedit.js" />
+    <Content Include="dist\js\page-script\mgf.health.js" />
+    <Content Include="dist\js\page-script\mgf.js" />
+    <Content Include="dist\js\page-script\mgf.note.examination.js" />
+    <Content Include="dist\js\page-script\mgf.note.js" />
+    <Content Include="dist\js\page-script\mgf.point.js" />
+    <Content Include="dist\js\page-script\mgf.point.exchange.js" />
+    <Content Include="dist\js\page-script\mgf.point.amazongiftcard.js" />
+    <Content Include="dist\js\page-script\mgf.portal.js" />
+    <Content Include="dist\js\page-script\mgf.portal.localidverification.js" />
+    <Content Include="dist\js\page-script\mgf.portal.localidverificationagreement.js" />
+    <Content Include="dist\js\page-script\mgf.portal.localidverificationdetail.js" />
+    <Content Include="dist\js\page-script\mgf.portal.localidverificationregister.js" />
+    <Content Include="dist\js\page-script\mgf.portal.localidverificationrequest.js" />
+    <Content Include="dist\js\page-script\mgf.integration.fitbitconnection.js" />
+    <Content Include="dist\js\slick.min.js" />
+    <Content Include="dist\js\spc.lib.min.js" />
+    <Content Include="dist\js\spc.util.min.js" />
+    <Content Include="Global.asax" />
+    <Compile Include="Enums\QjExaminationDataTypeEnum.cs" />
+    <Compile Include="Enums\QjExaminationItemTypeEnum.cs" />
+    <Compile Include="Enums\QjExaminationItemValueTypeEnum.cs" />
+    <Compile Include="Models\InnerModels\AssociatedFileItem.cs" />
+    <Compile Include="Models\InnerModels\ExaminationAssociatedFileItem.cs" />
+    <Compile Include="Models\InnerModels\ExaminationAxis.cs" />
+    <Compile Include="Models\InnerModels\ExaminationGroupItem.cs" />
+    <Compile Include="Models\InnerModels\ExaminationItem.cs" />
+    <Compile Include="Models\InnerModels\ExaminationJudgementItem.cs" />
+    <Compile Include="Models\InnerModels\ExaminationMatrix.cs" />
+    <Content Include="Web.config" />
+    <Content Include="Views\Point\Exchange.cshtml" />
+    <Content Include="Views\Start\Demo.cshtml" />
+    <Content Include="Views\Portal\LocalIdVerification.cshtml" />
+    <Content Include="Views\Shared\_PortalLayout.cshtml" />
+    <Content Include="Views\Portal\LocalIdVerificationAgreement.cshtml" />
+    <Content Include="Views\Portal\LocalIdVerificationDetail.cshtml" />
+    <Content Include="Views\Portal\LocalIdVerificationRegister.cshtml" />
+    <Content Include="Views\Portal\LocalIdVerificationRequest.cshtml" />
+    <Content Include="Views\Integration\FitbitConnection.cshtml" />
+    <Content Include="Views\Start\LoginByAuId.cshtml" />
+    <Content Include="Views\Shared\_StartLayout.cshtml" />
+    <Content Include="Views\Shared\_PointFooterPartialView.cshtml" />
+    <Content Include="Views\Shared\_PointLocalHistoryPartialView.cshtml" />
+    <Content Include="Views\Point\AuPoint.cshtml" />
+    <Content Include="Views\Point\OnlineStore.cshtml" />
+    <Content Include="Views\Point\Datacharge.cshtml" />
+    <Content Include="Views\Shared\_PortalFooterPartialView.cshtml" />
+    <Content Include="Views\Shared\_IntegrationFooterPartialView.cshtml" />
+    <Content Include="Views\Shared\_IntegrationLayout.cshtml" />
+    <Content Include="Views\Point\Terms.cshtml" />
+    <Content Include="Views\Portal\ConnectionSetting.cshtml" />
+    <Content Include="Views\Premium\Agreement.cshtml" />
+    <Content Include="Views\Premium\CardInfo.cshtml" />
+    <Content Include="Views\Premium\LightMember.cshtml" />
+    <Content Include="Views\Premium\PaymentMethod.cshtml" />
+    <Content Include="Views\Premium\PremiumMember.cshtml" />
+    <Content Include="Views\Shared\_PremiumBenefitsPartial.cshtml" />
+    <Content Include="Views\Shared\_PremiumTermsPartial.cshtml" />
+    <Content Include="Views\Premium\Unsubscribe.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="AzureStorage\AccessTable\Writer\AccessTableEntityWriter.cs" />
+    <Compile Include="AzureStorage\AccessTable\Writer\AccessTableEntityWriterArgs.cs" />
+    <Compile Include="AzureStorage\AccessTable\Writer\AccessTableEntityWriterResults.cs" />
+    <Compile Include="Controllers\AccessKeyController.cs" />
+    <Compile Include="Controllers\Attributes\QjAjaxOnlyAttribute.cs" />
+    <Compile Include="Controllers\Attributes\QjApiAuthorizeAttribute.cs" />
+    <Compile Include="Controllers\Attributes\QjAuthorizeAttribute.cs" />
+    <Compile Include="Controllers\Attributes\QjForceSanitizing.cs" />
+    <Compile Include="Controllers\Attributes\QjJwtAuthorizeAttribute.cs" />
+    <Compile Include="Controllers\Attributes\QjLoggingAttribute.cs" />
+    <Compile Include="Controllers\Attributes\QjViewCountAttribute.cs" />
+    <Compile Include="Controllers\Base\QjApiControllerBase.cs" />
+    <Compile Include="Controllers\Base\QjMvcControllerBase.cs" />
+    <Compile Include="Controllers\Helper\QjCookieHelper.cs" />
+    <Compile Include="Controllers\Helper\QjSessionHelper.cs" />
+    <Compile Include="Controllers\Helper\QjLoginHelper.cs" />
+    <Compile Include="Controllers\Helper\SsoHelper.cs" />
+    <Compile Include="Controllers\NoteController.cs" />
+    <Compile Include="Controllers\PointController.cs" />
+    <Compile Include="Controllers\StartController.cs" />
+    <Compile Include="Enums\QjApiResultCodeTypeEnum.cs" />
+    <Compile Include="Enums\QjApiAuthorizeTypeEnum.cs" />
+    <Compile Include="Extensions\QjJsonResultBaseExtension.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Base\QjApiResultsBase.cs" />
+    <Compile Include="Models\Base\QjNotePageViewModelBase.cs" />
+    <Compile Include="Models\Base\QjPointPageViewModelBase.cs" />
+    <Compile Include="Models\InnerModels\ExaminationSetItem.cs" />
+    <Compile Include="Models\InnerModels\JotoPointDailyLogItem.cs" />
+    <Compile Include="Models\InnerModels\JotoPointLogItem.cs" />
+    <Compile Include="Models\JsonParameter\AssociatedFileStorageReferenceJsonParameter.cs" />
+    <Compile Include="Models\JsonResult\CheckSessionJsonResult.cs" />
+    <Compile Include="Models\Base\QjJsonResultBase.cs" />
+    <Compile Include="Models\RememberIdCookieJsonParameter.cs" />
+    <Compile Include="Enums\QjCacheTypeEnum.cs" />
+    <Compile Include="Enums\QjMemberShipTypeEnum.cs" />
+    <Compile Include="Enums\QjPageNoTypeEnum.cs" />
+    <Compile Include="Enums\QjSexTypeEnum.cs" />
+    <Compile Include="Enums\QjStandardValueTypeEnum.cs" />
+    <Compile Include="Enums\QjVitalTypeEnum.cs" />
+    <Compile Include="Models\AuthorAccountItem.cs" />
+    <Compile Include="Models\AuthTicketJsonParameter.cs" />
+    <Compile Include="Models\Base\QjJsonParameterBase.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\QjAccountItemBase.cs" />
+    <Compile Include="Models\QjPageViewModelBase.cs" />
+    <Compile Include="Models\QolmsJotoModel.cs" />
+    <Compile Include="Models\ViewModels\NoteExaminationViewModel.cs" />
+    <Compile Include="Models\ViewModels\PointHistoryViewModel.cs" />
+    <Compile Include="Models\ViewModels\IntegrationFitbitConnectionViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\DateTimeProvider.cs" />
+    <Compile Include="Repositories\AccountRepository.cs" />
+    <Compile Include="Repositories\LoginRepository.cs" />
+    <Compile Include="UseCases\AccessKeySsoUseCase.cs" />
+    <Compile Include="UseCases\AccessKeyUseCase.cs" />
+    <Compile Include="UseCases\QjApiResult.cs" />
+    <Compile Include="UseCases\QjCacheManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dist\fonts\D-DIN-Exp.ttf.eot" />
+    <Content Include="dist\fonts\D-DIN-Exp.ttf.woff" />
+    <Content Include="dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="dist\fonts\line-awesome.eot" />
+    <Content Include="dist\fonts\line-awesome.ttf" />
+    <Content Include="dist\fonts\line-awesome.woff" />
+    <Content Include="dist\fonts\line-awesome.woff2" />
+    <Content Include="dist\fonts\slick.eot" />
+    <Content Include="dist\fonts\slick.ttf" />
+    <Content Include="dist\fonts\slick.woff" />
+    <Content Include="App_Code\QjHtmlHelper.cshtml" />
+    <None Include="packages.config" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Start\LoginbyId.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Point\History.cshtml" />
+    <Content Include="Views\Shared\_PointLayout.cshtml" />
+    <None Include="Properties\PublishProfiles\qolms-dev-joto-west-app02 - Web Deploy.pubxml" />
+    <Content Include="Views\Note\Examination.cshtml" />
+    <Content Include="Views\Shared\_NoteLayout.cshtml" />
+    <Content Include="Views\Shared\_NoteExaminationResultPartialView.cshtml" />
+    <Content Include="Views\Shared\_NoteExaminationFilterPartialView.cshtml" />
+    <Content Include="Views\Shared\_NoteFooterPartialView.cshtml" />
+    <Content Include="Views\Health\Age.cshtml" />
+    <Content Include="Views\Shared\_HealthLayout.cshtml" />
+    <Content Include="Views\Shared\_HealthAgeAdviceAreaPartialView.cshtml" />
+    <Content Include="Views\Shared\_HealthAgeDistributionReportPartialView.cshtml" />
+    <Content Include="Views\Shared\_HealthAgeFatReportPartialView.cshtml" />
+    <Content Include="Views\Shared\_HealthAgeGlucoseReportPartialView.cshtml" />
+    <Content Include="Views\Shared\_HealthAgeLipidReportPartialView.cshtml" />
+    <Content Include="Views\Shared\_HealthAgeLiverReportPartialView.cshtml" />
+    <Content Include="Views\Shared\_HealthAgePressureReportPartialView.cshtml" />
+    <Content Include="Views\Shared\_HealthAgeTransitionAreaPartialView.cshtml" />
+    <Content Include="Views\Shared\_HealthAgeUrineReportPartialView.cshtml" />
+    <Content Include="Views\Shared\_HealthFooterPartialView.cshtml" />
+    <Content Include="Views\Shared\_HealthHeaderPartialView.cshtml" />
+    <Content Include="Views\Health\AgeEdit.cshtml" />
+    <Content Include="Views\Point\LocalHistory.cshtml" />
+    <Content Include="Views\Point\AmazonGiftCard.cshtml" />
+    <Content Include="Views\Portal\MedicalPayment.cshtml" />
+    <Content Include="Views\Portal\MedicalPaymentFaq.cshtml" />
+    <Content Include="Views\Portal\MedicalPaymentInfo.cshtml" />
+    <Content Include="Views\Note\GulfSportsMovie.cshtml" />
+    <Content Include="Views\Note\GulfSportsMovieIndex.cshtml" />
+    <Content Include="Views\Portal\MedicalPaymentFlow.cshtml" />
+    <Content Include="Views\Portal\Error.cshtml" />
+    <Content Include="Views\Shared\_ErrorLayout.cshtml" />
+    <Content Include="Views\Point\Error.cshtml" />
+    <Content Include="Views\Note\Error.cshtml" />
+    <Content Include="Views\Integration\Error.cshtml" />
+    <Content Include="Views\Health\Error.cshtml" />
+    <Content Include="Views\Premium\Error.cshtml" />
+    <Content Include="Views\Start\Error.cshtml" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>59487</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44384/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>このプロジェクトは、このコンピューター上にない NuGet パッケージを参照しています。それらのパッケージをダウンロードするには、[NuGet パッケージの復元] を使用します。詳細については、http://go.microsoft.com/fwlink/?LinkID=322105 を参照してください。見つからないファイルは {0} です。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

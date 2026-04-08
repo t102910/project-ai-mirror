@@ -1,0 +1,113 @@
+﻿@using System
+@using MGF.QOLMS.QolmsJotoWebView
+@model PortalConnectionSettingViewModel
+
+@{
+    ViewData["Title"] = "連携設定";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+
+    byte fromPageNo = Convert.ToByte(Model.FromPageNoType == QjPageNoTypeEnum.None ? QjPageNoTypeEnum.PortalConnectionSetting : Model.FromPageNoType);
+    byte activeTabNo = Model.TabNoType == 3 ? (byte)3 : (byte)2;
+    int defaultHospitalLinkageSystemNo = 47010;
+    foreach (var hospital in Model.ConnectionSettingHospitalItemN.Values)
+    {
+        if (hospital.LinkageSystemNo > 0)
+        {
+            defaultHospitalLinkageSystemNo = hospital.LinkageSystemNo;
+            break;
+        }
+    }
+}
+
+<body id="" class="lower">
+    @Html.AntiForgeryToken()
+
+    <main id="main-cont" class="clearfix" role="main">
+        @*<section class="home-btn-wrap" data-pageno="@fromPageNo">
+            <a href="../Portal/Home" class="home-btn"><i class="la la-angle-left"></i></a>
+        </section>*@
+
+        <section class="contents-area mb0">
+            <h2 class="title">連携設定</h2>
+            <hr>
+            <section class="section default">外部データ連携を設定します。</section>
+            <ul class="nav nav-tabs nav-fill mb20">
+                <li class="nav-item"><a href="javascript:void(0);" class="nav-link @(activeTabNo == 2 ? "active" : string.Empty)" data-bs-toggle="tab" data-bs-target="#input-2"><span>法 人</span></a></li>
+                <li class="nav-item"><a href="javascript:void(0);" class="nav-link @(activeTabNo == 3 ? "active" : string.Empty)" data-bs-toggle="tab" data-bs-target="#input-3"><span>病 院</span></a></li>
+            </ul>
+        </section>
+
+        <section class="data-area tab-content">
+            <div class="tab-pane @(activeTabNo == 2 ? "active" : string.Empty)" id="input-2">
+                @if (Model.ConnectionSettingCompanyItemN.Count == 0)
+                {
+                    <p class="center"><a href="../Integration/CompanyConnectionRequest?fromPageNo=@fromPageNo&amp;linkageSystemName=@Uri.EscapeDataString("企業")" class="btn btn-submit">新規連携登録</a></p>
+                }
+
+                @foreach (var item in Model.ConnectionSettingCompanyItemN)
+                {
+                    <a href="../Integration/CompanyConnection?fromPageNo=@fromPageNo&amp;linkageSystemNo=@item.Key&amp;linkageSystemName=@Uri.EscapeDataString(item.Value.LinkageSystemName)&amp;mockConnected=@(item.Value.Status == 2 ? "true" : "false")" class="data-card">
+                        <h3 class="card-title two-pane">
+                            <span>@item.Value.LinkageSystemName</span>
+                            <span class="right-area">
+                                @if (item.Value.Status == 1)
+                                {
+                                    <span class="ico pending"><i class="la la-clock-o on"></i>連携承認待ち</span>
+                                }
+                                else if (item.Value.Status == 2)
+                                {
+                                    <span class="ico on"><i class="la la-check-circle-o"></i>連携済み</span>
+                                }
+                                else if (item.Value.Status == 3)
+                                {
+                                    <span class="ico pending"><i class="la la-times"></i>承認不可</span>
+                                }
+                            </span>
+                        </h3>
+                        <section class="inner">
+                            <div class="federation-status low-height center">
+                                <p class="on">健 診</p>
+                            </div>
+                        </section>
+                    </a>
+                }
+            </div>
+
+            <div class="tab-pane @(activeTabNo == 3 ? "active" : string.Empty)" id="input-3">
+                <p class="center"><a href="../Integration/HospitalConnectionRequest?fromPageNo=@fromPageNo" class="btn btn-submit">新規連携登録</a></p>
+
+                @foreach (var item in Model.ConnectionSettingHospitalItemN)
+                {
+                    <a href="../Integration/HospitalConnection?fromPageNo=@fromPageNo&amp;linkageSystemNo=@item.Value.LinkageSystemNo&amp;hospitalName=@Uri.EscapeDataString(item.Value.LinkageSystemName)" class="data-card">
+                        <h3 class="card-title two-pane">
+                            <span>@item.Value.LinkageSystemName</span>
+                            <span class="right-area">
+                                @if (item.Value.Status == 1)
+                                {
+                                    <span class="ico pending"><i class="la la-clock-o on"></i>連携申請中</span>
+                                }
+                                else if (item.Value.Status == 2)
+                                {
+                                    <span class="ico on"><i class="la la-check-circle-o"></i>連携済み</span>
+                                }
+                                else if (item.Value.Status == 3)
+                                {
+                                    <span class="ico pending"><i class="la la-times"></i>承認不可</span>
+                                }
+                            </span>
+                        </h3>
+                        <section class="inner">
+                            <div class="federation-status low-height center">
+                                <p class="on">健 診</p>
+                            </div>
+                        </section>
+                    </a>
+                }
+            </div>
+        </section>
+    </main>
+
+    @Html.Action("PortalFooterPartialView", "Portal")
+
+    @Scripts.Render("~/dist/js/portal/ConnectionSetting")
+</body>

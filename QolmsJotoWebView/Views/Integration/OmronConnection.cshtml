@@ -1,0 +1,79 @@
+﻿@using System
+@using MGF.QOLMS.QolmsJotoWebView
+@model IntegrationOmronConnectionViewModel
+
+@{
+    ViewData["Title"] = "オムロンコネクト連携";
+    Layout = "~/Views/Shared/_IntegrationLayout.cshtml";
+
+    string backUrl = "../Portal/Home";
+    bool isPortalHome = Model.FromPageNoType == QjPageNoTypeEnum.PortalHome;
+
+    if (isPortalHome)
+    {
+        backUrl = "../Portal/Home";
+    }
+}
+
+<body id="integration-omron" class="lower">
+    @Html.AntiForgeryToken()
+
+    <main id="main-cont" class="clearfix" role="main">
+        <section class="home-btn-wrap">
+            @if (isPortalHome)
+            {
+                <a href="../Portal/Home" class="home-btn"><i class="la la-angle-left"></i></a>
+            }
+            else
+            {
+                <a href="../Portal/Home" class="home-btn"><i class="la la-angle-left"></i></a>
+            }
+        </section>
+
+        <section class="contents-area">
+            <h2 class="title">オムロンコネクト連携</h2>
+            <hr>
+
+            @if (!Model.OmronConnectedFlag)
+            {
+        <p class="section default">
+            血圧計や体重体組成計などのオムロン製品と連携して、からだの傾向をグラフで確認できるアプリです。
+            日々の測定と記録を簡単に、からだの傾向をひと目で確認できる機能が備わっています。
+        </p>
+            }
+            else
+            {
+                <p class="section default">
+                    連携済み<br />
+                    ※歩数データを自動取得する場合、ALKOOアプリでもオムロンコネクト連携の設定が必要です。
+                </p>
+            }
+
+            <a href="jotohdr2://deep.link/action/open_browser?url=https%3A%2F%2Fwww.healthcare.omron.co.jp%2Fsmp_omronconnect%2F" class="btn btn-submit block">オムロンコネクトについて詳しく</a>
+
+            @if (!Model.OmronConnectedFlag)
+            {
+                <div class="submit-area">
+                    <button id="connection" class="btn btn-submit" type="button">連携</button>
+                </div>
+            }
+            else
+            {
+                <div class="submit-area">
+                    <button id="cancel" class="btn btn-close" type="button">連携解除</button>
+                </div>
+            }
+        </section>
+    </main>
+
+    @Html.Action("IntegrationFooterPartialView", "Integration")
+
+    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
+    <script src="~/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/dist/js/slick.min.js"></script>
+    <script src="~/dist/js/spc.lib.min.js"></script>
+    <script src="~/dist/js/spc.util.min.js"></script>
+    <script src="~/dist/js/page-script/mgf.js"></script>
+    <script src="~/dist/js/page-script/mgf.portal.js"></script>
+    <script src="~/dist/js/page-script/mgf.integration.omronconnection.js"></script>
+</body>

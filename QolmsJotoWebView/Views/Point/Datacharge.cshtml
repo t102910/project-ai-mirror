@@ -1,0 +1,158 @@
+﻿@model PointDatachargeViewModel
+
+@{
+    ViewData["Title"] = "データチャージ";
+    Layout = "~/Views/Shared/_PointLayout.cshtml";
+
+    string detailedLinks = "https%3A%2F%2Fdc.auone.jp%2F";
+}
+
+<body id="data-charge" class="lower">
+    @Html.AntiForgeryToken()
+
+    <main id="main-cont" class="clearfix" role="main">
+        <section class="contents-area">
+            <div id="contents-wrap">
+                <h2 class="title relative">
+                    データチャージ
+                </h2>
+                <hr>
+                <h4 class="center">JOTOポイントをauデータ容量と交換！</h4>
+
+                <p class="section default">
+                    @Html.Raw(this.Model.Description)
+                </p>
+
+                <a href="jotohdr2://deep.link/action/open_browser?url=@detailedLinks" class="btn btn-submit block">auデータ容量との交換について詳しく</a>
+                <a href="/Point/Terms" class="btn btn-submit block">JOTOポイントプログラム利用規約</a>
+
+                <div class="remaining-point">
+                    <h3>
+                        現在の保有ポイント
+                        <span>@this.Model.Point<i>pt</i></span>
+                    </h3>
+                </div>
+
+                @*<div class="right">
+                    <a id="back" href="@string.Format("../Point/history{0}", page)" class="btn btn-close no-ico" data-back="@page">戻 る</a>
+                </div>*@
+
+                <section id="caution" class="section caution mt10 mb10 hide">
+                    <h4>heading...</h4>アラートエリアです。不要時.hideで消してください。
+                </section>
+
+                <form class="form charge-form mb30">
+                    @foreach (var item in this.Model.EventIdN)
+                    {
+                        if (item.Point <= this.Model.Point)
+                        {
+                            <a href="javascript:void(0);" class="btn btn-blue charge" data-toggle="modal" data-capacity="@item.Size">
+                                <i>@item.Point</i>P → <i>@item.DispName</i>と交換
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="javascript:void(0);" class="btn btn-blue charge disabled" data-toggle="modal" data-capacity="@item.Size">
+                                <i>@item.Point</i>P → <i>@item.DispName</i>と交換
+                            </a>
+                        }
+                    }
+                </form>
+            </div>
+
+            <section class="data-area mb20">
+                <h3 class="title mt10">
+                    <span>チャージ履歴</span>
+                </h3>
+
+                @if (this.Model.DatachargeHistN.Count > 0)
+                {
+                    foreach (var item in this.Model.DatachargeHistN)
+                    {
+                        <article>
+                            <section class="inner">
+                                <div class="info">
+                                    <p class="date">@item.ActionDate.ToString("MM月dd日 tt hh:mm")</p>
+                                    <div class="flex-wrap">
+                                        <div class="before">
+                                            <strong>JOTOポイント</strong>
+                                            <p>@item.Point<i>pt</i></p>
+                                        </div>
+                                        <p class="arrow">
+                                            <i class="la la-arrow-right"></i>
+                                        </p>
+                                        <div class="after">
+                                            <strong>チャージデータ</strong>
+                                            <p>@item.Size<i>M</i></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </article>
+                    }
+                }
+                else
+                {
+                    <p>履歴がありません</p>
+                }
+            </section>
+        </section>
+
+        <!-- 確認モーダル -->
+        <div class="modal fade" id="confirmation-modal" tabindex="-1" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                        <h4 class="modal-title">確認</h4>
+                    </div>
+                    <div class="modal-body">
+                        100MBと交換しますか？
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-close mb0" data-dismiss="modal">閉じる</button>
+                        <a href="#" class="btn btn-submit" data-capacity="100">交換する</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 完了モーダル -->
+        <div class="modal fade" id="finish-modal" tabindex="-1" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"><span>×</span></button>
+                        <h4 class="modal-title">確認</h4>
+                    </div>
+                    <div class="modal-body">
+                        登録しました。
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-close no-ico mb0">閉じる</button>
+                        <a href="native:/tab/bio/d08bbbd7" class="btn btn-submit" id="dejira">デジラアプリ</a>
+                        <span style="text-align:left;">
+                            <p>
+                                （ご注意）<br>
+                                交換しただけではデータ容量は増えません。<br>
+                                デジラアプリ「データプレゼント」からデータを受け取る必要があります。
+                            </p>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    @Html.Action("PointFooterPartialView", "Point")
+    @*@QjHtmlHelper.RenderScriptTag("~/dist/js/point/datacharge")*@
+    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
+    <script src="~/dist/js/bootstrap-5.3.6.min.js"></script>
+    <script src="~/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/dist/js/slick.min.js"></script>
+    <script src="~/dist/js/spc.lib.min.js"></script>
+    <script src="~/dist/js/spc.util.min.js"></script>
+    <script src="~/dist/js/page-script/mgf.js"></script>
+    <script src="~/dist/js/page-script/mgf.point.js"></script>
+    <script src="~/dist/js/page-script/mgf.point.datacharge.js"></script>
+</body>

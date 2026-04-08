@@ -1,0 +1,200 @@
+﻿
+@using System
+@using System.Linq
+@using MGF.QOLMS.QolmsJotoWebView
+@using MGF.QOLMS.QolmsApiCoreV1
+@model  PointOnlineStoreViewModel
+
+@{
+    ViewData["Title"] = "オンラインストアポイント交換";
+    Layout = "~/Views/Shared/_PointLayout.cshtml";
+
+    bool isYappli = Context.Request.UserAgent != null && Context.Request.UserAgent.ToLower().Contains("yappli");
+    string detailedLinks = "https%3A%2F%2Fwww.jotohome-onlinestore.com%2F";
+
+
+    bool isFinish = this.TempData["IsFinish"] != null && this.TempData["IsFinish"].ToString().TryToValueType(false);
+}
+
+<body id="point-exchange" class="lower">
+    @Html.AntiForgeryToken()
+
+    <main id="main-cont" class="clearfix" role="main">
+        <section class="contents-area">
+            <div id="contents-wrap">
+                <h2 class="title relative">
+                    JOTOオンラインストアの
+                    <br>クーポンと交換
+                </h2>
+                <hr>
+                <p class="exchange-service">
+                    <img src="/dist/img/point/joto-online.png">
+                </p>
+                <p class="section default">
+                    @Html.Raw(this.Model.Description)
+                </p>
+
+                <a href="jotohdr2://deep.link/action/open_browser?url=@detailedLinks" class="btn btn-submit block">JOTOオンラインストアはこちら</a><!-- ここにヤプリ呼び出しのスキーマ -->
+                <a href="/Point/Terms" class="btn btn-submit block">JOTOポイントプログラム利用規約</a>
+
+                <div class="remaining-point mb20">
+                    <h3>
+                        現在の保有ポイント
+                        <span>@this.Model.Point<i>pt</i></span>
+                    </h3>
+                </div>
+
+                @*<div class="right">
+                    <a id="back" href="@string.Format("../Point/history{0}", page)" class="btn btn-close no-ico" data-back="@page">戻 る</a>
+                </div>*@
+
+                <section id="caution" class="section caution mt10 mb10 hide"><h4>heading...</h4>アラートエリアです。不要時.hideで消してください。</section>
+
+                <h3 class="title mt10">
+                    <span>交換クーポンを選択</span>
+                </h3>
+                <form class="form exchange-form mb30">
+                    @foreach (CouponItem item in this.Model.CouponN)
+                    {
+                        if (item.Point <= this.Model.Point && item.RestCount > 0)
+                        {
+                            <a href="javascript:void(0);" class="btn btn-blue exchange" data-toggle="modal" data-coupon="@item.CouponType"><i>@item.Point</i>P → <i>@item.DispName</i>クーポン</a>
+                        }
+                        else
+                        {
+                            <a href="javascript:void(0);" class="btn btn-blue exchange disabled" data-toggle="modal" data-coupon="@item.CouponType"><i>@item.Point</i>P → <i>@item.DispName</i>クーポン</a>
+                        }
+                    }
+                </form>
+            </div>
+
+            <section class="data-area mb20">
+                <h3 class="title mt10" id="hist">
+                    <span>クーポン履歴</span>
+                </h3>
+
+                @if (this.Model.PointExchangeHistN.Count > 0)
+                {
+                    foreach (var item in this.Model.PointExchangeHistN)
+                    {
+                        <article>
+                            <section class="inner">
+                                <div class="info">
+                                    <p class="date">@item.IssueDate.ToString("MM月dd日 tt hh:mm")</p>
+                                    <div class="flex-wrap">
+                                        <div class="before">
+                                            <strong>JOTOポイント</strong>
+                                            <p>
+                                                @item.Point<i>pt</i>
+                                            </p>
+                                        </div>
+                                        <p class="arrow">
+                                            <i class="la la-arrow-right"></i>
+                                        </p>
+                                        <div class="after">
+                                            <strong>交換クーポン</strong>
+                                            <p>
+                                                @item.DispName<i>クーポン</i>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    @if (item.ExpirationDate >= DateTime.Now)
+                                    {
+                                        <div class="code">
+                                            <strong>発行されたクーポンコード</strong>
+                                            <p>@item.CouponId <i class="la la-copy" data-couponid="@item.CouponId" style="font-size:0.75em;margin-left:1em;"></i></p>
+                                            <div>@item.ExpirationDate.ToString("yyyy年MM月dd日")</div>
+                                        </div>
+                                    }
+                                </div>
+                            </section>
+                        </article>
+                    }
+                }
+                else
+                {
+                    <p>履歴がありません</p>
+                }
+            </section>
+        </section>
+
+        <!-- 確認モーダル -->
+        <div class="modal fade" id="confirmation-modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                        <h4 class="modal-title">確認</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p class="section default">
+                            100Pを120円分クーポンと交換しますか？
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-close mb0" data-dismiss="modal">閉じる</button>
+                        <a href="" class="btn btn-submit mb0" style="border: 0;" data-toggle="modal" data-target="#coupon-modal-2" data-dismiss="modal">交換する</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 「登録完了」ダイアログ -->
+        @if (isFinish)
+        {
+            <div class="modal fade" id="finish-modal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                            <h4 class="modal-title">クーポンを発行しました。</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h3 class="title">クーポンコード</h3>
+                            @*<p class="section default">
+                                    「メールで送信」しておくと便利です。
+                                </p>*@
+                            <p class="point-conf center mb10">
+                                @this.Model.PointExchangeHistN.First().CouponId
+                            </p>
+                            @*<p class="center">
+                                    <a href="" class="btn btn-submit no-ico"><i class="la la-envelope"></i>この情報をメールで送信</a>
+                                </p>*@
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-close mb0" data-dismiss="modal">閉じる</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <!-- 「コピー完了」ダイアログ -->
+        <div class="modal fade" id="copy-modal" tabindex="-1" data-backdrop="static" data-keyboard="false" data-row-no="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        コピーしました。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    @Html.Action("PointFooterPartialView", "Point")
+
+    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
+    <script src="~/dist/js/bootstrap-5.3.6.min.js"></script>
+    <script src="~/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/dist/js/slick.min.js"></script>
+    <script src="~/dist/js/spc.lib.min.js"></script>
+    <script src="~/dist/js/spc.util.min.js"></script>
+    <script src="~/dist/js/page-script/mgf.js"></script>
+    <script src="~/dist/js/page-script/mgf.point.js"></script>
+    <script src="~/dist/js/page-script/mgf.point.onlinestore.js"></script>
+    @*@QjHtmlHelper.RenderScriptTag("~/dist/js/point/pointonlinestore")*@
+</body>
+
+<script>
+
+</script>

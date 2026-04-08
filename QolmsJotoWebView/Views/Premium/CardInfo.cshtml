@@ -1,0 +1,98 @@
+﻿@using System
+
+@{
+    ViewData["Title"] = "クレジットカード決済";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+
+    byte? fromPageNo = ViewBag.FromPageNo == null ? (byte?)null : Convert.ToByte(ViewBag.FromPageNo);
+    bool isRegistered = Convert.ToBoolean(ViewBag.IsRegistered ?? false);
+}
+
+<body id="premium-payjp" class="lower" data-registered="@isRegistered.ToString().ToLowerInvariant()">
+    <main id="main-cont" class="clearfix" role="main">
+        <section class="contents-area">
+            <form id="card-register-form" action="@Url.Action("PayjpCardRegister", "Premium")" method="post">
+                @Html.AntiForgeryToken()
+                @if (fromPageNo.HasValue)
+                {
+                    <input type="hidden" name="fromPageNo" value="@fromPageNo.Value" />
+                }
+
+                <section class="contents-area">
+                    <h2 class="title relative">クレジットカード決済</h2>
+                    <hr />
+                    <h3 class="title">ご利用内容</h3>
+                    <p class="section default">カード情報を入力してクレジットカードを登録してください。</p>
+                    <p class="balloon">
+                        初回課金日　2026年2月1日<br />
+                        お支払い金額　330円<br />
+                        お支払方法　クレジットカード
+                    </p>
+                    <section id="caution" class="section caution mt10 mb10 hide">
+                        <h4>heading...</h4>
+                        アラートエリアです。不要時.hideで消してください。
+                    </section>
+                    <script type="text/javascript">
+                        function onCreatedToken() {
+                            $("#caution").addClass("hide");
+                        }
+                    </script>
+                    <script class="payjp-button"
+                            src="https://checkout.pay.jp/"
+                            data-payjp-key="pk_test_ff4614bd38b01b643b213554"
+                            data-payjp-partial="true"
+                            data-payjp-three-d-secure="true"
+                            data-payjp-three-d-secure-workflow="redirect"
+                            data-on-created="onCreatedToken"
+                            data-payjp-extra-attribute-email=""
+                            data-payjp-extra-attribute-phone=""
+                            data-payjp-extra-attribute-phone-code=""></script>
+                    <div class="submit-area">
+                        <a class="btn btn-submit" href="javascript:void(0);" id="Register">カードを登録</a>
+                        <button id="card-register-submit" class="hide" type="submit">送信</button>
+                    </div>
+                </section>
+            </form>
+        </section>
+
+        <div id="finish-modal" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" type="button" aria-label="閉じる">
+                            <span>×</span>
+                        </button>
+                        <h4 class="modal-title">確認</h4>
+                    </div>
+                    <div class="modal-body">登録しました。</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-close no-ico mb0" type="button">閉じる</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="white-out" class="hide">
+        <div class="loader"></div>
+        <div id="progress-area">
+            <div class="progress progress-striped">
+                <div class="progress-bar progress-bar-warning active" style="width: 100%"></div>
+            </div>
+            <span>100%</span>進行中…
+        </div>
+        <p id="text-area"></p>
+    </div>
+
+    <section id="topbtn" class="hide topbtn__wrap">
+        <a href="#" class="topbtn"></a>
+    </section>
+
+    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
+    <script src="~/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/dist/js/spc.lib.min.js"></script>
+    <script src="~/dist/js/spc.util.min.js"></script>
+    <script src="~/dist/js/page-script/mgf.js"></script>
+    <script src="~/dist/js/page-script/mgf.premium.js"></script>
+    <script src="~/dist/js/page-script/mgf.premium.cardinfo.js"></script>
+</body>

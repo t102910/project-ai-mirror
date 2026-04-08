@@ -1,0 +1,126 @@
+﻿@using System
+@using System.Collections.ObjectModel
+@using System.Collections.Generic
+@using System.Linq
+@using MGF.QOLMS.QolmsCryptV1
+@model MGF.QOLMS.QolmsJotoWebView.PointLocalHistoryPartialViewModel
+
+        <div id="point_daily_log">
+
+        @{
+            var pageVm = Model.PageViewModel;
+        }
+
+        @if (pageVm.PointDailyLogN.Any())
+        {
+            bool isEven = true;
+            string dayOfWeek = string.Empty;
+
+            <table id="log-table">
+                @foreach (var dailyLogItem in pageVm.PointDailyLogN)
+                {
+                    isEven = !isEven;
+                    switch (dailyLogItem.ActionDate.DayOfWeek)
+                    {
+                        case DayOfWeek.Sunday:
+                            dayOfWeek = dailyLogItem.ActionDate.DayOfWeek.ToString().ToLower();
+                            break;
+                        case  DayOfWeek.Saturday:
+                            dayOfWeek = dailyLogItem.ActionDate.DayOfWeek.ToString().ToLower();
+                            break;
+                        default:
+                            dayOfWeek = string.Empty;
+                            break;
+                    }
+                    <thead class="@(isEven ? "even" : string.Empty)">
+                        <tr>
+                            <td colspan="2">@string.Format("{0:yyyy年M月d日}", dailyLogItem.ActionDate)<span class="@dayOfWeek">@String.Format("（{0:ddd}）", dailyLogItem.ActionDate)</span></td>
+                            <td>
+                                @if (dailyLogItem.Point > 0)
+                                {
+                                    <span class="plus">@string.Format("{0:+###,##0;-###,##0;##0}", dailyLogItem.Point)<i>pt</i></span>
+                                }
+                                else if(dailyLogItem.Point < 0)
+                                {
+                                    <span class="minus">@string.Format("{0:+###,##0;-###,##0;##0}", dailyLogItem.Point)<i>pt</i></span>
+                                }
+                                else
+                                {
+                                    <span class="">@string.Format("{0:+###,##0;-###,##0;##0}", dailyLogItem.Point)<i>pt</i></span>
+                                }
+
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th rowspan="2">付与時刻</th>
+                            <th rowspan="2">内容</th>
+                            <th>ポイント</th>
+                        </tr>
+                        <tr>
+                            <th>有効期限</th>
+                        </tr>
+
+                        @foreach (var logItem in dailyLogItem.PointLogN)
+                        {
+                            <tr>
+                                <td rowspan="2">
+                                    @if (logItem.ActionDate > DateTime.MinValue)
+                                    {
+                                        @String.Format("{0:H時m分}", logItem.ActionDate)
+                                    }
+                                </td>
+                                <td rowspan="2">
+                                    @if (!string.IsNullOrWhiteSpace(logItem.ItemName))
+                                    {
+                                        @logItem.ItemName
+                                    }
+                                    @if (logItem.TargetDate > DateTime.MinValue)
+                                    {
+                                        @String.Format("{0:(M月d日分)}", logItem.TargetDate)
+                                    }
+                                </td>
+                                <td>
+
+                                    @if (logItem.Point > 0)
+                                    {
+                                        <span class="plus">@string.Format("{0:+###,##0;-###,##0;##0}", logItem.Point)<i>pt</i></span>
+                                    }
+                                    else if(logItem.Point < 0)
+                                    {
+                                        <span class="minus">@string.Format("{0:+###,##0;-###,##0;##0}", logItem.Point)<i>pt</i></span>
+                                    }
+                                    else
+                                    {
+                                        <span class="">@string.Format("{0:+###,##0;-###,##0;##0}", logItem.Point)<i>pt</i></span>
+                                    }
+                                   
+                                </td>
+                            </tr>
+                            <tr>
+                                @if (logItem.ExpirationDate > DateTime.MinValue.Date)
+                                {
+                                    <td class="expire-date">@String.Format("{0:yyyy年M月末}", logItem.ExpirationDate)</td>
+                                }
+                                else
+                                {
+                                    <td class="expire-date">&nbsp;</td>
+                                }
+                            </tr>
+                        }
+
+                    </tbody>
+                }
+
+            </table>
+        }
+        else
+        {
+            <section class="section default mt10 mb20">
+                @string.Format("{0}年{1}月に、履歴はありません。", pageVm.Year, pageVm.Month)
+            </section>
+
+        }
+
+        </div>

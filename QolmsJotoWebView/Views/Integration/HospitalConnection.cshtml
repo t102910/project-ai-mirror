@@ -1,0 +1,143 @@
+﻿@using System
+@using MGF.QOLMS.QolmsJotoWebView
+@model IntegrationHospitalConnectionViewModel
+
+@{
+    ViewData["Title"] = "病院連携";
+    Layout = "~/Views/Shared/_IntegrationLayout.cshtml";
+}
+
+<body id="hospital-connection" class="lower">
+    @Html.AntiForgeryToken()
+
+    <main id="main-cont" class="clearfix" role="main">
+        <section class="home-btn-wrap" data-pageno="@Convert.ToByte(Model.FromPageNoType)">
+            @if (Model.FromPageNoType == QjPageNoTypeEnum.PortalHome)
+            {
+                <a href="@Url.Action("ConnectionSetting", "Portal", new { fromPageNo = 1, tabNo = 3 })" class="home-btn"><i class="la la-angle-left"></i></a>
+            }
+            else
+            {
+                <a href="@Url.Action("ConnectionSetting", "Portal", new { tabNo = 3 })" class="home-btn"><i class="la la-angle-left"></i></a>
+            }
+        </section>
+
+        <section class="contents-area mb0">
+            <h2 class="title">@string.Format("{0}連携", Model.HospitalName)</h2>
+            <hr>
+
+            <section class="section default">
+                医療機関と連携すると、検査・健診情報がある場合に閲覧いただけるようになります。
+            </section>
+
+            <section id="caution" class="section caution mt10 mb10 hide">
+                <h4>ご案内</h4>
+                連携処理でエラーが発生した場合はここに表示されます。
+            </section>
+
+            <section class="section center">
+                @if (Model.StatusType == QjLinkageStatusTypeEnum.Applying)
+                {
+                    <span class="ico line"><i class="la la-clock-o la-lg"></i> 連携承認待ち</span>
+                }
+                else if (Model.StatusType == QjLinkageStatusTypeEnum.Approved)
+                {
+                    <span class="ico main"><i class="la la-check-circle-o"></i> 連携済み</span>
+                }
+                else if (Model.StatusType == QjLinkageStatusTypeEnum.Refused)
+                {
+                    <span class="ico pending"><i class="la la-times"></i>承認不可</span>
+                    if (!string.IsNullOrWhiteSpace(Model.DisapprovedReason))
+                    {
+                        <p>@Model.DisapprovedReason</p>
+                    }
+                }
+                else
+                {
+                    <span class="ico line">未連携</span>
+                }
+            </section>
+
+            <h3 class="title">連携先</h3>
+            <p class="mb20"><span class="ico line">@Model.HospitalName</span></p>
+
+            @if (Model.HospitalConnectedFlag && !string.IsNullOrWhiteSpace(Model.PatientNo))
+            {
+                <h3 class="title">登録情報</h3>
+                <p class="mb20"><span class="ico line">診察券番号: @Model.PatientNo</span></p>
+            }
+
+            <h3 class="title">受け取る情報</h3>
+            <p class="mb40">
+                @if (Model.ExaminationConnectedFlag)
+                {
+                    <span class="ico line">健診情報</span>
+                }
+            </p>
+
+            <h3 class="title">開示する情報</h3>
+            <p class="mb40">
+                @foreach (QjRelationContentTypeEnum item in Enum.GetValues(typeof(QjRelationContentTypeEnum)))
+                {
+                    if (item != QjRelationContentTypeEnum.None && Model.ShowType.HasFlag(item) && QjDictionary.RelationContentType.ContainsKey(item))
+                    {
+                        <span class="ico line">@QjDictionary.RelationContentType[item]</span>
+                    }
+                }
+            </p>
+
+            @if (Model.StatusType == QjLinkageStatusTypeEnum.Applying)
+            {
+                <h3 class="title mt10"><span>申請を編集する</span></h3>
+                <p class="mb20">連携申請内容を編集します。</p>
+                <p class="submit-area">
+                    <a href="javascript:void(0);" id="edit" class="btn btn-submit" data-no="@Model.LinkageSystemNo">編集する</a>
+                </p>
+
+                <h3 class="title mt10"><span>申請を取り消す</span></h3>
+                <p class="mb20">病院への連携申請が取り消されます。<br />ご注意下さい。</p>
+                <p class="submit-area">
+                    <a href="javascript:void(0);" id="cancel" class="btn btn-delete request" data-no="@Model.LinkageSystemNo">取り消す</a>
+                </p>
+            }
+            else if (Model.StatusType == QjLinkageStatusTypeEnum.Approved)
+            {
+                <p class="submit-area">
+                    <a href="javascript:void(0);" id="edit" class="btn btn-submit" data-no="@Model.LinkageSystemNo">編集する</a>
+                </p>
+
+                <h3 class="title mt10"><span>病院連携を解除する</span></h3>
+                <p class="mb20">連携を解除すると連携した病院の健診データが閲覧できなくなります。<br />ご注意下さい。</p>
+                <p class="submit-area">
+                    <a href="javascript:void(0);" id="cancel" class="btn btn-delete" data-no="@Model.LinkageSystemNo">解除する</a>
+                </p>
+            }
+            else
+            {
+                <p class="submit-area">
+                    <a href="../Integration/HospitalConnectionRequest?fromPageNo=@Convert.ToByte(Model.FromPageNoType)&linkageSystemNo=@Model.LinkageSystemNo&hospitalName=@Uri.EscapeDataString(Model.HospitalName)" class="btn btn-submit">申請する</a>
+                </p>
+            }
+        </section>
+
+        <div class="modal fade" id="delete-modal" tabindex="-1" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"><span>×</span></button>
+                        <h4 class="modal-title">確認</h4>
+                    </div>
+                    <div class="modal-body">連携を解除しますか？</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-close no-ico mb0">閉じる</button>
+                        <button type="button" class="btn btn-delete">解除する</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    @Html.Action("IntegrationFooterPartialView", "Integration")
+
+    @Scripts.Render("~/dist/js/integration/hospitalconnection")
+</body>

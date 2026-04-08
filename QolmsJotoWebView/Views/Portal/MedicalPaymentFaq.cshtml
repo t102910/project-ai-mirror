@@ -1,0 +1,192 @@
+﻿@{
+    ViewData["Title"] = "よくあるご質問";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+<body id="faq" class="lower">
+    @Html.AntiForgeryToken()
+
+    <main id="main-cont" class="clearfix" role="main">
+        <section class="home-btn-wrap" data-pageno="8">
+            <a href="../Portal/MedicalPayment" class="home-btn"><i class="la la-angle-left"></i></a>
+        </section>
+
+        <section class="contents-area">
+            <div id="contents-wrap">
+                <h2 class="title relative">よくあるご質問</h2>
+                <hr>
+
+                <article class="faq-article">
+                    <h3><span class="question">あと払いを利用したいのですが、どうすればよいですか？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>あと払いのご利用には、事前の会員登録が必要です。詳しくはマイページより新規登録をお申し込みください。</p>
+                        </div>
+                    </section>
+                </article>
+
+                <article class="faq-article">
+                    <h3><span class="question">会員と支払者は同じでなければならないの？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>いいえ、家族などご本人以外の方が支払うことも可能です。</p>
+                        </div>
+                    </section>
+                </article>
+
+                <article class="faq-article">
+                    <h3><span class="question">あと払いの利用対象は？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>外来保険診察、各種予防接種、緊急時での入院、自費診察などの利用可否につきましては、各医療機関にご確認ください。</p>
+                        </div>
+                    </section>
+                </article>
+
+                <article class="faq-article">
+                    <h3><span class="question">あと払いの利用方法は？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>医療機関の窓口で、診察券と一緒に「あと払い利用」の旨をお申し出ください。利用申し出のタイミングや処方後のお受け取り方法については、各医療機関にご確認ください。</p>
+                        </div>
+                    </section>
+                </article>
+
+                <article class="faq-article">
+                    <h3><span class="question">複数の医療機関であと払いを使うことはできますか？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>はい、すでに「医療費あと払い」の会員登録がお済みの方は、初めてあと払いを利用する医療機関の窓口で<span class="high-light bold">「登録のお電話番号と生年月日の組み合わせ」</span>をお伝えいただくことで、再度の登録手続きなしに利用が可能です。</p>
+                        </div>
+                    </section>
+                </article>
+
+                <article class="faq-article">
+                    <h3><span class="question">利用料金はかかりますか？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>利用料はご利用いただくお支払い方法によって異なります。別会費・年会費はありません。</p>
+                        </div>
+                    </section>
+                </article>
+
+                <article class="faq-article">
+                    <h3><span class="question">あと払いに登録したら、毎回利用しなければならないの？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>いいえ、あと払いを利用するかどうかは、各診察時に選択できます。利用しなくても費用はかかりません。</p>
+                        </div>
+                    </section>
+                </article>
+
+                <article class="faq-article">
+                    <h3><span class="question">あと払いを利用した場合の支払い日はいつですか？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>お支払い日は、ご利用いただく支払い方法によって異なります。詳しくはマイページでご確認ください。</p>
+                        </div>
+                    </section>
+                </article>
+
+                <article class="faq-article">
+                    <h3><span class="question">金額の確認をしたい場合はどうすればよいですか？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>利用の翌日以降に、マイページまたは「医療費あと払い お客さま窓口」へのお電話でご確認ください。</p>
+                        </div>
+                    </section>
+                </article>
+
+                <article class="faq-article">
+                    <h3><span class="question">領収書・明細書はもらえますか？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>領収書・明細書が必要な場合は、後日あと払いを利用した医療機関の窓口などで受け取ることができます。</p>
+                        </div>
+                    </section>
+                </article>
+
+                <article class="faq-article">
+                    <h3><span class="question">会員情報を変更したい場合はどうすればよいですか？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>
+                                会員情報変更の手順は、会員登録をした方法（Webまたは郵送）によって異なります。<br>
+                                Webで会員登録された方は、マイページで会員情報の変更が可能です。郵送で会員登録された方は、「医療費あと払い お客さま窓口」にご連絡ください。
+                            </p>
+                        </div>
+                    </section>
+                </article>
+
+                <article class="faq-article">
+                    <h3><span class="question">退会したい場合はどうすればよいですか？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>
+                                退会の手順は、会員登録をした方法（Webまたは郵送）によって異なります。<br>
+                                Webで会員登録された方は、マイページから退会が可能です。郵送で会員登録された方は、「医療費あと払い お客さま窓口」にご連絡ください。
+                            </p>
+                        </div>
+                    </section>
+                </article>
+
+                <article class="faq-article">
+                    <h3><span class="question">マイページのID・パスワードを忘れた場合はどうすればよいですか？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>恐れ入りますが「医療費あと払い お客さま窓口」にご連絡ください。</p>
+                        </div>
+                    </section>
+                </article>
+
+                <article class="faq-article">
+                    <h3><span class="question">JOTOホームドクターを途中退会した場合、利用料金はどうなりますか？</span></h3>
+                    <section class="answer">
+                        <div class="slide-wrap">
+                            <i class="answer-icon">A:</i>
+                            <p>
+                                あと払いサービス利用期末までJOTOホームドクター会員（ライト会員・プレミアム会員どちらも）加入が条件です。
+                                条件を満たしていない場合は210円/月（税別）利用料が発生します。
+                            </p>
+                        </div>
+                    </section>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    @Html.Action("PortalFooterPartialView", "Portal")
+
+    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
+    <script src="~/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/dist/js/slick.min.js"></script>
+    <script src="~/dist/js/spc.lib.min.js"></script>
+    <script src="~/dist/js/spc.util.min.js"></script>
+    <script src="~/dist/js/page-script/mgf.js"></script>
+    <script src="~/dist/js/page-script/mgf.portal.js"></script>
+    <script>
+        $(function () {
+            $('.question').click(function () {
+                if ($(this).parents('.faq-article').hasClass('is-open')) {
+                    $(this).parents('.faq-article').removeClass('is-open').children('.answer').slideUp(300);
+                } else {
+                    $(this).parents('.faq-article').addClass('is-open').children('.answer').slideDown(300);
+                }
+            });
+        });
+    </script>
+</body>

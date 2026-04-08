@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "ガルフスポーツTOP";
+    Layout = "~/Views/Shared/_NoteLayout.cshtml";
+}
+<script type="text/javascript" src="https://www.youtube.com/player_api"></script>
+
+<body id="gulf-index" class="lower gulf">
+    @Html.AntiForgeryToken()
+
+    <main id="main-cont" class="clearfix" role="main">
+        <section class="home-btn-wrap">
+            <a href="../Portal/Home" class="home-btn"><i class="la la-angle-left"></i></a>
+        </section>
+        <section class="contents-area mb20">
+            <h2 class="center mt40 mb20"><img class="w200" src="/dist/img/gulf-mov/index-title.png" alt="ガルフスポーツ" /></h2>
+            <ul>
+                <li class="img-max-cont mb20"><a href="../Note/GulfSportsMovie?movieType=1"><img src="/dist/img/gulf-mov/index-btn-1.jpg" alt="動画1" /></a></li>
+                <li class="img-max-cont mb20"><a href="../Note/GulfSportsMovie?movieType=2"><img src="/dist/img/gulf-mov/index-btn-2.jpg" alt="動画2" /></a></li>
+                <li class="img-max-cont mb20"><a href="../Note/GulfSportsMovie?movieType=3"><img src="/dist/img/gulf-mov/index-btn-3.jpg" alt="動画3" /></a></li>
+            </ul>
+            <p class="right"><a href="https://www.gulfwavezone.jp/" target="_blank" rel="noopener noreferrer">ガルフ公式ホームページはこちら</a></p>
+        </section>
+    </main>
+
+    @Html.Action("NoteFooterPartialView", "Note")
+    @QjHtmlHelper.RenderScriptTag("~/dist/js/note/gulfsportsmovieindex")
+</body>

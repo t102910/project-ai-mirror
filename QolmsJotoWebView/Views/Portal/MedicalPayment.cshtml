@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "医療費あと払い";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+}
+
+<body id="pay-later" class="lower">
+    @Html.AntiForgeryToken()
+
+    <main id="main-cont" class="clearfix" role="main">
+        <section class="home-btn-wrap" data-pageno="8">
+            <a href="../Portal/Home" class="home-btn"><i class="la la-angle-left"></i></a>
+        </section>
+
+        <section class="contents-area mb0">
+            <h2 class="title">医療費あと払い</h2>
+            <hr>
+
+            <a href="https://mcs-mem.mdcom.jp/wms/mypage/login" target="_blank" class="img-link">
+                <img src="/dist/img/pay-later/logo.png" alt="医療費あと払い" />
+                マイページ
+                <span class="small">（利用状況・家族会員登録など）</span>
+            </a>
+
+            <p class="center mb30">
+                <a href="">新規申し込みはこちらから</a>
+            </p>
+
+            <a href="@Url.Action("MedicalPaymentInfo", "Portal")" class="btn btn-link block mb20">
+                医療費あと払いとは
+            </a>
+            <a href="@Url.Action("MedicalPaymentFaq", "Portal")" class="btn btn-link block mb20">
+                よくあるご質問
+            </a>
+
+            <h3 class="title">
+                医療費あと払い お客様窓口
+            </h3>
+
+            <section class="section default">
+                お客さま窓口は「金額確認」及び「あと払い」のご利用方法についての窓口です。診療内容についてはご利用の医療機関にお問い合わせください。
+            </section>
+
+            <a href="tel:0120-515-851" class="tel-link">
+                <i class="la la-phone"></i>0120-515-851
+            </a>
+
+            <p class="center">
+                <span class="small">受付時間 9:00~17:00</span>
+                <strong>（土・日・祝祭日・年末年始除く）</strong><br>
+                株式会社エムイーエックステクノロジーズ
+            </p>
+        </section>
+    </main>
+
+    @Html.Action("PortalFooterPartialView", "Portal")
+
+    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
+    <script src="~/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/dist/js/slick.min.js"></script>
+    <script src="~/dist/js/spc.lib.min.js"></script>
+    <script src="~/dist/js/spc.util.min.js"></script>
+    <script src="~/dist/js/page-script/mgf.js"></script>
+    <script src="~/dist/js/page-script/mgf.portal.js"></script>
+</body>

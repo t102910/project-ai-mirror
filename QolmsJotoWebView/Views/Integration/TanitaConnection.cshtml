@@ -1,0 +1,186 @@
+﻿@model IntegrationTanitaConnectionViewModel
+
+@{
+    ViewData["Title"] = "タニタヘルスプラネット連携";
+    Layout = "~/Views/Shared/_IntegrationLayout.cshtml";
+    var isConnected = !string.IsNullOrWhiteSpace(this.Model.ConnectionID);
+}
+<body id="tanita-connection" class="lower">
+
+    @Html.AntiForgeryToken()
+
+    <main id="main-cont" class="clearfix" role="main">
+
+        <section class="contents-area">
+
+            @*<section class="home-btn-wrap">
+                <a href="../Portal/Home" class="home-btn"><i class="la la-angle-left"></i></a>
+            </section>*@
+
+            <h2 class="title">タニタヘルスプラネット連携</h2>
+
+            <hr>
+
+            @if (!isConnected)
+
+            {
+
+                <p class="section default">
+
+                    タニタヘルスプラネットとデータ連携の設定をします。<br />
+
+                    連携すると、体組成計、活動量計で計測したデータ、入力した血圧データが自動で連携されます。<br />
+
+                    からだカルテ または ヘルスプラネット のIDとパスワードを入力して連携してください。<br />
+
+                    連携開始時に過去1か月分のデータを取得します。
+
+                </p>
+
+            }
+
+            else
+
+            {
+                <p class="section default">
+
+                    タニタヘルスプラネットとデータ連携中です。<br />
+                    連携するデータを変更する場合はこちらの画面で変更できます。
+                </p>
+
+                <input id="connect" type="hidden" name="ConnectionID" value="@Model.ConnectionID" />
+
+            }
+            <p class="center mb20"><img src="/dist/img/tanita/tanita.jpg" class="max-image" /></p>
+            <a href="jotohdr2://deep.link/action/open_browser?url=https%3A%2F%2Fwww.healthplanet.jp%2F" class="btn btn-submit block">ヘルスプラネットについて詳しく</a>
+
+            @if (!isConnected)
+
+            {
+
+                <h3 class="title">ログイン情報</h3>
+
+                <label for="ID" class="t-row line">
+                    <span class="label-txt"><span class="ico required">必須</span> からだカルテ または ヘルスプラネット のID</span>
+                    <input type="text" id="ID" name="ID" class="form-control mb10" placeholder="半角英数" value="" required="required" maxlength="64" autocomplete="off" />
+                    <p class="alert alert-danger thin mt10 hide">
+					    表示テスト
+				    </p>
+                </label>
+
+                <label for="Password" class="t-row line">
+
+                    <span class="label-txt"><span class="ico required">必須</span> パスワード</span>
+                    <input type="password" id="Password" name="Password" class="form-control mb10" placeholder="半角英数" value="" required="required" maxlength="16" autocomplete="off" />
+                    <p class="alert alert-danger thin mt10 hide">
+					    表示テスト
+				    </p>
+
+                </label>
+
+            }
+
+            <h3 class="title">連携するデータ</h3>
+
+            <div class="wizard-form inline-block link-ico tanita" id="connection-data">
+                @foreach (var item in this.Model.Devices)
+                {
+                    <input id="@item.DevicePropertyName" type="checkbox" value="true" name="@item.DevicePropertyName" @(item.Checked ? "checked=\"checked\"" : string.Empty) />
+                    <label for="@item.DevicePropertyName">@item.DeviceName</label>
+                }
+
+                @*<input id="BodyCompositionMeter" type="checkbox" value="true" @(Model.BodyCompositionMeter ? "checked=\"checked\"" : string.Empty) />
+
+                <label for="BodyCompositionMeter">体組成計</label>
+
+                <input id="Sphygmomanometer" type="checkbox" value="true" @(Model.Sphygmomanometer ? "checked=\"checked\"" : string.Empty) />
+
+                <label for="Sphygmomanometer">血圧計</label>
+
+                <input id="Pedometer" type="checkbox" value="true" @(Model.Pedometer ? "checked=\"checked\"" : string.Empty) />
+
+                <label for="Pedometer">活動量計</label>*@
+
+            </div>
+            <section id="caution" class="section caution mt10 mb10 hide"><h4>heading...</h4>アラートエリアです。不要時.hideで消してください。</section>
+
+
+            @*<section id="caution" class="section caution mt10 mb10">
+
+                <h4>ご案内</h4>
+
+                この画面はモック表示です。タニタ連携APIはまだ実装していません。
+
+            </section>*@
+
+
+
+            @if (!isConnected)
+
+            {
+                <div class="submit-area">
+                    <button id="connection" class="btn btn-submit" type="button">連携</button>
+                </div>
+            }
+
+            else
+            {
+                <div class="submit-area">
+                    <button id="cancel" class="btn btn-close" type="button">連携解除</button>
+                </div>
+            }
+
+        </section>
+
+        <div class="modal fade" id="disconnect-modal" tabindex="-1" data-backdrop="static" data-keyboard="false">
+
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+
+                        <button type="button" class="close"><span>×</span></button>
+
+                        <h4 class="modal-title">連携解除の確認</h4>
+
+                    </div>
+
+                    <div class="modal-body">
+
+                        タニタヘルスプラネットとの連携を解除します。<br />
+
+                        よろしいですか？
+
+                    </div>
+
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-close no-ico mb0">閉じる</button>
+
+                        <button type="button" class="btn btn-delete mb0" style=" padding: 9px 18px; height: auto;">解 除</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    @Html.Action("IntegrationFooterPartialView", "Integration")
+
+    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
+    <script src="~/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/dist/js/slick.min.js"></script>
+    <script src="~/dist/js/spc.lib.min.js"></script>
+    <script src="~/dist/js/spc.util.min.js"></script>
+    <script src="~/dist/js/page-script/mgf.js"></script>
+    <script src="~/dist/js/page-script/mgf.integration.js"></script>
+    <script src="~/dist/js/page-script/mgf.integration.tanitaconnection.js"></script>
+
+</body>
+

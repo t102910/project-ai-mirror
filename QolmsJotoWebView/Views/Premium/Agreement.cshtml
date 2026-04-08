@@ -1,0 +1,70 @@
+﻿@using System
+@using MGF.QOLMS.QolmsJotoWebView
+
+@{
+    ViewData["Title"] = "プレミアム参加同意書";
+    Layout = "~/Views/Shared/_PortalLayout.cshtml";
+
+    byte? fromPageNo = ViewBag.FromPageNo == null ? (byte?)null : Convert.ToByte(ViewBag.FromPageNo);
+    string nextUrl = fromPageNo.HasValue
+        ? Url.Action("CardInfo", "Premium", new { fromPageNo = fromPageNo.Value })
+        : Url.Action("CardInfo", "Premium");
+}
+
+<body id="premium-terms" class="lower">
+    <main id="main-cont" class="clearfix" role="main">
+        <section class="home-btn-wrap" data-pageno="1">
+            <a class="home-btn" href="../Portal/Home">
+                <i class="la la-angle-left"></i>
+            </a>
+        </section>
+
+        <section class="contents-area mb20">
+            <div class="box type-2">
+                <div class="wrap">
+                    <div class="document-scroll-wrap">
+                        <h3 class="title">プレミアム参加同意書</h3>
+                        <p>
+                            当社がお客様から収集した以下の個人情報等は、カード発行会社が行う不正利用検知・防止のために、お客様が利用されているカード発行会社へ提供させていただきます。<br />
+                            ・カード番号<br />
+                            ・氏名<br />
+                            ・電話番号<br />
+                            ・メールアドレス<br />
+                            お客様が利用されているカード発行会社が外国にある場合、これらの情報は当該発行会社が所属する国に移転される場合があります。当社では、お客様から収集した情報からは、ご利用のカード発行会社及び当該会社が所在する国を特定することができないため、以下の個人情報保護措置に関する情報を把握して、ご提供することはできません。<br />
+                            ・提供先が所在する外国の名称<br />
+                            ・当該国の個人情報保護制度に関する情報<br />
+                            ・発行会社の個人情報保護の措置<br />
+                            なお、個人情報保護委員会のホームページ（https://www.ppc.go.jp/）では、各国における個人情報保護制度に関する情報について掲載されています。お客様が未成年の場合、親権者または後見人の承諾を得た上で、本サービスを利用するものとします。
+                        </p>
+                    </div>
+                    <div class="bottom-fix-wrap mt10">
+                        <p class="center mb10">
+                            <a class="bold" href="native:/tab/bio/0a078204">JOTOホームドクター プライバシーポリシー</a>
+                        </p>
+                        <p class="center mb10">
+                            <a class="bold" href="native:/action/open_browser?url=https%3A%2F%2Fwww.ppc.go.jp%2F">個人情報保護委員会のホームページ</a>
+                        </p>
+                        <p class="center mb20">
+                            <label class="accept">
+                                <input id="policy" type="checkbox" />
+                                プライバシーポリシーを確認し、同意しました。
+                                <span>必須</span>
+                            </label>
+                        </p>
+                        <div class="submit-area two-pane">
+                            <a class="btn btn-default agree disabled" id="agreement-next" href="@nextUrl" data-enabled-url="@nextUrl">次へ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
+    <script src="~/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/dist/js/spc.lib.min.js"></script>
+    <script src="~/dist/js/spc.util.min.js"></script>
+    <script src="~/dist/js/page-script/mgf.js"></script>
+    <script src="~/dist/js/page-script/mgf.premium.js"></script>
+    <script src="~/dist/js/page-script/mgf.premium.agreement.js"></script>
+</body>

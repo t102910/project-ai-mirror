@@ -1,0 +1,375 @@
+﻿@using System
+@using System.Collections.ObjectModel
+@using System.Collections.Generic
+@using System.Linq
+@using MGF.QOLMS.QolmsCryptV1
+@model MGF.QOLMS.QolmsJotoWebView.NoteExaminationResultPartialViewModel
+
+@{
+    ExaminationMatrix matrix = null;
+    ReadOnlyCollection<ExaminationAxis> xAxis = null;
+    ReadOnlyCollection<ExaminationAxis> yAxis = null;
+    ExaminationItem element = null;
+
+    var pageVm = Model.PageViewModel;
+
+    if (pageVm != null && pageVm.MatrixN != null && pageVm.MatrixN.Any())
+    {
+        matrix = pageVm.MatrixN.First().Copy();
+
+        if (pageVm.NarrowInCategory != byte.MinValue)
+        {
+            matrix = matrix.NarrowInCategory(pageVm.NarrowInCategory);
+        }
+
+        if (pageVm.NarrowInAbnormal)
+        {
+            matrix = matrix.NarrowInAbnormal();
+        }
+
+        if (matrix.ColCount > 0 && matrix.RowCount > 0)
+        {
+            xAxis = matrix.XAxis;
+            yAxis = matrix.YAxis;
+        }
+    }
+
+    // ダミーデータを設定
+    if (matrix == null || matrix.ColCount == 0)
+    {
+        matrix = ExaminationMatrix.CreateDebugMatrix();
+        xAxis = matrix.XAxis;
+        yAxis = matrix.YAxis;
+    }
+}
+
+<div class="update-area" style="border-top:none;">
+    @if (matrix != null && xAxis != null && yAxis != null)
+    {
+        @* 健診結果（総合判定） *@
+        <div class="kenshin-result" style="opacity: 0;">
+
+            @using (var crypt = new QsCrypt(QsCryptTypeEnum.QolmsWeb))
+            {
+                for (int x = 0; x <= matrix.ColCount - 1; x++)
+                {
+                    string dateStr = string.Empty;
+                    string dateStrMD = string.Empty; // 元コードに合わせて残してます（未使用）
+                    string[] dateStrN = xAxis[x].Header2.Split('/');
+
+                    dateStr = string.Format("{0}年{1}月{2}日", dateStrN[0], dateStrN[1], dateStrN[2]);
+
+                    string judg = string.Empty;
+                    string judgContent = string.Empty;
+                    string colorClass = string.Empty;
+
+                    if (xAxis[x].ExaminationJudgementN.Any() && xAxis[x].ExaminationJudgementN.ContainsKey("総合所見"))
+                    {
+                        judg = xAxis[x].ExaminationJudgementN["総合所見"].Judgment1;
+                        judgContent = xAxis[x].ExaminationJudgementN["総合所見"].Value;
+
+                        string ab = "AB";
+                        string c = "C";
+
+                        if (!string.IsNullOrEmpty(judg) && ab.Contains(judg.Substring(0, 1)))
+                        {
+                            colorClass = "type-AB";
+                        }
+                        else if (!string.IsNullOrEmpty(judg) && c.Contains(judg.Substring(0, 1)))
+                        {
+                            colorClass = "type-C";
+                        }
+                        else
+                        {
+                            colorClass = "type-D";
+                        }
+                    }
+                    <div class="item">
+                        <article class="card">
+                            <table class="table table-bordered mb0">
+                                <tr>
+                                    <th>受診機関</th>
+                                    <td>@xAxis[x].Header1</td>
+                                </tr>
+                                <tr>
+                                    <th>受診日</th>
+                                    <td>@dateStr</td>
+                                </tr>
+                                <tr>
+                                    <th>総合判定<a id="result-description" href="#"><i class="la la-question-circle"></i></a></th>
+                                    <td><span class="@colorClass">@judg</span></td>
+                                </tr>
+                                <tr>
+                                    <th>総合所見</th>
+                                    @if (true)
+                                    {
+                                        <td class="left">@judgContent</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="left"><a href="#" class="modal-text">@judgContent</a></td>
+                                    }
+                                </tr>
+                                <tr>
+                                    <th>添付ファイル</th>
+                                    <td class="left">
+                                        @if (xAxis[x].AssociatedFileN.Any())
+                                        {
+                                            foreach (AssociatedFileItem item in xAxis[x].AssociatedFileN)
+                                            {
+                                                if (item.DataType == QjExaminationDataTypeEnum.OverallAssessmentPdf
+                                                    && item.DataKey != Guid.Empty && item.FacilityKey != Guid.Empty
+                                                    && item.LinkageSystemNo > 0 && !string.IsNullOrWhiteSpace(item.LinkageSystemId)
+                                                    && !string.IsNullOrWhiteSpace(item.FileStorageReferenceJson))
+                                                {
+
+                                                    <a href="javascript:void(0);" class="associated-file" data-reference="@crypt.EncryptString(item.FileStorageReferenceJson)">PDFファイル</a>
+
+                                                }
+                                            }
+                                        }
+                                    </td>
+                                    </tr>
+                            </table>
+                        </article>
+                    </div>
+                }
+            }
+        </div>
+
+        <h3 class="title mt10 mb10 two-pane">
+            <span>健診結果一覧</span>
+            <span class="last-child"><a href="#anc-1" class="result-view"><i class="la la-stethoscope la-2x"></i>絞り込み</a></span>
+        </h3>
+
+        <section class="contents-block mb30">
+            <div class="fixed-table">
+                @* テーブルのデータ *@
+                <div class="scroll-wrapper table-responsive">
+                    @if (matrix != null && xAxis != null && yAxis != null)
+                    {
+                        <table class="table table-bordered table-striped kenshin-result-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <td class="unit"></td>
+                                    @for (int x = 0; x <= matrix.ColCount - 1; x++)
+                                    {
+                                        <td class="@string.Format("td-{0}", x + 1)"><span>@xAxis[x].Header1</span></td>
+                                    }
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <td class="unit"></td>
+                                    @for (int x = 0; x <= matrix.ColCount - 1; x++)
+                                    {
+                                        string dateStr = string.Empty;
+                                        string dateStrMD = string.Empty;
+                                        string[] dateStrN = xAxis[x].Header2.Split('/');
+
+                                        dateStr = dateStrN[0];
+                                        dateStrMD = dateStrN[1] + "/" + dateStrN[2];
+
+                                        <td class="@string.Format("td-{0}", x + 1)">@dateStr<br />@dateStrMD</td>
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int headerCount = 0;
+                                }
+
+                                @for (int y = 0; y <= matrix.RowCount - 1; y++)
+                                {
+                                    bool isLastRow = (y == matrix.RowCount - 1);
+                                    bool nextIsGroupRow = (!isLastRow && yAxis[y + 1].Header2 == "groupRow");
+
+                                    string lastStr = (isLastRow || nextIsGroupRow) ? "last-child" : string.Empty;
+
+                                    string unitStr = string.Empty;
+                                    string valueStr = string.Empty;
+
+                                    if (!string.IsNullOrWhiteSpace(yAxis[y].HeaderStandardValue))
+                                    {
+                                        valueStr = yAxis[y].HeaderStandardValue;
+                                    }
+
+                                    if (!string.IsNullOrWhiteSpace(yAxis[y].HeaderUnit))
+                                    {
+                                        unitStr = yAxis[y].HeaderUnit;
+                                    }
+
+                                    <tr class="@(yAxis[y].Header2 == "groupRow" ? "header" : string.Format("header-{0} t-body " + lastStr, headerCount))">
+                                        <!-- ヘッダーの一番最後に.last-childをつけてください -->
+
+                                        @if (yAxis[y].Header2 == "groupRow")
+                                        {
+                                            headerCount += 1;
+                                            <th colspan="2" data-name="@string.Format("header-{0}", headerCount)"></th>
+                                        }
+                                        else
+                                        {
+                                            <th><span class="reader-dot"></span></th>
+                                            <td class="unit"><span><br /></span></td>
+                                        }
+
+                                        @for (int x = 0; x <= matrix.ColCount - 1; x++)
+                                        {
+                                            if (yAxis[y].Header2 == "groupRow")
+                                            {
+                                                string judg = string.Empty;
+                                                string colorClass = string.Empty;
+
+                                                if (xAxis[x].ExaminationJudgementN.Any() && xAxis[x].ExaminationJudgementN.ContainsKey(yAxis[y].Header1))
+                                                {
+                                                    judg = xAxis[x].ExaminationJudgementN[yAxis[y].Header1].Judgment1;
+
+                                                    string ab = "AB";
+                                                    string c = "C";
+
+                                                    if (!string.IsNullOrEmpty(judg) && ab.Contains(judg.Substring(0, 1)))
+                                                    {
+                                                        colorClass = "type-AB";
+                                                    }
+                                                    else if (!string.IsNullOrEmpty(judg) && c.Contains(judg.Substring(0, 1)))
+                                                    {
+                                                        colorClass = "type-C";
+                                                    }
+                                                    else
+                                                    {
+                                                        colorClass = "type-D";
+                                                    }
+                                                }
+
+                                                <td class="@string.Format("td-{0}", x + 1)">
+                                                    <i>
+                                                        @if (!string.IsNullOrWhiteSpace(colorClass))
+                                                        {
+                                                            <span class="@colorClass">@judg</span>
+                                                        }
+                                                    </i>
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                element = matrix.GetItem(x, y);
+
+                                                if (element.ValueType == QjExaminationItemValueTypeEnum.PQ)
+                                                {
+                                                    <td class="@string.Format("td-{0}", x + 1)">
+                                                        <span class="value-modal" data-title="@yAxis[y].Header1" data-unit="@element.Unit" data-standard="@element.ReferenceDisplayName">
+
+                                                            @if (element.IsHigher)
+                                                            {
+                                                                <i class="high high-low-ico">H</i>
+                                                            }
+                                                            else if (element.IsLower)
+                                                            {
+                                                                <i class="low high-low-ico">L</i>
+                                                            }
+
+                                                            @element.Value.ToString()
+
+                                                        </span>
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td class="@string.Format("td-{0}", x + 1)">
+                                                        @if (!string.IsNullOrEmpty(element.Value) && element.Value.Length > 5)
+                                                        {
+                                                            <span class="modal-text" data-title="@yAxis[y].Header1" data-standard="@element.ReferenceDisplayName">@element.Value</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span>@element.Value</span>
+                                                        }
+                                                    </td>
+                                                }
+                                            }
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+
+                @* テーブルのヘッダ *@
+                <div class="th-wrapper">
+                    @if (matrix != null && xAxis != null && yAxis != null)
+                    {
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th><span>施設名</span></th>
+                                    <td class="unit"></td>
+                                </tr>
+                                <tr>
+                                    <th>検査日<br />　</th>
+                                    <td class="unit"><i class="open-closer open"></i></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int headerCount = 0;
+                                }
+
+                                @for (int y = 0; y <= matrix.RowCount - 1; y++)
+                                {
+                                    string unitStr = string.Empty;
+                                    string valueStr = string.Empty;
+
+                                    if (!string.IsNullOrWhiteSpace(yAxis[y].HeaderStandardValue))
+                                    {
+                                        valueStr = yAxis[y].HeaderStandardValue;
+                                    }
+
+                                    if (!string.IsNullOrWhiteSpace(yAxis[y].HeaderUnit))
+                                    {
+                                        unitStr = yAxis[y].HeaderUnit;
+                                    }
+
+                                    <tr class="@(yAxis[y].Header2 == "groupRow" ? "header" : string.Format("header-{0} t-body", headerCount))">
+                                        @if (yAxis[y].Header2 == "groupRow")
+                                        {
+                                            headerCount += 1;
+                                            <th colspan="2" data-name="@string.Format("header-{0}", headerCount)">@yAxis[y].Header1</th>
+                                        }
+                                        else
+                                        {
+                                            element = matrix.GetItem(0, y);
+
+                                            <th class="title" data-unit="@unitStr" data-standard="@valueStr" data-comment="@yAxis[y].Comment">
+                                                <span class="reader-dot">@yAxis[y].Header1</span>
+                                            </th>
+                                            <td class="unit">
+                                                <span class="@(yAxis[y].HasDifferentUnit ? "cation" : string.Empty)">
+                                                    @valueStr
+
+                                                    @if (!string.IsNullOrWhiteSpace(valueStr) && !string.IsNullOrWhiteSpace(unitStr))
+                                                    {
+                                                        <br />
+                                                    }
+
+                                                    @( !string.IsNullOrWhiteSpace(unitStr) ? string.Format("({0})", unitStr) : string.Empty )
+                                                </span>
+                                            </td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+        </section>
+    }
+    else
+    {
+        <div class="center mt20 mb100">
+            <img src="../dist/img/tmpl/error.png" class="w200 mb10" />
+            <div>結果がありません</div>
+        </div>
+    }
+</div>

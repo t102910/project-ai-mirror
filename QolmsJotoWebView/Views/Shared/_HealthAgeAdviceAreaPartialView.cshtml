@@ -1,0 +1,92 @@
+﻿@using MGF.QOLMS.QolmsApiCoreV1
+@model HealthAgeAdviceAreaPartialViewModel
+
+<h3 class="title mt10">
+    <span>健康年齢改善のアドバイス</span>
+</h3>
+
+@if (Model.HasData)
+{
+    <article class="age-area mb40">
+        @foreach (HealthAgeAdviceItem advice in Model.AdviceData)
+        {
+            if (!string.IsNullOrWhiteSpace(advice.Title))
+            {
+                <h3 class="title type-2">@advice.Title</h3>
+            }
+
+            <section class="inner">
+                <p class="mb20">@advice.Based</p>
+
+                @if (advice.GoalN.Any())
+                {
+                    <h4>データから見た目標値</h4>
+                    <table class="table target">
+                        <thead>
+                            <tr>
+                                <td></td>
+                                <td>現 在</td>
+                                <td>目 標</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (HealthAgeAdviceGoalItem goal in advice.GoalN)
+                            {
+                                string name = goal.Name.Trim();
+
+                                switch (name)
+                                {
+                                    case "収縮期血圧":
+                                        name = "血圧（上）";
+                                        break;
+
+                                    case "拡張期血圧":
+                                        name = "血圧（下）";
+                                        break;
+
+                                    case "AST":
+                                        name = "AST（GOT）";
+                                        break;
+
+                                    case "ALT":
+                                        name = "ALT（GPT）";
+                                        break;
+
+                                    case "γ-GT":
+                                        name = "γ-GT（γ-GTP）";
+                                        break;
+                                }
+
+                                <tr>
+                                    <td>@name</td>
+                                    <td>@goal.Old.ToString("0.#")</td>
+                                    <td>@goal.Goal.ToString("0.#")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+
+                @if (advice.DetailN.Any())
+                {
+                    <div class="advice-area">
+                        <ul class="check-list">
+                            @foreach (string detail in advice.DetailN)
+                            {
+                                <li>@detail</li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </section>
+        }
+    </article>
+}
+else
+{
+    <article class="age-area mb40">
+        <section class="section caution mt10 mb0">
+            未測定です
+        </section>
+    </article>
+}

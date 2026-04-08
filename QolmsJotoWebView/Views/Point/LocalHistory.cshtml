@@ -1,0 +1,129 @@
+﻿@using System
+@using MGF.QOLMS.QolmsJotoWebView
+@model PointLocalHistoryInputModel
+
+@{
+    Layout = "~/Views/Shared/_PointLayout.cshtml";
+    ViewBag.Title = "地域ポイント";
+
+        var yearList = new List<int>();
+    var monthList = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+
+    for (int i = DateTime.Now.Year - 2; i <= DateTime.Now.Year; i++)
+    {
+        yearList.Add(i);
+    }
+
+    var today = DateTime.Now;
+
+}
+
+<body id="point-log" class="lower">
+    @Html.AntiForgeryToken()
+
+    <main id="main-cont" class="clearfix" role="main">
+        @*<section class="home-btn-wrap" data-pageno="1">
+            <a href="../Portal/Home" class="home-btn"><i class="la la-angle-left"></i></a>
+        </section>*@
+
+        <section class="contents-area">
+            <h2 class="title relative"> 地域ポイント </h2>
+            <hr />
+
+            <section class="result-area">
+                <img id="point-chiiki-svg" src="../dist/img/index/points-chiiki.svg">
+                <h2>累計ポイント</h2>
+            <h3 id="point-field">@this.Model.Point.ToString(("###,##0"))<i>pt</i></h3>
+            @if (Model.ClosestExprirationDate != DateTime.MinValue && Model.ClosestExprirationPoint > 0)
+            {
+                <p class="end">@string.Format("（{0:yyyy年M月末}に失効 {1:###,##0}pt）", this.Model.ClosestExprirationDate, this.Model.ClosestExprirationPoint)</p>
+            } 
+            </section>
+
+            <section class="section default">
+                ぎのわん健康増進プロジェクトで取得した地域ポイントの付与・消費の履歴を確認できます。
+            </section>
+
+            <h3 class="title mt40">履歴</h3>
+
+            <div class="flex-item">
+                <div class="input-group datetime-select">
+                    <select name="Year" class="form-control">
+                    @foreach (var item in yearList.OrderByDescending(i => i))
+                    {
+                        <option value="@item.ToString()" @(item == this.Model.Year ? "selected='selected'" : string.Empty)>@item.ToString()</option>
+                    }
+                    </select>
+                    <span class="input-group-text">年</span>
+
+                    <select name="Month" class="form-control minute">
+                     @foreach (var item in monthList)
+                     {
+                        <option value="@item.ToString()" @(item == this.Model.Month ? "selected='selected'" : string.Empty)>@item.ToString()</option>
+                     }
+                    </select>
+                    <span class="input-group-text minute2">月</span>
+                </div>
+
+                <div class="submit">
+                    <a href="javascript:void(0);" class="btn btn-submit narrow js-localhistory-change">変更</a>
+                </div>
+            </div>
+
+            <section id="yearMonthErrorMessage" class="section caution mb20 hide"></section>
+
+            @Html.Action("PointLocalHistoryPartialView", "Point")
+
+            <section class="section mb20">
+                ※ポイント履歴は過去１年分ご確認いただけます。<br />
+            </section>
+
+            <h3 class="title">使 う（JOTOポイントに変換する）</h3>
+
+            <section class="section default">
+                地域ポイントをJOTOホームドクターで使うには、「JOTOポイント」に変換してください
+            </section>
+
+            <a href="javascript:void(0);" class="btn btn-submit block" data-bs-toggle="modal" data-bs-target="#cancel-modal">ポイント変換</a>
+        </section>
+    </main>
+
+    <div class="modal fade" id="cancel-modal" tabindex="-1" data-backdrop="static" data-keyboard="false" data-row-no="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">ポイント変換</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <p class="mb10">
+                        変換したい地域ポイントを入力し、「変換する」ボタンを押してください。<br>
+                        変換可能な地域ポイント合計：<span class="font-l" id="localPointMax">@this.Model.Point.ToString("###,##0")</span>pt
+                    </p>
+
+                    <input type="text" name="RedeemPoint" id="localPointRedeemInput" class="form-control mb15" value="@this.Model.Point" placeholder="1～@this.Model.Point" maxlength="9" inputmode="numeric" pattern="[0-9]*" autocomplete="off" style="ime-mode:disabled;">
+                    <section id="localPointRedeemErrorMessage" class="section caution mb20 hide">
+                        <h4 id="localPointRedeemMessageHeading">入力エラー</h4>
+                        <span id="localPointRedeemErrorText"></span>
+                    </section>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-close no-ico mb0" data-bs-dismiss="modal">閉じる</button>
+                    <button type="button" class="btn btn-submit mb0 js-localpoint-redeem">変換する</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="topbtn" class="hide topbtn__wrap">
+        <a href="#" class="topbtn"></a>
+    </section>
+
+    @Html.Action("PointFooterPartialView", "Point")
+
+    @QjHtmlHelper.RenderScriptTag("~/dist/js/point/localhistory")
+</body>

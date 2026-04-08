@@ -1,0 +1,222 @@
+﻿@model HealthAgeEditInputModel
+
+@{
+    ViewData["Title"] = "健康年齢測定";
+    Layout = "~/Views/Shared/_HealthLayout.cshtml";
+}
+
+<body id="health-age-input" class="lower">
+    @Html.AntiForgeryToken()
+    @*@Html.Action("HealthHeaderPartialView", "Health")*@
+
+    <main id="main-cont" class="clearfix" role="main">
+        <section class="contents-area">
+            @if (Model.FromPageNoType == QjPageNoTypeEnum.PortalHome)
+            {
+                <div id="page-no" data-pageno="1"></div>
+            }
+            else if (Model.FromPageNoType == QjPageNoTypeEnum.NoteExamination)
+            {
+                <div id="page-no" data-pageno="23"></div>
+            }
+            else
+            {
+                <div id="page-no" data-pageno="0"></div>
+            }
+
+            @if (!Model.IsMaintenance)
+            {
+                <section class="section default">
+                    前回入力された数値がセットされています。<br>
+                    変更があれば修正して送信してください。<br>
+                    変更しない項目はそのまま送信してください。
+                </section>
+                <form class="form">
+                    <label class="t-row">
+                        <span class="label-txt">
+                            <span class="ico required">必須</span>
+                            健診受診日
+                        </span>
+                        @if (Model.RecordDate == DateTime.MinValue)
+                        {
+                            <input type="text" name="RecordDate" class="form-control picker" value="@DateTime.Now.ToString("yyyy年MM月dd日")" readonly="readonly" style="background-color:white;" autocomplete="off">
+                        }
+                        else
+                        {
+                            <input type="text" name="RecordDate" class="form-control picker" value="@Model.RecordDate.ToString("yyyy年MM月dd日")" readonly="readonly" style="background-color:white;" autocomplete="off">
+                        }
+                        @QjHtmlHelper.ToValidationMessageInSectionTag(new[] { "model.RecordDate" }, TempData["ErrorMessage"])
+                    </label>
+
+                    <label class="t-row">
+                        <span class="label-txt">
+                            <span class="ico required">必須</span>
+                            BMI<i>@Model.GetLatestDateString(QjHealthAgeValueTypeEnum.BMI)</i>
+                        </span>
+                        <input type="number" name="BMI" class="form-control" value="@Model.BMI" placeholder="10.0～100.0" maxlength="5" style="ime-mode:disabled;" autocomplete="off">
+                        @QjHtmlHelper.ToValidationMessageInSectionTag(new[] { "model.BMI" }, TempData["ErrorMessage"])
+                    </label>
+
+                    <label class="t-row">
+                        <span class="label-txt">
+                            <span class="ico required">必須</span>
+                            血圧（上）<i>@Model.GetLatestDateString(QjHealthAgeValueTypeEnum.Ch014)</i>
+                        </span>
+                        <input type="tel" name="Ch014" class="form-control" value="@Model.Ch014" placeholder="60～300" maxlength="3" style="ime-mode:disabled;" autocomplete="off">
+                        @QjHtmlHelper.ToValidationMessageInSectionTag(new[] { "model.Ch014" }, TempData["ErrorMessage"])
+                    </label>
+
+                    <label class="t-row">
+                        <span class="label-txt">
+                            <span class="ico required">必須</span>
+                            血圧（下）<i>@Model.GetLatestDateString(QjHealthAgeValueTypeEnum.Ch016)</i>
+                        </span>
+                        <input type="tel" name="Ch016" class="form-control" value="@Model.Ch016" placeholder="30～150" maxlength="3" style="ime-mode:disabled;" autocomplete="off">
+                        @QjHtmlHelper.ToValidationMessageInSectionTag(new[] { "model.Ch016" }, TempData["ErrorMessage"])
+                    </label>
+
+                    <label class="t-row">
+                        <span class="label-txt">
+                            <span class="ico required">必須</span>
+                            中性脂肪<i>@Model.GetLatestDateString(QjHealthAgeValueTypeEnum.Ch019)</i>
+                        </span>
+                        <input type="tel" name="Ch019" class="form-control" value="@Model.Ch019" placeholder="10～2000" maxlength="4" style="ime-mode:disabled;" autocomplete="off">
+                        @QjHtmlHelper.ToValidationMessageInSectionTag(new[] { "model.Ch019" }, TempData["ErrorMessage"])
+                    </label>
+
+                    <label class="t-row">
+                        <span class="label-txt">
+                            <span class="ico required">必須</span>
+                            HDLコレステロール<i>@Model.GetLatestDateString(QjHealthAgeValueTypeEnum.Ch021)</i>
+                        </span>
+                        <input type="number" name="Ch021" class="form-control" value="@Model.Ch021" placeholder="10.0～500.0" maxlength="5" style="ime-mode:disabled;" autocomplete="off">
+                        @QjHtmlHelper.ToValidationMessageInSectionTag(new[] { "model.Ch021" }, TempData["ErrorMessage"])
+                    </label>
+
+                    <label class="t-row">
+                        <span class="label-txt">
+                            <span class="ico required">必須</span>
+                            LDLコレステロール<i>@Model.GetLatestDateString(QjHealthAgeValueTypeEnum.Ch023)</i>
+                        </span>
+                        <input type="number" name="Ch023" class="form-control" value="@Model.Ch023" placeholder="20.0～1000.0" maxlength="6" style="ime-mode:disabled;" autocomplete="off">
+                        @QjHtmlHelper.ToValidationMessageInSectionTag(new[] { "model.Ch023" }, TempData["ErrorMessage"])
+                    </label>
+
+                    <label class="t-row">
+                        <span class="label-txt">
+                            <span class="ico required">必須</span>
+                            AST（GOT）<i>@Model.GetLatestDateString(QjHealthAgeValueTypeEnum.Ch025)</i>
+                        </span>
+                        <input type="tel" name="Ch025" class="form-control" value="@Model.Ch025" placeholder="1～1000" maxlength="4" style="ime-mode:disabled;" autocomplete="off">
+                        @QjHtmlHelper.ToValidationMessageInSectionTag(new[] { "model.Ch025" }, TempData["ErrorMessage"])
+                    </label>
+
+                    <label class="t-row">
+                        <span class="label-txt">
+                            <span class="ico required">必須</span>
+                            ALT（GPT）<i>@Model.GetLatestDateString(QjHealthAgeValueTypeEnum.Ch027)</i>
+                        </span>
+                        <input type="tel" name="Ch027" class="form-control" value="@Model.Ch027" placeholder="1～1000" maxlength="4" style="ime-mode:disabled;" autocomplete="off">
+                        @QjHtmlHelper.ToValidationMessageInSectionTag(new[] { "model.Ch027" }, TempData["ErrorMessage"])
+                    </label>
+
+                    <label class="t-row">
+                        <span class="label-txt">
+                            <span class="ico required">必須</span>
+                            γ-GT（γ-GTP）<i>@Model.GetLatestDateString(QjHealthAgeValueTypeEnum.Ch029)</i>
+                        </span>
+                        <input type="tel" name="Ch029" class="form-control" value="@Model.Ch029" placeholder="1～1000" maxlength="4" style="ime-mode:disabled;" autocomplete="off">
+                        @QjHtmlHelper.ToValidationMessageInSectionTag(new[] { "model.Ch029" }, TempData["ErrorMessage"])
+                    </label>
+
+                    <label class="t-row">
+                        <span class="label-txt">
+                            <span class="ico required">必須</span>
+                            HbA1c（NGSP）<i>@Model.GetLatestDateString(QjHealthAgeValueTypeEnum.Ch035)</i>
+                        </span>
+                        <input type="number" name="Ch035" class="form-control" value="@Model.Ch035" placeholder="3.0～20.0" maxlength="4" style="ime-mode:disabled;" autocomplete="off">
+                        @QjHtmlHelper.ToValidationMessageInSectionTag(new[] { "model.Ch035" }, TempData["ErrorMessage"])
+                    </label>
+
+                    <label class="t-row">
+                        <span class="label-txt">
+                            <span class="ico required">必須</span>
+                            空腹時血糖<i>@Model.GetLatestDateString(QjHealthAgeValueTypeEnum.Ch035FBG)</i>
+                        </span>
+                        <input type="tel" name="Ch035FBG" class="form-control" value="@Model.Ch035FBG" placeholder="20～600" maxlength="3" style="ime-mode:disabled;" autocomplete="off">
+                        @QjHtmlHelper.ToValidationMessageInSectionTag(new[] { "model.Ch035FBG" }, TempData["ErrorMessage"])
+                    </label>
+
+                    <label class="t-row">
+                        <span class="label-txt">
+                            <span class="ico required">必須</span>
+                            尿糖<i>@Model.GetLatestDateString(QjHealthAgeValueTypeEnum.Ch037)</i>
+                        </span>
+                        @QjHtmlHelper.ToUrineDropDownList(string.Empty, "Ch037", Model.Ch037)
+                        @QjHtmlHelper.ToValidationMessageInSectionTag(new[] { "model.Ch037" }, TempData["ErrorMessage"])
+                    </label>
+
+                    <label class="t-row">
+                        <span class="label-txt">
+                            <span class="ico required">必須</span>
+                            尿蛋白（定性）<i>@Model.GetLatestDateString(QjHealthAgeValueTypeEnum.Ch039)</i>
+                        </span>
+                        @QjHtmlHelper.ToUrineDropDownList(string.Empty, "Ch039", Model.Ch039)
+                        @QjHtmlHelper.ToValidationMessageInSectionTag(new[] { "model.Ch039" }, TempData["ErrorMessage"])
+                    </label>
+
+                    <div class="submit-area  mb100">
+                        @QjHtmlHelper.ToValidationMessageInSectionTag(new[] { "HealthAgeApi" }, TempData["ErrorMessage"], css: "section caution mt0 mb10")
+                        @if (Model.FromPageNoType == QjPageNoTypeEnum.PortalHome)
+                        {
+                            <a href="../Health/Age?fromPageNo=1" class="btn btn-close no-ico">戻 る</a>
+                        }
+                        else if (Model.FromPageNoType == QjPageNoTypeEnum.NoteExamination)
+                        {
+                            <a href="../Health/Age?fromPageNo=23" class="btn btn-close no-ico">戻 る</a>
+                        }
+                        else
+                        {
+                            <a href="../Health/Age" class="btn btn-close no-ico">戻 る</a>
+                        }
+                        <a href="javascript:void(0);" class="btn btn-submit">送 信</a>
+                    </div>
+                </form>
+            }
+            else
+            {
+                <section class="section caution">
+                    @QjHtmlHelper.CrLfToBreakTag(Model.MaintenanceMessage)
+                </section>
+                <form class="form">
+                    <div class="submit-area">
+                        @if (Model.FromPageNoType == QjPageNoTypeEnum.PortalHome)
+                        {
+                            <a href="../Health/Age?fromPageNo=1" class="btn btn-close no-ico">戻 る</a>
+                        }
+                        else if (Model.FromPageNoType == QjPageNoTypeEnum.NoteExamination)
+                        {
+                            <a href="../Health/Age?fromPageNo=23" class="btn btn-close no-ico">戻 る</a>
+                        }
+                        else
+                        {
+                            <a href="../Health/Age" class="btn btn-close no-ico">戻 る</a>
+                        }
+                    </div>
+                </form>
+            }
+        </section>
+    </main>
+
+    @Html.Action("HealthFooterPartialView", "Health")
+
+    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
+    <script src="~/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/dist/js/slick.min.js"></script>
+    <script src="~/dist/js/spc.lib.min.js"></script>
+    <script src="~/dist/js/spc.util.min.js"></script>
+    <script src="~/dist/js/page-script/mgf.js"></script>
+    <script src="~/dist/js/page-script/mgf.health.js"></script>
+    <script src="~/dist/js/page-script/mgf.health.ageedit.js"></script>
+    @*@Scripts.Render("~/dist/js/health/ageedit")*@
+</body>

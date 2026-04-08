@@ -1,0 +1,131 @@
+﻿@model PortalAuWalletPointExchangeViewModel
+
+@{
+    ViewData["Title"] = "Pontaポイント";
+    Layout = "~/Views/Shared/_PointLayout.cshtml";
+
+    bool isYappli = Context.Request.UserAgent != null && Context.Request.UserAgent.ToLower().Contains("yappli");
+    string auWalletLink = "https%3A%2F%2Fwallet.auone.jp%2Fcontents%2Fsp%2Fguide%2Fpoint.html";
+    
+}
+
+<body id="data-charge" class="lower">
+    @Html.AntiForgeryToken()
+
+    <main id="main-cont" class="clearfix" role="main">
+        <section class="contents-area">
+            <div id="contents-wrap">
+                <h2 class="title relative">
+                    Pontaポイント交換
+                </h2>
+                <hr>
+                <h4 class="center">JOTOポイントをPontaポイントと交換！</h4>
+
+                <p class="section default">
+                    現在保有いただいているJOTOポイントをPontaポイントと交換することができます。
+                    <br />
+                    ポイントは<b style="color: #ff0000;">１pt ＝１円</b>として交換できます。交換は５００ポイント、１０００ポイント単位で交換できます。
+                    <br />
+                    <b style="color: #ff0000;">※JOTOホームドクターで登録したauIDと連携しているPontaポイントへ加算されます。</b>
+                </p>
+
+                <a href="jotohdr2://deep.link/action/open_browser?url=@auWalletLink" class="btn btn-submit block">Pontaポイントについて詳しく</a>
+                <a href="/Point/Terms" class="btn btn-submit block">JOTOポイントプログラム利用規約</a>
+                <div class="remaining-point">
+                    <h3>
+                        現在の保有ポイント
+                        <span>@this.Model.Point<i>pt</i></span>
+                    </h3>
+                </div>
+
+                @*@{
+                    string page = string.Empty;
+
+                    if (vm.FromPageNoType == (int)QjPageNoTypeEnum.PortalHome)
+                    {
+                        page = string.Format("?fromPageNo={0}", Convert.ToByte(vm.FromPageNoType));
+                    }
+                }
+
+                <div class="right">
+                    <a id="back" href="@string.Format("../Portal/history{0}", page)" class="btn btn-close no-ico">戻 る</a>
+                </div>*@
+
+                <form class="form charge-form mb30">
+                    @foreach (var item in this.Model.AuWalletPointItemN)
+                    {
+                        int itemId;
+                        bool isParsed = int.TryParse(item.AuWalletPointItemId, out itemId);
+
+                        if (isParsed && itemId > 2)
+                        {
+                            if (item.Point <= this.Model.Point)
+                            {
+                                <a href="javascript:void(0);" class="btn btn-blue exchange" data-itemid="@item.AuWalletPointItemId">
+                                    <i>@item.Point</i>P → <i>@item.DispName</i>と交換
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="javascript:void(0);" class="btn btn-blue exchange disabled" data-itemid="@item.AuWalletPointItemId">
+                                    <i>@item.Point</i>P → <i>@item.DispName</i>と交換
+                                </a>
+                            }
+                        }
+                    }
+                </form>
+
+                <p class="section default">
+                    <b style="color: #ff0000;">※JOTOホームドクターで登録したauIDと連携しているPontaポイントへ加算されます。</b>
+                </p>
+            </div>
+
+            <section class="data-area mb20">
+                <h3 class="title mt10">
+                    <span>Pontaポイント交換履歴</span>
+                </h3>
+
+                @if (this.Model.AuWalletPointHistN.Count > 0)
+                {
+                    foreach (var item in this.Model.AuWalletPointHistN)
+                    {
+                        <article>
+                            <section class="inner">
+                                <div class="info">
+                                    <p class="date">@item.ActionDate.ToString("MM月dd日 tt hh:mm")</p>
+                                    <div class="flex-wrap">
+                                        <div class="before">
+                                            <strong>JOTOポイント</strong>
+                                            <p>@item.Point<i>pt</i></p>
+                                        </div>
+                                        <p class="arrow"><i class="la la-arrow-right"></i></p>
+                                        <div class="after">
+                                            <strong>Pontaポイント</strong>
+                                            <p>@item.Point<i>ポイント</i></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </article>
+                    }
+                }
+                else
+                {
+                    <p>履歴がありません</p>
+                }
+            </section>
+        </section>
+    </main>
+
+    @Html.Action("PointFooterPartialView", "Point")
+        
+    <script src="~/dist/js/jquery-3.7.1.min.js"></script>
+    <script src="~/dist/js/bootstrap-5.3.6.min.js"></script>
+    <script src="~/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/dist/js/slick.min.js"></script>
+    <script src="~/dist/js/spc.lib.min.js"></script>
+    <script src="~/dist/js/spc.util.min.js"></script>
+    <script src="~/dist/js/page-script/mgf.js"></script>
+    <script src="~/dist/js/page-script/mgf.point.js"></script>
+    <script src="~/dist/js/page-script/mgf.point.aupoint.js"></script>
+</body>

@@ -9,12 +9,6 @@
 
 <header class="contents-header">
     <h1><img src="/dist/img/biz/biz-logo.png" /></h1>
-    @if (Model.FromPageNoType == QjPageNoTypeEnum.PortalHome)
-    {
-        <section class="home-btn-wrap">
-            <a href="@Url.Action("ConnectionSetting", "Portal", new { fromPageNo = 1, tabNo = 2 })" class="home-btn"><i class="la la-angle-left"></i></a>
-        </section>
-    }
 </header>
 <body id="menu" class="lower business">
     @Html.AntiForgeryToken()

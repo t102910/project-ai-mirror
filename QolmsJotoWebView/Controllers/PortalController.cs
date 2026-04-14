@@ -215,6 +215,7 @@ namespace MGF.QOLMS.QolmsJotoWebView {
 
         [HttpGet()]
         [QjAuthorize]
+        [QyApiAuthorize]
         [QjApiAuthorize]
         [QjLogging]
         public ActionResult ConnectionSetting(byte? fromPageNo, byte? tabNo)

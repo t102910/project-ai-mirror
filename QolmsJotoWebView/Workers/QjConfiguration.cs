@@ -453,6 +453,67 @@ namespace MGF.QOLMS.QolmsJotoWebView
 
         #endregion
 
+        #region auID
+
+
+        /// <summary>
+        /// auID認証クライアントID
+        /// </summary>
+        private const string Config_AuClientId_KeyName = "AuClientId";
+        private const string Config_AuClientId_DefaultValue = "";
+
+        /// <summary>
+        /// auID認証クライアントIDを取得します。
+        /// </summary>
+        public static string AuClientId => GetConfiguration(Config_AuClientId_KeyName, Config_AuClientId_DefaultValue);
+
+        /// <summary>
+        /// auID認証クライアントシークレット
+        /// </summary>
+        private const string Config_AuClientSecret_KeyName = "AuClientSecret";
+        private const string Config_AuClientSecret_DefaultValue = "";
+
+        /// <summary>
+        /// auID認証クライアントシークレットを取得します。
+        /// </summary>
+        public static string AuClientSecret => GetConfiguration(Config_AuClientSecret_KeyName, Config_AuClientSecret_DefaultValue);
+
+        /// <summary>
+        /// JwtValidateLifetimeFlag
+        /// </summary>
+        private const string Config_JwtValidateLifetimeFlag_KeyName = "JwtValidateLifetimeFlag";
+        private const string Config_JwtValidateLifetimeFlag_DefaultValue = "";
+
+        /// <summary>
+        /// JwtValidateLifetimeFlagを取得します。
+        /// </summary>
+        public static string JwtValidateLifetimeFlag => GetConfiguration(Config_JwtValidateLifetimeFlag_KeyName, Config_JwtValidateLifetimeFlag_DefaultValue);
+
+        /// <summary>
+        /// auID認証サイトURL
+        /// </summary>
+        private const string Config_AuDiscoveryUri_KeyName = "AuDiscoveryUri";
+        private const string Config_AuDiscoveryUri_DefaultValue = "";
+
+        /// <summary>
+        /// auID認証サイトURLを取得します。
+        /// </summary>
+        public static string AuDiscoveryUri => GetConfiguration(Config_AuDiscoveryUri_KeyName, Config_AuDiscoveryUri_DefaultValue);
+
+
+        /// <summary>
+        /// JotoWebViewURL
+        /// </summary>
+        private const string Config_JotoWebViewUri_KeyName = "JotoWebViewUri";
+        private const string Config_JotoWebViewUri_DefaultValue = "";
+
+        /// <summary>
+        /// JotoWebViewURLを取得します。
+        /// </summary>
+        public static string JotoWebViewUri => GetConfiguration(Config_JotoWebViewUri_KeyName, Config_JotoWebViewUri_DefaultValue);
+
+        #endregion
+
         #region "Private Method"
         /// <summary>
         /// 構成から値を取得します。ない場合やエラーになっても例外は返さず、defaultValueを返します。

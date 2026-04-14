@@ -341,7 +341,7 @@ namespace MGF.QOLMS.QolmsJotoWebView.Worker
             return tokenSet.access_token;
         }
 
-        public bool SetProfile(QolmsJotoModel mainModel)
+        public bool SetProfile(QolmsJotoModel mainModel,string token)
         {
             decimal refHeight = decimal.MinValue;
             decimal refWeight = decimal.MinValue;
@@ -350,7 +350,13 @@ namespace MGF.QOLMS.QolmsJotoWebView.Worker
                                                       mainModel.SessionId, mainModel.ApiAuthorizeKey2,
                                                       mainModel.AuthorAccount.AccountKey, ref refHeight, ref refWeight);
 
-            if (!_calomealApiRepository.SetProfile(TokenRead(mainModel), mainModel.AuthorAccount.Birthday,
+            if (refHeight > 0)
+            {
+                // 一応更新しておく
+                mainModel.AuthorAccount.Height = refHeight;
+            }
+
+            if (!_calomealApiRepository.SetProfile(token, mainModel.AuthorAccount.Birthday,
                 refHeight, refWeight, mainModel.AuthorAccount.SexType))
             {
                 // error
@@ -408,36 +414,43 @@ namespace MGF.QOLMS.QolmsJotoWebView.Worker
 
                     var apiresult = _calomealRepository.ExecuteCalomealConnectionWriteApi(mainModel,CALOMEAL_LINKAGESYSTEMNO, c.sub, tokenSet, false);
 
-                    if (apiresult.Height.TryToValueType(decimal.MinValue) > 0)
+                    if (apiresult.IsSuccess.TryToValueType(false))
                     {
-                        // 一応更新しておく
-                        mainModel.AuthorAccount.Height = apiresult.Height.TryToValueType(decimal.MinValue);
+                        if (!SetProfile(mainModel, tokenSet.access_token))
+                        {
+                            throw new InvalidOperationException("カロミルプロフィールの登録に失敗しました。");
+                        }
                     }
+                    //if (apiresult.Height.TryToValueType(decimal.MinValue) > 0)
+                    //{
+                    //    // 一応更新しておく
+                    //    mainModel.AuthorAccount.Height = apiresult.Height.TryToValueType(decimal.MinValue);
+                    //}
 
-                    var weight = decimal.Zero;
-                    // 食事ボタンが押せる時点で体重の登録はあるはず
-                    if (apiresult.Height.TryToValueType(decimal.MinValue) > 0 && apiresult.Weight.TryToValueType(decimal.MinValue) > 0)
-                    {
-                        mainModel.AuthorAccount.Height = apiresult.Height.TryToValueType(decimal.MinValue);
-                        weight = apiresult.Weight.TryToValueType(decimal.MinValue);
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException("基本情報の登録がありません。");
-                    }
+                    //var weight = decimal.Zero;
+                    //// 食事ボタンが押せる時点で体重の登録はあるはず
+                    //if (apiresult.Height.TryToValueType(decimal.MinValue) > 0 && apiresult.Weight.TryToValueType(decimal.MinValue) > 0)
+                    //{
+                    //    mainModel.AuthorAccount.Height = apiresult.Height.TryToValueType(decimal.MinValue);
+                    //    weight = apiresult.Weight.TryToValueType(decimal.MinValue);
+                    //}
+                    //else
+                    //{
+                    //    throw new InvalidOperationException("基本情報の登録がありません。");
+                    //}
 
-                    // 暫定プロフィールないと表示できないので更新しておく
-                    if (!_calomealApiRepository.SetProfile(tokenSet.access_token, mainModel.AuthorAccount.Birthday,
-                        mainModel.AuthorAccount.Height, weight, mainModel.AuthorAccount.SexType))
-                    {
-                        // error
-                        AccessLogWorker.WriteErrorLog(null, "api_setprofile_error",
-                            new InvalidOperationException(
-                                string.Format("カロミルプロフィールの登録に失敗しました。accountkey={0}",
-                                    mainModel.AuthorAccount.AccountKey)));
+                    //// 暫定プロフィールないと表示できないので更新しておく
+                    //if (!_calomealApiRepository.SetProfile(tokenSet.access_token, mainModel.AuthorAccount.Birthday,
+                    //    mainModel.AuthorAccount.Height, weight, mainModel.AuthorAccount.SexType))
+                    //{
+                    //    // error
+                    //    AccessLogWorker.WriteErrorLog(null, "api_setprofile_error",
+                    //        new InvalidOperationException(
+                    //            string.Format("カロミルプロフィールの登録に失敗しました。accountkey={0}",
+                    //                mainModel.AuthorAccount.AccountKey)));
 
-                        throw new InvalidOperationException("カロミルプロフィールの登録に失敗しました。");
-                    }
+                    //    throw new InvalidOperationException("カロミルプロフィールの登録に失敗しました。");
+                    //}
                 }
                 else
                 {

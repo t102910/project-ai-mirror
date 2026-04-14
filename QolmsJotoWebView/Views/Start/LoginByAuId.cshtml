@@ -10,6 +10,7 @@
     {
         bShowNewAccount = false;
     }
+
 }
 
 <body id="login" class="before-login">
@@ -20,8 +21,17 @@
         <div class="box mb10">
             <section class="inner">
                 <h3 class="title">au IDでログイン</h3>
-                <p class="center"><a id="auid-login" @*href="/2.html"*@ class="auid-login" data-autologin="@TempData["IsAuAutoLogin"]"><i></i><span>au IDでログイン</span></a></p>
+                @if (!string.IsNullOrWhiteSpace(Model.OpenId))
+                {
+                    <p class="center"><span>登録済み</span></p>
+                }
+                else
+                {
+                    <p class="center"><a id="auid-login" href="../Start/LoginEditResult" class="auid-login" data-autologin="@TempData["IsAuAutoLogin"]"><i></i><span>au IDでログイン</span></a></p>
+                }
                 <p style="padding: 0px 20px 10px;">Pontaポイント、auデータチャージのご利用などau関連サービスをご利用の方はauIDでのログインを推奨します。</p>
+
+
 
             </section>
         </div>

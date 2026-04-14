@@ -40,7 +40,7 @@ namespace MGF.QOLMS.QolmsJotoWebView
             //JOTO用のログインを実装する
             //リポジトリにする
             var apiArgs = new QiQolmsJotoSsoApiArgs(
-                QiApiTypeEnum.QolmsSso,
+                QiApiTypeEnum.QolmsJotoSso,
                 QsApiSystemTypeEnum.Qolms,
                 authorAccountKey,
                 string.Empty

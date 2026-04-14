@@ -54,7 +54,7 @@ namespace MGF.QOLMS.QolmsJotoWebView
         /// メインモデルを指定して初期化します。
         /// </summary>
         public PointExchangeViewModel(QolmsJotoModel mainModel)
-            : base(mainModel, QjPageNoTypeEnum.None)
+            : base(mainModel, QjPageNoTypeEnum.PointCouponForOcm)
         {
         }
 
@@ -67,7 +67,7 @@ namespace MGF.QOLMS.QolmsJotoWebView
             int pageIndex,
             int pageCount,
             IEnumerable<MedicalInstitutionItem> MedicalInstitutionN)
-            : base(mainModel, QjPageNoTypeEnum.PortalSearchDetail)
+            : base(mainModel, QjPageNoTypeEnum.PointCouponForOcm)
         {
             // 必要ならここにプロパティ設定を追加
         }

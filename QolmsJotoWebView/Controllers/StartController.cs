@@ -3,6 +3,7 @@ using MGF.QOLMS.QolmsApiEntityV1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -35,13 +36,42 @@ namespace MGF.QOLMS.QolmsJotoWebView
 
             return View(viewModel);
         }
+        #endregion
 
+        #region auIDログイン
         [HttpGet]
         public ActionResult LoginByAuId()
         {
-            var model = new LoginModel();
+            var mainModel = this.GetQolmsJotoModel();
+            var model = StartLoginByAuIdWorker.CreateViewModel(mainModel);
 
             return View(model);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> LoginEditResult()
+        {
+            var loginModel = new LoginModel();
+
+            QjSessionHelper.RemoveItem(this.Session, typeof(LoginModel).Name);
+            QjSessionHelper.SetItem(this.Session, typeof(LoginModel).Name, loginModel);
+            var url = loginModel.GetAuthorizationRequestUrl();
+            return Redirect(url);
+            
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> LoginEditAuIdResult(string state, string code = "")
+        {
+            var mainModel = this.GetQolmsJotoModel();
+            var loginModel = new LoginModel();
+
+            QjSessionHelper.GetItem(this.Session, typeof(LoginModel).Name, ref loginModel);
+            var openId = StartLoginByAuIdWorker.GetOpenId(loginModel, code);
+
+            var error = StartLoginByAuIdWorker.Edit(mainModel, openId);
+
+            return RedirectToAction("LoginByAuId");
         }
         #endregion
 

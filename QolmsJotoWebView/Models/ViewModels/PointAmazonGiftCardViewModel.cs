@@ -71,7 +71,7 @@ namespace MGF.QOLMS.QolmsJotoWebView
             int pageIndex,
             int pageCount,
             IEnumerable<MedicalInstitutionItem> MedicalInstitutionN)
-            : base(mainModel, QjPageNoTypeEnum.PortalSearchDetail)
+            : base(mainModel, QjPageNoTypeEnum.PointAmazonGiftCard)
         {
             //Me.CodeNo = searchText
             //Me.KanaName = pageIndex

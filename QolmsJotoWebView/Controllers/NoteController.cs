@@ -408,6 +408,33 @@ namespace MGF.QOLMS.QolmsJotoWebView
         }
 
         /// <summary>
+        /// カロミルのcallbackを受取ります
+        /// </summary>
+        /// <param name="result"></param>
+        /// <param name="state"></param>
+        /// <param name="code"></param>
+        /// <param name="error"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [QjLogging]
+        public ActionResult CalomealResult(string result, string state, string code, string error)
+        {
+            var oldstate = Guid.Parse("2fe1980c-66a9-48cc-b8b0-36eadfb3ec3d").ToString("N");
+            var newstate = Guid.Parse("B5519517-D92F-4F0A-A714-0ADE2333BCFB").ToString("N");
+
+            if (state == newstate)
+            {
+                return RedirectToAction("CalomealNewUserResult", new { result = result, state = state, code = code, error = error });
+            }
+            else if (state == oldstate)
+            {
+                return Redirect($"https://devjoto.qolms.com/note/calomealresult?result={result}&state={state}&code={code}&error={error}");
+            }
+
+            return new EmptyResult();
+        }
+
+        /// <summary>
         /// 「カロミル」画面の表示要求を処理します。
         /// </summary>
         /// <returns>
@@ -418,7 +445,7 @@ namespace MGF.QOLMS.QolmsJotoWebView
         [QjApiAuthorize]
         [QyApiAuthorize]
         [QjLogging]
-        public ActionResult CalomealResult(string result, string state, string code, string error)
+        public ActionResult CalomealNewUserResult(string result, string state, string code, string error)
         {
             var worker = new NoteCalomealWorker(new CalomealRepository(), new CalomealWebViewApiRepository(), new VitalRepository());
             //旧JOTOのリダイレクトも受取る必要がある。
@@ -431,10 +458,10 @@ namespace MGF.QOLMS.QolmsJotoWebView
                 var token = worker.GetToken(this.GetQolmsJotoModel(), code);
                 return RedirectToAction("Calomeal");
             }
-            else if(state == oldstate)
-            {
-                return Redirect($"https://devjoto.qolms.com/note/calomealresult?result={result}&state={state}&code={code}&error={error}");
-            }
+            //else if(state == oldstate)
+            //{
+            //    return Redirect($"https://devjoto.qolms.com/note/calomealresult?result={result}&state={state}&code={code}&error={error}");
+            //}
 
             return new EmptyResult();
         }

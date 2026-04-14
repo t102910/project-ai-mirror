@@ -5,14 +5,6 @@
 @{
     ViewData["Title"] = "オムロンコネクト連携";
     Layout = "~/Views/Shared/_IntegrationLayout.cshtml";
-
-    string backUrl = "../Portal/Home";
-    bool isPortalHome = Model.FromPageNoType == QjPageNoTypeEnum.PortalHome;
-
-    if (isPortalHome)
-    {
-        backUrl = "../Portal/Home";
-    }
 }
 
 <body id="integration-omron" class="lower">

@@ -4,6 +4,8 @@
 
 @model MGF.QOLMS.QolmsJotoWebView.NoteExaminationResultPartialViewModel
 
+@if (Model.PageViewModel != null && Model.PageViewModel.MatrixN != null && Model.PageViewModel.MatrixN.Any())
+{
 <div id="filter">
     <h3 id="anc-1" class="title mt10 mb10">
         <span>結果を絞り込む</span>
@@ -63,3 +65,4 @@
 
     </section>
 </div>
+}

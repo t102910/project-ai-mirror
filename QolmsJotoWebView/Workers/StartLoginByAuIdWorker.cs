@@ -95,7 +95,7 @@ namespace MGF.QOLMS.QolmsJotoWebView
         {
             var ret = string.Empty;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-            var redirecturi = HttpUtility.UrlEncode($"{QjConfiguration.JotoWebViewUri}start/auidloginresult");
+            var redirecturi = HttpUtility.UrlEncode($"{QjConfiguration.JotoWebViewUri}start/logineditauidresult");
             var apiResult = new AccessTokenRequestResults();
             using (var wb = new WebClient())
             {

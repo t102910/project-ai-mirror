@@ -84,7 +84,7 @@ namespace MGF.QOLMS.QolmsJotoWebView
         public string GetAuthorizationRequestUrl()
         {
             var endpoint = OpenIdConfig.AuthorizationEndpoint;
-            var redirecturi = HttpUtility.UrlEncode($"{QjConfiguration.JotoWebViewUri}start/auidloginresult");
+            var redirecturi = HttpUtility.UrlEncode($"{QjConfiguration.JotoWebViewUri}start/logineditauidresult");
             var codechallenge = GetCodeChallenge();
 
             return $"{endpoint}&response_type=code&client_id={QjConfiguration.AuClientId}&redirect_uri={redirecturi}&scope=openid&state={this.state}&code_challenge={codechallenge}&code_challenge_method=S256&nonce={this.nonce}";

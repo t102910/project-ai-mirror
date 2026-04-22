@@ -101,14 +101,10 @@ namespace MGF.QOLMS.QolmsOpenApi.Sql
                 };
 
                 var sql = $@"
-                    BEGIN
                      IF (SELECT COUNT(*)
                          FROM {nameof(QH_HEALTHRECORDALERT_DAT)}
                          WHERE {nameof(QH_HEALTHRECORDALERT_DAT.ACCOUNTKEY)} = @P1 AND {nameof(QH_HEALTHRECORDALERT_DAT.RECORDDATE)} = @P2
-                         AND {nameof(QH_HEALTHRECORDALERT_DAT.VITALTYPE)} = @P3 AND {nameof(QH_HEALTHRECORDALERT_DAT.LINKAGESYSTEMNO)} = @P4) <> 0
-                     BEGIN
-                     END
-                     ELSE
+                         AND {nameof(QH_HEALTHRECORDALERT_DAT.VITALTYPE)} = @P3 AND {nameof(QH_HEALTHRECORDALERT_DAT.LINKAGESYSTEMNO)} = @P4) = 0
                      BEGIN
                       INSERT INTO {nameof(QH_HEALTHRECORDALERT_DAT)}
                       ({nameof(QH_HEALTHRECORDALERT_DAT.ACCOUNTKEY)}, {nameof(QH_HEALTHRECORDALERT_DAT.RECORDDATE)}, {nameof(QH_HEALTHRECORDALERT_DAT.VITALTYPE)},
@@ -119,7 +115,6 @@ namespace MGF.QOLMS.QolmsOpenApi.Sql
                       VALUES
                       (@P1, @P2, @P3, @P4, @P5, @P6, @P7, @P8, @P9, @P10, @P11, @P12, @P13, @P14)
                      END
-                    END
                 ";
 
                 connection.Open();

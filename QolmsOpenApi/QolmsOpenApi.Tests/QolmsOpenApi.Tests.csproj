@@ -1,0 +1,355 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\MSTest.TestAdapter.2.2.10\build\net46\MSTest.TestAdapter.props" Condition="Exists('..\packages\MSTest.TestAdapter.2.2.10\build\net46\MSTest.TestAdapter.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6699BEB3-1AF7-4227-A89E-4BFBB7E1E01D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QolmsOpenApi.Tests</RootNamespace>
+    <AssemblyName>QolmsOpenApi.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PipelineRelease|AnyCPU'">
+    <OutputPath>bin\PipelineRelease\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.5.1.1\lib\net462\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="JAHISMedicineEntityV1S2, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JAHISMedicineEntityV1S2.1.2.9\lib\netstandard2.0\JAHISMedicineEntityV1S2.dll</HintPath>
+    </Reference>
+    <Reference Include="LibNMeCab, Version=0.10.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LibNMeCab.0.10.2\lib\netstandard2.0\LibNMeCab.dll</HintPath>
+    </Reference>
+    <Reference Include="MEITwoinQRLibs">
+      <HintPath>..\QolmsOpenApi\ExternalModules\MEITwoinQRLibs.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Edm.5.6.2\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.OData.5.6.2\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Services.Client.5.6.2\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Abstractions, Version=6.19.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Abstractions.6.19.0\lib\net472\Microsoft.IdentityModel.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=6.19.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.JsonWebTokens.6.19.0\lib\net472\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=6.19.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.6.19.0\lib\net472\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=6.19.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.6.19.0\lib\net472\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MSTest.TestFramework.2.2.10\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MSTest.TestFramework.2.2.10\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.3.2.3\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=4.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAzure.Storage.4.3.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq, Version=4.18.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.18.2\lib\net462\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsApiCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsApiCoreV1F472.1.0.360\lib\net472\QolmsApiCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsApiEntityV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsApiEntityV1F472.1.0.765\lib\net472\QolmsApiEntityV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsAzureStorageCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsAzureStorageCoreV1F472.1.0.40\lib\net472\QolmsAzureStorageCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsCryptV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsCryptV1F472.1.0.9\lib\net472\QolmsCryptV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsDbCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsDbCoreV1F472.1.0.6\lib\net472\QolmsDbCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsDbEntityV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsDbEntityV1F472.1.0.366\lib\net472\QolmsDbEntityV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsDbLibraryV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsDbLibraryV1F472.1.0.54\lib\net472\QolmsDbLibraryV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsJwtAuthCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsJwtAuthCoreV1F472.1.0.13\lib\net472\QolmsJwtAuthCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsLibraryV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsLibraryV1F472.1.0.15\lib\net472\QolmsLibraryV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsMorphologyParser, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsMorphologyParser.2.0.7\lib\netstandard2.0\QolmsMorphologyParser.dll</HintPath>
+    </Reference>
+    <Reference Include="SPCryptoEngine, Version=1.6.0.102, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\QolmsOpenApi\ExternalModules\SPCryptoEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=6.19.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.6.19.0\lib\net472\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.8\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Spatial, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Spatial.5.6.2\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Http, Version=5.2.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.8\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ChainingAssertion.MSTest.cs" />
+    <Compile Include="Controllers\TestJotoControllers.cs" />
+    <Compile Include="Controllers\TestNoticeControllers.cs" />
+    <Compile Include="Controllers\TestTisControllers.cs" />
+    <Compile Include="Controllers\TestGuestControllers.cs" />
+    <Compile Include="Controllers\TestAccesskeyControllers.cs" />
+    <Compile Include="Controllers\TestAccountFamilyControllers.cs" />
+    <Compile Include="Controllers\TestAccountControllers.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Controllers\TestCalendarControllers.cs" />
+    <Compile Include="Sandbox\AccountFamilyWorkerFixture.cs" />
+    <Compile Include="Sandbox\DbLibrary\DbOtcDrugReaderFixture.cs" />
+    <Compile Include="Sandbox\DbLibrary\WithdrawFixture.cs" />
+    <Compile Include="Sandbox\NotificationWorkerFixture.cs" />
+    <Compile Include="Sandbox\QolmsSystemKeyTest.cs" />
+    <Compile Include="Sandbox\Repositories\AccountFixture.cs" />
+    <Compile Include="Sandbox\Repositories\AppSettingsFixture.cs" />
+    <Compile Include="Sandbox\Repositories\DailySequenceFixture.cs" />
+    <Compile Include="Sandbox\Repositories\EventFixture.cs" />
+    <Compile Include="Sandbox\Repositories\ExternalServiceFixture.cs" />
+    <Compile Include="Sandbox\Repositories\FacilityFixture.cs" />
+    <Compile Include="Sandbox\Repositories\FamilyFixture.cs" />
+    <Compile Include="Sandbox\Repositories\HealthRecordAlertFixture.cs" />
+    <Compile Include="Sandbox\Repositories\HealthRecordFixture.cs" />
+    <Compile Include="Sandbox\Repositories\HealthRecordQueueFixture.cs" />
+    <Compile Include="Sandbox\Repositories\IdentityApiFixture.cs" />
+    <Compile Include="Sandbox\Repositories\LinkageFixture.cs" />
+    <Compile Include="Sandbox\Repositories\ManagementFixture.cs" />
+    <Compile Include="Sandbox\Repositories\MedicineFixture.cs" />
+    <Compile Include="Sandbox\Repositories\MedicineStorageFixture.cs" />
+    <Compile Include="Sandbox\Repositories\MedisFixture.cs" />
+    <Compile Include="Sandbox\Repositories\NoteMedicineFixture.cs" />
+    <Compile Include="Sandbox\Repositories\NoticeFixture.cs" />
+    <Compile Include="Sandbox\Repositories\OtcDrugFixture.cs" />
+    <Compile Include="Sandbox\Repositories\PasswordManagementFixture.cs" />
+    <Compile Include="Sandbox\Repositories\PatientCardFixture.cs" />
+    <Compile Include="Sandbox\Repositories\QkBackgroundFixture.cs" />
+    <Compile Include="Sandbox\Repositories\QkModelFixture.cs" />
+    <Compile Include="Sandbox\Repositories\QkRandomAdviceFixture.cs" />
+    <Compile Include="Sandbox\Repositories\NoticeGroupRepositoryFixtuer.cs" />
+    <Compile Include="Sandbox\Repositories\ReproFixtuer.cs" />
+    <Compile Include="Sandbox\Repositories\SignUpFixture.cs" />
+    <Compile Include="Sandbox\Repositories\SmapaApiFixture.cs" />
+    <Compile Include="Sandbox\Repositories\SmsAuthCodeFixture.cs" />
+    <Compile Include="Sandbox\Repositories\StorageFixture.cs" />
+    <Compile Include="Sandbox\Repositories\SymptomFixture.cs" />
+    <Compile Include="Sandbox\Repositories\TestContactRepository.cs" />
+    <Compile Include="Sandbox\Repositories\WaitingListFixture.cs" />
+    <Compile Include="Sandbox\TisProductionTest.cs" />
+    <Compile Include="Sandbox\TisPushTest.cs" />
+    <Compile Include="Sandbox\TisWaitingDebug.cs" />
+    <Compile Include="Sandbox\Workers\LinkagePatientCardAddWorkerTransactionTest.cs" />
+    <Compile Include="Sandbox\Workers\NoteMedicineSyncDataEditWorkerTest.cs" />
+    <Compile Include="Sandbox\Workers\NoteMedicineSyncHistoryReadWorkerTest.cs" />
+    <Compile Include="Sandbox\Workers\NoteMedicineSyncUpdteReadWorkerTest.cs" />
+    <Compile Include="Sandbox\Workers\NotificationPersonalReadWorkerTest.cs" />
+    <Compile Include="Sandbox\Workers\WaitingListReadWorkerTest.cs" />
+    <Compile Include="Workers\AccountDeletePhoneRequestForSmsWorkerFixture.cs" />
+    <Compile Include="Workers\App\AppDownloadImageWorkerFixture.cs" />
+    <Compile Include="Workers\App\AppPushNotificationEntryDeleteWorkerFixture.cs" />
+    <Compile Include="Workers\App\AppReviewAuthWorkerFixture.cs" />
+    <Compile Include="Workers\Disease\DiseaseSearchWorkerFixture.cs" />
+    <Compile Include="Workers\HealthRecord\HealthRecordReadWorkerFixture.cs" />
+    <Compile Include="Workers\ManagementWorkerFixture.cs" />
+    <Compile Include="Workers\Master\MasterDrugDetailReadWorkerFixture.cs" />
+    <Compile Include="Workers\NoteMedicine\NoteMedicineSyncDataAddWorkerFixtureCommon.cs" />
+    <Compile Include="Workers\NoteMedicine\NoteMedicineSyncDataAddWorkerFixtureFromData.cs" />
+    <Compile Include="Workers\NoteMedicine\NoteMedicineSyncDataAddWorkerFixtureFromJahis.cs" />
+    <Compile Include="Workers\NoteMedicine\NoteMedicineSyncDataDeleteWorkerFixture.cs" />
+    <Compile Include="Workers\NoteMedicine\NoteMedicineSyncDataEditWorkerFixtureCommon.cs" />
+    <Compile Include="Workers\NoteMedicine\NoteMedicineSyncDataEditWorkerFixtureForEth.cs" />
+    <Compile Include="Workers\NoteMedicine\NoteMedicineSyncDataEditWorkerFixtureForOtc.cs" />
+    <Compile Include="Workers\NoteMedicine\NoteMedicineSyncUpdateReadWorkerFixture.cs" />
+    <Compile Include="Workers\PushWorkerFixture.cs" />
+    <Compile Include="Workers\User\UserPhotoDeleteWorkerFixture.cs" />
+    <Compile Include="Workers\WaitingListWriteWorkerFixtureSub.cs" />
+    <Compile Include="Workers\AccessKeySsoWorkerFixture.cs" />
+    <Compile Include="Workers\AccountLoginForSms2WorkerFixture.cs" />
+    <Compile Include="Workers\AccountLoginForSmsWorkerFixture.cs" />
+    <Compile Include="Workers\AccountChangePhoneRequestForSmsWorkerFixture.cs" />
+    <Compile Include="Workers\AccountPasswordResetForSmsApiWorkerFixture.cs" />
+    <Compile Include="Workers\AppLive2DInitWorkerFixture.cs" />
+    <Compile Include="Workers\DiaryStatusWorkerFixture.cs" />
+    <Compile Include="Workers\ExternalServiceLinkageWorkerFixture.cs" />
+    <Compile Include="Workers\HealthAlertReadWorkerFixture.cs" />
+    <Compile Include="Workers\HealthSymptomReadWorkerFixture.cs" />
+    <Compile Include="Workers\LinkageRegisterForSmsWorkerFixture2.cs" />
+    <Compile Include="Workers\AccountSmsAuthRequestWorkerFixture.cs" />
+    <Compile Include="Workers\AppHeartMonitorInitWorkerFixture.cs" />
+    <Compile Include="Workers\AppMedicalNaviInitWorkerFixture.cs" />
+    <Compile Include="Workers\AppSettingsReadWorkerFixture.cs" />
+    <Compile Include="Workers\AppSettingsWriteWorkerFixture.cs" />
+    <Compile Include="Workers\ContactWorkerFixture.cs" />
+    <Compile Include="TestNotificationWorker.cs" />
+    <Compile Include="TestTisWorker.cs" />
+    <Compile Include="TestLinkageWorker.cs" />
+    <Compile Include="TestQoIdentityClient.cs" />
+    <Compile Include="TestMasterWorker.cs" />
+    <Compile Include="Workers\HealthAlertSymptomReadWorkerFixture.cs" />
+    <Compile Include="Workers\HealthAlertWriteWorkerFixture.cs" />
+    <Compile Include="Workers\HealthRecordTodaySummaryWorkerFixture.cs" />
+    <Compile Include="Workers\HealthRecordValidatorFixture.cs" />
+    <Compile Include="Workers\HealthRecordBatchWorkerFixture.cs" />
+    <Compile Include="Workers\HealthRecordWorkerFixture.cs" />
+    <Compile Include="Workers\HealthSymptomWriteWorkerFixture.cs" />
+    <Compile Include="Workers\KagaminoInitWorkerFixture.cs" />
+    <Compile Include="Workers\LinkagePatientCardAddWorkerFixture.cs" />
+    <Compile Include="Workers\LinkagePatientCardDeleteWorkerFixture.cs" />
+    <Compile Include="Workers\LinkagePatientCardListWorkerFixture.cs" />
+    <Compile Include="Workers\LinkageQrReadWorkerFixture.cs" />
+    <Compile Include="Workers\LinkageRegisterForSmsWorkerFixture.cs" />
+    <Compile Include="Workers\LinkageRegisterWorkerFixture.cs" />
+    <Compile Include="Workers\Master\MasterDrugSearchWorkerFixture.cs" />
+    <Compile Include="Workers\Master\MasterFacilityLanguageWorkerFixture.cs" />
+    <Compile Include="Workers\Master\MasterMedicalFacilityListWorkerFixture.cs" />
+    <Compile Include="Workers\Master\MasterMedicineWorkerFixture.cs" />
+    <Compile Include="Workers\Master\MasterNoticeWorkerFixture.cs" />
+    <Compile Include="Workers\Master\MasterPharmacyWorkerFixture.cs" />
+    <Compile Include="Workers\NoteMedicineReadWorkerFixture.cs" />
+    <Compile Include="Workers\NoteMedicineWorkerFixture.cs" />
+    <Compile Include="Workers\NoteMedicine\JahisMessageTestBuilder.cs" />
+    <Compile Include="Workers\NoteMedicine\NoteMedicineSyncHistoryReadWorkerFixture.cs" />
+    <Compile Include="Workers\Notification\NotificationPersonalReadWorkerFixture.cs" />
+    <Compile Include="Workers\Notification\NotificationReadWorkerFixture.cs" />
+    <Compile Include="Workers\Notification\NotificationSendMailApiWorkerFixture.cs" />
+    <Compile Include="Workers\Payment\PaymentSmapaHomeWorkerFixture.cs" />
+    <Compile Include="Workers\Payment\PaymentSmapaRevokeWorkerFixture.cs" />
+    <Compile Include="Workers\Payment\PaymentSmapaTermsReadWorkerFixture.cs" />
+    <Compile Include="Workers\Payment\PaymentSmapaTermsWriteWorkerFixture.cs" />
+    <Compile Include="Workers\QkBackgroundReadWorkerFixture.cs" />
+    <Compile Include="Workers\QkModelReadWorkerFixture.cs" />
+    <Compile Include="Workers\QkRandomAdviceReadWorkerFixture.cs" />
+    <Compile Include="Workers\User\UserFamilyAddWorkerFixture.cs" />
+    <Compile Include="Workers\User\UserFamilyDeleteWorkerFixture.cs" />
+    <Compile Include="Workers\User\UserListReadWorkerFixture.cs" />
+    <Compile Include="Workers\User\UserPhotoWriteWorkerFixture.cs" />
+    <Compile Include="Workers\User\UserReadWorkerFixture.cs" />
+    <Compile Include="Workers\User\UserWriteWorkerFixture.cs" />
+    <Compile Include="Workers\QoTestPatientHelperFixture.cs" />
+    <Compile Include="Workers\WaitingListReadWorkerFixture.cs" />
+    <Compile Include="Workers\TisWaitingListReadWorkerFixture.cs" />
+    <Compile Include="Workers\WaitingListWriteWorkerFixture.cs" />
+    <Compile Include="Workers\WaitingListWriteWorkerSendPushFixture.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <EmbeddedResource Include="Resources\MedicalFacilityList.json" />
+    <EmbeddedResource Include="Resources\sample.zip" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\QolmsOpenApi\QolmsOpenApi.csproj">
+      <Project>{23E9FE9D-6B51-4F9C-B3BE-2BBB86AE97C0}</Project>
+      <Name>QolmsOpenApi</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ReadMe.txt" />
+    <EmbeddedResource Include="Resources\sample.jpg" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>このプロジェクトは、このコンピューター上にない NuGet パッケージを参照しています。それらのパッケージをダウンロードするには、[NuGet パッケージの復元] を使用します。詳細については、http://go.microsoft.com/fwlink/?LinkID=322105 を参照してください。見つからないファイルは {0} です。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\MSTest.TestAdapter.2.2.10\build\net46\MSTest.TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSTest.TestAdapter.2.2.10\build\net46\MSTest.TestAdapter.props'))" />
+    <Error Condition="!Exists('..\packages\MSTest.TestAdapter.2.2.10\build\net46\MSTest.TestAdapter.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSTest.TestAdapter.2.2.10\build\net46\MSTest.TestAdapter.targets'))" />
+  </Target>
+  <Import Project="..\packages\MSTest.TestAdapter.2.2.10\build\net46\MSTest.TestAdapter.targets" Condition="Exists('..\packages\MSTest.TestAdapter.2.2.10\build\net46\MSTest.TestAdapter.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(ProjectDir)DevApp.$(ConfigurationName).config" "$(TargetDir)DevApp.config"
+copy "$(ProjectDir)DevConnection.$(ConfigurationName).config" "$(TargetDir)DevConnection.config"
+
+</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QolmsOpenApi", "QolmsOpenApi\QolmsOpenApi.csproj", "{23E9FE9D-6B51-4F9C-B3BE-2BBB86AE97C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QolmsOpenApi.Tests", "QolmsOpenApi.Tests\QolmsOpenApi.Tests.csproj", "{6699BEB3-1AF7-4227-A89E-4BFBB7E1E01D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		PipelineRelease|Any CPU = PipelineRelease|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23E9FE9D-6B51-4F9C-B3BE-2BBB86AE97C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23E9FE9D-6B51-4F9C-B3BE-2BBB86AE97C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23E9FE9D-6B51-4F9C-B3BE-2BBB86AE97C0}.PipelineRelease|Any CPU.ActiveCfg = PipelineRelease|Any CPU
+		{23E9FE9D-6B51-4F9C-B3BE-2BBB86AE97C0}.PipelineRelease|Any CPU.Build.0 = PipelineRelease|Any CPU
+		{23E9FE9D-6B51-4F9C-B3BE-2BBB86AE97C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23E9FE9D-6B51-4F9C-B3BE-2BBB86AE97C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6699BEB3-1AF7-4227-A89E-4BFBB7E1E01D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6699BEB3-1AF7-4227-A89E-4BFBB7E1E01D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6699BEB3-1AF7-4227-A89E-4BFBB7E1E01D}.PipelineRelease|Any CPU.ActiveCfg = PipelineRelease|Any CPU
+		{6699BEB3-1AF7-4227-A89E-4BFBB7E1E01D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {50C56702-A108-43F6-A6A7-58D9F005E563}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://mgfactory.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = QolmsOpenApi.Tests\\QolmsOpenApi.Tests.csproj
+		SccProjectName1 = QolmsOpenApi.Tests
+		SccLocalPath1 = QolmsOpenApi.Tests
+		SccProjectUniqueName2 = QolmsOpenApi\\QolmsOpenApi.csproj
+		SccProjectName2 = QolmsOpenApi
+		SccLocalPath2 = QolmsOpenApi
+	EndGlobalSection
+EndGlobal

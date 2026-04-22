@@ -1,0 +1,944 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{23E9FE9D-6B51-4F9C-B3BE-2BBB86AE97C0}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MGF.QOLMS.QolmsOpenApi</RootNamespace>
+    <AssemblyName>QolmsOpenApi</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <Use64BitIISExpress>true</Use64BitIISExpress>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort>44359</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\QolmsOpenApi.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="JAHISMedicineEntityV1S2, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\JAHISMedicineEntityV1S2.1.2.9\lib\netstandard2.0\JAHISMedicineEntityV1S2.dll</HintPath>
+    </Reference>
+    <Reference Include="LibNMeCab, Version=0.10.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LibNMeCab.0.10.2\lib\netstandard2.0\LibNMeCab.dll</HintPath>
+    </Reference>
+    <Reference Include="MEITwoinQRLibs, Version=2025.3.10.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ExternalModules\MEITwoinQRLibs.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.NotificationHubs, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.NotificationHubs.4.2.0\lib\netstandard2.0\Microsoft.Azure.NotificationHubs.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Edm.5.6.2\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.OData.5.6.2\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Services.Client.5.6.2\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Memory, Version=6.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Memory.6.0.1\lib\net461\Microsoft.Extensions.Caching.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.8.0.0\lib\net462\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=8.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.8.0.1\lib\net462\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=8.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.8.0.2\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Http, Version=8.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Http.8.0.1\lib\net462\Microsoft.Extensions.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=8.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.8.0.1\lib\net462\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=8.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.8.0.2\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=8.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.8.0.2\lib\net462\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.8.0.0\lib\net462\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Abstractions, Version=6.19.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Abstractions.6.19.0\lib\net472\Microsoft.IdentityModel.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=6.19.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.JsonWebTokens.6.19.0\lib\net472\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=6.19.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.6.19.0\lib\net472\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=6.19.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.6.19.0\lib\net472\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.3.2.3\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=4.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAzure.Storage.4.3.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsApiCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsApiCoreV1F472.1.0.360\lib\net472\QolmsApiCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsApiEntityV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsApiEntityV1F472.1.0.765\lib\net472\QolmsApiEntityV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsAzureStorageCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsAzureStorageCoreV1F472.1.0.40\lib\net472\QolmsAzureStorageCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsCryptV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsCryptV1F472.1.0.9\lib\net472\QolmsCryptV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsDbCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsDbCoreV1F472.1.0.6\lib\net472\QolmsDbCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsDbEntityV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsDbEntityV1F472.1.0.367\lib\net472\QolmsDbEntityV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsDbLibraryV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsDbLibraryV1F472.1.0.54\lib\net472\QolmsDbLibraryV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsExaminationEntityV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsExaminationEntityV1F472.1.0.7\lib\net472\QolmsExaminationEntityV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsJwtAuthCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsJwtAuthCoreV1F472.1.0.13\lib\net472\QolmsJwtAuthCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsKddiMessageCastApiCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsKddiMessageCastApiCoreV1F472.1.0.3\lib\net472\QolmsKddiMessageCastApiCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsLibraryV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsLibraryV1F472.1.0.15\lib\net472\QolmsLibraryV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsLineMessageApiCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsLineMessageApiCoreV1F472.1.0.35\lib\net472\QolmsLineMessageApiCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsMorphologyParser, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsMorphologyParser.2.0.7\lib\netstandard2.0\QolmsMorphologyParser.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsNoticeApiCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsNoticeApiCoreV1F472.1.0.4\lib\net472\QolmsNoticeApiCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="QolmsReproApiCoreV1F472, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QolmsReproApiCoreV1F472.1.0.3\lib\net472\QolmsReproApiCoreV1F472.dll</HintPath>
+    </Reference>
+    <Reference Include="SPCryptoEngine, Version=1.6.0.102, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Ssi\SPCryptoEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Swashbuckle.Core.5.6.0\lib\net40\Swashbuckle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=8.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.8.0.1\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=6.19.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.6.19.0\lib\net472\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.8\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Spatial, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Spatial.5.6.2\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.8\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.8\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ExternalModules\MEITwoinQRLibs.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Global.asax" />
+    <Content Include="ExternalModules\SPCryptoEngine.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\SwaggerConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Attribute\QoApiAuthorizeAttribute.cs" />
+    <Compile Include="Attribute\QoIpFilterAttribute.cs" />
+    <Compile Include="AzureStorage\AccessLogTable\AccessTableEntityWriter.cs" />
+    <Compile Include="AzureStorage\AccessLogTable\AccessTableEntityWriterArgs.cs" />
+    <Compile Include="AzureStorage\AccessLogTable\AccessTableEntityWriterResults.cs" />
+    <Compile Include="AzureStorage\AccessQueue\AccessQueueEntityWriter.cs" />
+    <Compile Include="AzureStorage\AccessQueue\AccessQueueEntityWriterArgs.cs" />
+    <Compile Include="AzureStorage\AccessQueue\AccessQueueEntityWriterResults.cs" />
+    <Compile Include="AzureStorage\AppEventFileBlob\Reader\AppEventFileBlobEntityReader.cs" />
+    <Compile Include="AzureStorage\AppEventFileBlob\Reader\AppEventFileBlobEntityReaderArgs.cs" />
+    <Compile Include="AzureStorage\AppEventFileBlob\Reader\AppEventFileBlobEntityReaderResults.cs" />
+    <Compile Include="AzureStorage\CheckupFileBlob\Base\CheckupFileBlobStorageWriterBase.cs" />
+    <Compile Include="AzureStorage\CheckupFileBlob\Writer\CheckupCareFileBlobEntityWriter.cs" />
+    <Compile Include="AzureStorage\CheckupFileBlob\Writer\CheckupCareFileBlobEntityWriterArgs.cs" />
+    <Compile Include="AzureStorage\CheckupFileBlob\Writer\CheckupCareFileBlobEntityWriterResults.cs" />
+    <Compile Include="AzureStorage\CheckupFileBlob\Writer\CheckupAfterSchoolFileBlobEntityWriter.cs" />
+    <Compile Include="AzureStorage\CheckupFileBlob\Writer\CheckupFrailtyFileBlobEntityWriter.cs" />
+    <Compile Include="AzureStorage\CheckupFileBlob\Writer\CheckupAfterSchoolFileBlobEntityWriterArgs.cs" />
+    <Compile Include="AzureStorage\CheckupFileBlob\Writer\CheckupFrailtyFileBlobEntityWriterArgs.cs" />
+    <Compile Include="AzureStorage\CheckupFileBlob\Writer\CheckupAfterSchoolFileBlobEntityWriterResults.cs" />
+    <Compile Include="AzureStorage\CheckupFileBlob\Writer\CheckupFrailtyFileBlobEntityWriterResults.cs" />
+    <Compile Include="AzureStorage\HealthRecordQueue\HealthRecordQueueWriter.cs" />
+    <Compile Include="AzureStorage\HealthRecordQueue\HealthRecordQueueWriterArgs.cs" />
+    <Compile Include="AzureStorage\HealthRecordQueue\HealthRecordQueueWriterResult.cs" />
+    <Compile Include="AzureStorage\HealthRecordTable\HealthRecordTableEntityReader.cs" />
+    <Compile Include="AzureStorage\HealthRecordTable\HealthRecordTableEntityReaderArgs.cs" />
+    <Compile Include="AzureStorage\HealthRecordTable\HealthRecordTableEntityReaderResults.cs" />
+    <Compile Include="AzureStorage\HealthRecordTable\HealthRecordTableEntityWriter.cs" />
+    <Compile Include="AzureStorage\HealthRecordTable\HealthRecordTableEntityWriterArgs.cs" />
+    <Compile Include="AzureStorage\HealthRecordTable\HealthRecordTableEntityWriterResults.cs" />
+    <Compile Include="AzureStorage\SupportAppLogFile\AppLogFileBlobEntityWriter.cs" />
+    <Compile Include="AzureStorage\SupportAppLogFile\AppLogFileBlobEntityWriterArgs.cs" />
+    <Compile Include="AzureStorage\SupportAppLogFile\AppLogFileBlobEntityWriterResults.cs" />
+    <Compile Include="AzureStorage\UploadCheckupPostingFile\UploadCheckupPostingFileBlobEntityDeleter.cs" />
+    <Compile Include="AzureStorage\UploadCheckupPostingFile\UploadCheckupPostingFileBlobEntityDeleterArgs.cs" />
+    <Compile Include="AzureStorage\UploadCheckupPostingFile\UploadCheckupPostingFileBlobEntityDeleterResults.cs" />
+    <Compile Include="AzureStorage\UploadCheckupPostingFile\UploadCheckupPostingFileBlobEntityWriter.cs" />
+    <Compile Include="AzureStorage\UploadCheckupPostingFile\UploadCheckupPostingFileBlobEntityWriterArgs.cs" />
+    <Compile Include="AzureStorage\UploadCheckupPostingFile\UploadCheckupPostingFileBlobEntityWriterResults.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\EthDrugFileBlobEntityReader.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\EthDrugFileBlobEntityReaderArgs.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\EthDrugFileBlobEntityReaderResults.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\OtcDrugFileBlobEntityReader.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\OtcDrugFileBlobEntityReaderArgs.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\OtcDrugFileBlobEntityReaderResults.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\UploadEditedFileBlobEntityReader.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\UploadEditedFileBlobEntityReaderArgs.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\UploadEditedFileBlobEntityReaderResults.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\UploadFacilityThumbnailFileBlobEntityReader.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\UploadFacilityOriginalFileBlobEntityReader.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\UploadFacilityThumbnailFileBlobEntityReaderArgs.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\UploadFacilityOriginalFileBlobEntityReaderArgs.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\UploadFacilityThumbnailFileBlobEntityReaderResults.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\UploadFacilityOriginalFileBlobEntityReaderResults.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Writer\UploadEditedFileBlobEntityWriter.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Writer\UploadEditedFileBlobEntityWriterArgs.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Writer\UploadEditedFileBlobEntityWriterResults.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Writer\UploadEditedFileBlobMetadataWriter.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Writer\UploadEditedFileBlobMetadataWriterArgs.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Writer\UploadEditedFileBlobMetadataWriterResults.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Base\UploadFileBlobStorageReaderBase.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Base\UploadFileBlobStorageWriterBase.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Base\UploadFileBlobStorageMetadataWriterBase.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Base\UploadFileBlobStorageMetadataReaderBase.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\UploadEditedFileBlobMetadataReader.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\UploadEditedFileBlobMetadataReaderArgs.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\UploadEditedFileBlobMetadataReaderResults.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\UploadOriginalFileBlobReader.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\UploadOriginalFileBlobMetadataReader.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\UploadOriginalFileBlobReaderArgs.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\UploadOriginalFileBlobMetadataReaderArgs.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\UploadOriginalFileBlobReaderResults.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\UploadOriginalFileBlobMetadataReaderResults.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Writer\UploadOriginalFileBlobEntityWriter.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Writer\UploadOriginalFileBlobEntityWriterArgs.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Writer\UploadOriginalFileBlobEntityWriterResults.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Writer\UploadOriginalFileBlobMetadataWriter.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Writer\UploadOriginalFileBlobMetadataWriterArgs.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Writer\UploadOriginalFileBlobMetadataWriterResults.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Writer\UploadThumbnailFileBlobEntityWriter.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Writer\UploadThumbnailFileBlobEntityWriterArgs.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Writer\UploadThumbnailFileBlobEntityWriterResults.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\UploadThumbnailFileBlobEntityReader.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\UploadThumbnailFileBlobEntityReaderArgs.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\UploadThumbnailFileBlobEntityReaderResults.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\UploadThumbnailFileBlobMetadataReader.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\UploadThumbnailFileBlobMetadataReaderArgs.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Writer\UploadThumbnailFileBlobMetadataWriter.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Writer\UploadThumbnailFileBlobMetadataWriterArgs.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Writer\UploadThumbnailFileBlobMetadataWriterResults.cs" />
+    <Compile Include="Controllers\AccessKeyController.cs" />
+    <Compile Include="Controllers\AppController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\DiaryController.cs" />
+    <Compile Include="Controllers\DiseaseController.cs" />
+    <Compile Include="Controllers\ELinkController.cs" />
+    <Compile Include="Controllers\ExaminationController.cs" />
+    <Compile Include="Controllers\ExternalServiceController.cs" />
+    <Compile Include="Controllers\HaipController.cs" />
+    <Compile Include="Controllers\JotoAppController.cs" />
+    <Compile Include="Controllers\HealthRecordController.cs" />
+    <Compile Include="Controllers\JotoHdrController.cs" />
+    <Compile Include="Controllers\KagaminoController.cs" />
+    <Compile Include="Controllers\CheckupFileController.cs" />
+    <Compile Include="Controllers\LineController.cs" />
+    <Compile Include="Controllers\LineMessageController.cs" />
+    <Compile Include="Controllers\LinkageController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AccountFamilyController.cs" />
+    <Compile Include="Controllers\Base\QoApiControllerBase.cs" />
+    <Compile Include="Controllers\CalendarController.cs" />
+    <Compile Include="Controllers\GuestController.cs" />
+    <Compile Include="Controllers\ManagementController.cs" />
+    <Compile Include="Controllers\MasterController.cs" />
+    <Compile Include="Controllers\NoteMedicineController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\PushController.cs" />
+    <Compile Include="Controllers\QolmsSystemKeyController.cs" />
+    <Compile Include="Controllers\SupportController.cs" />
+    <Compile Include="Controllers\NotificationController.cs" />
+    <Compile Include="Controllers\TisController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\WaitingController.cs" />
+    <Compile Include="Enums\QoApiAuthorizeTypeEnum.cs" />
+    <Compile Include="Enums\QoApiFunctionTypeEnum.cs" />
+    <Compile Include="Enums\QoApiResultCodeTypeEnum.cs" />
+    <Compile Include="Extension\EnumExtension.cs" />
+    <Compile Include="Extension\QsCryptExtension.cs" />
+    <Compile Include="Extension\QoDbEntityConverterExtension.cs" />
+    <Compile Include="Extension\QoEncryptedReferenceConverterExtension.cs" />
+    <Compile Include="Extension\QoLinkageExtension.cs" />
+    <Compile Include="Extension\QsDbWriterExtension.cs" />
+    <Compile Include="Extension\SystemTypeExtension.cs" />
+    <Compile Include="Extension\UrlSchemeExtension.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IdentityRegisterApiResults.cs" />
+    <Compile Include="Models\Haip\HaipPhrReceiveNotificationArgs.cs" />
+    <Compile Include="Models\Haip\HaipPhrReceiveNotificationResults.cs" />
+    <Compile Include="Models\LineMessage\LineWebhookEventResults.cs" />
+    <Compile Include="Models\LineMessage\LineWebhookEventArgs.cs" />
+    <Compile Include="Models\NotificationHubsSettings.cs" />
+    <Compile Include="Models\NotificationRequest.cs" />
+    <Compile Include="Models\OCC\OCCAuthApiArgsOfJson.cs" />
+    <Compile Include="Models\OCC\OCCAuthApiResultsOfJson.cs" />
+    <Compile Include="Models\PushTemplates.cs" />
+    <Compile Include="Models\QrExpirationConfig.cs" />
+    <Compile Include="Models\Smapa\SmapaApiArgs.cs" />
+    <Compile Include="Models\Smapa\SmapaApiResults.cs" />
+    <Compile Include="Models\VersionJsonResult.cs" />
+    <Compile Include="Models\JotoAppExerciseApiModels.cs" />
+    <Compile Include="Models\JotoAppSleepApiModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\DateTimeProvider.cs" />
+    <Compile Include="Repositories\AccountRepository.cs" />
+    <Compile Include="Repositories\AppEventRepository.cs" />
+    <Compile Include="Repositories\AppSettingsRepository.cs" />
+    <Compile Include="Repositories\ContactRepository.cs" />
+    <Compile Include="Repositories\DailySequenceRepository.cs" />
+    <Compile Include="Repositories\EventRepository.cs" />
+    <Compile Include="Repositories\ExternalServiceLinkageRepository.cs" />
+    <Compile Include="Repositories\FacilityRepository.cs" />
+    <Compile Include="Repositories\FamilyRepository.cs" />
+    <Compile Include="Repositories\HealthRecordAlertRepository.cs" />
+    <Compile Include="Repositories\HealthRecordQueueRepository.cs" />
+    <Compile Include="Repositories\JotoAppRepository.cs" />
+    <Compile Include="Repositories\HealthRecordRepository.cs" />
+    <Compile Include="Repositories\IdentityApiRepository.cs" />
+    <Compile Include="Repositories\LinkageRepository.cs" />
+    <Compile Include="Repositories\MedicineRepository.cs" />
+    <Compile Include="Repositories\MedicineStorageRepository.cs" />
+    <Compile Include="Repositories\MedisRepository.cs" />
+    <Compile Include="Repositories\NoteMedicineRepository.cs" />
+    <Compile Include="Repositories\NoticeApiRepository.cs" />
+    <Compile Include="Repositories\NoticeGroupRepository.cs" />
+    <Compile Include="Repositories\NoticePersonalRepository.cs" />
+    <Compile Include="Repositories\NoticeRepository.cs" />
+    <Compile Include="Repositories\OtcDrugRepository.cs" />
+    <Compile Include="Repositories\PasswordManagementRepository.cs" />
+    <Compile Include="Repositories\PatientCardRepository.cs" />
+    <Compile Include="Repositories\PhrForHomeRepository.cs" />
+    <Compile Include="Repositories\QkBackgroundRepository.cs" />
+    <Compile Include="Repositories\QkModelRepository.cs" />
+    <Compile Include="Repositories\QkRandomAdviceRepository.cs" />
+    <Compile Include="Repositories\ManagementRepository.cs" />
+    <Compile Include="Repositories\ReproRepository.cs" />
+    <Compile Include="Repositories\SignUpRepository.cs" />
+    <Compile Include="Repositories\SmapaApiRepository.cs" />
+    <Compile Include="Repositories\SmsAuthCodeRepository.cs" />
+    <Compile Include="Repositories\StorageRepository.cs" />
+    <Compile Include="Repositories\SymptomRepository.cs" />
+    <Compile Include="Repositories\WaitingRepository.cs" />
+    <Compile Include="Sql\AccountInformation\AccountLogInManagementWriter.cs" />
+    <Compile Include="Sql\AccountInformation\AccountLogInManagementWriterArgs.cs" />
+    <Compile Include="Sql\AccountInformation\AccountLogInManagementWriterResults.cs" />
+    <Compile Include="Sql\Account\AccountPhoneWriter.cs" />
+    <Compile Include="Sql\Account\AccountPhoneWriterArgs.cs" />
+    <Compile Include="Sql\Account\AccountPhoneWriterResults.cs" />
+    <Compile Include="Sql\Account\FamilyCreateWriter.cs" />
+    <Compile Include="Sql\Account\FamilyCreateWriterArgs.cs" />
+    <Compile Include="Sql\Account\FamilyCreateWriterResults.cs" />
+    <Compile Include="Sql\Account\FamilyDeleteWriter.cs" />
+    <Compile Include="Sql\Account\FamilyDeleteWriterArgs.cs" />
+    <Compile Include="Sql\Account\FamilyDeleteWriterResults.cs" />
+    <Compile Include="Sql\Account\FamilyParentAccountReader.cs" />
+    <Compile Include="Sql\Account\FamilyParentAccountReaderArgs.cs" />
+    <Compile Include="Sql\Account\AccountFamilyReaderArgs.cs" />
+    <Compile Include="Sql\Account\FamilyParentAccountReaderResults.cs" />
+    <Compile Include="Sql\Account\AccountFamilyReaderResults.cs" />
+    <Compile Include="Sql\Account\AccountFamilyReader.cs" />
+    <Compile Include="Sql\AccountInformation\AccountInformationMailAddressWriter.cs" />
+    <Compile Include="Sql\AccountInformation\AccountInformationMailAddressWriterArgs.cs" />
+    <Compile Include="Sql\AccountInformation\AccountInformationMailAddressWriterResults.cs" />
+    <Compile Include="Sql\Account\SmsAuthCodeWriter.cs" />
+    <Compile Include="Sql\Account\SmsAuthCodeWriterArgs.cs" />
+    <Compile Include="Sql\Account\SmsAuthCodeWriterResults.cs" />
+    <Compile Include="Sql\App\AppSettingsWriter.cs" />
+    <Compile Include="Sql\App\AppSettingsWriterArgs.cs" />
+    <Compile Include="Sql\App\AppSettingsWriterResults.cs" />
+    <Compile Include="Sql\CheckupFile\CheckupAfterSchoolFileWriter.cs" />
+    <Compile Include="Sql\CheckupFile\CheckupAfterSchoolFileWriterArgs.cs" />
+    <Compile Include="Sql\CheckupFile\CheckupAfterSchoolFileWriterResults.cs" />
+    <Compile Include="Sql\CheckupFile\CheckupCareFileWriterResults.cs" />
+    <Compile Include="Sql\CheckupFile\CheckupCareFileWriter.cs" />
+    <Compile Include="Sql\CheckupFile\CheckupCareFileWriterArgs.cs" />
+    <Compile Include="Sql\CheckupFile\CheckupFrailtyFileWriterResults.cs" />
+    <Compile Include="Sql\CheckupFile\CheckupFrailtyFileWriter.cs" />
+    <Compile Include="Sql\CheckupFile\CheckupFrailtyFileWriterArgs.cs" />
+    <Compile Include="Sql\CheckupFile\CheckupFileSequenceReader.cs" />
+    <Compile Include="Sql\CheckupFile\CheckupFileSequenceReaderArgs.cs" />
+    <Compile Include="Sql\CheckupFile\CheckupFileSequenceReaderResults.cs" />
+    <Compile Include="Sql\Core\DbAccountFamilyReaderCore.cs" />
+    <Compile Include="Sql\Core\DbAccountInformationWriterCore.cs" />
+    <Compile Include="Sql\Core\DbAppEventReaderCore.cs" />
+    <Compile Include="Sql\Core\DbCheckupAfterSchoolFileWriterCore.cs" />
+    <Compile Include="Sql\Core\DbCheckupCareFileWriterCore.cs" />
+    <Compile Include="Sql\Core\DbCheckupFrailtyFileWriterCore.cs" />
+    <Compile Include="Sql\Core\DbEventReaderCore.cs" />
+    <Compile Include="Sql\Core\DbExerciseEvent2ReaderCore.cs" />
+    <Compile Include="Sql\Core\DbHaipRequestManagementWriterCore.cs" />
+    <Compile Include="Sql\Core\DbHealthRecordReaderCore.cs" />
+    <Compile Include="Sql\Core\DbLineOpenIdManagementWriterCore.cs" />
+    <Compile Include="Sql\Core\DbMealEvent2ReaderCore.cs" />
+    <Compile Include="Sql\Core\DbNoticeGroupReaderCore.cs" />
+    <Compile Include="Sql\Core\DbNoticeGroupTargetWriterCore.cs" />
+    <Compile Include="Sql\Core\DbPushWriterCore.cs" />
+    <Compile Include="Sql\Core\DbWaitingOrderListWriterCore.cs" />
+    <Compile Include="Sql\Core\DbLinePreRegistWriterCore.cs" />
+    <Compile Include="Sql\Core\DbAccountLogInManagementWriterCore.cs" />
+    <Compile Include="Sql\Core\DbFileStorageReaderCore.cs" />
+    <Compile Include="Sql\Core\DbNoteMedicineReaderCore.cs" />
+    <Compile Include="Sql\Core\DbNoteMedicineWriterCore.cs" />
+    <Compile Include="Sql\Core\DbOnetimeCodeReaderCore.cs" />
+    <Compile Include="Sql\Core\DbPasswordManagementReaderCore.cs" />
+    <Compile Include="Sql\Core\DbPatientCardRaderCore.cs" />
+    <Compile Include="Sql\Core\DbPatientCardWriterCore.cs" />
+    <Compile Include="Sql\Core\DbSignUpWriterCore.cs" />
+    <Compile Include="Sql\Core\DbWaitingListDebugReaderCore.cs" />
+    <Compile Include="Sql\DailySequence\DailySequenceGenerateWriter.cs" />
+    <Compile Include="Sql\DailySequence\DailySequenceGenerateWriterArgs.cs" />
+    <Compile Include="Sql\DailySequence\DailySequenceGenerateWriterResults.cs" />
+    <Compile Include="Sql\Entity\QH_NOTICEPERSONAL_READ_VIEW.cs" />
+    <Compile Include="Sql\Entity\QH_ETHDRUG_DETAIL_VIEW.cs" />
+    <Compile Include="Sql\Entity\QH_EVENTREACTION_LIKE_VIEW.cs" />
+    <Compile Include="Sql\Entity\QH_EVENT_DIARY_POST_VIEW.cs" />
+    <Compile Include="Sql\Entity\QH_FACILITY_ALL_VIEW.cs" />
+    <Compile Include="Sql\Entity\QH_HEALTH_ALERT_SYMPTOM_VIEW.cs" />
+    <Compile Include="Sql\Entity\QH_LINKAGE_PUSHNOTIFICATION_VIEW.cs" />
+    <Compile Include="Sql\Entity\QH_MEDISMORPHEME_SCORE_VIEW.cs" />
+    <Compile Include="Sql\Entity\QH_PATIENTCARD_FACILITY_VIEW.cs" />
+    <Compile Include="Sql\Event\EventWriter.cs" />
+    <Compile Include="Sql\Event\EventReactionWriter.cs" />
+    <Compile Include="Sql\Event\EventWriterArgs.cs" />
+    <Compile Include="Sql\Event\EventReactionWriterArgs.cs" />
+    <Compile Include="Sql\Event\EventWriterResults.cs" />
+    <Compile Include="Sql\Event\EventReactionWriterResults.cs" />
+    <Compile Include="Sql\Examination\ExaminationDetailReader.cs" />
+    <Compile Include="Sql\Examination\ExaminationDetailReaderArgs.cs" />
+    <Compile Include="Sql\Examination\ExaminationDetailReaderResults.cs" />
+    <Compile Include="Sql\Examination\ExaminationGroupNameReader.cs" />
+    <Compile Include="Sql\Examination\ExaminationGroupNameReaderArgs.cs" />
+    <Compile Include="Sql\Examination\ExaminationGroupNameReaderResults.cs" />
+    <Compile Include="Sql\ExternalServiceLinkage\ExternalServiceSphrLinkageWriter.cs" />
+    <Compile Include="Sql\ExternalServiceLinkage\ExternalServiceLinkageWriter.cs" />
+    <Compile Include="Sql\ExternalServiceLinkage\ExternalServiceSphrLinkageWriterArgs.cs" />
+    <Compile Include="Sql\ExternalServiceLinkage\ExternalServiceLinkageWriterArgs.cs" />
+    <Compile Include="Sql\ExternalServiceLinkage\ExternalServiceSphrLinkageWriterResults.cs" />
+    <Compile Include="Sql\ExternalServiceLinkage\ExternalServiceLinkageWriterResults.cs" />
+    <Compile Include="Sql\ExternalServiceLinkage\ExternalServiceSphrLinkageReader.cs" />
+    <Compile Include="Sql\ExternalServiceLinkage\ExternalServiceSphrLinkageReaderArgs.cs" />
+    <Compile Include="Sql\ExternalServiceLinkage\ExternalServiceSphrLinkageReaderResults.cs" />
+    <Compile Include="Sql\FacilityContactInformation\FacilityContactInformationListReader.cs" />
+    <Compile Include="Sql\FacilityContactInformation\FacilityContactInformationListReaderArgs.cs" />
+    <Compile Include="Sql\FacilityContactInformation\FacilityContactInformationListReaderResults.cs" />
+    <Compile Include="Sql\FacilityMedicalDepartment\FacilityMedicalDepartmentListReader.cs" />
+    <Compile Include="Sql\FacilityMedicalDepartment\FacilityMedicalDepartmentListReaderArgs.cs" />
+    <Compile Include="Sql\FacilityMedicalDepartment\FacilityMedicalDepartmentListReaderResults.cs" />
+    <Compile Include="Sql\Facility\FacilityMasterReader.cs" />
+    <Compile Include="Sql\FacilityURL\FacilityUrlListReader.cs" />
+    <Compile Include="Sql\Facility\LinkageFacilityListReader.cs" />
+    <Compile Include="Sql\Facility\FacilityFileReader.cs" />
+    <Compile Include="Sql\Facility\FacilityMasterReaderArgs.cs" />
+    <Compile Include="Sql\FacilityURL\FacilityUrlListReaderArgs.cs" />
+    <Compile Include="Sql\Facility\LinkageFacilityListReaderArgs.cs" />
+    <Compile Include="Sql\Facility\FacilityFileReaderArgs.cs" />
+    <Compile Include="Sql\Facility\FacilityMasterReaderResults.cs" />
+    <Compile Include="Sql\FacilityURL\FacilityUrlListReaderResults.cs" />
+    <Compile Include="Sql\Facility\LinkageFacilityListReaderResults.cs" />
+    <Compile Include="Sql\Facility\FacilityFileReaderResults.cs" />
+    <Compile Include="Sql\FileStorage\UploadFileWriter.cs" />
+    <Compile Include="Sql\FileStorage\UploadFileWriterArgs.cs" />
+    <Compile Include="Sql\FileStorage\UploadFileWriterResults.cs" />
+    <Compile Include="Sql\Haip\HaipRequestManagementWriter.cs" />
+    <Compile Include="Sql\Haip\HaipRequestManagementWriterArgs.cs" />
+    <Compile Include="Sql\Haip\HaipRequestManagementWriterResults.cs" />
+    <Compile Include="Sql\HealthRecordAlert\HealthRecordAlertWriter.cs" />
+    <Compile Include="Sql\HealthRecordAlert\HealthRecordAlertWriterArgs.cs" />
+    <Compile Include="Sql\HealthRecordAlert\HealthRecordAlertWriterResults.cs" />
+    <Compile Include="Sql\HealthRecord\ExerciseEventWriter.cs" />
+    <Compile Include="Sql\HealthRecord\ExerciseEventWriterArgs.cs" />
+    <Compile Include="Sql\HealthRecord\ExerciseEventWriterResults.cs" />
+    <Compile Include="Sql\HealthRecord\HealthRecordDeleteWriter.cs" />
+    <Compile Include="Sql\HealthRecord\HealthRecordWriter.cs" />
+    <Compile Include="Sql\HealthRecord\HealthRecordDeleteWriterArgs.cs" />
+    <Compile Include="Sql\HealthRecord\HealthRecordWriterArgs.cs" />
+    <Compile Include="Sql\HealthRecord\HealthRecordDeleteWriterResults.cs" />
+    <Compile Include="Sql\HealthRecord\HealthRecordWriterResults.cs" />
+    <Compile Include="Sql\HealthRecord\SphrHealthRecordReader.cs" />
+    <Compile Include="Sql\HealthRecord\SphrHealthRecordReaderArgs.cs" />
+    <Compile Include="Sql\HealthRecord\SphrHealthRecordReaderResults.cs" />
+    <Compile Include="Sql\InnerItem\DbAppEventItem.cs" />
+    <Compile Include="Sql\InnerItem\DbAttachedFileItem.cs" />
+    <Compile Include="Sql\InnerItem\DbFileStorageItem.cs" />
+    <Compile Include="Sql\Core\DbFileStorageWriterCore.cs" />
+    <Compile Include="Sql\FileStorage\FileStorageReader.cs" />
+    <Compile Include="Sql\FileStorage\FileStorageReaderArgs.cs" />
+    <Compile Include="Sql\FileStorage\FileStorageReaderResults.cs" />
+    <Compile Include="Sql\InnerItem\DbLinkageUserMembershipItem.cs" />
+    <Compile Include="Sql\InnerItem\DbMedicalDepartmentItem.cs" />
+    <Compile Include="Sql\InnerItem\DbMedicineKeyItem.cs" />
+    <Compile Include="Sql\InnerItem\DbNoticeGroupItem.cs" />
+    <Compile Include="Sql\InnerItem\DbTermsItem.cs" />
+    <Compile Include="Sql\InnerItem\DbVitalAlertItem.cs" />
+    <Compile Include="Sql\InnerItem\DbPatientCardItem.cs" />
+    <Compile Include="Sql\HealthRecordAlert\HealthRecordAlertReader.cs" />
+    <Compile Include="Sql\HealthRecordAlert\HealthRecordAlertReaderArgs.cs" />
+    <Compile Include="Sql\HealthRecordAlert\HealthRecordAlertReaderResults.cs" />
+    <Compile Include="Sql\JotoApp\AppEventDetailReader.cs" />
+    <Compile Include="Sql\JotoApp\AppEventDetailReaderArgs.cs" />
+    <Compile Include="Sql\JotoApp\AppEventDetailReaderResults.cs" />
+    <Compile Include="Sql\JotoApp\AppEventFileReader.cs" />
+    <Compile Include="Sql\JotoApp\AppEventFileReaderArgs.cs" />
+    <Compile Include="Sql\JotoApp\AppEventFileReaderResults.cs" />
+    <Compile Include="Sql\JotoApp\AppEventReader.cs" />
+    <Compile Include="Sql\JotoApp\AppEventReaderArgs.cs" />
+    <Compile Include="Sql\JotoApp\AppEventReaderResults.cs" />
+    <Compile Include="Sql\JotoApp\NoticeGroupDetailReader.cs" />
+    <Compile Include="Sql\JotoApp\NoticeGroupDetailReaderArgs.cs" />
+    <Compile Include="Sql\JotoApp\NoticeGroupDetailReaderResults.cs" />
+    <Compile Include="Sql\JotoApp\NoticeGroupReader.cs" />
+    <Compile Include="Sql\JotoApp\NoticeGroupReaderArgs.cs" />
+    <Compile Include="Sql\JotoApp\NoticeGroupReaderResults.cs" />
+    <Compile Include="Sql\JotoApp\PhrForHomeReader.cs" />
+    <Compile Include="Sql\JotoApp\PhrForHomeReaderArgs.cs" />
+    <Compile Include="Sql\JotoApp\PhrForHomeReaderResults.cs" />
+    <Compile Include="Sql\JotoApp\ExerciseEventImportWriter.cs" />
+    <Compile Include="Sql\JotoApp\ExerciseEventImportWriterArgs.cs" />
+    <Compile Include="Sql\JotoApp\ExerciseEventImportWriterResults.cs" />
+    <Compile Include="Sql\JotoHdr\EventInfoWriter.cs" />
+    <Compile Include="Sql\JotoHdr\EventInfoWriterArgs.cs" />
+    <Compile Include="Sql\JotoHdr\EventInfoWriterResults.cs" />
+    <Compile Include="Sql\JotoHdr\LinkageUserMemberShipReader.cs" />
+    <Compile Include="Sql\JotoHdr\LinkageUserMemberShipReaderArgs.cs" />
+    <Compile Include="Sql\JotoHdr\LinkageUserMemberShipReaderResults.cs" />
+    <Compile Include="Sql\LineMessage\LineOpenIdManagementWriter.cs" />
+    <Compile Include="Sql\LineMessage\LinePreRegistWriter.cs" />
+    <Compile Include="Sql\LineMessage\LineOpenIdManagementWriterArgs.cs" />
+    <Compile Include="Sql\LineMessage\LinePreRegistWriterArgs.cs" />
+    <Compile Include="Sql\LineMessage\LineOpenIdManagementWriterResults.cs" />
+    <Compile Include="Sql\LineMessage\LinePreRegistWriterResults.cs" />
+    <Compile Include="Sql\LineMessage\LineLinkageSetReader.cs" />
+    <Compile Include="Sql\LineMessage\LineLinkageSetReaderArgs.cs" />
+    <Compile Include="Sql\LineMessage\LineLinkageSetReaderResults.cs" />
+    <Compile Include="Sql\LineMessage\LineOpenIdManagementReader.cs" />
+    <Compile Include="Sql\LineMessage\LinePreRegistReader.cs" />
+    <Compile Include="Sql\LineMessage\LineUserIdReader.cs" />
+    <Compile Include="Sql\LineMessage\LineOpenIdManagementReaderArgs.cs" />
+    <Compile Include="Sql\LineMessage\LinePreRegistReaderArgs.cs" />
+    <Compile Include="Sql\LineMessage\LineUserIdReaderArgs.cs" />
+    <Compile Include="Sql\LineMessage\LineOpenIdManagementReaderResults.cs" />
+    <Compile Include="Sql\LineMessage\LinePreRegistReaderResults.cs" />
+    <Compile Include="Sql\LineMessage\LineUserIdReaderResults.cs" />
+    <Compile Include="Sql\LinkageSystem\LinkagePatientCardReader.cs" />
+    <Compile Include="Sql\LinkageSystem\LinkagePatientCardReaderArgs.cs" />
+    <Compile Include="Sql\LinkageSystem\LinkagePatientCardReaderResults.cs" />
+    <Compile Include="Sql\LinkageSystemMaster\LinkageSystemMasterReader.cs" />
+    <Compile Include="Sql\LinkageSystemMaster\LinkageSystemMasterReaderArgs.cs" />
+    <Compile Include="Sql\LinkageSystemMaster\LinkageSystemMasterReaderResults.cs" />
+    <Compile Include="Sql\LinkageSystem\LinkagePatientCardWriter.cs" />
+    <Compile Include="Sql\LinkageSystem\LinkagePatientCardWriterArgs.cs" />
+    <Compile Include="Sql\LinkageSystem\LinkagePatientCardWriterResults.cs" />
+    <Compile Include="Sql\Account\AccountIdForgetReader.cs" />
+    <Compile Include="Sql\Account\AccountIdForgetReaderArgs.cs" />
+    <Compile Include="Sql\Account\AccountIdForgetReaderResults.cs" />
+    <Compile Include="Sql\LinkageSystem\LinkageUpdatedReader.cs" />
+    <Compile Include="Sql\LinkageSystem\LinkageUpdatedReaderArgs.cs" />
+    <Compile Include="Sql\LinkageSystem\LinkageUpdatedReaderResults.cs" />
+    <Compile Include="Sql\LinkageSystem\LinkageReader.cs" />
+    <Compile Include="Sql\LinkageSystem\LinkageUserReader.cs" />
+    <Compile Include="Sql\LinkageSystem\LinkageReaderArgs.cs" />
+    <Compile Include="Sql\LinkageSystem\LinkageUserReaderArgs.cs" />
+    <Compile Include="Sql\LinkageSystem\LinkageReaderResults.cs" />
+    <Compile Include="Sql\LinkageSystem\LinkageUserReaderResults.cs" />
+    <Compile Include="Sql\LinkageSystem\LinkageWriter.cs" />
+    <Compile Include="Sql\LinkageSystem\LinkageWriterArgs.cs" />
+    <Compile Include="Sql\LinkageSystem\LinkageWriterResults.cs" />
+    <Compile Include="Sql\Master\MasterEthDrugFileReader.cs" />
+    <Compile Include="Sql\Master\MasterEthDrugFileReaderArgs.cs" />
+    <Compile Include="Sql\Master\MasterEthDrugFileReaderResults.cs" />
+    <Compile Include="Sql\MedicalFacility\MedicalFacilitySearchReader.cs" />
+    <Compile Include="Sql\MedicalFacility\MedicalFacilitySearchReaderArgs.cs" />
+    <Compile Include="Sql\MedicalFacility\MedicalFacilitySearchReaderResults.cs" />
+    <Compile Include="Sql\NoteMedicine\MedicineWriter.cs" />
+    <Compile Include="Sql\NoteMedicine\MedicineWriterArgs.cs" />
+    <Compile Include="Sql\NoteMedicine\MedicineWriterResults.cs" />
+    <Compile Include="Sql\NoteMedicine\NoteMedicineDeleter.cs" />
+    <Compile Include="Sql\NoteMedicine\NoteMedicineDeleterArgs.cs" />
+    <Compile Include="Sql\NoteMedicine\NoteMedicineDeleterResults.cs" />
+    <Compile Include="Sql\NoteMedicine\NoteMedicineReader.cs" />
+    <Compile Include="Sql\NoteMedicine\NoteMedicineReaderArgs.cs" />
+    <Compile Include="Sql\NoteMedicine\NoteMedicineReaderResults.cs" />
+    <Compile Include="Sql\NoteMedicine\NoteMedicineTermsReader.cs" />
+    <Compile Include="Sql\NoteMedicine\NoteMedicineTermsReaderArgs.cs" />
+    <Compile Include="Sql\NoteMedicine\NoteMedicineTermsReaderResults.cs" />
+    <Compile Include="Sql\NoteMedicine\NoteMedicineWriter.cs" />
+    <Compile Include="Sql\NoteMedicine\NoteMedicineWriterArgs.cs" />
+    <Compile Include="Sql\NoteMedicine\NoteMedicineWriterResults.cs" />
+    <Compile Include="Sql\NoteMedicine\OnetimeCodeReader.cs" />
+    <Compile Include="Sql\NoteMedicine\OnetimeCodeReaderArgs.cs" />
+    <Compile Include="Sql\NoteMedicine\OnetimeCodeReaderResults.cs" />
+    <Compile Include="Sql\NoticeGroup\NoticeGroupTargetWriter.cs" />
+    <Compile Include="Sql\NoticeGroup\NoticeGroupTargetWriterArgs.cs" />
+    <Compile Include="Sql\NoticeGroup\NoticeGroupTargetWriterResults.cs" />
+    <Compile Include="Sql\Notification\NotificationTargetFromPatientIdReader.cs" />
+    <Compile Include="Sql\Notification\NotificationTargetFromPatientIdReaderArgs.cs" />
+    <Compile Include="Sql\Notification\NotificationTargetFromPatientIdReaderResults.cs" />
+    <Compile Include="Sql\Push\LinkageUserCheckReader.cs" />
+    <Compile Include="Sql\Push\LinkageUserCheckReaderArgs.cs" />
+    <Compile Include="Sql\Push\LinkageUserCheckReaderResults.cs" />
+    <Compile Include="Sql\NoticeGroup\ListDataReader.cs" />
+    <Compile Include="Sql\Push\PushSendLogWriter.cs" />
+    <Compile Include="Sql\Push\PushSendLogWriterArgs.cs" />
+    <Compile Include="Sql\Push\PushSendLogWriterResults.cs" />
+    <Compile Include="Sql\Symptom\SymptomWriter.cs" />
+    <Compile Include="Sql\Symptom\SymptomWriterArgs.cs" />
+    <Compile Include="Sql\Symptom\SymptomWriterResults.cs" />
+    <Compile Include="Sql\WaitingList\FacilityMedicalDepartmentAppConfigReader.cs" />
+    <Compile Include="Sql\WaitingList\FacilityMedicalDepartmentAppConfigReaderArgs.cs" />
+    <Compile Include="Sql\WaitingList\FacilityMedicalDepartmentAppConfigResults.cs" />
+    <Compile Include="Sql\WaitingList\FacilityMedicalDepartmentConfigReader.cs" />
+    <Compile Include="Sql\WaitingList\WaitingOrderListReader.cs" />
+    <Compile Include="Sql\WaitingList\FacilityMedicalDepartmentConfigReaderArgs.cs" />
+    <Compile Include="Sql\WaitingList\WaitingOrderListReaderArgs.cs" />
+    <Compile Include="Sql\WaitingList\FacilityMedicalDepartmentConfigResults.cs" />
+    <Compile Include="Sql\WaitingList\WaitingOrderListReaderResults.cs" />
+    <Compile Include="Sql\WaitingList\WaitingOrderListWriter.cs" />
+    <Compile Include="Sql\WaitingList\WaitingOrderListWriterArgs.cs" />
+    <Compile Include="Sql\WaitingList\WaitingOrderListWriterResults.cs" />
+    <Compile Include="Worker\AccessKeySsoWorker.cs" />
+    <Compile Include="Worker\AccessKeyWorker.cs" />
+    <Compile Include="Worker\AccessLogWorker.cs" />
+    <Compile Include="Worker\AccountDeletePhoneRequestForSmsWorker.cs" />
+    <Compile Include="Worker\AccountLoginForMailWorker.cs" />
+    <Compile Include="Worker\AccountPasswordResetForSmsApiWorker.cs" />
+    <Compile Include="Worker\AccountLoginForSms2Worker.cs" />
+    <Compile Include="Worker\AccountLoginForSmsWorker.cs" />
+    <Compile Include="Worker\AccountChangePhoneRequestForSmsWorker.cs" />
+    <Compile Include="Worker\AccountSmsAuthRequestWorker.cs" />
+    <Compile Include="Worker\AppDownloadImageWorker.cs" />
+    <Compile Include="Worker\AppHeartMonitorInitWorker.cs" />
+    <Compile Include="Worker\AppMedicalNaviInitWorker.cs" />
+    <Compile Include="Worker\AppSettingsReadWorker.cs" />
+    <Compile Include="Worker\AppSettingsWriteWorker.cs" />
+    <Compile Include="Worker\App\AppLive2DInitWorker.cs" />
+    <Compile Include="Worker\App\AppPushNotificationEntryDeleteWorker.cs" />
+    <Compile Include="Worker\App\AppReviewAuthWorker.cs" />
+    <Compile Include="Worker\CheckupCdaFileWorker.cs" />
+    <Compile Include="Worker\Common\QoHttpClientFactory.cs" />
+    <Compile Include="Worker\Common\QoLinkage.cs" />
+    <Compile Include="Worker\Common\QoPatientCardBarcodeHelper.cs" />
+    <Compile Include="Worker\Common\QoTestPatientHelper.cs" />
+    <Compile Include="Worker\Common\QoSmsClient.cs" />
+    <Compile Include="Worker\Common\QoTransaction.cs" />
+    <Compile Include="Worker\ContactWorker.cs" />
+    <Compile Include="Worker\Diary\DiaryStatusWorker.cs" />
+    <Compile Include="Worker\Disease\DiseaseSearchWorker.cs" />
+    <Compile Include="Worker\ELinkWorker.cs" />
+    <Compile Include="Worker\ExaminationWorker.cs" />
+    <Compile Include="Worker\ExternalServiceSphrWorker.cs" />
+    <Compile Include="Worker\ExternalServiceWriteWorker.cs" />
+    <Compile Include="Worker\HealthRecordSphrVitalWorker.cs" />
+    <Compile Include="Worker\HaipWorker.cs" />
+    <Compile Include="Worker\HealthAlertReadWorker.cs" />
+    <Compile Include="Worker\HealthRecord\HealthRecordReadWorker.cs" />
+    <Compile Include="Worker\HealthSymptomReadWorker.cs" />
+    <Compile Include="Worker\HealthAlertSymptomReadWorker.cs" />
+    <Compile Include="Worker\HealthAlertWriteWorker.cs" />
+    <Compile Include="Worker\HealthRecordBatchWorker.cs" />
+    <Compile Include="Worker\HealthRecordTodaySummaryWorker.cs" />
+    <Compile Include="Worker\HealthRecordWorker.cs" />
+    <Compile Include="Worker\HealthSymptomWriteWorker.cs" />
+    <Compile Include="Worker\JotoAppWorker.cs" />
+    <Compile Include="Worker\JotoHdrWorker.cs" />
+    <Compile Include="Worker\Kagamino\KagaminoInitWorker.cs" />
+    <Compile Include="Worker\Kagamino\QkBackgroundReadWorker.cs" />
+    <Compile Include="Worker\Kagamino\QkRandomAdviceReadWorker.cs" />
+    <Compile Include="Worker\CheckupFileWorker.cs" />
+    <Compile Include="Worker\LineMessageWorker.cs" />
+    <Compile Include="Worker\LinkagePatientCardAddWorker.cs" />
+    <Compile Include="Worker\LinkagePatientCardDeleteWorker.cs" />
+    <Compile Include="Worker\LinkagePatientCardListWorker.cs" />
+    <Compile Include="Worker\LinkagePatientCardWorkerBase.cs" />
+    <Compile Include="Worker\LinkageQrReadWorker.cs" />
+    <Compile Include="Worker\LinkageRegisterForSmsWorker.cs" />
+    <Compile Include="Worker\LinkageRegisterWorker.cs" />
+    <Compile Include="Worker\LinkageRegisterWorkerBase.cs" />
+    <Compile Include="Worker\LinkageSystemIdWriteWorker.cs" />
+    <Compile Include="Worker\Mail\AccountLoginForMailClient.cs" />
+    <Compile Include="Worker\Mail\ForgetIdNoticeClient.cs" />
+    <Compile Include="Worker\Mail\AccountLoginForMailClientArgs.cs" />
+    <Compile Include="Worker\Mail\ForgetIdNoticeClientArgs.cs" />
+    <Compile Include="Worker\Mail\MailAddressSetNoticeClient.cs" />
+    <Compile Include="Worker\Mail\MailAddressSetNoticeClientArgs.cs" />
+    <Compile Include="Worker\Mail\NotificationSendMailClient.cs" />
+    <Compile Include="Worker\Mail\NotificationSendMailClientArgs.cs" />
+    <Compile Include="Worker\Mail\PersonalMessageNoticeClient.cs" />
+    <Compile Include="Worker\Mail\PersonalMessageNoticeClientArgs.cs" />
+    <Compile Include="Worker\FacilityWorker.cs" />
+    <Compile Include="Worker\Mail\SupportAcceptanceNoticeClient.cs" />
+    <Compile Include="Worker\Mail\SupportAcceptanceNoticeClientArgs.cs" />
+    <Compile Include="Worker\ManagementWorker.cs" />
+    <Compile Include="Worker\Master\MasterDrugDetailReadWorker.cs" />
+    <Compile Include="Worker\Master\MasterDrugSearchWorker.cs" />
+    <Compile Include="Worker\Master\MasterFacilityLanguageReadWorker.cs" />
+    <Compile Include="Worker\Master\MasterMedicalFacilityListWorker.cs" />
+    <Compile Include="Worker\Master\MasterMedicineWorker.cs" />
+    <Compile Include="Worker\Master\MasterNoticeWorker.cs" />
+    <Compile Include="Worker\Master\MasterPharmacyWorker.cs" />
+    <Compile Include="Worker\NoteMedicine\NoteMedicineReadWorker.cs" />
+    <Compile Include="Worker\NoteMedicine\NoteMedicineWorker.cs" />
+    <Compile Include="Worker\NoteMedicine\Base\NoteMedicineSyncWorkerBase.cs" />
+    <Compile Include="Worker\NoteMedicine\JahisMessageBuilder.cs" />
+    <Compile Include="Worker\NoteMedicine\NoteMedicineSyncDataAddWorker.cs" />
+    <Compile Include="Worker\NoteMedicine\NoteMedicineSyncDataDeleteWorker.cs" />
+    <Compile Include="Worker\NoteMedicine\NoteMedicineSyncDataEditWorker.cs" />
+    <Compile Include="Worker\NoteMedicine\NoteMedicineSyncHistoryReadWorker.cs" />
+    <Compile Include="Worker\NoteMedicine\NoteMedicineSyncUpdateReadWorker.cs" />
+    <Compile Include="Worker\NotificationGroupWorker.cs" />
+    <Compile Include="Worker\Notification\NotificationPersonalReadWorker.cs" />
+    <Compile Include="Worker\Notification\NotificationReadWorker.cs" />
+    <Compile Include="Worker\Notification\NotificationSendMailApiWorker.cs" />
+    <Compile Include="Worker\NotificationWorker.cs" />
+    <Compile Include="Worker\Common\QoPushNotification.cs" />
+    <Compile Include="Worker\Kagamino\QkModelReadlWorker.cs" />
+    <Compile Include="Worker\Payment\PaymentSmapaHomeWorker.cs" />
+    <Compile Include="Worker\Payment\PaymentSmapaRevokeWorker.cs" />
+    <Compile Include="Worker\Payment\PaymentSmapaTermsReadWorker.cs" />
+    <Compile Include="Worker\Payment\PaymentSmapaTermsWriteWorker.cs" />
+    <Compile Include="Worker\PushWorker.cs" />
+    <Compile Include="Worker\QoApiResultHelper.cs" />
+    <Compile Include="Worker\User\UserFamilyAddWorker.cs" />
+    <Compile Include="Worker\User\UserFamilyDeleteWorker.cs" />
+    <Compile Include="Worker\User\UserListReadWorker.cs" />
+    <Compile Include="Worker\User\UserPhotoDeleteWorker.cs" />
+    <Compile Include="Worker\User\UserPhotoWriteWorker.cs" />
+    <Compile Include="Worker\User\UserReadWorker.cs" />
+    <Compile Include="Worker\User\UserWorkerBase.cs" />
+    <Compile Include="Worker\User\UserWriteWorker.cs" />
+    <Compile Include="Worker\WaitingListDebugWriteWorker.cs" />
+    <Compile Include="Worker\WaitingListReadWorker.cs" />
+    <Compile Include="Worker\TisWaitingListReadWorker.cs" />
+    <Compile Include="Worker\TisWorker.cs" />
+    <Compile Include="Worker\LinkageWorker.cs" />
+    <Compile Include="Worker\Common\QoAccessLog.cs" />
+    <Compile Include="Worker\AccountFamilyWorker.cs" />
+    <Compile Include="Worker\Common\QoBlobStorage.cs" />
+    <Compile Include="Sql\FileStorage\FileStorageWriter.cs" />
+    <Compile Include="Sql\FileStorage\FileStorageWriterArgs.cs" />
+    <Compile Include="Sql\FileStorage\FileStorageWriterResults.cs" />
+    <Compile Include="Worker\Common\QoIdentityClient.cs" />
+    <Compile Include="Worker\AccountWorker.cs" />
+    <Compile Include="Worker\Common\QoApiResult.cs" />
+    <Compile Include="Worker\AppWoker.cs" />
+    <Compile Include="Worker\CalendarWorker.cs" />
+    <Compile Include="Worker\GuestWorker.cs" />
+    <Compile Include="Worker\Mail\MailAddressChangeNoticeClient.cs" />
+    <Compile Include="Worker\Mail\MailAddressChangeNoticeClientArgs.cs" />
+    <Compile Include="Worker\Mail\PasswordResetNoticeClient.cs" />
+    <Compile Include="Worker\Mail\PasswordResetNoticeClientArgs.cs" />
+    <Compile Include="Worker\Mail\Base\QoNoticeClientArgsBase.cs" />
+    <Compile Include="Worker\Mail\Base\QoNoticeClientBase.cs" />
+    <Compile Include="Worker\Mail\PrescriptionReceivingNoticeClient.cs" />
+    <Compile Include="Worker\Mail\PrescriptionReceivingNoticeClientArgs.cs" />
+    <Compile Include="Worker\Mail\PrescriptionStatusChangeNoticeClient.cs" />
+    <Compile Include="Worker\Mail\PrescriptionStatusChangeNoticeClientArgs.cs" />
+    <Compile Include="Worker\Mail\SignUpNoticeClientArgs.cs" />
+    <Compile Include="Worker\Mail\SupportNoticeClient.cs" />
+    <Compile Include="Worker\Mail\SupportNoticeClientArgs.cs" />
+    <Compile Include="Worker\Common\QoPasswordManagement.cs" />
+    <Compile Include="Worker\Common\QoApiConfiguration.cs" />
+    <Compile Include="Worker\QolmsSystemKeyWorker.cs" />
+    <Compile Include="Worker\Mail\SignUpNoticeClient.cs" />
+    <Compile Include="Worker\Master\MasterWorker.cs" />
+    <Compile Include="Worker\SingUpWorker.cs" />
+    <Compile Include="AzureStorage\UploadFileBlob\Reader\UploadThumbnailFileBlobMetadataReaderResults.cs" />
+    <Compile Include="Worker\SupportWorker.cs" />
+    <Compile Include="Worker\Validators\ArgsValidationHelper.cs" />
+    <Compile Include="Worker\Validators\HealthRecordValidator.cs" />
+    <Compile Include="Worker\WaitingListWriteWorker.cs" />
+    <Compile Include="Worker\WaitingOrderDebugReadWorker.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\qolms-dev-core-west-api11 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\qolms-dev-core-west-api11 - ReadOnly - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\qolms-dev-core-west-api11 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\qolms-prod-core-east-api01 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\qolms-prod-core-east-api01 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\qolms-prod-core-east-api01-slot01 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\qolms-prod-core-east-api01-slot01 - Web Deploy.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PipelineRelease|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50256</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50256/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

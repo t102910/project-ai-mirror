@@ -1,0 +1,56 @@
+﻿using MGF.QOLMS.QolmsDbCoreV1;
+using MGF.QOLMS.QolmsDbEntityV1;
+using MGF.QOLMS.QolmsOpenApi.Sql.Core;
+using System;
+
+
+namespace MGF.QOLMS.QolmsOpenApi.Sql
+{
+    /// <summary>
+    /// Line事前登録情報 を、
+    /// データベース テーブルへ登録するための機能を提供します。
+    ///  このクラスは継承できません。
+    /// </summary>
+    /// <remarks></remarks>
+    public sealed class LinePreRegistWriter : QsDbWriterBase, IQsDbDistributedWriter<MGF_NULL_ENTITY, LinePreRegistWriterArgs, LinePreRegistWriterResults>
+    {
+
+        /// <summary>
+        /// <see cref="LinePreRegistWriter" /> クラスの新しいインスタンスを初期化します。
+        /// </summary>
+        /// <remarks></remarks>
+        public LinePreRegistWriter() : base()
+        {
+        }
+
+        /// <summary>
+        /// 分散トランザクションを使用してデータベース テーブルへ値を設定します。
+        /// </summary>
+        /// <param name="args">DB 引数クラス。</param>
+        /// <returns>
+        /// DB 戻り値クラス。
+        /// </returns>
+        /// <remarks></remarks>
+        public LinePreRegistWriterResults ExecuteByDistributed(LinePreRegistWriterArgs args)
+        {
+            if (args == null)
+            {
+                throw new ArgumentNullException("args", "DB引数クラスがNull参照です。");
+            }
+
+            //UPSERT実行
+            LinePreRegistWriterResults result = new LinePreRegistWriterResults() { IsSuccess = false };
+            DbLinePreRegistWriterCore accountWriter = new DbLinePreRegistWriterCore(args.UserId, args.LinkageSystemId, args.Birthday, args.DeleteFlag);
+            
+            if (accountWriter.UpsertLinePreRegist())
+            {
+                // 成功
+                result.IsSuccess = true;
+            }
+
+            return result;
+        }
+    }
+
+
+}

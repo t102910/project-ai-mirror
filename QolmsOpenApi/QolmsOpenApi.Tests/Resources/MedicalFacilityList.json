@@ -1,0 +1,695 @@
+[
+  {
+    "FACILITYKEY": "3473fef8-58c7-409a-9039-000445430625",
+    "FACILITYNAME": "医療法人満領会　有田医院",
+    "FACILITYKANANAME": "イリョウホウジンミツルリョウカイ　アリタイイン",
+    "POSTALCODE": "5560022",
+    "ADDRESS1": "大阪府大阪市浪速区桜川四丁目１１番１６号　アリタビル１階",
+    "ADDRESS2": "",
+    "PREFNO": 27,
+    "CITYNO": 0,
+    "OFFICIALNAME": "医療法人満領会　有田医院",
+    "MEDICALFACILITYCODE": "2714302615",
+    "DISPORDER": 0,
+    "UPDATEDDATE": "2022-11-09T09:31:21.99",
+    "LATITUDE": 0.0,
+    "LONGITUDE": 0.0,
+    "FileList": [],
+    "DepertmentList": [],
+    "ContactList": [],
+    "UrlList": [],
+    "KeyGuid": "280430eb-8c03-40a6-9db0-3c96c2a35716",
+    "DataState": 0,
+    "IsEmpty": false
+  },
+  {
+    "FACILITYKEY": "11dc3f56-5652-4d08-9147-1575c1723edb",
+    "FACILITYNAME": "和泉市立総合医療センター",
+    "FACILITYKANANAME": "",
+    "POSTALCODE": "5940073",
+    "ADDRESS1": "大阪府和泉市和気町4-5-1",
+    "ADDRESS2": "",
+    "PREFNO": 27,
+    "CITYNO": 0,
+    "OFFICIALNAME": "",
+    "MEDICALFACILITYCODE": "2710503612",
+    "DISPORDER": 1,
+    "UPDATEDDATE": "2022-10-07T00:00:00",
+    "LATITUDE": 36.3333262000,
+    "LONGITUDE": 138.9041856000,
+    "FileList": [
+      {
+        "Sequence": 2,
+        "FileKey": "abdb378c-3cc5-4667-8ff5-775123ac953b"
+      }
+    ],
+    "DepertmentList": [
+      {
+        "DepartmentNo": 10,
+        "DepartmentName": "内科",
+        "LocalCode": "001",
+        "LocalName": "総合内科",
+        "DispOrder": 1
+      },
+      {
+        "DepartmentNo": 10,
+        "DepartmentName": "内科",
+        "LocalCode": "005",
+        "LocalName": "肝胆膵内科",
+        "DispOrder": 5
+      },
+      {
+        "DepartmentNo": 30,
+        "DepartmentName": "精神科",
+        "LocalCode": "028",
+        "LocalName": "精神科",
+        "DispOrder": 28
+      },
+      {
+        "DepartmentNo": 100,
+        "DepartmentName": "小児科",
+        "LocalCode": "012",
+        "LocalName": "小児科",
+        "DispOrder": 12
+      },
+      {
+        "DepartmentNo": 110,
+        "DepartmentName": "外科",
+        "LocalCode": "013",
+        "LocalName": "外科",
+        "DispOrder": 13
+      },
+      {
+        "DepartmentNo": 120,
+        "DepartmentName": "整形外科",
+        "LocalCode": "017",
+        "LocalName": "整形外科",
+        "DispOrder": 17
+      },
+      {
+        "DepartmentNo": 130,
+        "DepartmentName": "形成外科",
+        "LocalCode": "022",
+        "LocalName": "形成外科",
+        "DispOrder": 22
+      },
+      {
+        "DepartmentNo": 150,
+        "DepartmentName": "脳神経外科",
+        "LocalCode": "023",
+        "LocalName": "脳神経外科",
+        "DispOrder": 23
+      },
+      {
+        "DepartmentNo": 160,
+        "DepartmentName": "呼吸器外科",
+        "LocalCode": "015",
+        "LocalName": "呼吸器外科",
+        "DispOrder": 15
+      },
+      {
+        "DepartmentNo": 170,
+        "DepartmentName": "心臓血管外科",
+        "LocalCode": "026",
+        "LocalName": "心臓血管外科",
+        "DispOrder": 26
+      },
+      {
+        "DepartmentNo": 230,
+        "DepartmentName": "眼科",
+        "LocalCode": "027",
+        "LocalName": "眼科",
+        "DispOrder": 27
+      },
+      {
+        "DepartmentNo": 240,
+        "DepartmentName": "耳鼻咽喉科",
+        "LocalCode": "021",
+        "LocalName": "耳鼻いんこう科",
+        "DispOrder": 21
+      },
+      {
+        "DepartmentNo": 270,
+        "DepartmentName": "放射線科",
+        "LocalCode": "025",
+        "LocalName": "放射線科",
+        "DispOrder": 25
+      },
+      {
+        "DepartmentNo": 280,
+        "DepartmentName": "神経内科",
+        "LocalCode": "008",
+        "LocalName": "脳神経内科",
+        "DispOrder": 8
+      },
+      {
+        "DepartmentNo": 300,
+        "DepartmentName": "皮膚科",
+        "LocalCode": "020",
+        "LocalName": "皮膚科",
+        "DispOrder": 20
+      },
+      {
+        "DepartmentNo": 310,
+        "DepartmentName": "泌尿器科",
+        "LocalCode": "019",
+        "LocalName": "泌尿器科",
+        "DispOrder": 19
+      },
+      {
+        "DepartmentNo": 330,
+        "DepartmentName": "婦人科",
+        "LocalCode": "018",
+        "LocalName": "婦人科",
+        "DispOrder": 18
+      },
+      {
+        "DepartmentNo": 340,
+        "DepartmentName": "呼吸器内科",
+        "LocalCode": "003",
+        "LocalName": "呼吸器内科",
+        "DispOrder": 3
+      },
+      {
+        "DepartmentNo": 350,
+        "DepartmentName": "循環器内科",
+        "LocalCode": "002",
+        "LocalName": "循環器内科",
+        "DispOrder": 2
+      },
+      {
+        "DepartmentNo": 390,
+        "DepartmentName": "歯科口腔外科",
+        "LocalCode": "024",
+        "LocalName": "歯科口腔外科",
+        "DispOrder": 24
+      },
+      {
+        "DepartmentNo": 450,
+        "DepartmentName": "内分泌内科",
+        "LocalCode": "006",
+        "LocalName": "内分泌・糖尿病内科",
+        "DispOrder": 6
+      },
+      {
+        "DepartmentNo": 480,
+        "DepartmentName": "血液内科",
+        "LocalCode": "009",
+        "LocalName": "血液内科 腎臓透析内科",
+        "DispOrder": 9
+      },
+      {
+        "DepartmentNo": 490,
+        "DepartmentName": "麻酔科",
+        "LocalCode": "031",
+        "LocalName": "麻酔科",
+        "DispOrder": 31
+      },
+      {
+        "DepartmentNo": 500,
+        "DepartmentName": "消化器内科",
+        "LocalCode": "004",
+        "LocalName": "消化器内科（内視鏡）",
+        "DispOrder": 4
+      },
+      {
+        "DepartmentNo": 510,
+        "DepartmentName": "消化器外科",
+        "LocalCode": "014",
+        "LocalName": "消化器外科",
+        "DispOrder": 14
+      },
+      {
+        "DepartmentNo": 570,
+        "DepartmentName": "膠原病リウマチ内科",
+        "LocalCode": "007",
+        "LocalName": "リウマチ・膠原病内科",
+        "DispOrder": 7
+      },
+      {
+        "DepartmentNo": 590,
+        "DepartmentName": "腫瘍治療科",
+        "LocalCode": "010",
+        "LocalName": "腫瘍内科",
+        "DispOrder": 10
+      },
+      {
+        "DepartmentNo": 600,
+        "DepartmentName": "総合診療科",
+        "LocalCode": "030",
+        "LocalName": "病理診断科",
+        "DispOrder": 30
+      },
+      {
+        "DepartmentNo": 610,
+        "DepartmentName": "乳腺甲状腺外科",
+        "LocalCode": "016",
+        "LocalName": "乳腺外科",
+        "DispOrder": 16
+      },
+      {
+        "DepartmentNo": 999,
+        "DepartmentName": "その他",
+        "LocalCode": "011",
+        "LocalName": "緩和ケア科",
+        "DispOrder": 11
+      },
+      {
+        "DepartmentNo": 999,
+        "DepartmentName": "その他",
+        "LocalCode": "029",
+        "LocalName": "がん遺伝子診療部門",
+        "DispOrder": 29
+      }
+    ],
+    "ContactList": [
+      {
+        "ContactInformationNo": 1,
+        "ContactInformationType": 3,
+        "TelAreaCode": "0725",
+        "TelCityCode": "41",
+        "TelSubscriberNumber": "1331",
+        "TelFull": "0725-41-1331",
+        "AcceptedStart": "0000",
+        "AcceptedEnd": "0000",
+        "CommentSet": "{\"Comment\":\"受付時間内に代表電話窓口で「健診センター」とお申し付けください。\\n※土日祝日・年末年始の休日はお受けできません。\",\"ReceptionTimeN\":[{\"Tag\":\"平日\",\"TimeText\":\"予約受付時間 13:00-16:00\"}],\"Title\":\"健診センター\"}",
+        "DispOrder": 2,
+        "Comment": {
+          "Title": "健診センター",
+          "Comment": "受付時間内に代表電話窓口で「健診センター」とお申し付けください。\n※土日祝日・年末年始の休日はお受けできません。",
+          "ReceptionTimeN": [
+            {
+              "Tag": "平日",
+              "TimeText": "予約受付時間 13:00-16:00"
+            }
+          ]
+        }
+      },
+      {
+        "ContactInformationNo": 2,
+        "ContactInformationType": 1,
+        "TelAreaCode": "0725",
+        "TelCityCode": "41",
+        "TelSubscriberNumber": "1331",
+        "TelFull": "0725-41-1331",
+        "AcceptedStart": "0000",
+        "AcceptedEnd": "0000",
+        "CommentSet": "{\"Comment\":\"\",\"ReceptionTimeN\":[],\"Title\":\"代表電話\"}",
+        "DispOrder": 1,
+        "Comment": {
+          "Title": "代表電話",
+          "Comment": "",
+          "ReceptionTimeN": []
+        }
+      },
+      {
+        "ContactInformationNo": 3,
+        "ContactInformationType": 1,
+        "TelAreaCode": "0725",
+        "TelCityCode": "41",
+        "TelSubscriberNumber": "3150",
+        "TelFull": "0725-41-3150",
+        "AcceptedStart": "0000",
+        "AcceptedEnd": "0000",
+        "CommentSet": "{\"Comment\":\"事前にかかりつけ医から地域連携センターへ予約の上、ご来院いただくと、これまでの治療経過や検査データがわかり、スムーズな診療が可能です。まずはかかりつけ医にご相談ください。\\n※日曜祝日・年末年始の休日はお受けできません。\",\"ReceptionTimeN\":[{\"Tag\":\"平日\",\"TimeText\":\"9:00-19:00まで\"},{\"Tag\":\"土曜\",\"TimeText\":\"9:00-13:00まで\"}],\"Title\":\"地域連携センター\"}",
+        "DispOrder": 3,
+        "Comment": {
+          "Title": "地域連携センター",
+          "Comment": "事前にかかりつけ医から地域連携センターへ予約の上、ご来院いただくと、これまでの治療経過や検査データがわかり、スムーズな診療が可能です。まずはかかりつけ医にご相談ください。\n※日曜祝日・年末年始の休日はお受けできません。",
+          "ReceptionTimeN": [
+            {
+              "Tag": "平日",
+              "TimeText": "9:00-19:00まで"
+            },
+            {
+              "Tag": "土曜",
+              "TimeText": "9:00-13:00まで"
+            }
+          ]
+        }
+      }
+    ],
+    "UrlList": [
+      {
+        "UrlNo": 1,
+        "UrlType": 1,
+        "Url": "https://izumi.tokushukai.or.jp/",
+        "DispOrder": 1
+      },
+      {
+        "UrlNo": 2,
+        "UrlType": 2,
+        "Url": "https://izumi.tokushukai.or.jp/access/",
+        "DispOrder": 2
+      },
+      {
+        "UrlNo": 3,
+        "UrlType": 3,
+        "Url": "https://izumi.tokushukai.or.jp/schedule/",
+        "DispOrder": 3
+      },
+      {
+        "UrlNo": 4,
+        "UrlType": 4,
+        "Url": "",
+        "DispOrder": 4
+      },
+      {
+        "UrlNo": 5,
+        "UrlType": 5,
+        "Url": "",
+        "DispOrder": 5
+      },
+      {
+        "UrlNo": 6,
+        "UrlType": 6,
+        "Url": "",
+        "DispOrder": 6
+      }
+    ],
+    "KeyGuid": "a1c3983d-529e-42f3-a641-9405209c58fd",
+    "DataState": 0,
+    "IsEmpty": false
+  },
+  {
+    "FACILITYKEY": "0544a136-84fb-4aa8-80bf-7ea48b93b50f",
+    "FACILITYNAME": "吹田徳洲会病院",
+    "FACILITYKANANAME": "",
+    "POSTALCODE": "5650814",
+    "ADDRESS1": "大阪府吹田市千里丘西21番1号",
+    "ADDRESS2": "",
+    "PREFNO": 27,
+    "CITYNO": 0,
+    "OFFICIALNAME": "",
+    "MEDICALFACILITYCODE": "2711608444",
+    "DISPORDER": 2,
+    "UPDATEDDATE": "2022-10-07T00:00:00",
+    "LATITUDE": 0.0,
+    "LONGITUDE": 0.0,
+    "FileList": [
+      {
+        "Sequence": 1,
+        "FileKey": "2d3aed73-4d3a-4501-b7f5-ce4a2c137db7"
+      }
+    ],
+    "DepertmentList": [
+      {
+        "DepartmentNo": 10,
+        "DepartmentName": "内科",
+        "LocalCode": "002",
+        "LocalName": "内科",
+        "DispOrder": 2
+      },
+      {
+        "DepartmentNo": 10,
+        "DepartmentName": "内科",
+        "LocalCode": "027",
+        "LocalName": "緩和ケア内科",
+        "DispOrder": 27
+      },
+      {
+        "DepartmentNo": 100,
+        "DepartmentName": "小児科",
+        "LocalCode": "007",
+        "LocalName": "小児科",
+        "DispOrder": 7
+      },
+      {
+        "DepartmentNo": 120,
+        "DepartmentName": "整形外科",
+        "LocalCode": "020",
+        "LocalName": "整形外科",
+        "DispOrder": 20
+      },
+      {
+        "DepartmentNo": 130,
+        "DepartmentName": "形成外科",
+        "LocalCode": "021",
+        "LocalName": "形成外科",
+        "DispOrder": 21
+      },
+      {
+        "DepartmentNo": 150,
+        "DepartmentName": "脳神経外科",
+        "LocalCode": "016",
+        "LocalName": "脳神経外科",
+        "DispOrder": 16
+      },
+      {
+        "DepartmentNo": 160,
+        "DepartmentName": "呼吸器外科",
+        "LocalCode": "015",
+        "LocalName": "呼吸器外科",
+        "DispOrder": 15
+      },
+      {
+        "DepartmentNo": 170,
+        "DepartmentName": "心臓血管外科",
+        "LocalCode": "014",
+        "LocalName": "心臓血管外科",
+        "DispOrder": 14
+      },
+      {
+        "DepartmentNo": 220,
+        "DepartmentName": "産婦人科",
+        "LocalCode": "022",
+        "LocalName": "産婦人科",
+        "DispOrder": 22
+      },
+      {
+        "DepartmentNo": 230,
+        "DepartmentName": "眼科",
+        "LocalCode": "026",
+        "LocalName": "眼科",
+        "DispOrder": 26
+      },
+      {
+        "DepartmentNo": 240,
+        "DepartmentName": "耳鼻咽喉科",
+        "LocalCode": "025",
+        "LocalName": "耳鼻咽喉科",
+        "DispOrder": 25
+      },
+      {
+        "DepartmentNo": 260,
+        "DepartmentName": "リハビリテーション科",
+        "LocalCode": "028",
+        "LocalName": "リハビリテーション科",
+        "DispOrder": 28
+      },
+      {
+        "DepartmentNo": 270,
+        "DepartmentName": "放射線科",
+        "LocalCode": "009",
+        "LocalName": "放射線治療科",
+        "DispOrder": 9
+      },
+      {
+        "DepartmentNo": 270,
+        "DepartmentName": "放射線科",
+        "LocalCode": "010",
+        "LocalName": "放射線診断科",
+        "DispOrder": 10
+      },
+      {
+        "DepartmentNo": 280,
+        "DepartmentName": "神経内科",
+        "LocalCode": "008",
+        "LocalName": "脳神経内科",
+        "DispOrder": 8
+      },
+      {
+        "DepartmentNo": 300,
+        "DepartmentName": "皮膚科",
+        "LocalCode": "024",
+        "LocalName": "皮膚科",
+        "DispOrder": 24
+      },
+      {
+        "DepartmentNo": 310,
+        "DepartmentName": "泌尿器科",
+        "LocalCode": "018",
+        "LocalName": "泌尿器科",
+        "DispOrder": 18
+      },
+      {
+        "DepartmentNo": 350,
+        "DepartmentName": "循環器内科",
+        "LocalCode": "006",
+        "LocalName": "循環器内科",
+        "DispOrder": 6
+      },
+      {
+        "DepartmentNo": 390,
+        "DepartmentName": "歯科口腔外科",
+        "LocalCode": "023",
+        "LocalName": "歯科口腔外科",
+        "DispOrder": 23
+      },
+      {
+        "DepartmentNo": 410,
+        "DepartmentName": "腎臓内科",
+        "LocalCode": "012",
+        "LocalName": "腎臓内科",
+        "DispOrder": 12
+      },
+      {
+        "DepartmentNo": 490,
+        "DepartmentName": "麻酔科",
+        "LocalCode": "013",
+        "LocalName": "麻酔科",
+        "DispOrder": 13
+      },
+      {
+        "DepartmentNo": 500,
+        "DepartmentName": "消化器内科",
+        "LocalCode": "005",
+        "LocalName": "消化器内科",
+        "DispOrder": 5
+      },
+      {
+        "DepartmentNo": 510,
+        "DepartmentName": "消化器外科",
+        "LocalCode": "019",
+        "LocalName": "消化器外科",
+        "DispOrder": 19
+      },
+      {
+        "DepartmentNo": 530,
+        "DepartmentName": "糖尿内科",
+        "LocalCode": "003",
+        "LocalName": "糖尿病内科",
+        "DispOrder": 3
+      },
+      {
+        "DepartmentNo": 590,
+        "DepartmentName": "腫瘍治療科",
+        "LocalCode": "011",
+        "LocalName": "腫瘍内科",
+        "DispOrder": 11
+      },
+      {
+        "DepartmentNo": 600,
+        "DepartmentName": "総合診療科",
+        "LocalCode": "001",
+        "LocalName": "総合診療科",
+        "DispOrder": 1
+      },
+      {
+        "DepartmentNo": 610,
+        "DepartmentName": "乳腺甲状腺外科",
+        "LocalCode": "017",
+        "LocalName": "乳腺外科",
+        "DispOrder": 17
+      },
+      {
+        "DepartmentNo": 999,
+        "DepartmentName": "その他",
+        "LocalCode": "004",
+        "LocalName": "病理診断科",
+        "DispOrder": 4
+      },
+      {
+        "DepartmentNo": 999,
+        "DepartmentName": "その他",
+        "LocalCode": "029",
+        "LocalName": "地域医療科",
+        "DispOrder": 29
+      }
+    ],
+    "ContactList": [
+      {
+        "ContactInformationNo": 1,
+        "ContactInformationType": 1,
+        "TelAreaCode": "06",
+        "TelCityCode": "9000",
+        "TelSubscriberNumber": "5234",
+        "TelFull": "0690005234",
+        "AcceptedStart": "    ",
+        "AcceptedEnd": "    ",
+        "CommentSet": "{\"Comment\":\"※年末年始・お盆期間・日曜祝日はお受けできません。\",\"ReceptionTimeN\":[{\"Tag\":\"平日\",\"TimeText\":\"9:00-19:00まで\"},{\"Tag\":\"土曜\",\"TimeText\":\"9:00-13:00まで\"}],\"Title\":\"受付センター\"}",
+        "DispOrder": 1,
+        "Comment": {
+          "Title": "受付センター",
+          "Comment": "※年末年始・お盆期間・日曜祝日はお受けできません。",
+          "ReceptionTimeN": [
+            {
+              "Tag": "平日",
+              "TimeText": "9:00-19:00まで"
+            },
+            {
+              "Tag": "土曜",
+              "TimeText": "9:00-13:00まで"
+            }
+          ]
+        }
+      },
+      {
+        "ContactInformationNo": 2,
+        "ContactInformationType": 1,
+        "TelAreaCode": "06",
+        "TelCityCode": "9000",
+        "TelSubscriberNumber": "5234",
+        "TelFull": "0690005234",
+        "AcceptedStart": "    ",
+        "AcceptedEnd": "    ",
+        "CommentSet": "{\"Comment\":\"※年末年始・お盆期間・日曜祝日はお受けできません。\",\"ReceptionTimeN\":[{\"Tag\":\"平日\",\"TimeText\":\"9:00-19:00まで\"},{\"Tag\":\"土曜\",\"TimeText\":\"9:00-13:00まで\"}],\"Title\":\"受付センター\"}",
+        "DispOrder": 2,
+        "Comment": {
+          "Title": "受付センター",
+          "Comment": "※年末年始・お盆期間・日曜祝日はお受けできません。",
+          "ReceptionTimeN": [
+            {
+              "Tag": "平日",
+              "TimeText": "9:00-19:00まで"
+            },
+            {
+              "Tag": "土曜",
+              "TimeText": "9:00-13:00まで"
+            }
+          ]
+        }
+      },
+      {
+        "ContactInformationNo": 3,
+        "ContactInformationType": 1,
+        "TelAreaCode": "06",
+        "TelCityCode": "9000",
+        "TelSubscriberNumber": "5234",
+        "TelFull": "0690005234",
+        "AcceptedStart": "    ",
+        "AcceptedEnd": "    ",
+        "CommentSet": "{\"Comment\":null,\"ReceptionTimeN\":[],\"Title\":\"受付センター\"}",
+        "DispOrder": 3,
+        "Comment": {
+          "Title": "受付センター",
+          "Comment": null,
+          "ReceptionTimeN": []
+        }
+      }
+    ],
+    "UrlList": [
+      {
+        "UrlNo": 1,
+        "UrlType": 1,
+        "Url": "https://www.suita.tokushukai.or.jp/sp/",
+        "DispOrder": 1
+      },
+      {
+        "UrlNo": 2,
+        "UrlType": 2,
+        "Url": "https://www.suita.tokushukai.or.jp/sp/access/",
+        "DispOrder": 2
+      },
+      {
+        "UrlNo": 3,
+        "UrlType": 3,
+        "Url": "https://www.suita.tokushukai.or.jp/gairai/list.php/sp/",
+        "DispOrder": 3
+      }
+    ],
+    "KeyGuid": "3967c9b6-d544-4695-b293-fe8d664e77a0",
+    "DataState": 0,
+    "IsEmpty": false
+  }
+]

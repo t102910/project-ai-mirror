@@ -1,0 +1,44 @@
+# ============================================================
+# Visual Studio / .NET 用 .gitignore
+# ============================================================
+
+# ------ ビルド生成物 ------
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+
+# ------ Visual Studio キャッシュ / 一時ファイル ------
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.cache
+
+# ------ NuGet パッケージ ------
+packages/
+*.nupkg
+# NuGet v3 以降のロックファイルはプロジェクトによって管理方針が異なるため対象外
+# project.lock.json は必要に応じて追加
+
+# ------ テスト結果 ------
+TestResults/
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+*.coveragexml
+
+# ------ TFS / ソース管理固有ファイル ------
+*.vssscc
+*.vspscc
+*.scc
+.tfignore
+
+# ------ ログ・一時ファイル ------
+*.log
+*.tmp
+
+# ------ OS 生成ファイル ------
+Thumbs.db
+ehthumbs.db
+Desktop.ini

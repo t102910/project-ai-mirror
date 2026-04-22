@@ -1,0 +1,53 @@
+# ============================================================
+# .gitattributes — Windows / Visual Studio 前提
+# 改行コード: CRLF で統一（作業コピーの実体は変換しない）
+# ============================================================
+
+# デフォルト: テキストファイルは自動判定し、チェックアウト時に CRLF
+* text=auto eol=crlf
+
+# ------ ソースコード ------
+*.cs        text eol=crlf
+*.cshtml    text eol=crlf
+*.vb        text eol=crlf
+
+# ------ プロジェクト / 設定ファイル ------
+*.sln       text eol=crlf
+*.csproj    text eol=crlf
+*.vbproj    text eol=crlf
+*.config    text eol=crlf
+*.xml       text eol=crlf
+*.xsd       text eol=crlf
+*.xslt      text eol=crlf
+*.resx      text eol=crlf
+*.json      text eol=crlf
+*.yaml      text eol=crlf
+*.yml       text eol=crlf
+
+# ------ Web フロントエンド ------
+*.html      text eol=crlf
+*.htm       text eol=crlf
+*.css       text eol=crlf
+*.js        text eol=crlf
+*.ts        text eol=crlf
+
+# ------ SQL ------
+*.sql       text eol=crlf
+
+# ------ テキスト ------
+*.txt       text eol=crlf
+*.md        text eol=crlf
+
+# ------ バイナリ（変換禁止） ------
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.bmp   binary
+*.dll   binary
+*.exe   binary
+*.pdb   binary
+*.zip   binary
+*.gz    binary
+*.nupkg binary

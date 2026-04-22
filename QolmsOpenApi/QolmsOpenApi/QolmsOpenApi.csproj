@@ -410,6 +410,7 @@
     <Compile Include="Models\Smapa\SmapaApiResults.cs" />
     <Compile Include="Models\VersionJsonResult.cs" />
     <Compile Include="Models\JotoAppExerciseApiModels.cs" />
+    <Compile Include="Models\JotoAppCalomealMealSyncApiModels.cs" />
     <Compile Include="Models\JotoAppSleepApiModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\DateTimeProvider.cs" />
@@ -424,6 +425,7 @@
     <Compile Include="Repositories\FamilyRepository.cs" />
     <Compile Include="Repositories\HealthRecordAlertRepository.cs" />
     <Compile Include="Repositories\HealthRecordQueueRepository.cs" />
+    <Compile Include="Repositories\CalomealMealSyncRepository.cs" />
     <Compile Include="Repositories\JotoAppRepository.cs" />
     <Compile Include="Repositories\HealthRecordRepository.cs" />
     <Compile Include="Repositories\IdentityApiRepository.cs" />
@@ -770,6 +772,7 @@
     <Compile Include="Worker\HealthRecordTodaySummaryWorker.cs" />
     <Compile Include="Worker\HealthRecordWorker.cs" />
     <Compile Include="Worker\HealthSymptomWriteWorker.cs" />
+    <Compile Include="Worker\CalomealMealSyncClient.cs" />
     <Compile Include="Worker\JotoAppWorker.cs" />
     <Compile Include="Worker\JotoHdrWorker.cs" />
     <Compile Include="Worker\Kagamino\KagaminoInitWorker.cs" />

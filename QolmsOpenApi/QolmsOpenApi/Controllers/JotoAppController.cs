@@ -263,6 +263,18 @@ namespace MGF.QOLMS.QolmsOpenApi.Controllers
         }
 
         /// <summary>
+        /// Calomeal の食事履歴を 1 アカウント分だけ同期します。
+        /// </summary>
+        [QoApiAuthorize(QoApiAuthorizeTypeEnum.JwtAccessKey, QoApiFunctionTypeEnum.JotoApp)]
+        [ActionName("CalomealMealSync")]
+        public QoJotoAppCalomealMealSyncApiResults PostCalomealMealSync(
+            [FromBody] QoJotoAppCalomealMealSyncApiArgs args)
+        {
+            var worker = new JotoAppWorker(new CalomealMealSyncRepository());
+            return this.ExecuteWorkerMethod(args, worker.CalomealMealSync);
+        }
+
+        /// <summary>
         /// JOTOネイティブアプリ向けPHR最新情報を取得します。
         /// DataType="Vital"  : HealthRecordRepository（QH_HEALTHRECORD_DAT から取得）
         /// DataType="Exercise": JotoAppRepository（QH_EXERCISEEVENT2_DAT, LINKAGESYSTEMNO=47003 から取得）

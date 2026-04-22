@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using MGF.QOLMS.QolmsDbLibraryV1;
 using MGF.QOLMS.QolmsOpenApi.Extension;
 using MGF.QOLMS.QolmsOpenApi.AzureStorage;
+using System.Configuration;
 
 namespace MGF.QOLMS.QolmsOpenApi.Worker
 {
@@ -30,6 +31,7 @@ namespace MGF.QOLMS.QolmsOpenApi.Worker
         readonly INoticeGroupRepository _NoticeGroupRepo;
         readonly IAppEventRepository _AppEventRepo;
         readonly IPhrForHomeRepository _PhrForHomeRepo;
+        readonly CalomealMealSyncRepository _CalomealMealSyncRepo;
 
         /// <summary>
         /// 
@@ -77,6 +79,14 @@ namespace MGF.QOLMS.QolmsOpenApi.Worker
         internal JotoAppWorker(IPhrForHomeRepository repo)
         {
             _PhrForHomeRepo = repo;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        internal JotoAppWorker(CalomealMealSyncRepository repo)
+        {
+            _CalomealMealSyncRepo = repo;
         }
 
         /// <summary>
@@ -1467,6 +1477,117 @@ namespace MGF.QOLMS.QolmsOpenApi.Worker
         }
 
         #endregion
+
+        /// <summary>
+        /// Calomeal の食事履歴を 1 アカウント分だけ同期します。
+        /// </summary>
+        public QoJotoAppCalomealMealSyncApiResults CalomealMealSync(QoJotoAppCalomealMealSyncApiArgs args)
+        {
+            var result = new QoJotoAppCalomealMealSyncApiResults()
+            {
+                IsSuccess = bool.FalseString,
+                Result = null,
+                ErrorMessageN = new List<string>()
+            };
+
+            var accountKey = args.ActorKey.TryToValueType(Guid.Empty);
+            if (accountKey == Guid.Empty)
+            {
+                result.Result = QoApiResult.Build(
+                    QoApiResultCodeTypeEnum.ArgumentError,
+                    "処理対象者のアカウントキーが指定されていません。");
+                return result;
+            }
+
+            if (_CalomealMealSyncRepo == null)
+            {
+                result.Result = QoApiResult.Build(
+                    QoApiResultCodeTypeEnum.InternalServerError,
+                    "CalomealMealSyncRepository が設定されていません。");
+                return result;
+            }
+
+            var targetDateTime = CalomealMealSyncClient.GetCurrentJst();
+            if (!string.IsNullOrWhiteSpace(args.TargetDateTime) &&
+                !DateTime.TryParse(args.TargetDateTime, out targetDateTime))
+            {
+                result.Result = QoApiResult.Build(
+                    QoApiResultCodeTypeEnum.ArgumentError,
+                    $"TargetDateTime が不正です。[{args.TargetDateTime}]");
+                return result;
+            }
+
+            double timeSpanInHours = 24d;
+            if (!string.IsNullOrWhiteSpace(args.TimeSpanInHours) &&
+                !double.TryParse(args.TimeSpanInHours, out timeSpanInHours))
+            {
+                result.Result = QoApiResult.Build(
+                    QoApiResultCodeTypeEnum.ArgumentError,
+                    $"TimeSpanInHours が不正です。[{args.TimeSpanInHours}]");
+                return result;
+            }
+
+            if (timeSpanInHours <= 0)
+            {
+                result.Result = QoApiResult.Build(
+                    QoApiResultCodeTypeEnum.ArgumentError,
+                    "TimeSpanInHours は 0 より大きい値で指定してください。");
+                return result;
+            }
+
+            if (timeSpanInHours > 24)
+            {
+                timeSpanInHours = 24;
+            }
+
+            try
+            {
+                var client = new CalomealMealSyncClient();
+                var execution = client.SyncMealHistories(_CalomealMealSyncRepo, accountKey, targetDateTime, timeSpanInHours);
+
+                result.TargetDateTime = execution.TargetDateTime.ToString("yyyy/MM/dd HH:mm:ss");
+                result.TimeSpanInHours = execution.TimeSpanInHours.ToString("0.##");
+                result.ProcessedCount = execution.ProcessedCount.ToString();
+                result.SuccessCount = execution.SuccessCount.ToString();
+                result.ErrorCount = execution.ErrorCount.ToString();
+                result.AddedCount = execution.AddedCount.ToString();
+                result.ModifiedCount = execution.ModifiedCount.ToString();
+                result.DeletedCount = execution.DeletedCount.ToString();
+                result.TokenRefreshed = execution.TokenRefreshed ? bool.TrueString : bool.FalseString;
+                result.Message = execution.Message;
+                result.ErrorMessageN = execution.ErrorMessages ?? new List<string>();
+
+                if (execution.ErrorCount == 0)
+                {
+                    result.IsSuccess = bool.TrueString;
+                    result.Result = QoApiResult.Build(QoApiResultCodeTypeEnum.Success, execution.Message);
+                }
+                else
+                {
+                    result.Result = QoApiResult.Build(QoApiResultCodeTypeEnum.OperationError, execution.Message);
+                }
+
+                return result;
+            }
+            catch (ConfigurationErrorsException ex)
+            {
+                result.Result = QoApiResult.Build(QoApiResultCodeTypeEnum.InternalServerError, ex.Message);
+                QoAccessLog.WriteErrorLog(ex.Message, Guid.Empty);
+                return result;
+            }
+            catch (InvalidOperationException ex)
+            {
+                result.Result = QoApiResult.Build(QoApiResultCodeTypeEnum.OperationError, ex.Message);
+                QoAccessLog.WriteErrorLog(ex.Message, Guid.Empty);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result.Result = QoApiResult.Build(ex);
+                QoAccessLog.WriteErrorLog(ex.Message, Guid.Empty);
+                return result;
+            }
+        }
 
         /// <summary>
         /// PHR情報取得を行う。

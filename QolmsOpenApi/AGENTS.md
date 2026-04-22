@@ -38,6 +38,53 @@
 - 一括置換・大量リネームの明示指示なしの実行
 - 破壊的操作（ファイル削除・DB DROP 等）を確認なしに実行すること
 
+## TFS / Git 運用ルール
+
+### ディレクトリ構成
+
+| 役割 | パス |
+|------|------|
+| TFS 管理ディレクトリ（読み取り専用） | `C:\MGF\QOLMS\V1F472\Web\QolmsOpenApi` |
+| ローカル作業ディレクトリ（編集対象） | `C:\private-git\project-ai-mirror\QolmsOpenApi` |
+| Git リポジトリルート | `C:\private-git\project-ai-mirror` |
+
+### ⚠️ TFS ディレクトリへの書き込み禁止
+
+- `C:\MGF\QOLMS\V1F472\Web\QolmsOpenApi` 配下へのファイル作成・上書き・属性変更は**絶対に行わない**
+- TFS ディレクトリは**読み取り専用参照**としてのみ扱う
+- 編集・生成・コピー先は常に `C:\private-git\project-ai-mirror\QolmsOpenApi` 配下のみ
+
+### TFS 更新の取り込み手順
+
+TFS 側で変更があったとき、タイムスタンプ基準でローカルへ上書き取り込みを行う。
+
+```powershell
+robocopy "C:\MGF\QOLMS\V1F472\Web\QolmsOpenApi" "C:\private-git\project-ai-mirror\QolmsOpenApi" /E /XD .git
+```
+
+取り込み後は差分を確認してからコミットする：
+
+```powershell
+cd "C:\private-git\project-ai-mirror"
+git diff --stat QolmsOpenApi/
+git add QolmsOpenApi/
+git commit -m "chore: TFS 最新版を取り込み (YYYY-MM-DD)"
+git push
+```
+
+### Git 運用方針
+
+- `git commit` 後は `git push` まで自動実施する（確認不要）
+- コミットメッセージは日本語で、変更内容を端的に書く
+- `.gitignore` / `.gitattributes` / `AGENTS.md` / `.github/` はローカル管理ファイルのため、robocopy で上書きされない（TFS 側に存在しない）
+
+### 注意事項
+
+- **ビルドはローカルで不要**。テストは差分を手動で TFS 側へコピーして行う
+- `JotoApp` 系ファイル（`JotoAppController.cs` 等）は LF 改行が混在している。編集時はエディタの改行設定に注意
+- `packages/` は Git 管理対象外（NuGet パッケージは TFS 側の `packages/` フォルダを参照）
+- 他プロジェクト参照の実体は `C:\MGF\QOLMS\` 側にある前提のため、ローカルではビルドエラーが出て正常
+
 ## 回答スタイル
 
 - 原則として日本語で応答する
